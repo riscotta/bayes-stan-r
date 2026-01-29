@@ -6,7 +6,7 @@
 # -----------------------------
 # 0) Parâmetros que você pode mexer
 # -----------------------------
-file_path <- "C:/Users/rs44925/Downloads/dados.txt"  # use / (barra normal) no Windows
+file_path <- here::here("data", "raw", "TherapeuticTouchData.csv")
 seed <- 1234
 
 chains <- 4
