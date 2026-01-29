@@ -39,6 +39,9 @@ Os scripts são organizados por tema (não há um pipeline único).
 1. Abra o repositório no GitHub
 2. Vá em **Code → Codespaces → Create codespace on main**
 3. Abra o terminal do Codespaces e execute o(s) script(s) desejado(s) a partir do root do repositório.
+```bash
+$ Rscript scripts/regression/linear_bayes.R
+```
 
 ## Dados (públicos e pequenos)
 
