@@ -1,83 +1,87 @@
-# bayes-stan-r
+bayes-stan-r
 
-Scripts em **R** e modelos em **Stan** para **análises bayesianas**, **simulação**, **modelagem** e **diagnósticos** (PPC, checagens e visualizações).
+Scripts em R e modelos em Stan para análises bayesianas, simulação, modelagem e diagnósticos (PPC, checagens e visualizações).
 
-## Uso principal
+Uso principal
 
-- **Portfólio público**
-- **Suporte para artigos no LinkedIn** (com dados/datasets públicos quando aplicável)
-- **Base de referência** para meu futuro livro sobre **R e Stan**
+Portfólio público
 
----
+Suporte para artigos no LinkedIn (com dados públicos quando aplicável)
 
-## Organização (por temas)
+Base de referência para meu futuro livro sobre R e Stan
 
-Os scripts são **soltos por tema** (não há pipeline único).
+Organização (por temas)
 
-- `scripts/bayes-basics/` — priors, posterior, checks iniciais
-- `scripts/regression/` — regressão linear/logística (Bayes)
-- `scripts/glm/` — Poisson, NegBin, zero-inflated/hurdle (quando aplicável)
-- `scripts/hierarchical/` — modelos multiníveis/hierárquicos (ex.: Eight Schools)
-- `scripts/stan/` — arquivos `.stan` e wrappers em R
-- `scripts/diagnostics/` — R-hat, ESS, divergences, treedepth, rank plots
-- `scripts/ppc/` — posterior predictive checks e calibração
-- `scripts/simulation/` — Monte Carlo, cenários e sensibilidade
-- `scripts/viz/` — utilitários de visualização
+Os scripts são organizados por tema (não há um pipeline único).
 
-### Funções reutilizáveis
+scripts/bayes-basics/ — priors, posterior, checagens iniciais
 
-- `R/` — helpers de IO, wrangling, plots e suporte ao Stan
+scripts/regression/ — regressão linear/logística (Bayes)
 
-### Dados e relatórios
+scripts/glm/ — Poisson, NegBin, zero-inflated/hurdle (quando aplicável)
 
-- `data/` — apenas datasets **pequenos** e/ou **públicos**
-- `reports/` — relatórios (Quarto `.qmd` / R Markdown)
-- `outputs/` — saídas geradas (figuras/tabelas/modelos). Em geral são regeneráveis.
+scripts/hierarchical/ — modelos multiníveis/hierárquicos (ex.: Eight Schools)
 
----
+scripts/stan/ — arquivos .stan e wrappers em R
 
-## Como rodar no navegador (sem instalar nada no computador)
+scripts/diagnostics/ — R-hat, ESS, divergences, treedepth, rank plots
 
-### GitHub Codespaces
+scripts/ppc/ — posterior predictive checks e calibração
 
-1. Abra o repositório no GitHub
-2. Vá em **Code → Codespaces → Create codespace on main**
-3. Rode um script específico, por exemplo:
+scripts/simulation/ — Monte Carlo, cenários e sensibilidade
 
-```bash
+scripts/viz/ — utilitários de visualização
+
+Funções reutilizáveis
+
+R/ — helpers de IO, wrangling, visualizações e suporte ao Stan
+
+Dados e relatórios
+
+data/ — apenas dados pequenos e/ou públicos
+
+reports/ — relatórios (Quarto .qmd / R Markdown)
+
+outputs/ — saídas geradas (figuras/tabelas/modelos). Em geral, são regeneráveis.
+
+Como rodar no navegador (sem instalar nada no computador)
+GitHub Codespaces
+
+Abra o repositório no GitHub
+
+Vá em Code → Codespaces → Create codespace on main
+
+Rode um script específico, por exemplo:
+
 Rscript scripts/regression/linear_bayes.R
 
-## Datasets (públicos e pequenos)
+Dados (públicos e pequenos)
 
 Este repositório usa apenas dados públicos e/ou exemplos pequenos.
 
-Quando houver licença específica do dataset (CC BY, ODbL etc.), a fonte e os termos serão citados no diretório do exemplo.
+Quando houver uma licença específica do dataset (CC BY, ODbL etc.), a fonte e os termos serão citados no diretório do exemplo.
 
----
+Convenções
 
-## Convenções
+Scripts: scripts/<tema>/<nome_descritivo>.R
 
-- **Scripts:** `scripts/<tema>/<nome_descritivo>.R`
-- **Modelos Stan:** em `scripts/stan/` (ou no tema correspondente)
-- **Funções reutilizáveis:** `R/`
-- Evito `setwd()`; os paths são pensados para rodar a partir do *root* do repositório.
+Modelos Stan: em scripts/stan/ (ou no tema correspondente)
 
----
+Funções reutilizáveis: R/
 
-## Artigos (LinkedIn) e livro
+Evito setwd(); os paths são pensados para rodar a partir do root do repositório.
 
-- Links dos artigos serão adicionados conforme publicação.
-- Este repo é a base de código + dados para os posts e para o livro.
+Artigos (LinkedIn) e livro
 
----
+Links dos artigos serão adicionados conforme publicação.
 
-## Autor
+Este repo é a base de código + dados para os posts e para o livro.
 
-**Ricardo**  
-LinkedIn: **[https://www.linkedin.com/in/ricardo-scotta/]**
+Autor
 
----
+Ricardo
+LinkedIn: https://www.linkedin.com/in/ricardo-scotta/
 
-## Licença
+Licença
 
-MIT — veja `LICENSE`.
+MIT — veja LICENSE.
