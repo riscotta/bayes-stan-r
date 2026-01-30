@@ -1,91 +1,147 @@
 # bayes-stan-r
 
-Scripts em R e modelos em Stan para análises bayesianas, simulação, modelagem e diagnósticos (PPC, checagens e visualizações).
+Scripts em **R** e modelos em **Stan** para análises bayesianas, simulação, modelagem e diagnósticos (PPC, checagens e visualizações).
 
 ## Uso principal
 
-- Portfólio público  
-- Suporte para artigos no LinkedIn (com dados públicos quando aplicável)  
-- Base de referência para meu futuro livro sobre R e Stan  
+- Portfólio público
+- Suporte para artigos no LinkedIn (com dados públicos quando aplicável)
+- Base de referência para meu futuro livro sobre R e Stan
 
-## Status do repositório (importante)
+## Status do repositório
 
-Este repositório está em crescimento. **Hoje, os exemplos publicados estão concentrados em `scripts/therapeutic_touch/`.**
-As pastas “por temas” (regression, glm, hierarchical etc.) aparecem no roadmap abaixo e serão preenchidas aos poucos.
+Este repositório está em crescimento. Hoje existem **2 exemplos principais**:
+
+- `scripts/therapeutic_touch/therapeutic_touch.R`
+- `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
+
+Conforme o repo crescer, vou adicionando novos exemplos por tema (veja o *Roadmap*).
 
 ---
 
-## Quickstart (rodar em 3–5 minutos)
+## Requisitos
+
+- **R** (recomendado: versão recente)
+- Pacotes R (instalados via script de setup abaixo)
+- Para rodar modelos Stan via `cmdstanr`: **toolchain C++** + **CmdStan**
+
+---
+
+## Quickstart
 
 Recomendação: rode sempre a partir do diretório raiz (root) do repositório.
 
-### Clonar o repositório
+### 1) Clonar
 
-    git clone https://github.com/riscotta/bayes-stan-r.git
-    cd bayes-stan-r
+```bash
+git clone https://github.com/riscotta/bayes-stan-r.git
+cd bayes-stan-r
+```
 
-### Instalar dependências R
+### 2) Instalar dependências R
 
-    Rscript scripts/_setup/install_deps.R
+Instala o conjunto mínimo (suficiente para os exemplos atuais):
 
-### Se quiser instalar um conjunto mais amplo (diagnósticos/relatórios):
+```bash
+Rscript scripts/_setup/install_deps.R
+```
 
-    Rscript scripts/_setup/install_deps.R --all
+Se quiser instalar um conjunto mais amplo (diagnósticos/relatórios):
 
-### (Opcional) Instalar CmdStan (se for rodar Stan via cmdstanr)
+```bash
+Rscript scripts/_setup/install_deps.R --all
+```
 
-    Rscript scripts/_setup/install_cmdstan.R
+### 3) (Opcional) Instalar CmdStan (para rodar Stan via cmdstanr)
 
-### Exemplo com versão e núcleos:
+```bash
+Rscript scripts/_setup/install_cmdstan.R
+```
 
-    Rscript scripts/_setup/install_cmdstan.R --version=2.35.0 --cores=4
+Exemplo com versão e núcleos:
 
-### Rodar um script que exista no repo
+```bash
+Rscript scripts/_setup/install_cmdstan.R --version=2.35.0 --cores=4
+```
 
-Como este repo ainda está crescendo, a forma mais segura de listar scripts é:
+---
 
-    Rscript -e "cat(list.files('scripts', recursive=TRUE, pattern='\\\\.R$', full.names=TRUE), sep='\n')"
+## Rodar exemplos (que existem hoje no repo)
 
-Depois rode um deles, por exemplo (ajuste o caminho para um que exista na sua listagem):
+### Therapeutic Touch (hierárquico vs pooled + PPC/LOO)
 
-    Rscript scripts/therapeutic_touch/<um_script>.R
+```bash
+Rscript scripts/therapeutic_touch/therapeutic_touch.R
+```
 
-### Rodar testes (se existir runner)
+### Baseball (3 níveis: geral → posição → jogador)
 
-Se você tiver o runner tests/run_tests.R:
+```bash
+Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R
+```
 
-    Rscript tests/run_tests.R
+Você também pode passar opções (formato `--chave=valor`), por exemplo:
 
-## Estrutura atual (o que existe hoje)
+```bash
+Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
+  --chains=4 --iter_warmup=1000 --iter_sampling=1000 --adapt_delta=0.99
+```
 
-- scripts/therapeutic_touch/ — exemplos publicados atualmente
-- R/ — helpers reutilizáveis
-- data/ — dados pequenos e/ou públicos
-- outputs/ — saídas geradas (em geral, regeneráveis)
-- reports/ — relatórios (Quarto/Rmd)
-- tests/testthat/ — testes (quando aplicável)
-- config/ — configurações auxiliares
+Dica: para ver tudo que existe em `scripts/`:
 
-### Roadmap (organização por temas — a preencher)
+```bash
+Rscript -e "cat(list.files('scripts', recursive=TRUE, pattern='\\\\.R$', full.names=TRUE), sep='\\n')"
+```
 
-A organização alvo (conforme o repositório crescer):
+---
 
-- scripts/bayes-basics/ — priors, posterior, checagens iniciais
-- scripts/regression/ — regressão linear/logística (Bayes)
-- scripts/glm/ — Poisson, NegBin, zero-inflated/hurdle (quando aplicável)
-- scripts/hierarchical/ — multiníveis/hierárquicos (ex.: Eight Schools)
-- scripts/stan/ — arquivos .stan e wrappers em R
-- scripts/diagnostics/ — R-hat, ESS, divergences, treedepth, rank plots
-- scripts/ppc/ — posterior predictive checks e calibração
-- scripts/simulation/ — Monte Carlo, cenários e sensibilidade
-- scripts/viz/ — utilitários de visualização
+## Testes (quando aplicável)
 
-### Convenções
-- Evito setwd(); os paths são pensados para rodar a partir do root.
+Se existir o runner `tests/run_tests.R`:
+
+```bash
+Rscript tests/run_tests.R
+```
+
+---
+
+## Estrutura atual
+
+- `scripts/therapeutic_touch/` — exemplo published
+- `scripts/hierarchical/` — exemplo published
+- `scripts/_setup/` — instalação de dependências e CmdStan
+- `R/` — helpers reutilizáveis (à medida que o repo amadurece)
+- `data/` — dados pequenos e/ou públicos
+- `outputs/` — saídas geradas (em geral, regeneráveis)
+- `reports/` — relatórios (Quarto/Rmd)
+- `tests/testthat/` — testes (quando aplicável)
+- `config/` — configurações auxiliares
+
+---
+
+## Roadmap (organização por temas — a preencher)
+
+- `scripts/bayes-basics/` — priors, posterior, checagens iniciais
+- `scripts/regression/` — regressão linear/logística (Bayes)
+- `scripts/glm/` — Poisson, NegBin, zero-inflated/hurdle (quando aplicável)
+- `scripts/hierarchical/` — multiníveis/hierárquicos (ex.: Eight Schools)
+- `scripts/stan/` — arquivos `.stan` e wrappers em R
+- `scripts/diagnostics/` — R-hat, ESS, divergences, treedepth, rank plots
+- `scripts/ppc/` — posterior predictive checks e calibração
+- `scripts/simulation/` — Monte Carlo, cenários e sensibilidade
+- `scripts/viz/` — utilitários de visualização
+
+---
+
+## Convenções (para o repo crescer sem virar bagunça)
+
+- Evito `setwd()`; os paths são pensados para rodar a partir do root.
 - Scripts devem, sempre que possível:
-  - fixar seed quando houver aleatoriedade
-  - escrever outputs em outputs/ com nomes descritivos
+  - fixar `seed` quando houver aleatoriedade
+  - escrever outputs em `outputs/` com nomes descritivos
   - declarar dependências e suposições no topo do arquivo (comentário curto)
+
+---
 
 ## Autor
 
@@ -94,4 +150,4 @@ LinkedIn: https://www.linkedin.com/in/ricardo-scotta/
 
 ## Licença
 
-MIT — veja LICENSE.
+MIT — veja `LICENSE`.
