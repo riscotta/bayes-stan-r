@@ -25,7 +25,7 @@
 # ----------------------------
 parse_args <- function(args) {
   out <- list(
-    data = file.path("data", "baseball", "BattingAverage.csv"),
+    data = file.path("data", "raw", "BattingAverage.csv"),
     prior_only = 0L,
     chains = 4L,
     iter_warmup = 1000L,
