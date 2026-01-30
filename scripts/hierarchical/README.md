@@ -9,7 +9,7 @@ Este exemplo foca em **modelos hierárquicos (multinível)** usando **Stan** via
 O objetivo é mostrar como “partial pooling” melhora estimativas quando há poucos dados por jogador, mantendo variação real entre grupos.
 
 > **Script:** `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`  
-> **Dados:** `raw/BattingAverage.csv`
+> **Dados:** `data/raw/BattingAverage.csv`
 
 ---
 
@@ -59,7 +59,7 @@ Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
 
 Em geral, o script:
 
-- lê o dataset de `raw/BattingAverage.csv`
+- lê o dataset de `data/raw/BattingAverage.csv`
 - prepara índices (posição/jogador) para o modelo hierárquico
 - compila e ajusta o modelo em Stan via `cmdstanr`
 - executa diagnósticos (ex.: resumos, QC, e pode incluir LOO)
@@ -78,7 +78,7 @@ Se você estiver salvando saídas, a convenção recomendada é:
 scripts/hierarchical/
   baseball_batting_by_position_3level_cmdstanr.R
   README.md
-raw/
+data/raw/
   BattingAverage.csv
 outputs/
   (opcional) hierarchical/
