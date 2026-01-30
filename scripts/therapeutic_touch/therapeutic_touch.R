@@ -9,20 +9,51 @@
 
 options(stringsAsFactors = FALSE)
 
-# Se preferir NÃO instalar automaticamente pacotes ausentes, mude para FALSE.
-AUTO_INSTALL_PKGS <- TRUE
+# Este script NÃO instala pacotes automaticamente por padrão.
+# Recomendado (uma vez por máquina):
+#   Rscript scripts/_setup/install_deps.R
+#
+# Se você quiser permitir auto-instalação aqui (não recomendado), rode:
+#   Rscript scripts/therapeutic_touch/therapeutic_touch.R --auto-install
+
+args_boot <- commandArgs(trailingOnly = TRUE)
+AUTO_INSTALL_PKGS <- "--auto-install" %in% args_boot
+
+# Garante CRAN + Stan r-universe quando (e somente quando) a auto-instalação for usada.
+# Isso evita falha ao instalar cmdstanr (que normalmente não vem do CRAN).
+ensure_repos_for_cmdstanr <- function() {
+  repos <- getOption("repos")
+  if (is.null(repos) || length(repos) == 0) repos <- c()
+  if (identical(repos, "@CRAN@")) repos <- c()
+
+  # garante names
+  if (length(repos) > 0 && is.null(names(repos))) names(repos) <- paste0("repo", seq_along(repos))
+
+  if (!("CRAN" %in% names(repos)) || is.null(repos[["CRAN"]]) || repos[["CRAN"]] == "" || repos[["CRAN"]] == "@CRAN@") {
+    repos[["CRAN"]] <- "https://cloud.r-project.org"
+  }
+  if (!("stan" %in% names(repos)) || is.null(repos[["stan"]]) || repos[["stan"]] == "") {
+    repos[["stan"]] <- "https://stan-dev.r-universe.dev"
+  }
+  options(repos = repos)
+}
 
 ensure_pkg <- function(pkg) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
     if (!AUTO_INSTALL_PKGS) {
       stop(
-        "Pacote '", pkg, "' não está instalado.\n",
-        "Instale com: install.packages('", pkg, "')\n",
-        "Ou mude AUTO_INSTALL_PKGS <- TRUE no topo do script.\n",
+        "Pacote '", pkg, "' não está instalado.\n\n",
+        "Como resolver (recomendado):\n",
+        "  Rscript scripts/_setup/install_deps.R\n\n",
+        "Alternativa (manual, dentro do R):\n",
+        "  install.packages('", pkg, "')\n\n",
+        "Se você realmente quer auto-instalar neste script:\n",
+        "  Rscript scripts/therapeutic_touch/therapeutic_touch.R --auto-install\n",
         call. = FALSE
       )
     }
     message("Instalando pacote ausente: ", pkg)
+    ensure_repos_for_cmdstanr()
     install.packages(pkg, dependencies = TRUE)
   }
   invisible(TRUE)
@@ -37,16 +68,18 @@ pkgs <- c(
 invisible(lapply(pkgs, ensure_pkg))
 
 # Agora sim podemos carregar
-library(here)
-library(readr)
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(ggplot2)
-library(cmdstanr)
-library(posterior)
-library(bayesplot)
-library(loo)
+suppressPackageStartupMessages({
+  library(here)
+  library(readr)
+  library(dplyr)
+  library(tidyr)
+  library(stringr)
+  library(ggplot2)
+  library(cmdstanr)
+  library(posterior)
+  library(bayesplot)
+  library(loo)
+})
 
 # Fixar root do projeto (assim roda mesmo com working dir "errado")
 # Se a pessoa mover o script pra fora do repo, este try não quebra o script,
@@ -518,31 +551,3 @@ report <- c(report, sprintf("\n  P(theta_pop > 0.5) = %.3f", p_theta_pop_gt_05))
 
 report <- c(report, "\n--- PPC / Prior check (pooled):")
 report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_pooled_prior$obs_mean, ppc_pooled_prior$p_bayes_mean))
-
-report <- c(report, "\n--- PPC / Prior check (hierarquico):")
-report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_hier_prior$obs_mean, ppc_hier_prior$p_bayes_mean))
-report <- c(report, sprintf("  Obs max subj successes=%d | Bayes p-value (max subj) = %.3f", ppc_hier_prior$obs_max_subj_k, ppc_hier_prior$p_bayes_max_subj_k))
-
-report <- c(report, "\n--- PPC / Posterior check (pooled):")
-report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_pooled_post$obs_mean, ppc_pooled_post$p_bayes_mean))
-
-report <- c(report, "\n--- PPC / Posterior check (hierarquico):")
-report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_hier_post$obs_mean, ppc_hier_post$p_bayes_mean))
-report <- c(report, sprintf("  Obs max subj successes=%d | Bayes p-value (max subj) = %.3f", ppc_hier_post$obs_max_subj_k, ppc_hier_post$p_bayes_max_subj_k))
-
-report <- c(report, "\n--- Ranking sujeitos (hier): P(theta_subj > 0.5) (top 10):")
-report <- c(report, capture.output(print(head(subj_table, 10), n = Inf)))
-
-report <- c(report, "\n--- Comparacao LOO (pooled vs hier):")
-report <- c(report, capture.output(print(loo_cmp)))
-
-report <- c(report, "\n--- Session info:")
-report <- c(report, capture.output(print(sessionInfo())))
-
-report <- c(report, "================== FIM RELATORIO FINAL ==================")
-
-cat(paste0(report, collapse = "\n"))
-
-# ============================================================
-# FIM
-# ============================================================
