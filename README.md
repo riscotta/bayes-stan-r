@@ -8,6 +8,13 @@ Scripts em R e modelos em Stan para análises bayesianas, simulação, modelagem
 - Suporte para artigos no LinkedIn (com dados públicos quando aplicável)  
 - Base de referência para meu futuro livro sobre R e Stan  
 
+## Status do repositório (importante)
+
+Este repositório está em crescimento. **Hoje, os exemplos publicados estão concentrados em `scripts/therapeutic_touch/`.**
+As pastas “por temas” (regression, glm, hierarchical etc.) aparecem no roadmap abaixo e serão preenchidas aos poucos.
+
+---
+
 ## Quickstart (rodar em 3–5 minutos)
 
 Recomendação: rode sempre a partir do diretório raiz (root) do repositório.
@@ -21,98 +28,64 @@ Recomendação: rode sempre a partir do diretório raiz (root) do repositório.
 
     Rscript scripts/_setup/install_deps.R
 
+### Se quiser instalar um conjunto mais amplo (diagnósticos/relatórios):
+
+    Rscript scripts/_setup/install_deps.R --all
+
 ### (Opcional) Instalar CmdStan (se for rodar Stan via cmdstanr)
 
     Rscript scripts/_setup/install_cmdstan.R
 
-### Rodar um exemplo (ajuste para um script que exista no repo)
+### Exemplo com versão e núcleos:
 
-    Rscript scripts/regression/linear_bayes.R
+    Rscript scripts/_setup/install_cmdstan.R --version=2.35.0 --cores=4
 
-### Rodar testes (sem pacote)
+### Rodar um script que exista no repo
 
-    Rscript tests/run_tests.R
+Como este repo ainda está crescendo, a forma mais segura de listar scripts é:
 
-**Observações:**
+    Rscript -e "cat(list.files('scripts', recursive=TRUE, pattern='\\\\.R$', full.names=TRUE), sep='\n')"
 
-- Se você não pretende rodar modelos Stan agora, pode pular a instalação do CmdStan.
-- Evito setwd(); os paths são pensados para rodar a partir do root do repositório.
+Depois rode um deles, por exemplo (ajuste o caminho para um que exista na sua listagem):
 
-## Organização (por temas)
+    Rscript scripts/therapeutic_touch/<um_script>.R
 
-Os scripts são organizados por tema (não há um pipeline único).
+### Rodar testes (se existir runner)
 
-- scripts/bayes-basics/ — priors, posterior, checagens iniciais  
-- scripts/regression/ — regressão linear/logística (Bayes)  
-- scripts/glm/ — Poisson, NegBin, zero-inflated/hurdle (quando aplicável)  
-- scripts/hierarchical/ — modelos multiníveis/hierárquicos (ex.: Eight Schools)  
-- scripts/stan/ — arquivos .stan e wrappers em R  
-- scripts/diagnostics/ — R-hat, ESS, divergences, treedepth, rank plots  
-- scripts/ppc/ — posterior predictive checks e calibração  
-- scripts/simulation/ — Monte Carlo, cenários e sensibilidade  
-- scripts/viz/ — utilitários de visualização  
-
-## Funções reutilizáveis
-
-- R/ — helpers de IO, wrangling, visualizações e suporte ao Stan
-
-## Dados e relatórios
-
-- data/ — apenas dados pequenos e/ou públicos  
-- reports/ — relatórios (Quarto .qmd / R Markdown)  
-- outputs/ — saídas geradas (figuras/tabelas/modelos). Em geral, são regeneráveis.  
-
-### Sugestão de política para outputs/ (para manter o repo limpo e consistente)
-
-- commit apenas saídas “curadas” (figuras finais para post/relatório)
-- evitar artefatos pesados e intermediários quando não forem necessários
-
-## Testes (testthat) sem virar pacote
-
-Este repositório usa testthat para validar helpers e comportamentos críticos, mas não é um pacote R.
-
-- runner: tests/run_tests.R  
-- testes: tests/testthat/  
-- loader de helpers (via source dos arquivos em R/): tests/testthat/helper-load.R  
-
-### Para executar
+Se você tiver o runner tests/run_tests.R:
 
     Rscript tests/run_tests.R
 
-## Como rodar no navegador (sem instalar nada no computador)
+## Estrutura atual (o que existe hoje)
 
-### GitHub Codespaces
+- scripts/therapeutic_touch/ — exemplos publicados atualmente
+- R/ — helpers reutilizáveis
+- data/ — dados pequenos e/ou públicos
+- outputs/ — saídas geradas (em geral, regeneráveis)
+- reports/ — relatórios (Quarto/Rmd)
+- tests/testthat/ — testes (quando aplicável)
+- config/ — configurações auxiliares
 
-1. Abra o repositório no GitHub
-2. Vá em Code → Codespaces → Create codespace on main
-3. Abra o terminal do Codespaces e execute o(s) script(s) desejado(s) a partir do root do repositório, por exemplo:
+### Roadmap (organização por temas — a preencher)
 
-    Rscript scripts/regression/linear_bayes.R
+A organização alvo (conforme o repositório crescer):
 
-## Dados (públicos e pequenos)
+- scripts/bayes-basics/ — priors, posterior, checagens iniciais
+- scripts/regression/ — regressão linear/logística (Bayes)
+- scripts/glm/ — Poisson, NegBin, zero-inflated/hurdle (quando aplicável)
+- scripts/hierarchical/ — multiníveis/hierárquicos (ex.: Eight Schools)
+- scripts/stan/ — arquivos .stan e wrappers em R
+- scripts/diagnostics/ — R-hat, ESS, divergences, treedepth, rank plots
+- scripts/ppc/ — posterior predictive checks e calibração
+- scripts/simulation/ — Monte Carlo, cenários e sensibilidade
+- scripts/viz/ — utilitários de visualização
 
-Este repositório usa apenas dados públicos e/ou exemplos pequenos.
-
-Quando houver uma licença específica do dataset (CC BY, ODbL etc.), a fonte e os termos serão citados no diretório do exemplo.
-
-## Convenções
-
-- Scripts: scripts/<tema>/<nome_descritivo>.R
-- Modelos Stan: em scripts/stan/ (ou no tema correspondente)
-- Funções reutilizáveis: R/
-- Evito setwd(); os paths são pensados para rodar a partir do root do repositório.
-
-Sempre que possível, scripts devem:
-
-- fixar seed quando houver aleatoriedade
-- escrever outputs em outputs/ com nomes descritivos
-- declarar dependências e suposições no topo do arquivo (comentário curto)
-
-## Artigos (LinkedIn) e livro
-
-Links dos artigos serão adicionados conforme publicação.
-
-Este repo é a base de código + dados para os posts e para o livro.
+### Convenções
+- Evito setwd(); os paths são pensados para rodar a partir do root.
+- Scripts devem, sempre que possível:
+  - fixar seed quando houver aleatoriedade
+  - escrever outputs em outputs/ com nomes descritivos
+  - declarar dependências e suposições no topo do arquivo (comentário curto)
 
 ## Autor
 
