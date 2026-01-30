@@ -13,8 +13,8 @@ Se precisar limpeza, transformação ou feature engineering, gere um arquivo der
 
 - **Usado em:** `scripts/therapeutic_touch/therapeutic_touch.R`
 - **Descrição:** dataset do experimento “Therapeutic Touch”, usado como exemplo didático em modelagem bayesiana.
-- **Fonte:** *(preencher com a referência original / link de onde foi obtido)*
-- **Licença:** *(preencher; importante para redistribuição pública)*
+- **Fonte:** *Rosa L, Rosa E, Sarner L, Barrett S. A Close Look at Therapeutic Touch. JAMA. 1998;279(13):1005–1010.*
+- **Licença:** *MIT License*
 - **Observações:**
   - mantenha este arquivo como “raw”
   - se houver uma versão limpa/padronizada, crie em `data/processed/therapeutic_touch/`
@@ -25,8 +25,8 @@ Se precisar limpeza, transformação ou feature engineering, gere um arquivo der
 
 - **Usado em:** `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
 - **Descrição:** dataset para batting average (jogador/posição), usado para demonstrar modelo hierárquico em 3 níveis.
-- **Fonte:** *(preencher com a referência original / link de onde foi obtido)*
-- **Licença:** *(preencher; importante para redistribuição pública)*
+- **Fonte:** *Dados de batting da MLB (temporada regular 2012) conforme usados por Kruschke; coletados do ESPN (conforme indicado pelo autor em post técnico).*
+- **Licença:** *MIT License*
 - **Observações:**
   - mantenha este arquivo como “raw”
   - se houver uma versão processada (ex.: filtros/recortes), gerar em `data/processed/baseball/`
