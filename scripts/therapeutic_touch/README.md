@@ -1,44 +1,104 @@
-# Therapeutic Touch (R)
+# Therapeutic Touch (exemplo)
 
-Este script reproduz a análise do dataset **TherapeuticTouchData.csv**.
+Este exemplo reproduz/análise o dataset clássico de **Therapeutic Touch** usando modelos bayesianos no **Stan** via `cmdstanr`.  
+A ideia é comparar abordagens **pooled / unpooled / hierarchical** (dependendo do script) e avaliar ajuste com **diagnósticos** (ex.: PPC e LOO).
+
+> **Onde está o script:** `scripts/therapeutic_touch/therapeutic_touch.R`  
+> **Dados:** `raw/TherapeuticTouchData.csv`
+
+---
 
 ## Pré-requisitos
-- R instalado (recomendado: R 4.1+)
-- O script usa caminhos relativos ao **root do repositório** (pasta `bayes-stan-r`)
 
-## Como rodar (recomendado)
-Clone o repositório e execute o script a partir da pasta raiz:
+No diretório raiz do repositório (root), rode:
 
-git clone https://github.com/riscotta/bayes-stan-r.git
+1) Dependências R:
 
-cd bayes-stan-r
+```bash
+Rscript scripts/_setup/install_deps.R --all
+```
+
+2) CmdStan (necessário para `cmdstanr`):
+
+```bash
+Rscript scripts/_setup/install_cmdstan.R
+```
+
+---
+
+## Como rodar
+
+A partir do root do repo:
+
+```bash
 Rscript scripts/therapeutic_touch/therapeutic_touch.R
+```
 
+---
 
-## Onde estão os dados?
-O dataset está em:
+## O que você deve ver ao final
 
-- `data/raw/TherapeuticTouchData.csv`
+Em geral, o script:
 
-## Link do script (para copiar)
-- GitHub (visualização normal):  
-  https://github.com/riscotta/bayes-stan-r/blob/main/scripts/therapeutic_touch/therapeutic_touch.R
+- lê o dataset de `raw/TherapeuticTouchData.csv`
+- ajusta o(s) modelo(s) em Stan via `cmdstanr`
+- imprime resumos e diagnósticos no console
+- gera gráficos (dependendo do trecho habilitado no script)
 
-## Link do script (RAW — para baixar/rodar)
-- RAW (sempre o mais recente do `main`):  
-  https://raw.githubusercontent.com/riscotta/bayes-stan-r/main/scripts/therapeutic_touch/therapeutic_touch.R
+Se você estiver salvando saídas, a convenção recomendada é:
 
-## Link do dataset (RAW)
-- RAW (sempre o mais recente do `main`):  
-  https://raw.githubusercontent.com/riscotta/bayes-stan-r/main/data/raw/TherapeuticTouchData.csv
+- **Figuras / tabelas finais:** `outputs/therapeutic_touch/`
+- **Relatórios (se houver):** `reports/`
 
-## Rodar sem Git (Download ZIP)
-No GitHub: **Code → Download ZIP**, descompacte e rode **dentro da pasta do projeto**:
+> Se hoje o seu script ainda não está salvando nada, está tudo bem: eu recomendo evoluir para salvar figuras em `outputs/therapeutic_touch/` quando você começar a publicar/compartilhar resultados.
 
-Rscript scripts/therapeutic_touch/therapeutic_touch.R
+---
 
+## Estrutura do exemplo
 
-## Extra (opcional, mas útil): link “congelado” (permalink)
-Se você quiser colocar em post/artigo um link que **nunca muda**, use este commit do script:
+```
+scripts/therapeutic_touch/
+  therapeutic_touch.R
+  README.md
+raw/
+  TherapeuticTouchData.csv
+outputs/
+  (opcional) therapeutic_touch/
+```
 
-https://raw.githubusercontent.com/riscotta/bayes-stan-r/1d16028a599628d18b3597a1d1578654a888aa75/scripts/therapeutic_touch/therapeutic_touch.R
+---
+
+## Dicas práticas
+
+- Rode sempre a partir do **root** do repositório (evite `setwd()`).
+- Se você pretende transformar isso em “exemplo padrão” do repo, o próximo passo natural é:
+  - padronizar `seed`
+  - criar um “entrypoint” `run.R` (opcional) que só chama as etapas em ordem
+  - mover funções utilitárias para `R/` (ex.: checagens, plots, helpers)
+
+---
+
+## Troubleshooting
+
+### `CmdStan não encontrado` / erro de compilação
+- Rode:
+
+```bash
+Rscript scripts/_setup/install_cmdstan.R
+```
+
+- Em Windows, confirme que o **RTools** está instalado e no PATH.
+
+### Pacotes R faltando
+- Rode:
+
+```bash
+Rscript scripts/_setup/install_deps.R --all
+```
+
+---
+
+## Referências
+
+- `cmdstanr`: interface R para CmdStan/Stan
+- Dataset “Therapeutic Touch”: usado como exemplo didático em modelagem/avaliação bayesiana
