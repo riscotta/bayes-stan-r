@@ -4,7 +4,7 @@ Este exemplo reproduz/análise o dataset clássico de **Therapeutic Touch** usan
 A ideia é comparar abordagens **pooled / unpooled / hierarchical** (dependendo do script) e avaliar ajuste com **diagnósticos** (ex.: PPC e LOO).
 
 > **Onde está o script:** `scripts/therapeutic_touch/therapeutic_touch.R`  
-> **Dados:** `raw/TherapeuticTouchData.csv`
+> **Dados:** `data/raw/TherapeuticTouchData.csv`
 
 ---
 
@@ -40,7 +40,7 @@ Rscript scripts/therapeutic_touch/therapeutic_touch.R
 
 Em geral, o script:
 
-- lê o dataset de `raw/TherapeuticTouchData.csv`
+- lê o dataset de `data/raw/TherapeuticTouchData.csv`
 - ajusta o(s) modelo(s) em Stan via `cmdstanr`
 - imprime resumos e diagnósticos no console
 - gera gráficos (dependendo do trecho habilitado no script)
@@ -60,7 +60,7 @@ Se você estiver salvando saídas, a convenção recomendada é:
 scripts/therapeutic_touch/
   therapeutic_touch.R
   README.md
-raw/
+data/raw/
   TherapeuticTouchData.csv
 outputs/
   (opcional) therapeutic_touch/
