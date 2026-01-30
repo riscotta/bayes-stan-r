@@ -1,43 +1,128 @@
+#!/usr/bin/env Rscript
+
 ############################################################
 # BattingAverage.csv — 3 níveis: Geral -> Posição -> Jogador
 # Console-only (nada é gravado em arquivo)
-# Stan via cmdstanr
+# Stan via cmdstanr (Stan inline via write_stan_file)
+#
+# Rode a partir do ROOT do repo:
+#   Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R
+#
+# Opções (formato --chave=valor):
+#   --data=path/to/BattingAverage.csv
+#   --prior_only=0|1
+#   --chains=4
+#   --iter_warmup=1000
+#   --iter_sampling=1000
+#   --seed=123
+#   --adapt_delta=0.95
+#   --max_treedepth=12
+#   --refresh=200
 ############################################################
 
 # ----------------------------
-# 0) Pacotes
+# 0) Helpers (args + checks)
 # ----------------------------
-pkgs <- c("cmdstanr", "posterior", "bayesplot", "dplyr", "readr", "tibble", "stringr", "loo")
-to_install <- setdiff(pkgs, rownames(installed.packages()))
-if (length(to_install) > 0) install.packages(to_install)
+parse_args <- function(args) {
+  out <- list(
+    data = file.path("data", "baseball", "BattingAverage.csv"),
+    prior_only = 0L,
+    chains = 4L,
+    iter_warmup = 1000L,
+    iter_sampling = 1000L,
+    seed = 123L,
+    adapt_delta = 0.95,
+    max_treedepth = 12L,
+    refresh = 200L
+  )
+
+  if (length(args) == 0) return(out)
+
+  for (a in args) {
+    if (!startsWith(a, "--")) next
+    a2 <- sub("^--", "", a)
+    if (!grepl("=", a2, fixed = TRUE)) next
+
+    key <- sub("=.*$", "", a2)
+    val <- sub("^.*=", "", a2)
+
+    if (key %in% names(out)) out[[key]] <- val
+  }
+
+  # coerções
+  out$prior_only <- as.integer(out$prior_only)
+  out$chains <- as.integer(out$chains)
+  out$iter_warmup <- as.integer(out$iter_warmup)
+  out$iter_sampling <- as.integer(out$iter_sampling)
+  out$seed <- as.integer(out$seed)
+  out$adapt_delta <- as.numeric(out$adapt_delta)
+  out$max_treedepth <- as.integer(out$max_treedepth)
+  out$refresh <- as.integer(out$refresh)
+
+  out
+}
+
+require_pkgs <- function(pkgs) {
+  missing <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(missing) > 0) {
+    stop(
+      "Pacotes faltando: ", paste(missing, collapse = ", "),
+      "\nRode primeiro: Rscript scripts/_setup/install_deps.R",
+      call. = FALSE
+    )
+  }
+}
+
+check_cmdstan <- function() {
+  ok <- TRUE
+  tryCatch(cmdstanr::cmdstan_version(), error = function(e) ok <<- FALSE)
+  if (!ok) {
+    stop(
+      "CmdStan não encontrado/configurado.\n",
+      "Rode: Rscript scripts/_setup/install_cmdstan.R\n",
+      "Depois tente novamente.",
+      call. = FALSE
+    )
+  }
+  invisible(TRUE)
+}
+
+args <- commandArgs(trailingOnly = TRUE)
+opt <- parse_args(args)
+
+pkgs <- c("cmdstanr", "posterior", "dplyr", "readr", "tibble", "loo")
+require_pkgs(pkgs)
 
 library(cmdstanr)
 library(posterior)
-library(bayesplot)
 library(dplyr)
 library(readr)
 library(tibble)
-library(stringr)
 library(loo)
 
 options(mc.cores = parallel::detectCores())
-set.seed(123)
+set.seed(opt$seed)
+
+check_cmdstan()
 
 # ----------------------------
 # 1) Ler dados
 # ----------------------------
-# Ajuste aqui se necessário:
-data_file <- "C:\\Users\\rs44925\\Downloads\\BattingAverage.csv"
-# data_file <- "BattingAverage.csv"
+if (!file.exists(opt$data)) {
+  stop(
+    "Arquivo de dados não encontrado: ", opt$data, "\n",
+    "Sugestão: coloque o CSV em data/baseball/BattingAverage.csv\n",
+    "ou rode com: --data=caminho/para/BattingAverage.csv",
+    call. = FALSE
+  )
+}
 
-stopifnot(file.exists(data_file))
-
-df <- read_csv(data_file, show_col_types = FALSE) %>%
+df <- read_csv(opt$data, show_col_types = FALSE) %>%
   mutate(
     PriPos = as.factor(PriPos),
     PriPosNumber = as.integer(PriPosNumber),
     PlayerNumber = as.integer(PlayerNumber),
-    BA_obs = Hits / AtBats
+    BA_obs = dplyr::if_else(AtBats > 0, Hits / AtBats, NA_real_)
   )
 
 # Checagens
@@ -64,8 +149,10 @@ pos_names <- as.character(pos_map$PriPos)
 
 cat("\n============================\n")
 cat("Leitura do arquivo OK\n")
+cat("Arquivo   :", opt$data, "\n")
 cat("N jogadores:", N, "\n")
 cat("K posições :", K, "\n")
+cat("prior_only:", opt$prior_only, "\n")
 cat("============================\n\n")
 
 # ----------------------------
@@ -77,10 +164,10 @@ eda_pos <- df %>%
     n = n(),
     hits = sum(Hits),
     ab = sum(AtBats),
-    BA_total = hits / ab,
+    BA_total = dplyr::if_else(ab > 0, hits / ab, NA_real_),
     AB_mean = mean(AtBats),
     AB_med  = median(AtBats),
-    BA_med  = median(BA_obs),
+    BA_med  = median(BA_obs, na.rm = TRUE),
     .groups = "drop"
   ) %>%
   arrange(pos_id)
@@ -90,7 +177,7 @@ print(eda_pos)
 cat("\n")
 
 # ----------------------------
-# 3) Stan — 3 níveis: geral -> posição -> jogador
+# 3) Stan — 3 níveis: geral -> posição -> jogador (INLINE)
 # ----------------------------
 stan_code <- "
 data {
@@ -165,9 +252,7 @@ generated quantities {
 }
 "
 
-# Como você pediu:
 stan_file <- write_stan_file(stan_code)
-
 mod <- cmdstan_model(stan_file)
 
 # ----------------------------
@@ -179,7 +264,7 @@ stan_data <- list(
   y = df$Hits,
   ab = df$AtBats,
   pos = df$pos_id,
-  prior_only = 0
+  prior_only = opt$prior_only
 )
 
 # ----------------------------
@@ -187,14 +272,14 @@ stan_data <- list(
 # ----------------------------
 fit <- mod$sample(
   data = stan_data,
-  chains = 4,
-  parallel_chains = 4,
-  iter_warmup = 1000,
-  iter_sampling = 1000,
-  seed = 123,
-  adapt_delta = 0.95,
-  max_treedepth = 12,
-  refresh = 200
+  chains = opt$chains,
+  parallel_chains = opt$chains,
+  iter_warmup = opt$iter_warmup,
+  iter_sampling = opt$iter_sampling,
+  seed = opt$seed,
+  adapt_delta = opt$adapt_delta,
+  max_treedepth = opt$max_treedepth,
+  refresh = opt$refresh
 )
 
 # ----------------------------
@@ -204,7 +289,6 @@ cat("\n============================\n")
 cat("RESULTADOS — parâmetros globais e por posição\n")
 cat("============================\n\n")
 
-# Resumo dos principais parâmetros (PATCH robusto para q50)
 sum_main_raw <- fit$summary(variables = c(
   "mu_alpha","sigma_alpha","mu_log_sigma","sigma_log_sigma",
   "alpha","sigma_pos","p_pos_mean"
@@ -265,7 +349,9 @@ yrep <- fit$draws("y_rep", format = "draws_matrix")  # draws x N
 set.seed(10)
 nd <- nrow(yrep)
 idx <- sample.int(nd, size = min(300, nd))
+
 BA_rep <- sweep(yrep[idx, , drop = FALSE], 2, df$AtBats, "/")
+if (any(df$AtBats == 0)) BA_rep[, df$AtBats == 0] <- NA_real_
 
 obs_stats <- quantile(df$BA_obs, probs = c(.01,.05,.10,.25,.50,.75,.90,.95,.99), na.rm = TRUE)
 rep_stats <- apply(BA_rep, 1, quantile, probs = c(.01,.05,.10,.25,.50,.75,.90,.95,.99), na.rm = TRUE)
@@ -279,7 +365,7 @@ print(apply(rep_stats, 1, median))
 cat("\nQuantis do BA replicado (intervalo 5%–95% dos quantis entre draws):\n")
 q_rep_lo <- apply(rep_stats, 1, quantile, 0.05)
 q_rep_hi <- apply(rep_stats, 1, quantile, 0.95)
-print(rbind(q05=q_rep_lo, q95=q_rep_hi))
+print(rbind(q05 = q_rep_lo, q95 = q_rep_hi))
 
 cat("\n============================\n")
 cat("LOO (opcional, mas útil) — console\n")
@@ -296,23 +382,22 @@ cat("\n============================\n")
 cat("CONTROLE DE QUALIDADE (QC)\n")
 cat("============================\n\n")
 
-# 8.1 Diagnóstico do CmdStan (texto) — PATCH
+# 8.1 Diagnóstico do CmdStan (texto)
 cat("--- Diagnostic summary (cmdstanr) ---\n")
 print(fit$diagnostic_summary())
 
 cat("\n--- CmdStan diagnose utility (opcional) ---\n")
-# Esse método imprime no console; em algumas versões retorna invisível/NULL.
-# Não use print(fit$cmdstan_diagnose()) — chame direto:
 fit$cmdstan_diagnose()
 
 # 8.2 Contagens de divergências e treedepth
 sd <- fit$sampler_diagnostics(format = "draws_array")
 
 divergent <- sum(sd[, , "divergent__"])
-treedepth_hit <- sum(sd[, , "treedepth__"] >= 12)  # max_treedepth = 12
+treedepth_hit <- sum(sd[, , "treedepth__"] >= opt$max_treedepth)
+
 cat("\n--- Sampler diagnostics ---\n")
 cat("Divergências (divergent__):", divergent, "\n")
-cat("Atingiu max_treedepth (>=12):", treedepth_hit, "\n")
+cat("Atingiu max_treedepth (>=", opt$max_treedepth, "): ", treedepth_hit, "\n", sep = "")
 
 # 8.3 E-BFMI por cadeia (regra prática: >= 0.3 é ok)
 energy <- sd[, , "energy__"]
