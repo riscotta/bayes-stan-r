@@ -1,0 +1,47 @@
+# Scripts
+
+Aqui ficam os scripts “executáveis” do repositório.
+
+**Regra geral:** rode a partir do **root** do repo (sem `setwd()`):
+
+```bash
+Rscript scripts/<pasta>/<script>.R
+```
+
+## Setup (uma vez por máquina)
+
+- Instalar dependências R:
+
+```bash
+Rscript scripts/_setup/install_deps.R
+```
+
+- Instalar CmdStan (necessário para `cmdstanr`):
+
+```bash
+Rscript scripts/_setup/install_cmdstan.R
+```
+
+## Exemplos disponíveis
+
+### 1) Therapeutic Touch
+
+- Pasta: `scripts/therapeutic_touch/`
+- Entrada: `scripts/therapeutic_touch/therapeutic_touch.R`
+- Dados: `data/raw/TherapeuticTouchData.csv`
+- Saídas (quando rodado via `Rscript`):
+  - `outputs/figures/therapeutic_touch_plots.pdf`
+  - `outputs/tables/therapeutic_touch_report.txt`
+
+### 2) Hierárquico (Baseball: 3 níveis)
+
+- Pasta: `scripts/hierarchical/`
+- Entrada: `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
+- Dados: `data/raw/BattingAverage.csv`
+- Observação: *console-only* (não grava arquivos por padrão)
+
+## Convenções
+
+- **1 pasta = 1 exemplo** (com `README.md` curto)
+- preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
+- artefatos regeneráveis vão em `outputs/`
