@@ -22,6 +22,12 @@ Exemplos principais:
    - Script: `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
    - Dados: `data/raw/BattingAverage.csv`
 
+
+3) **Mortalidade** — Poisson hierárquico com offset (população)
+   - Script: `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
+   - Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
+
+
 ---
 
 ## Requisitos
@@ -83,6 +89,25 @@ Esse script é **console-only** (não grava arquivos) e aceita opções no forma
 Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
   --chains=4 --iter_warmup=1000 --iter_sampling=1000 --adapt_delta=0.99
 ```
+
+
+
+### Mortalidade (Poisson hierárquico com offset)
+
+```bash
+Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R
+```
+
+Esse script lê um Excel e é **console-only** (não grava arquivos por padrão).  
+Colunas esperadas no `sheet` configurado: `Contagem` (y), `POPULACAO` (offset) e `CODMUNRES` (município).
+
+Exemplo especificando o caminho do Excel:
+
+```bash
+Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R \
+  --excel_path=data/raw/mortality/Dados_Mortalidade.xlsx --sheet_name=Resumo
+```
+
 
 ---
 
