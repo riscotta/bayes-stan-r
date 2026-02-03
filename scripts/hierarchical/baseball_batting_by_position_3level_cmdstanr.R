@@ -111,7 +111,7 @@ check_cmdstan()
 if (!file.exists(opt$data)) {
   stop(
     "Arquivo de dados não encontrado: ", opt$data, "\n",
-    "Sugestão: coloque o CSV em data/baseball/BattingAverage.csv\n",
+    "Sugestão: coloque o CSV em data/raw/BattingAverage.csv\n",
     "ou rode com: --data=caminho/para/BattingAverage.csv",
     call. = FALSE
   )
