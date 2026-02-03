@@ -51,7 +51,18 @@ Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
   --chains=4 --iter_warmup=1000 --iter_sampling=1000 --adapt_delta=0.99
 ```
 
-> Dica: se você quiser que eu documente **todas as opções aceitas**, eu extraio direto do `parse_args()` do script e coloco aqui “bonitinho”.
+
+Opções aceitas hoje (veja também o cabeçalho do script):
+
+- `--data=...` (caminho do CSV)
+- `--prior_only=0|1`
+- `--chains=4`
+- `--iter_warmup=1000`
+- `--iter_sampling=1000`
+- `--seed=123`
+- `--adapt_delta=0.95`
+- `--max_treedepth=12`
+- `--refresh=200`
 
 ---
 
@@ -65,10 +76,11 @@ Em geral, o script:
 - executa diagnósticos (ex.: resumos, QC, e pode incluir LOO)
 - imprime resultados no console e (dependendo do trecho habilitado) gera gráficos
 
-Se você estiver salvando saídas, a convenção recomendada é:
+Este exemplo é **console-only** (não grava arquivos por padrão).
 
-- **Figuras / tabelas finais:** `outputs/hierarchical/`
-- **Relatórios (se houver):** `reports/`
+Se você quiser salvar artefatos depois (tabelas/figuras), a convenção do repo é usar:
+
+- `outputs/tables/` e `outputs/figures/`
 
 ---
 
