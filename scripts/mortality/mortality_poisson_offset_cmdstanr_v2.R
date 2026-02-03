@@ -36,7 +36,7 @@
 # ----------------------------
 parse_args <- function(args) {
   out <- list(
-    excel_path = file.path("data", "raw", "mortality", "Dados.xlsx"),
+    excel_path = file.path("data", "raw", "Dados_Mortalidade.xlsx"),
     sheet_name = "Resumo",
     col_y   = "Contagem",
     col_pop = "POPULACAO",
