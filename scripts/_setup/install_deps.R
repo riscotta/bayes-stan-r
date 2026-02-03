@@ -63,6 +63,7 @@ pkgs_min <- c(
   "dplyr",
   "tidyr",
   "readr",
+  "readxl",
   "tibble",
   "stringr",
   "here"
