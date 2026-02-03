@@ -33,6 +33,21 @@ Se precisar limpeza, transformação ou feature engineering, gere um arquivo der
 
 ---
 
+
+### `mortality/Dados_Mortalidade.xlsx`
+
+- **Usado em:** `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
+- **Descrição:** planilha com contagem de eventos e população por município (offset), usada para demonstrar modelo Poisson hierárquico com *shrinkage*.
+- **Fonte:** *(não documentada no repo — adicione quando possível)*
+- **Licença:** *(não documentada no repo — adicione quando possível)*
+- **Observações:**
+  - manter este arquivo como “raw”
+  - o script espera (no `sheet` configurado) as colunas `Contagem`, `POPULACAO`, `CODMUNRES`
+  - se houver padronização/limpeza/recortes, gerar um derivado em `data/processed/mortality/`
+
+---
+
+
 ## Convenções recomendadas
 
 - **Nomes de arquivos:** `CamelCase` ou `snake_case` (mas manter consistente no repo)
@@ -40,4 +55,3 @@ Se precisar limpeza, transformação ou feature engineering, gere um arquivo der
 - **Separador:** vírgula (CSV)
 - **Header:** primeira linha com nomes de colunas
 - **Tamanho:** se um dataset crescer muito, prefira um script de download em `scripts/_setup/get_data.R` e ignore o arquivo grande no git.
-
