@@ -40,6 +40,15 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: `data/raw/BattingAverage.csv`
 - Observação: *console-only* (não grava arquivos por padrão)
 
+
+### 3) Mortalidade (Poisson hierárquico com offset)
+
+- Pasta: `scripts/mortality/`
+- Entrada: `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
+- Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
+- Observação: *console-only* (não grava arquivos por padrão)
+
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)
