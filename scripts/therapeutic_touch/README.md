@@ -34,6 +34,17 @@ A partir do root do repo:
 Rscript scripts/therapeutic_touch/therapeutic_touch.R
 ```
 
+Por padrão, quando você roda via `Rscript` (não-interativo), o script salva:
+
+- `outputs/figures/therapeutic_touch_plots.pdf`
+- `outputs/tables/therapeutic_touch_report.txt`
+
+Se você não quiser salvar artefatos e preferir somente console:
+
+```bash
+Rscript scripts/therapeutic_touch/therapeutic_touch.R --no-save
+```
+
 ---
 
 ## O que você deve ver ao final
@@ -45,12 +56,10 @@ Em geral, o script:
 - imprime resumos e diagnósticos no console
 - gera gráficos (dependendo do trecho habilitado no script)
 
-Se você estiver salvando saídas, a convenção recomendada é:
+Quando salva artefatos (via `Rscript`), este exemplo usa:
 
-- **Figuras / tabelas finais:** `outputs/therapeutic_touch/`
-- **Relatórios (se houver):** `reports/`
-
-> Se hoje o seu script ainda não está salvando nada, está tudo bem: eu recomendo evoluir para salvar figuras em `outputs/therapeutic_touch/` quando você começar a publicar/compartilhar resultados.
+- `outputs/figures/therapeutic_touch_plots.pdf`
+- `outputs/tables/therapeutic_touch_report.txt`
 
 ---
 
@@ -63,7 +72,8 @@ scripts/therapeutic_touch/
 data/raw/
   TherapeuticTouchData.csv
 outputs/
-  (opcional) therapeutic_touch/
+  figures/therapeutic_touch_plots.pdf
+  tables/therapeutic_touch_report.txt
 ```
 
 ---
