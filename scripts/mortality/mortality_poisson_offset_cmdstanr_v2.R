@@ -9,7 +9,7 @@
 #   Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R
 #
 # Opções (formato --chave=valor):
-#   --excel_path=data/raw/mortality/Dados.xlsx
+#   --excel_path=data/raw/Dados_Mortalidade.xlsx
 #   --sheet_name=Resumo
 #   --col_y=Contagem
 #   --col_pop=POPULACAO
