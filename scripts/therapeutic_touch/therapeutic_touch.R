@@ -19,6 +19,12 @@ options(stringsAsFactors = FALSE)
 args_boot <- commandArgs(trailingOnly = TRUE)
 AUTO_INSTALL_PKGS <- "--auto-install" %in% args_boot
 
+# Quando roda via Rscript (não-interativo), é mais útil salvar os artefatos.
+# Flags:
+#   --save     -> força salvar (mesmo se interactive())
+#   --no-save  -> não salva (somente console)
+SAVE_ARTIFACTS <- (("--save" %in% args_boot) || (!interactive() && !("--no-save" %in% args_boot))) && !("--no-save" %in% args_boot)
+
 # Garante CRAN + Stan r-universe quando (e somente quando) a auto-instalação for usada.
 # Isso evita falha ao instalar cmdstanr (que normalmente não vem do CRAN).
 ensure_repos_for_cmdstanr <- function() {
@@ -85,6 +91,22 @@ suppressPackageStartupMessages({
 # Se a pessoa mover o script pra fora do repo, este try não quebra o script,
 # mas o caminho do CSV provavelmente não vai existir e será detectado na validação.
 try(here::i_am("scripts/therapeutic_touch/therapeutic_touch.R"), silent = TRUE)
+
+# ============================================================
+# 0.1) Saídas (quando aplicável)
+# ============================================================
+
+out_pdf    <- here::here("outputs", "figures", "therapeutic_touch_plots.pdf")
+out_report <- here::here("outputs", "tables",  "therapeutic_touch_report.txt")
+
+if (SAVE_ARTIFACTS) {
+  dir.create(dirname(out_pdf), recursive = TRUE, showWarnings = FALSE)
+  dir.create(dirname(out_report), recursive = TRUE, showWarnings = FALSE)
+
+  # Captura os plots em PDF quando rodado via Rscript.
+  grDevices::pdf(out_pdf, width = 8, height = 6)
+  on.exit(grDevices::dev.off(), add = TRUE)
+}
 
 # ============================================================
 # 1) Parâmetros que você pode mexer
@@ -499,9 +521,14 @@ subj_table <- tibble(
 # 11) LOO (comparação pooled vs hierárquico)
 # ============================================================
 
-loo_pooled <- fit_pooled$loo()
-loo_hier   <- fit_hier$loo()
-loo_cmp    <- loo::loo_compare(loo_pooled, loo_hier)
+loo_pooled <- tryCatch(fit_pooled$loo(), error = function(e) e)
+loo_hier   <- tryCatch(fit_hier$loo(), error = function(e) e)
+loo_cmp    <- NULL
+if (inherits(loo_pooled, "error") || inherits(loo_hier, "error")) {
+  loo_cmp <- NULL
+} else {
+  loo_cmp <- tryCatch(loo::loo_compare(loo_pooled, loo_hier), error = function(e) e)
+}
 
 # ============================================================
 # 12) RELATÓRIO FINAL (colável)
@@ -551,3 +578,37 @@ report <- c(report, sprintf("\n  P(theta_pop > 0.5) = %.3f", p_theta_pop_gt_05))
 
 report <- c(report, "\n--- PPC / Prior check (pooled):")
 report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_pooled_prior$obs_mean, ppc_pooled_prior$p_bayes_mean))
+
+report <- c(report, "\n--- PPC / Prior check (hierarquico):")
+report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_hier_prior$obs_mean, ppc_hier_prior$p_bayes_mean))
+if (!is.null(ppc_hier_prior$p_bayes_max_subj_k)) {
+  report <- c(report, sprintf("  Obs max k(sujeito)=%d | Bayes p-value = %.3f", ppc_hier_prior$obs_max_subj_k, ppc_hier_prior$p_bayes_max_subj_k))
+}
+
+report <- c(report, "\n--- PPC / Posterior check (pooled):")
+report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_pooled_post$obs_mean, ppc_pooled_post$p_bayes_mean))
+
+report <- c(report, "\n--- PPC / Posterior check (hierarquico):")
+report <- c(report, sprintf("  Obs mean(y)=%.3f | Bayes p-value (mean) = %.3f", ppc_hier_post$obs_mean, ppc_hier_post$p_bayes_mean))
+if (!is.null(ppc_hier_post$p_bayes_max_subj_k)) {
+  report <- c(report, sprintf("  Obs max k(sujeito)=%d | Bayes p-value = %.3f", ppc_hier_post$obs_max_subj_k, ppc_hier_post$p_bayes_max_subj_k))
+}
+
+report <- c(report, "\n--- Comparacao por LOO (pooled vs hierarquico):")
+report <- c(report, capture.output(print(loo_cmp)))
+
+report <- c(report, "\n--- P(theta_subj > 0.5) (Top 10):")
+report <- c(report, capture.output(print(head(subj_table, 10))))
+
+report <- c(report, "\n==================== FIM ====================")
+
+# Imprime no console
+cat(paste(report, collapse = "\n"), sep = "\n")
+
+# Salva em arquivo quando aplicável
+if (SAVE_ARTIFACTS) {
+  writeLines(report, con = out_report, useBytes = TRUE)
+  message("\n\n==> Salvo:")
+  message("  - ", out_pdf)
+  message("  - ", out_report)
+}
