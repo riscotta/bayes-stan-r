@@ -1,13 +1,130 @@
-# bayes_mortality_cmdstanr_real_V2.R
-# V2 — Modelo Bayesiano hierárquico Poisson com offset (população)
-# Melhorias vs V1:
-#   - parametrização não-centrada (melhor amostragem)
-#   - priors configuráveis (alpha centrado na crude rate, com clamp)
-#   - diagnósticos completos (Rhat/ESS + divergências + treedepth + BFMI)
-#   - benchmark Bayesiano: P(rate_i > state_mean_draw) onde state_mean_draw = exp(alpha + 0.5*sigma^2)
-#   - PPC: y_rep por município + p-values e checagens globais
-#   - NADA é gravado em disco pelo script (sem CSV/plots exportados).
-#     Obs: cmdstanr/Stan por natureza usa arquivos temporários para compilar/rodar; aqui vai para tempdir().
+#!/usr/bin/env Rscript
+
+############################################################
+# Mortality — Poisson hierárquico com offset (população)
+# Console-only (nada é gravado em arquivo)
+# Stan via cmdstanr (Stan inline via write_stan_file)
+#
+# Rode a partir do ROOT do repo:
+#   Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R
+#
+# Opções (formato --chave=valor):
+#   --excel_path=data/raw/mortality/Dados.xlsx
+#   --sheet_name=Resumo
+#   --col_y=Contagem
+#   --col_pop=POPULACAO
+#   --col_mun=CODMUNRES
+#
+#   --seed=1234
+#   --chains=4
+#   --iter_warmup=1000
+#   --iter_sampling=1000
+#   --adapt_delta=0.95
+#   --max_treedepth=12
+#   --refresh=0
+#
+#   --threshold_prob=0.95
+#   --alpha_scale=1.5
+#   --sigma_scale=1.0
+#
+#   --show_full_table=0|1
+#   --top_k=20
+############################################################
+
+# ----------------------------
+# 0) Helpers (args + checks)
+# ----------------------------
+parse_args <- function(args) {
+  out <- list(
+    excel_path = file.path("data", "raw", "mortality", "Dados.xlsx"),
+    sheet_name = "Resumo",
+    col_y   = "Contagem",
+    col_pop = "POPULACAO",
+    col_mun = "CODMUNRES",
+
+    # MCMC
+    seed = 1234L,
+    chains = 4L,
+    iter_warmup = 1000L,
+    iter_sampling = 1000L,
+    adapt_delta = 0.95,
+    max_treedepth = 12L,
+    refresh = 0L,
+
+    # Regra de flag
+    threshold_prob = 0.95,
+
+    # Priors
+    alpha_scale = 1.5,
+    sigma_scale = 1.0,
+
+    # Saídas
+    show_full_table = 1L,   # 0|1 (padrão do repo)
+    top_k = 20L
+  )
+
+  if (length(args) == 0) return(out)
+
+  for (a in args) {
+    if (!startsWith(a, "--")) next
+    a2 <- sub("^--", "", a)
+    if (!grepl("=", a2, fixed = TRUE)) next
+
+    key <- sub("=.*$", "", a2)
+    val <- sub("^.*=", "", a2)
+
+    if (key %in% names(out)) out[[key]] <- val
+  }
+
+  # coerções
+  out$seed <- as.integer(out$seed)
+  out$chains <- as.integer(out$chains)
+  out$iter_warmup <- as.integer(out$iter_warmup)
+  out$iter_sampling <- as.integer(out$iter_sampling)
+  out$adapt_delta <- as.numeric(out$adapt_delta)
+  out$max_treedepth <- as.integer(out$max_treedepth)
+  out$refresh <- as.integer(out$refresh)
+
+  out$threshold_prob <- as.numeric(out$threshold_prob)
+  out$alpha_scale <- as.numeric(out$alpha_scale)
+  out$sigma_scale <- as.numeric(out$sigma_scale)
+
+  out$show_full_table <- as.integer(out$show_full_table)
+  out$top_k <- as.integer(out$top_k)
+
+  out
+}
+
+require_pkgs <- function(pkgs) {
+  missing <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(missing) > 0) {
+    stop(
+      "Pacotes faltando: ", paste(missing, collapse = ", "),
+      "\nRode primeiro: Rscript scripts/_setup/install_deps.R",
+      call. = FALSE
+    )
+  }
+}
+
+check_cmdstan <- function() {
+  ok <- TRUE
+  tryCatch(cmdstanr::cmdstan_version(), error = function(e) ok <<- FALSE)
+  if (!ok) {
+    stop(
+      "CmdStan não encontrado/configurado.\n",
+      "Rode: Rscript scripts/_setup/install_cmdstan.R\n",
+      "Depois tente novamente.",
+      call. = FALSE
+    )
+  }
+  invisible(TRUE)
+}
+
+args <- commandArgs(trailingOnly = TRUE)
+cfg <- parse_args(args)
+
+pkgs <- c("cmdstanr", "posterior", "dplyr", "tidyr", "ggplot2", "readxl", "tibble")
+require_pkgs(pkgs)
 
 suppressPackageStartupMessages({
   library(cmdstanr)
@@ -16,41 +133,25 @@ suppressPackageStartupMessages({
   library(tidyr)
   library(ggplot2)
   library(readxl)
+  library(tibble)
 })
 
-# -----------------------------
-# 0) CONFIG
-# -----------------------------
-cfg <- list(
-  excel_path = "C:\\Users\\rs44925\\Downloads\\projetos\\SIM\\Dados.xlsx",
-  sheet_name = "Resumo",
-  col_y   = "Contagem",
-  col_pop = "POPULACAO",
-  col_mun = "CODMUNRES",
-  
-  # MCMC
-  seed = 1234,
-  chains = 4,
-  iter_warmup = 1000,
-  iter_sampling = 1000,
-  adapt_delta = 0.95,
-  max_treedepth = 12,
-  
-  # Regra de flag
-  threshold_prob = 0.95,
-  
-  # Priors (alpha será centrado na crude rate; veja abaixo)
-  alpha_scale = 1.5,   # prior sd no log-rate
-  sigma_scale = 1.0,   # half-normal efetivo: sigma ~ Normal(0, sigma_scale) truncado em 0
-  
-  # PPC / saídas
-  show_full_table = TRUE,     # TRUE imprime a tabela inteira (pode ser grandeo se N for grande)
-  top_k = 20                  # Top K para rankings/resumos
-)
+options(mc.cores = parallel::detectCores())
+set.seed(cfg$seed)
+check_cmdstan()
 
 # -----------------------------
 # 1) CARREGAR E VALIDAR DADOS
 # -----------------------------
+if (!file.exists(cfg$excel_path)) {
+  stop(
+    "Arquivo Excel não encontrado: ", cfg$excel_path, "\n",
+    "Sugestão: coloque o XLSX em data/raw/mortality/Dados.xlsx\n",
+    "ou rode com: --excel_path=caminho/para/Dados.xlsx",
+    call. = FALSE
+  )
+}
+
 dados_raw <- read_excel(cfg$excel_path, sheet = cfg$sheet_name)
 
 stopifnot(all(c(cfg$col_y, cfg$col_pop, cfg$col_mun) %in% names(dados_raw)))
@@ -64,13 +165,12 @@ df <- dados_raw %>%
 
 # Checagens básicas
 if (any(is.na(df$mun) | is.na(df$pop) | is.na(df$y))) {
-  stop("Há NA em mun/pop/y. Limpe ou trate a planilha antes de rodar.")
+  stop("Há NA em mun/pop/y. Limpe ou trate a planilha antes de rodar.", call. = FALSE)
 }
-if (any(df$pop <= 0)) stop("Há pop <= 0. Offset log(pop) exige pop > 0.")
-if (any(df$y < 0))    stop("Há y < 0. Contagens devem ser >= 0.")
+if (any(df$pop <= 0)) stop("Há pop <= 0. Offset log(pop) exige pop > 0.", call. = FALSE)
+if (any(df$y < 0))    stop("Há y < 0. Contagens devem ser >= 0.", call. = FALSE)
 
-# Se houver município repetido, agrego por muni (melhor do que tratar cada linha como um município distinto).
-# População aqui entra como 'exposição' no período/recorte da linha; somar é o default mais defensável.
+# Se houver município repetido, agrego por muni.
 dup_mun <- any(duplicated(df$mun))
 if (dup_mun) {
   df <- df %>%
@@ -88,11 +188,18 @@ pop <- df$pop
 mun <- df$mun
 
 crude_rate_obs <- sum(y) / sum(pop)
-# clamp para evitar log(0) se não houver óbitos (caso raro, mas possível)
 crude_for_prior <- max(crude_rate_obs, 1e-12)
-
-# Prior para alpha centrado na crude (data-informed, mas ainda bem amplo).
 alpha_loc <- log(crude_for_prior)
+
+cat("\n==============================\n")
+cat("V2 — MODELO BAYESIANO HIERÁRQUICO (POISSON + OFFSET)\n")
+cat("==============================\n")
+cat("Arquivo Excel :", cfg$excel_path, "\n")
+cat("Sheet        :", cfg$sheet_name, "\n")
+cat("N municípios :", N, "\n")
+cat("Duplicados agregados:", dup_mun, "\n")
+cat("Crude rate   :", format(crude_rate_obs, digits = 10), "\n")
+cat("==============================\n\n")
 
 # -----------------------------
 # 2) MODELO STAN (NÃO-CENTRADO) + PPC
@@ -160,20 +267,16 @@ fit <- mod$sample(
   iter_sampling = cfg$iter_sampling,
   adapt_delta = cfg$adapt_delta,
   max_treedepth = cfg$max_treedepth,
-  refresh = 0,                    # reduz spam no console
-  output_dir = tempdir()          # arquivos temporários do CmdStan
+  refresh = cfg$refresh,
+  output_dir = tempdir()
 )
 
 # -----------------------------
 # 3) EXTRAIR DRAWS E DIAGNÓSTICOS
 # -----------------------------
-# Sumário padrão: Rhat/ESS
 fit_summary <- fit$summary()
-
-# Diagnósticos do sampler (divergências, treedepth, BFMI)
 diag_sum <- fit$diagnostic_summary()
 
-# Sampler diagnostics (para métricas detalhadas)
 sd_df <- as_draws_df(fit$sampler_diagnostics())
 
 n_div <- sum(sd_df$divergent__)
@@ -186,40 +289,32 @@ bfmi_by_chain <- function(energy_vec) {
   denom <- var(energy_vec)
   numer / denom
 }
-# separa por cadeia usando .chain (coluna do posterior draws_df do sampler_diagnostics)
+
 bfmi_tbl <- sd_df %>%
   as_tibble() %>%
   group_by(.chain) %>%
   summarise(bfmi = bfmi_by_chain(energy__), .groups = "drop") %>%
   arrange(.chain)
 
-# Draws principais
 draws_alpha_sigma <- as_draws_df(fit$draws(variables = c("alpha", "sigma")))
 alpha_draw <- draws_alpha_sigma$alpha
 sigma_draw <- draws_alpha_sigma$sigma
 
-# Taxas por município (matriz iters x N)
 rate_mat <- fit$draws(variables = "rate", format = "draws_matrix")
 colnames(rate_mat) <- gsub("^rate\\[|\\]$", "", colnames(rate_mat))
 
-# PPC: y_rep (matriz iters x N)
 yrep_mat <- fit$draws(variables = "y_rep", format = "draws_matrix")
 colnames(yrep_mat) <- gsub("^y_rep\\[|\\]$", "", colnames(yrep_mat))
 
 # -----------------------------
 # 4) BENCHMARKS E PROBABILIDADES DE EXCESSO
 # -----------------------------
-# Benchmark Bayesiano:
-#   state_median_draw = exp(alpha)
-#   state_mean_draw   = exp(alpha + 0.5*sigma^2)  (média marginal sobre eta ~ N(0,sigma))
 state_median_draw <- exp(alpha_draw)
 state_mean_draw   <- exp(alpha_draw + 0.5 * sigma_draw^2)
 
-# P(rate_i > crude) e P(rate_i > state_mean_draw)
 prob_above_crude <- colMeans(rate_mat > crude_rate_obs)
-prob_above_state_mean <- colMeans(rate_mat > state_mean_draw)  # reciclagem por linha funciona
+prob_above_state_mean <- colMeans(rate_mat > state_mean_draw)
 
-# Sumarização por município (taxa)
 rate_summ <- tibble(
   mun_idx = 1:N,
   post_mean   = colMeans(rate_mat),
@@ -233,7 +328,6 @@ rate_summ <- tibble(
   mutate(flag = prob_above_state > cfg$threshold_prob) %>%
   arrange(desc(prob_above_state))
 
-# Junta com dados observados
 results <- df %>%
   mutate(
     mun_idx = 1:N,
@@ -241,9 +335,7 @@ results <- df %>%
   ) %>%
   left_join(rate_summ, by = "mun_idx") %>%
   mutate(
-    # expectativa posterior (usando mediana da taxa)
     post_median_mu = pop * post_median,
-    # "razão" simples vs crude
     rr_vs_crude = post_median / crude_rate_obs
   ) %>%
   select(
@@ -256,17 +348,14 @@ results <- df %>%
 # -----------------------------
 # 5) PPC (POSTERIOR PREDICTIVE CHECKS)
 # -----------------------------
-# PPC por município:
-# - intervalo preditivo 95% de y_rep
-# - p-values (one-sided e two-sided)
 ppc_tbl <- tibble(
   mun_idx = 1:N,
   y_obs = y,
   yrep_mean = colMeans(yrep_mat),
   yrep_q025 = apply(yrep_mat, 2, quantile, probs = 0.025),
   yrep_q975 = apply(yrep_mat, 2, quantile, probs = 0.975),
-  p_hi = colMeans(yrep_mat >= y),   # P(y_rep >= y_obs)
-  p_lo = colMeans(yrep_mat <= y)    # P(y_rep <= y_obs)
+  p_hi = colMeans(yrep_mat >= y),
+  p_lo = colMeans(yrep_mat <= y)
 ) %>%
   mutate(
     p_two = 2 * pmin(p_hi, p_lo),
@@ -278,13 +367,10 @@ results <- results %>%
   left_join(ppc_tbl %>% select(mun_idx, yrep_q025, yrep_q975, p_two, covered_95), by = "mun_idx") %>%
   select(-mun_idx)
 
-# PPC global:
-# - total de óbitos (distribuição preditiva)
-# - proporção de zeros por município (distribuição)
 y_total_rep <- rowSums(yrep_mat)
 y_total_obs <- sum(y)
 
-zero_prop_rep <- rowMeans(yrep_mat == 0)  # por draw: fração de municípios com 0
+zero_prop_rep <- rowMeans(yrep_mat == 0)
 zero_prop_obs <- mean(y == 0)
 
 ppc_global <- list(
@@ -336,7 +422,10 @@ plot_rate_vs_pop <- ggplot(results, aes(x = pop, y = post_median, color = flag))
     x = "População (log10)",
     y = "Taxa posterior (mediana)",
     title = "Taxas hierárquicas por município (mediana posterior)",
-    subtitle = sprintf("Flag: P(rate_i > state_mean_draw) > %.2f | crude=%.6g", cfg$threshold_prob, crude_rate_obs)
+    subtitle = sprintf(
+      "Flag: P(rate_i > state_mean_draw) > %.2f | crude=%.6g",
+      cfg$threshold_prob, crude_rate_obs
+    )
   ) +
   theme_minimal()
 
@@ -362,12 +451,10 @@ out$data_summary <- list(
   crude_rate_obs = crude_rate_obs
 )
 
-# Diagnósticos principais de convergência (Rhat/ESS) — foco nos parâmetros globais e dispersão geral
 par_focus <- fit_summary %>%
   filter(variable %in% c("alpha", "sigma")) %>%
   select(any_of(c("variable", "mean", "sd", "q5", "median", "q95", "rhat", "ess_bulk", "ess_tail")))
 
-# Visão geral de Rhat e divergências
 rhat_overview <- fit_summary %>%
   filter(!is.na(rhat)) %>%
   summarise(
@@ -388,17 +475,14 @@ out$model_diagnostics <- list(
   param_focus = par_focus
 )
 
-# Ranking: top municípios por prob_above_state
 out$top_by_excess <- results %>%
   arrange(desc(prob_above_state)) %>%
   slice_head(n = min(cfg$top_k, N))
 
-# Ranking: mais "estranhos" no PPC (p_two muito pequeno)
 out$top_ppc_weird <- results %>%
   arrange(p_two) %>%
   slice_head(n = min(cfg$top_k, N))
 
-# Contagem de flags
 out$flags <- list(
   threshold = cfg$threshold_prob,
   n_flagged = sum(results$flag),
@@ -412,10 +496,6 @@ out$results_table <- results
 # -----------------------------
 # 9) PRINT FINAL (TUDO JUNTO)
 # -----------------------------
-cat("\n==============================\n")
-cat("V2 — MODELO BAYESIANO HIERÁRQUICO (POISSON + OFFSET)\n")
-cat("==============================\n")
-
 cat("\n--- 1) RESUMO DOS DADOS ---\n")
 print(out$data_summary)
 
@@ -483,11 +563,11 @@ cat("\n--- 7) TOP 'ESTRANHOS' NO PPC (menor p_two) ---\n")
 print(out$top_ppc_weird)
 
 cat("\n--- 8) TABELA COMPLETA (RESULTADOS) ---\n")
-if (isTRUE(cfg$show_full_table)) {
+if (cfg$show_full_table == 1L) {
   print(out$results_table, n = N)
 } else {
   print(out$results_table, n = min(50, N))
-  cat("\n(Dica: cfg$show_full_table = TRUE para imprimir tudo.)\n")
+  cat("\n(Dica: --show_full_table=1 para imprimir tudo.)\n")
 }
 
 cat("\n--- 9) PLOTS (serão desenhados no device gráfico) ---\n")
