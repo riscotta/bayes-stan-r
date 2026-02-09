@@ -48,10 +48,22 @@ Se precisar limpeza, transformação ou feature engineering, gere um arquivo der
 ---
 
 
+### `isus_sia/ISUS_SIA_PARS.csv`
+
+- **Usado em:** `scripts/isus_sia/MC_patched.R`
+- **Descrição:** extração/recorte (CSV com separador `;`) para análise de precificação via Monte Carlo robusto (cluster bootstrap por **CNES**) no contexto ISUS/SIA.
+- **Fonte:** *(não documentada no repo — adicione quando possível)*
+- **Licença / restrições:** *(não documentada no repo — verifique permissões e LGPD antes de publicar)*
+- **Observações:**
+  - mantenha este arquivo como “raw”
+  - se houver limpeza/padronização, gerar derivado em `data/processed/isus_sia/`
+  - se o dataset for sensível ou privado, prefira **não versionar** e substitua por um script de ingestão/download em `scripts/_setup/`
+
+
 ## Convenções recomendadas
 
 - **Nomes de arquivos:** `CamelCase` ou `snake_case` (mas manter consistente no repo)
 - **Encoding:** UTF-8
-- **Separador:** vírgula (CSV)
+- **Separador:** vírgula (preferencial); quando necessário `;` (padrão PT-BR)
 - **Header:** primeira linha com nomes de colunas
 - **Tamanho:** se um dataset crescer muito, prefira um script de download em `scripts/_setup/get_data.R` e ignore o arquivo grande no git.
