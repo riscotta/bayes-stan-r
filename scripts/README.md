@@ -49,6 +49,14 @@ Rscript scripts/_setup/install_cmdstan.R
 - Observação: *console-only* (não grava arquivos por padrão)
 
 
+### 4) ISUS / SIA — Monte Carlo robusto (cluster bootstrap por CNES)
+
+- Pasta: `scripts/isus_sia/`
+- Entrada: `scripts/isus_sia/MC_patched.R`
+- Dados: `data/raw/isus_sia/ISUS_SIA_PARS.csv`
+- Observação: *console-only* (não grava arquivos por design)
+
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)
