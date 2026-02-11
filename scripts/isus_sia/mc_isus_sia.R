@@ -1,66 +1,162 @@
+#!/usr/bin/env Rscript
+
 ############################################################
-# Robust Monte Carlo (Cluster Bootstrap por CNES) para precificação SIGTAP
-# Fonte: ISUS_SIA_PARS.csv (separador ";")
-# Requisitos:
-#  - NÃO gravar nada em arquivo
-#  - Resultados impressos na console e TODOS NO FINAL do script
+# ISUS / SIA — Robust Monte Carlo (cluster bootstrap por CNES)
+# Precificação SIGTAP a partir de ISUS_SIA_PARS (CSV ';')
+# Console-only (nada é gravado em arquivo)
 #
-# IMPORTANTE (assunção do usuário):
+# IMPORTANTE (assunção do experimento):
 #  - VLR_APROVADA é VALOR UNITÁRIO aprovado.
-#  - Logo o valor total aprovado por linha é: VLR_TOTAL = VLR_APROVADA * QTD_APROVADA
+#  - Logo o valor total por linha é: VLR_TOTAL = VLR_APROVADA * QTD_APROVADA
+#
+# Rode a partir do ROOT do repo:
+#   Rscript scripts/isus_sia/mc_isus_sia.R
+#
+# Opções (formato --chave=valor):
+#   --csv_path=data/raw/isus_sia/ISUS_SIA_PARS.csv
+#   --zip_path=data/raw/isus_sia/ISUS_SIA_PARS.zip
+#   --seed=123
+#   --min_total_q=5000
+#   --top_n_groups_mc=15
+#   --B_state=400
+#   --B_split=200
+#   --outlier_k_ratio=5
+#   --outlier_prev_max=0.10
+#   --outlier_qshare_max=0.20
+#   --outlier_top_k=3
+#   --trim_alpha=0.05
 ############################################################
 
-############################
-# 0) PARÂMETROS
-############################
-# Padrão do repositório: dados versionados em data/raw/isus_sia/
-# Rode sempre a partir do root do repo:
-#   Rscript scripts/isus_sia/MC_patched.R
-# (Opcional) override: Rscript ... --csv_path=CAMINHO_DO_ARQUIVO
-csv_path <- file.path("data", "raw", "isus_sia", "ISUS_SIA_PARS.csv")
+# ----------------------------
+# 0) Helpers (args + checks)
+# ----------------------------
+parse_args <- function(args) {
+  out <- list(
+    csv_path = file.path("data", "raw", "isus_sia", "ISUS_SIA_PARS.csv"),
+    zip_path = file.path("data", "raw", "isus_sia", "ISUS_SIA_PARS.zip"),
+    seed = 123L,
+    min_total_q = 5000,
+    top_n_groups_mc = 15L,
+    B_state = 400L,
+    B_split = 200L,
+    outlier_k_ratio = 5,
+    outlier_prev_max = 0.10,
+    outlier_qshare_max = 0.20,
+    outlier_top_k = 3L,
+    trim_alpha = 0.05
+  )
 
-# Override por linha de comando (--csv_path=...)
+  if (length(args) == 0) return(out)
+
+  for (a in args) {
+    if (!startsWith(a, "--")) next
+    a2 <- sub("^--", "", a)
+    if (!grepl("=", a2, fixed = TRUE)) next
+
+    key <- sub("=.*$", "", a2)
+    val <- sub("^.*=", "", a2)
+    if (key %in% names(out)) out[[key]] <- val
+  }
+
+  # coerções
+  out$seed <- as.integer(out$seed)
+  out$min_total_q <- as.numeric(out$min_total_q)
+  out$top_n_groups_mc <- as.integer(out$top_n_groups_mc)
+  out$B_state <- as.integer(out$B_state)
+  out$B_split <- as.integer(out$B_split)
+  out$outlier_k_ratio <- as.numeric(out$outlier_k_ratio)
+  out$outlier_prev_max <- as.numeric(out$outlier_prev_max)
+  out$outlier_qshare_max <- as.numeric(out$outlier_qshare_max)
+  out$outlier_top_k <- as.integer(out$outlier_top_k)
+  out$trim_alpha <- as.numeric(out$trim_alpha)
+
+  out
+}
+
+require_pkgs <- function(pkgs) {
+  missing <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(missing) > 0) {
+    stop(
+      "Pacotes faltando: ", paste(missing, collapse = ", "),
+      "\nRode primeiro: Rscript scripts/_setup/install_deps.R",
+      call. = FALSE
+    )
+  }
+}
+
+locate_input <- function(csv_path, zip_path) {
+  # 1) CSV direto
+  if (file.exists(csv_path)) {
+    return(list(path = csv_path, kind = "csv", tempdir = NA_character_))
+  }
+
+  # 2) Fallback útil (ambiente sandbox /mnt/data)
+  if (!file.exists(csv_path) && file.exists("/mnt/data/ISUS_SIA_PARS.csv")) {
+    return(list(path = "/mnt/data/ISUS_SIA_PARS.csv", kind = "csv", tempdir = NA_character_))
+  }
+  if (!file.exists(zip_path) && file.exists("/mnt/data/ISUS_SIA_PARS.zip")) {
+    zip_path <- "/mnt/data/ISUS_SIA_PARS.zip"
+  }
+
+  # 3) ZIP -> extrai para tempdir (não polui o repo)
+  if (file.exists(zip_path)) {
+    td <- tempfile("isus_sia_")
+    dir.create(td, recursive = TRUE, showWarnings = FALSE)
+    utils::unzip(zip_path, exdir = td)
+    csv_in_zip <- file.path(td, "ISUS_SIA_PARS.csv")
+    if (!file.exists(csv_in_zip)) {
+      stop(
+        "ZIP encontrado, mas não achei ISUS_SIA_PARS.csv dentro dele: ", zip_path,
+        call. = FALSE
+      )
+    }
+    return(list(path = csv_in_zip, kind = "zip", tempdir = td))
+  }
+
+  stop(
+    "Não encontrei o dataset. Opções:\n",
+    " - Coloque o CSV em data/raw/isus_sia/ISUS_SIA_PARS.csv e rode novamente; ou\n",
+    " - Coloque o ZIP em data/raw/isus_sia/ISUS_SIA_PARS.zip (contendo ISUS_SIA_PARS.csv); ou\n",
+    " - Informe via --csv_path=... ou --zip_path=...\n",
+    call. = FALSE
+  )
+}
+
 args <- commandArgs(trailingOnly = TRUE)
-arg_csv <- grep("^--csv_path=", args, value = TRUE)
-if (length(arg_csv) == 1) {
-  csv_path <- sub("^--csv_path=", "", arg_csv)
-}
+opt  <- parse_args(args)
 
-# Fallback útil (ex.: execução em ambiente sandbox)
-if (!file.exists(csv_path) && file.exists("/mnt/data/ISUS_SIA_PARS.csv")) {
-  csv_path <- "/mnt/data/ISUS_SIA_PARS.csv"
-}
+pkgs <- c("data.table")
+require_pkgs(pkgs)
 
-if (!file.exists(csv_path)) {
-  stop("Não encontrei o CSV. Coloque em data/raw/isus_sia/ISUS_SIA_PARS.csv ou informe via --csv_path=...")
-}
+suppressPackageStartupMessages({
+  library(data.table)
+})
 
-set.seed(123)
+inp <- locate_input(opt$csv_path, opt$zip_path)
+on.exit(if (is.character(inp$tempdir) && !is.na(inp$tempdir) && dir.exists(inp$tempdir)) {
+  unlink(inp$tempdir, recursive = TRUE, force = TRUE)
+}, add = TRUE)
+
+csv_path <- inp$path
+
+set.seed(opt$seed)
 
 # Análise principal (apenas g4)
-min_total_q       <- 5000   # ignora grupos com pouca produção (evita ruído)
-top_n_groups_mc   <- 15     # quantos grupos mais sensíveis entram no MC detalhado
+min_total_q     <- opt$min_total_q   # ignora grupos com pouca produção (evita ruído)
+top_n_groups_mc <- opt$top_n_groups_mc
 
 # Monte Carlo (cluster bootstrap por CNES)
-B_state <- 400              # replicações
-B_split <- 200              # replicações para SPLIT_TAIL (quando aplicável)
+B_state <- opt$B_state
+B_split <- opt$B_split
 
 # Outliers (procedimentos caros e raros dentro de um grupo g4)
-outlier_k_ratio    <- 5     # "caro": unitário >= k * mediana unitária do grupo (procedimento-level)
-outlier_prev_max   <- 0.10  # "raro": presente em <= 10% dos CNES do grupo
-outlier_qshare_max <- 0.20  # "pouco representativo": <= 20% da quantidade do grupo
-outlier_top_k      <- 3     # quantos procedimentos outlier listar por g4 no relatório
+outlier_k_ratio    <- opt$outlier_k_ratio
+outlier_prev_max   <- opt$outlier_prev_max
+outlier_qshare_max <- opt$outlier_qshare_max
+outlier_top_k      <- opt$outlier_top_k
 
 # Robustez (alternativas)
-trim_alpha <- 0.05          # trimming/winsor (5% de cauda)
-
-############################
-# 1) DEPENDÊNCIA
-############################
-if (!requireNamespace("data.table", quietly = TRUE)) {
-  stop("Pacote 'data.table' não encontrado. Instale com install.packages('data.table') e rode novamente.")
-}
-library(data.table)
+trim_alpha <- opt$trim_alpha
 
 ############################
 # 2) FUNÇÕES UTILITÁRIAS

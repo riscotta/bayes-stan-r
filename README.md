@@ -28,8 +28,8 @@ Exemplos principais:
    - Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
 
 4) **ISUS / SIA** — Monte Carlo robusto (cluster bootstrap por CNES) para precificação (SIGTAP)
-   - Script: `scripts/isus_sia/MC_patched.R`
-   - Dados: `data/raw/isus_sia/ISUS_SIA_PARS.csv`
+   - Script: `scripts/isus_sia/mc_isus_sia.R`
+   - Dados: `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`)*
 
 
 
@@ -117,13 +117,15 @@ Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R \
 ### ISUS / SIA (Monte Carlo robusto)
 
 ```bash
-Rscript scripts/isus_sia/MC_patched.R
+Rscript scripts/isus_sia/mc_isus_sia.R
 ```
 
-Opcionalmente, informe o caminho do CSV:
+Opcionalmente, informe o caminho do CSV ou do ZIP:
 
 ```bash
-Rscript scripts/isus_sia/MC_patched.R --csv_path=data/raw/isus_sia/ISUS_SIA_PARS.csv
+Rscript scripts/isus_sia/mc_isus_sia.R --csv_path=caminho/para/ISUS_SIA_PARS.csv
+
+Rscript scripts/isus_sia/mc_isus_sia.R --zip_path=caminho/para/ISUS_SIA_PARS.zip
 ```
 
 Esse script é **console-only** (não grava arquivos) e assume separador `;` no CSV.

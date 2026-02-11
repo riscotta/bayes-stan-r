@@ -55,6 +55,7 @@ install_pkgs <- function(pkgs) {
 
 # “mínimo” para os scripts que você já tem hoje
 pkgs_min <- c(
+  "data.table",
   "cmdstanr",
   "posterior",
   "bayesplot",
