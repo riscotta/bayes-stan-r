@@ -1,0 +1,26 @@
+---
+title: "Relatório (template)"
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Como usar
+
+1) Copie esta pasta para `reports/<nome-do-exemplo>/`.
+2) Ajuste o código para ler dados de `data/` e salvar artefatos regeneráveis em `outputs/`.
+3) Renderize com:
+
+```bash
+quarto render reports/<nome-do-exemplo>/template.qmd
+```
+
+## Exemplo mínimo
+
+```{r}
+sessionInfo()
+```

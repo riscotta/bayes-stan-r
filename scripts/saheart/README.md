@@ -6,8 +6,8 @@ Este exemplo ajusta uma **regressão logística Bayesiana** para o dataset **SAh
 - **Console-only:** não grava artefatos (resultados são impressos no console)
 - **Stan inline:** o modelo é definido no script e compilado via `cmdstanr::write_stan_file()`
 
-> **Script:** `scripts/saheart/saheart_logistic_cmdstanr.R`  
-> **Dados (preferencial):** `data/raw/SAheart.data` *(CSV com `,` e `row.names` na 1ª coluna, como no ESL)*  
+> **Script:** `scripts/saheart/saheart_logistic_cmdstanr.R`
+> **Dados (preferencial):** `data/raw/SAheart.data` *(CSV com `,` e `row.names` na 1ª coluna, como no ESL)*
 
 ---
 

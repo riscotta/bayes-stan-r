@@ -1,9 +1,8 @@
 # Therapeutic Touch (exemplo)
 
-Este exemplo reproduz/análise o dataset clássico de **Therapeutic Touch** usando modelos bayesianos no **Stan** via `cmdstanr`.  
-A ideia é comparar abordagens **pooled / unpooled / hierarchical** (dependendo do script) e avaliar ajuste com **diagnósticos** (ex.: PPC e LOO).
+Este exemplo reproduz/análise o dataset clássico de **Therapeutic Touch** usando modelos bayesianos no **Stan** via `cmdstanr`. A ideia é comparar abordagens **pooled / unpooled / hierarchical** (dependendo do script) e avaliar ajuste com **diagnósticos** (ex.: PPC e LOO).
 
-> **Onde está o script:** `scripts/therapeutic_touch/therapeutic_touch.R`  
+> **Onde está o script:** `scripts/therapeutic_touch/therapeutic_touch.R`
 > **Dados:** `data/raw/TherapeuticTouchData.csv`
 
 ---

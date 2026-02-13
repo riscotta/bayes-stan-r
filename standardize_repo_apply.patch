@@ -1,0 +1,204 @@
+diff --git a/README.md b/README.md
+index 03f2e2d..79ee5eb 100644
+--- a/README.md
++++ b/README.md
+@@ -103,8 +103,7 @@ Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
+ Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R
+ ```
+ 
+-Esse script lê um Excel e é **console-only** (não grava arquivos por padrão).  
+-Colunas esperadas no `sheet` configurado: `Contagem` (y), `POPULACAO` (offset) e `CODMUNRES` (município).
++Esse script lê um Excel e é **console-only** (não grava arquivos por padrão). Colunas esperadas no `sheet` configurado: `Contagem` (y), `POPULACAO` (offset) e `CODMUNRES` (município).
+ 
+ Exemplo especificando o caminho do Excel:
+ 
+@@ -158,8 +157,9 @@ Esse script é **console-only** (não grava arquivos) e assume separador `;` no
+ 
+ ## Autor
+ 
+-Ricardo  
+-LinkedIn: https://www.linkedin.com/in/ricardo-scotta/
++Ricardo
++
++- LinkedIn: https://www.linkedin.com/in/ricardo-scotta/
+ 
+ ---
+ 
+diff --git a/config/README.md b/config/README.md
+new file mode 100644
+index 0000000..02945b8
+--- /dev/null
++++ b/config/README.md
+@@ -0,0 +1,12 @@
++# Config
++
++Esta pasta é opcional.
++
++Se você quiser centralizar *defaults* do repositório (por exemplo, caminhos e parâmetros padrão de MCMC), coloque aqui.
++
++Sugestões de padrão (quando você decidir usar):
++
++- `config.yml`: defaults “globais” (chains, iter_warmup, iter_sampling, etc.)
++- `paths.R`: helpers para montar paths do repo sem `setwd()` (ex.: `data/raw`, `outputs/figures`)
++
++Hoje a pasta fica como *placeholder* para manter a estrutura organizada.
+diff --git a/config/config.yml b/config/config.yml
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/config/paths.R b/config/paths.R
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/data/raw/README.md b/data/raw/README.md
+index f6ef315..9ef9adb 100644
+--- a/data/raw/README.md
++++ b/data/raw/README.md
+@@ -2,8 +2,7 @@
+ 
+ Esta pasta contém dados **brutos** usados pelos exemplos em `scripts/`.
+ 
+-A ideia é: **não editar manualmente** os arquivos aqui.  
+-Se precisar limpeza, transformação ou feature engineering, gere um arquivo derivado em `data/processed/` (ou salve em `outputs/` se for algo específico do experimento).
++A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, transformação ou feature engineering, gere um arquivo derivado em `data/processed/` (ou salve em `outputs/` se for algo específico do experimento).
+ 
+ ---
+ 
+diff --git a/reports/README.md b/reports/README.md
+index c177a35..b3e86c9 100644
+--- a/reports/README.md
++++ b/reports/README.md
+@@ -1,12 +1,12 @@
+-# Reports
+-
+-Pasta opcional para relatórios (Quarto/R Markdown).
+-
+-**Status atual:** este repo é focado em scripts (`scripts/`). A pasta `reports/` fica como *placeholder* para quando fizer sentido transformar algum exemplo em relatório reproduzível.
+-
+-Sugestão de convenção:
+-
+-- fontes do relatório: `reports/<nome-do-exemplo>/` (ou usar `reports/template/` como base)
+-- artefatos gerados (HTML/PDF): não versionar; salvar em `reports/_site/...` (ignorados via `.gitignore`)
+-
+-Se você não usa relatórios aqui, pode simplesmente ignorar esta pasta.
++# Reports
++
++Pasta opcional para relatórios (Quarto/R Markdown).
++
++**Status atual:** este repo é focado em scripts (`scripts/`). A pasta `reports/` fica como *placeholder* para quando fizer sentido transformar algum exemplo em relatório reproduzível.
++
++Sugestão de convenção:
++
++- fontes do relatório: `reports/<nome-do-exemplo>/` (ou usar `reports/template/` como base)
++- artefatos gerados (HTML/PDF): não versionar; salvar em `reports/_site/...` (ignorados via `.gitignore`)
++
++Se você não usa relatórios aqui, pode simplesmente ignorar esta pasta.
+diff --git a/reports/analysis.qmd b/reports/analysis.qmd
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/reports/template/template.qmd b/reports/template/template.qmd
+new file mode 100644
+index 0000000..a3354b5
+--- /dev/null
++++ b/reports/template/template.qmd
+@@ -0,0 +1,26 @@
++---
++title: "Relatório (template)"
++format:
++  html:
++    toc: true
++execute:
++  echo: true
++  warning: false
++  message: false
++---
++
++## Como usar
++
++1) Copie esta pasta para `reports/<nome-do-exemplo>/`.
++2) Ajuste o código para ler dados de `data/` e salvar artefatos regeneráveis em `outputs/`.
++3) Renderize com:
++
++```bash
++quarto render reports/<nome-do-exemplo>/template.qmd
++```
++
++## Exemplo mínimo
++
++```{r}
++sessionInfo()
++```
+diff --git a/scripts/hierarchical/README.md b/scripts/hierarchical/README.md
+index d26f3c3..d9132b5 100644
+--- a/scripts/hierarchical/README.md
++++ b/scripts/hierarchical/README.md
+@@ -2,13 +2,13 @@
+ 
+ Este exemplo foca em **modelos hierárquicos (multinível)** usando **Stan** via `cmdstanr`, com um caso didático de **baseball batting average** em **3 níveis**:
+ 
+-1) **Global (liga)**  
+-2) **Por posição**  
++1) **Global (liga)**
++2) **Por posição**
+ 3) **Por jogador**
+ 
+ O objetivo é mostrar como “partial pooling” melhora estimativas quando há poucos dados por jogador, mantendo variação real entre grupos.
+ 
+-> **Script:** `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`  
++> **Script:** `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
+ > **Dados:** `data/raw/BattingAverage.csv`
+ 
+ ---
+@@ -43,8 +43,7 @@ Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R
+ 
+ ## Opções (CLI)
+ 
+-Este script aceita opções no formato `--chave=valor` (ex.: número de cadeias, iterações, controle de adaptação).  
+-Exemplo típico:
++Este script aceita opções no formato `--chave=valor` (ex.: número de cadeias, iterações, controle de adaptação). Exemplo típico:
+ 
+ ```bash
+ Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
+diff --git a/scripts/saheart/README.md b/scripts/saheart/README.md
+index db4e675..ed08118 100644
+--- a/scripts/saheart/README.md
++++ b/scripts/saheart/README.md
+@@ -6,8 +6,8 @@ Este exemplo ajusta uma **regressão logística Bayesiana** para o dataset **SAh
+ - **Console-only:** não grava artefatos (resultados são impressos no console)
+ - **Stan inline:** o modelo é definido no script e compilado via `cmdstanr::write_stan_file()`
+ 
+-> **Script:** `scripts/saheart/saheart_logistic_cmdstanr.R`  
+-> **Dados (preferencial):** `data/raw/SAheart.data` *(CSV com `,` e `row.names` na 1ª coluna, como no ESL)*  
++> **Script:** `scripts/saheart/saheart_logistic_cmdstanr.R`
++> **Dados (preferencial):** `data/raw/SAheart.data` *(CSV com `,` e `row.names` na 1ª coluna, como no ESL)*
+ 
+ ---
+ 
+diff --git a/scripts/therapeutic_touch/README.md b/scripts/therapeutic_touch/README.md
+index dd3f3e2..de9daf1 100644
+--- a/scripts/therapeutic_touch/README.md
++++ b/scripts/therapeutic_touch/README.md
+@@ -1,9 +1,8 @@
+ # Therapeutic Touch (exemplo)
+ 
+-Este exemplo reproduz/análise o dataset clássico de **Therapeutic Touch** usando modelos bayesianos no **Stan** via `cmdstanr`.  
+-A ideia é comparar abordagens **pooled / unpooled / hierarchical** (dependendo do script) e avaliar ajuste com **diagnósticos** (ex.: PPC e LOO).
++Este exemplo reproduz/análise o dataset clássico de **Therapeutic Touch** usando modelos bayesianos no **Stan** via `cmdstanr`. A ideia é comparar abordagens **pooled / unpooled / hierarchical** (dependendo do script) e avaliar ajuste com **diagnósticos** (ex.: PPC e LOO).
+ 
+-> **Onde está o script:** `scripts/therapeutic_touch/therapeutic_touch.R`  
++> **Onde está o script:** `scripts/therapeutic_touch/therapeutic_touch.R`
+ > **Dados:** `data/raw/TherapeuticTouchData.csv`
+ 
+ ---
+diff --git a/scripts/therapeutic_touch/therapeutic_touch.R b/scripts/therapeutic_touch/therapeutic_touch.R
+index 07bb825..7e0df2c 100644
+--- a/scripts/therapeutic_touch/therapeutic_touch.R
++++ b/scripts/therapeutic_touch/therapeutic_touch.R
+@@ -1,3 +1,5 @@
++#!/usr/bin/env Rscript
++
+ # ============================================================
+ # Therapeutic Touch (TherapeuticTouchData.csv) — Análise Bayesiana
+ # R + cmdstanr (Stan) com Prior Predictive e Posterior Predictive Checks
+diff --git a/tests/README b/tests/README.md
+similarity index 100%
+rename from tests/README
+rename to tests/README.md

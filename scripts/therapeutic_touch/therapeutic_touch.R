@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # ============================================================
 # Therapeutic Touch (TherapeuticTouchData.csv) — Análise Bayesiana
 # R + cmdstanr (Stan) com Prior Predictive e Posterior Predictive Checks

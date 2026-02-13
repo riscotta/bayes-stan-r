@@ -2,8 +2,7 @@
 
 Esta pasta contém dados **brutos** usados pelos exemplos em `scripts/`.
 
-A ideia é: **não editar manualmente** os arquivos aqui.  
-Se precisar limpeza, transformação ou feature engineering, gere um arquivo derivado em `data/processed/` (ou salve em `outputs/` se for algo específico do experimento).
+A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, transformação ou feature engineering, gere um arquivo derivado em `data/processed/` (ou salve em `outputs/` se for algo específico do experimento).
 
 ---
 

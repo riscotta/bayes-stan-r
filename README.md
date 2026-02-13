@@ -103,8 +103,7 @@ Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
 Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R
 ```
 
-Esse script lê um Excel e é **console-only** (não grava arquivos por padrão).  
-Colunas esperadas no `sheet` configurado: `Contagem` (y), `POPULACAO` (offset) e `CODMUNRES` (município).
+Esse script lê um Excel e é **console-only** (não grava arquivos por padrão). Colunas esperadas no `sheet` configurado: `Contagem` (y), `POPULACAO` (offset) e `CODMUNRES` (município).
 
 Exemplo especificando o caminho do Excel:
 
@@ -158,8 +157,9 @@ Esse script é **console-only** (não grava arquivos) e assume separador `;` no 
 
 ## Autor
 
-Ricardo  
-LinkedIn: https://www.linkedin.com/in/ricardo-scotta/
+Ricardo
+
+- LinkedIn: https://www.linkedin.com/in/ricardo-scotta/
 
 ---
 
