@@ -1,170 +1,77 @@
-# bayes-stan-r
+# Scripts
 
-Repositório **simples** de scripts em **R** (com alguns modelos **Stan** via `cmdstanr`) para análises bayesianas, simulação, modelagem e diagnósticos (PPC/LOO/QC).
+Aqui ficam os scripts “executáveis” do repositório.
 
-**Filosofia do repo:**
+**Regra geral:** rode a partir do **root** do repo (sem `setwd()`):
 
-- não é um pacote R (sem `DESCRIPTION`, sem instalação)
-- a pessoa baixa/clona e roda com `Rscript ...` a partir do **root** do repositório
-- dados pequenos e exemplos didáticos ficam versionados em `data/raw/`
+```bash
+Rscript scripts/<pasta>/<script>.R
+```
 
----
+## Setup (uma vez por máquina)
 
-## O que tem hoje
-
-Exemplos principais:
-
-1) **Therapeutic Touch** — pooled vs hierárquico, prior/posterior predictive + LOO
-   - Script: `scripts/therapeutic_touch/therapeutic_touch.R`
-   - Dados: `data/raw/TherapeuticTouchData.csv`
-
-2) **Baseball (3 níveis)** — liga → posição → jogador (binomial-logit hierárquico)
-   - Script: `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
-   - Dados: `data/raw/BattingAverage.csv`
-
-
-3) **Mortalidade** — Poisson hierárquico com offset (população)
-   - Script: `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
-   - Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
-
-4) **ISUS / SIA** — Monte Carlo robusto (cluster bootstrap por CNES) para precificação (SIGTAP)
-   - Script: `scripts/isus_sia/mc_isus_sia.R`
-   - Dados: `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`)*
-
-5) **SAheart** — Regressão logística Bayesiana (ESL) com diagnósticos + PPC + calibração
-   - Script: `scripts/saheart/saheart_logistic_cmdstanr.R`
-   - Dados (opcional): `data/raw/SAheart.data` *(se não existir, o script tenta baixar automaticamente)*
-
----
-
-## Requisitos
-
-- **R** (recomendado: versão recente)
-- Pacotes R (instalados pelo script de setup)
-- Para rodar Stan via `cmdstanr`: **toolchain C++** + **CmdStan**
-
----
-
-## Quickstart
-
-Recomendação: rode sempre a partir do diretório raiz (root) do repositório.
-
-### 1) Instalar dependências R
-
-Conjunto mínimo (suficiente para os exemplos atuais):
+- Instalar dependências R:
 
 ```bash
 Rscript scripts/_setup/install_deps.R
 ```
 
-Conjunto mais amplo (diagnósticos/relatórios):
-
-```bash
-Rscript scripts/_setup/install_deps.R --all
-```
-
-### 2) (Opcional) Instalar CmdStan (para rodar Stan via cmdstanr)
+- Instalar CmdStan (necessário para `cmdstanr`):
 
 ```bash
 Rscript scripts/_setup/install_cmdstan.R
 ```
 
----
+## Exemplos disponíveis
 
-## Rodar os exemplos
+### 1) Therapeutic Touch
 
-### Therapeutic Touch
+- Pasta: `scripts/therapeutic_touch/`
+- Entrada: `scripts/therapeutic_touch/therapeutic_touch.R`
+- Dados: `data/raw/TherapeuticTouchData.csv`
+- Saídas (quando rodado via `Rscript`):
+  - `outputs/figures/therapeutic_touch_plots.pdf`
+  - `outputs/tables/therapeutic_touch_report.txt`
 
-```bash
-Rscript scripts/therapeutic_touch/therapeutic_touch.R
-```
+### 2) Hierárquico (Baseball: 3 níveis)
 
-Por padrão, quando você roda via `Rscript`, o script salva artefatos em:
-
-- `outputs/figures/therapeutic_touch_plots.pdf`
-- `outputs/tables/therapeutic_touch_report.txt`
-
-### Baseball (3 níveis)
-
-```bash
-Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R
-```
-
-Esse script é **console-only** (não grava arquivos) e aceita opções no formato `--chave=valor`, por exemplo:
-
-```bash
-Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R \
-  --chains=4 --iter_warmup=1000 --iter_sampling=1000 --adapt_delta=0.99
-```
+- Pasta: `scripts/hierarchical/`
+- Entrada: `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
+- Dados: `data/raw/BattingAverage.csv`
+- Observação: *console-only* (não grava arquivos por padrão)
 
 
+### 3) Mortalidade (Poisson hierárquico com offset)
 
-### Mortalidade (Poisson hierárquico com offset)
-
-```bash
-Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R
-```
-
-Esse script lê um Excel e é **console-only** (não grava arquivos por padrão). Colunas esperadas no `sheet` configurado: `Contagem` (y), `POPULACAO` (offset) e `CODMUNRES` (município).
-
-Exemplo especificando o caminho do Excel:
-
-```bash
-Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R \
-  --excel_path=data/raw/mortality/Dados_Mortalidade.xlsx --sheet_name=Resumo
-```
+- Pasta: `scripts/mortality/`
+- Entrada: `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
+- Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
+- Observação: *console-only* (não grava arquivos por padrão)
 
 
-### ISUS / SIA (Monte Carlo robusto)
+### 4) ISUS / SIA — Monte Carlo robusto (cluster bootstrap por CNES)
 
-```bash
-Rscript scripts/isus_sia/mc_isus_sia.R
-```
+- Pasta: `scripts/isus_sia/`
+- Entrada: `scripts/isus_sia/mc_isus_sia.R`
+- Dados: `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`)*
+- Observação: *console-only* (não grava arquivos por design)
 
-Opcionalmente, informe o caminho do CSV ou do ZIP:
+### 5) SAheart (regressão logística Bayesiana)
 
-```bash
-Rscript scripts/isus_sia/mc_isus_sia.R --csv_path=caminho/para/ISUS_SIA_PARS.csv
+- Pasta: `scripts/saheart/`
+- Entrada: `scripts/saheart/saheart_logistic_cmdstanr.R`
+- Dados (opcional): `data/raw/SAheart.data` *(se não existir, o script tenta baixar automaticamente)*
+- Observação: *console-only* (não grava arquivos por padrão)
 
-Rscript scripts/isus_sia/mc_isus_sia.R --zip_path=caminho/para/ISUS_SIA_PARS.zip
-```
+### 6) Deck — Quantas partidas para chegar em r vitórias?
 
-Esse script é **console-only** (não grava arquivos) e assume separador `;` no CSV.
-
-
----
-
-## Estrutura do repositório
-
-- `scripts/` — scripts executáveis e seus READMEs
-  - `scripts/_setup/` — instalação de dependências e CmdStan
-- `data/` — dados pequenos e/ou públicos
-  - `data/raw/` — dados brutos usados pelos exemplos
-  - `data/interim/` e `data/processed/` — *placeholders* para dados derivados
-- `outputs/` — saídas geradas (regeneráveis)
-- `reports/` — *placeholder* para relatórios (Quarto/Rmd), quando aplicável
-- `tests/` — *placeholder* para testes (opcional)
-
----
+- Pasta: `scripts/deck_15wins/`
+- Entrada: `scripts/deck_15wins/deck_15wins_negbin_beta_cmdstanr.R`
+- Dados: (simulados no próprio script)
+- Observação: *console-only* (não grava arquivos por padrão)
 
 ## Convenções
 
-- Evito `setwd()`; os paths são pensados para rodar a partir do root.
-- Scripts devem, sempre que possível:
-  - fixar `seed` quando houver aleatoriedade
-  - validar entrada (arquivos/colunas) e falhar com mensagem útil
-  - escrever artefatos em `outputs/` quando fizer sentido (ex.: relatórios/plots)
-
----
-
-## Autor
-
-Ricardo
-
-- LinkedIn: https://www.linkedin.com/in/ricardo-scotta/
-
----
-
-## Licença
-
-MIT — veja `LICENSE`.
+- **1 pasta = 1 exemplo** (com `README.md` curto)
+- preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
+- artefatos regeneráveis vão em `outputs/`
