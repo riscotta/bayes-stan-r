@@ -63,6 +63,13 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados (opcional): `data/raw/SAheart.data` *(se não existir, o script tenta baixar automaticamente)*
 - Observação: *console-only* (não grava arquivos por padrão)
 
+### 6) Deck — Quantas partidas para chegar em r vitórias?
+
+- Pasta: `scripts/deck_15wins/`
+- Entrada: `scripts/deck_15wins/deck_15wins_negbin_beta_cmdstanr.R`
+- Dados: (simulados no próprio script)
+- Observação: *console-only* (não grava arquivos por padrão)
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)
