@@ -9,7 +9,7 @@
 #   Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R
 #
 # Opções (formato --chave=valor):
-#   --excel_path=data/raw/Dados_Mortalidade.xlsx
+#   --excel_path=data/raw/mortality/Dados_Mortalidade.xlsx
 #   --sheet_name=Resumo
 #   --col_y=Contagem
 #   --col_pop=POPULACAO
@@ -36,7 +36,7 @@
 # ----------------------------
 parse_args <- function(args) {
   out <- list(
-    excel_path = file.path("data", "raw", "Dados_Mortalidade.xlsx"),
+    excel_path = file.path("data", "raw", "mortality", "Dados_Mortalidade.xlsx"),
     sheet_name = "Resumo",
     col_y   = "Contagem",
     col_pop = "POPULACAO",
@@ -146,8 +146,8 @@ check_cmdstan()
 if (!file.exists(cfg$excel_path)) {
   stop(
     "Arquivo Excel não encontrado: ", cfg$excel_path, "\n",
-    "Sugestão: coloque o XLSX em data/raw/mortality/Dados.xlsx\n",
-    "ou rode com: --excel_path=caminho/para/Dados.xlsx",
+    "Sugestão: coloque o XLSX em data/raw/mortality/Dados_Mortalidade.xlsx\n",
+    "ou rode com: --excel_path=caminho/para/Dados_Mortalidade.xlsx",
     call. = FALSE
   )
 }

@@ -2,8 +2,8 @@
 
 Este exemplo roda uma simulação **Monte Carlo robusta** (cluster bootstrap por **CNES**) para apoiar **precificação** (ex.: SIGTAP), lidando com **caudas pesadas** e **procedimentos caros/raros**.
 
-- **Script:** `scripts/isus_sia/MC_patched.R`
-- **Dados (raw):** `data/raw/isus_sia/ISUS_SIA_PARS.csv` (separador `;`)
+- **Script:** `scripts/isus_sia/mc_isus_sia.R`
+- **Dados (raw):** `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`, separador `;`)*
 - **Saída:** **apenas console** (não grava arquivos)
 
 ## Como rodar
@@ -11,13 +11,15 @@ Este exemplo roda uma simulação **Monte Carlo robusta** (cluster bootstrap por
 A partir do **root** do repositório:
 
 ```bash
-Rscript scripts/isus_sia/MC_patched.R
+Rscript scripts/isus_sia/mc_isus_sia.R
 ```
 
 Opcionalmente, você pode apontar o CSV explicitamente:
 
 ```bash
-Rscript scripts/isus_sia/MC_patched.R --csv_path=caminho/para/ISUS_SIA_PARS.csv
+Rscript scripts/isus_sia/mc_isus_sia.R --csv_path=caminho/para/ISUS_SIA_PARS.csv
+
+Rscript scripts/isus_sia/mc_isus_sia.R --zip_path=caminho/para/ISUS_SIA_PARS.zip
 ```
 
 ## Requisitos
