@@ -56,6 +56,12 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`)*
 - Observação: *console-only* (não grava arquivos por design)
 
+### 5) SAheart (regressão logística Bayesiana)
+
+- Pasta: `scripts/saheart/`
+- Entrada: `scripts/saheart/saheart_logistic_cmdstanr.R`
+- Dados (opcional): `data/raw/SAheart.data` *(se não existir, o script tenta baixar automaticamente)*
+- Observação: *console-only* (não grava arquivos por padrão)
 
 ## Convenções
 

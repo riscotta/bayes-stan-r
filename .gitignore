@@ -71,3 +71,6 @@ data/processed/**
 
 # Se alguém extrair manualmente o ZIP do ISUS/SIA, evite commitar sem querer.
 data/raw/isus_sia/ISUS_SIA_PARS.csv
+
+# Dataset público (ESL) que pode ser baixado pelo script; evitar commit acidental.
+data/raw/SAheart.data

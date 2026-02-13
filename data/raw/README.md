@@ -59,6 +59,19 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - se houver limpeza/padronização, gerar derivado em `data/processed/isus_sia/`
   - se o dataset for sensível ou privado, prefira **não versionar** e substitua por um script de ingestão/download em `scripts/_setup/`
 
+---
+
+### `SAheart.data` (opcional)
+
+- **Usado em:** `scripts/saheart/saheart_logistic_cmdstanr.R`
+- **Descrição:** dataset **SAheart** (Elemental Statistics Learning) para regressão logística Bayesiana (Stan/cmdstanr).
+- **Fonte:** *Hastie, Tibshirani, Friedman (ESL) — arquivo SAheart.data (download público).*
+- **Licença / restrições:** *(verificar termos da fonte; por padrão este repo não versiona este arquivo)*
+- **Observações:**
+  - este arquivo é **opcional** e não vem no repo por padrão
+  - se ele **não existir**, o script tenta baixar automaticamente
+  - para rodar offline, baixe e coloque em `data/raw/SAheart.data`
+  - para evitar commits acidentais, este caminho é ignorado no `.gitignore`
 
 ## Convenções recomendadas
 

@@ -31,7 +31,9 @@ Exemplos principais:
    - Script: `scripts/isus_sia/mc_isus_sia.R`
    - Dados: `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`)*
 
-
+5) **SAheart** — Regressão logística Bayesiana (ESL) com diagnósticos + PPC + calibração
+   - Script: `scripts/saheart/saheart_logistic_cmdstanr.R`
+   - Dados (opcional): `data/raw/SAheart.data` *(se não existir, o script tenta baixar automaticamente)*
 
 ---
 
