@@ -70,6 +70,14 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: (simulados no próprio script)
 - Observação: *console-only* (não grava arquivos por padrão)
 
+
+### 7) Hidrômetro — degradação/erro de medição (hierárquico)
+
+- Pasta: `scripts/hidrometro_degradacao/`
+- Entrada: `scripts/hidrometro_degradacao/hidrometro_degradacao_cmdstanr.R`
+- Dados: (simulados no próprio script)
+- Observação: *console-only* por padrão; opcionalmente salva PDF/TXT em `outputs/` via `--save_plots=1` e `--save_report=1`
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)
