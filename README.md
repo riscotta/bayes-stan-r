@@ -78,6 +78,16 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: (simulados no próprio script)
 - Observação: *console-only* por padrão; opcionalmente salva PDF/TXT em `outputs/` via `--save_plots=1` e `--save_report=1`
 
+### 8) Média vs Ruído (μ) — “o ruído se cancela” com N
+
+- Pasta: `scripts/media_ruido_mu/`
+- Entrada: `scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R`
+- Dados: (simulados no próprio script)
+- Saídas (quando rodado via `Rscript`):
+  - `outputs/figures/media_ruido_mu_plots.pdf`
+  - `outputs/tables/media_ruido_mu_sim_summary.csv`
+  - `outputs/tables/media_ruido_mu_posterior_summary.csv`
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)

@@ -63,6 +63,7 @@ pkgs_min <- c(
   "ggplot2",
   "dplyr",
   "tidyr",
+  "purrr",
   "readr",
   "readxl",
   "tibble",
