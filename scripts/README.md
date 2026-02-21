@@ -88,6 +88,14 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/tables/media_ruido_mu_sim_summary.csv`
   - `outputs/tables/media_ruido_mu_posterior_summary.csv`
 
+
+### 9) Coortes de Aposentadoria (Brasil) — 30 anos (retornos reais)
+
+- Pasta: `scripts/coortes_aposentadoria/`
+- Entrada: `scripts/coortes_aposentadoria/coortes_aposentadoria_console_only_v2.R`
+- Dados: (baixados automaticamente via Yahoo Finance + BCB/SGS)
+- Observação: *console-only* (não grava arquivos por design)
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)

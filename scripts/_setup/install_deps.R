@@ -68,7 +68,11 @@ pkgs_min <- c(
   "readxl",
   "tibble",
   "stringr",
-  "here"
+  "here",
+  "quantmod",
+  "xts",
+  "zoo",
+  "rbcb"
 )
 
 # “all” (ferramentas úteis pro repo crescer)
