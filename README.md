@@ -96,6 +96,13 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: (baixados automaticamente via Yahoo Finance + BCB/SGS)
 - Observação: *console-only* (não grava arquivos por design)
 
+### 10) Kidney — survival (lognormal com censura à direita)
+
+- Pasta: `scripts/kidney_survival/`
+- Entrada: `scripts/kidney_survival/kidney_lognormal_survival_cmdstanr.R`
+- Dados: `survival::kidney` (embutido no pacote)
+- Observação: *console-only* (não grava arquivos por padrão; usa tempdir)
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)

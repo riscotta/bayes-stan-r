@@ -72,7 +72,8 @@ pkgs_min <- c(
   "quantmod",
   "xts",
   "zoo",
-  "rbcb"
+  "rbcb",
+  "survival"
 )
 
 # “all” (ferramentas úteis pro repo crescer)
