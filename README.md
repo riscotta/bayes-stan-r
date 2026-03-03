@@ -103,6 +103,17 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: `survival::kidney` (embutido no pacote)
 - Observação: *console-only* (não grava arquivos por padrão; usa tempdir)
 
+### 11) INHALER — ordinal crossover (cutpoints via softplus)
+
+- Pasta: `scripts/inhaler_ordinal/`
+- Entrada: `scripts/inhaler_ordinal/inhaler_ordinal_softplus_cmdstanr.R`
+- Dados:
+  - `brms::inhaler` (embutido no pacote **brms**) **ou**
+  - `data/raw/inhaler.csv` (opcional, via `--data_path=...`)
+- Saídas (padrão):
+  - `outputs/figures/inhaler_ordinal_plots.pdf`
+  - `outputs/tables/inhaler_ordinal_report.txt`
+
 ## Convenções
 
 - **1 pasta = 1 exemplo** (com `README.md` curto)

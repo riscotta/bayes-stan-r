@@ -79,6 +79,7 @@ pkgs_min <- c(
 # “all” (ferramentas úteis pro repo crescer)
 pkgs_all <- c(
   pkgs_min,
+  "brms",
   "fs",
   "glue",
   "cli",
