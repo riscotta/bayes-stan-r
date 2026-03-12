@@ -10,7 +10,7 @@ Mínimo (suficiente para rodar os exemplos atuais):
 Rscript scripts/_setup/install_deps.R
 ```
 
-Mais amplo (útil se você for gerar relatórios, testes, etc.):
+Mais amplo (útil se você for gerar relatórios, testes e usar datasets/pacotes opcionais como `brms::inhaler`):
 
 ```bash
 Rscript scripts/_setup/install_deps.R --all

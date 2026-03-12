@@ -73,6 +73,45 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - para rodar offline, baixe e coloque em `data/raw/SAheart.data`
   - para evitar commits acidentais, este caminho é ignorado no `.gitignore`
 
+---
+
+### `rs_seguro/rs_month_macrocrime.csv`
+
+- **Usado em:** `scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R`
+- **Descrição:** série mensal agregada por **macrocrime**, com contagens de ocorrências (`occ`) e vítimas (`vit`).
+- **Fonte:** *(dataset operacional do projeto RS Seguro; detalhe a origem/sistema e permissões de uso quando possível)*
+- **Licença / restrições:** *(verificar política institucional antes de redistribuir dados operacionais)*
+- **Observações:**
+  - este é o input padrão do M1 com `--analysis_layer=macrocrime`
+  - colunas esperadas: `ym`, `crime`, `occ`, `vit`
+  - mantenha este arquivo como “raw”
+
+---
+
+### `rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv`
+
+- **Usado em:** `scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R`
+- **Descrição:** série mensal com perfil da vítima por macrocrime, sexo e faixa etária, usando contagem `occ_1_vitima`.
+- **Fonte:** *(dataset operacional do projeto RS Seguro; detalhe a origem/sistema e permissões de uso quando possível)*
+- **Licença / restrições:** *(verificar política institucional antes de redistribuir dados operacionais)*
+- **Observações:**
+  - este é o input padrão do M2
+  - colunas esperadas: `ym`, `crime`, `sexo`, `faixa`, `occ_1_vitima`
+  - mantenha este arquivo como “raw”
+
+---
+
+### `rs_seguro/rs_month_crime.csv` (opcional / não versionado)
+
+- **Usado em:** `scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R` quando `--analysis_layer=crime`
+- **Descrição:** série mensal no nível de crime detalhado, alternativa ao arquivo agregado por macrocrime.
+- **Fonte:** *(não versionado no repo atual; documente a origem quando disponibilizar)*
+- **Licença / restrições:** *(verificar política institucional antes de versionar/publicar)*
+- **Observações:**
+  - **este arquivo não está no repositório atual**
+  - para usar o modo `crime`, forneça `--input_csv=...` ou adicione o arquivo em `data/raw/rs_seguro/`
+  - mantenha o mesmo contrato mínimo de colunas: `ym`, `crime`, `occ`, `vit`
+
 ## Convenções recomendadas
 
 - **Nomes de arquivos:** `CamelCase` ou `snake_case` (mas manter consistente no repo)

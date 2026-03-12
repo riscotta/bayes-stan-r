@@ -8,14 +8,19 @@ Scripts para o caso **RS Seguro**, ajustados ao padrão do repositório.
 
 - Script: `scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R`
 - Entrada padrão: `data/raw/rs_seguro/rs_month_macrocrime.csv`
+- Modo alternativo: `--analysis_layer=crime` requer `data/raw/rs_seguro/rs_month_crime.csv` (arquivo **não versionado** no repo atual) ou `--input_csv=...`
 - Saídas padrão:
   - `outputs/tables/rs_seguro/rs_seguro_m1_macrocrime_*.csv`
   - `outputs/figures/rs_seguro/rs_seguro_m1_macrocrime_plots.pdf`
 
-Exemplo:
+Exemplos:
 
 ```bash
 Rscript scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R
+```
+
+```bash
+Rscript scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R --analysis_layer=crime --input_csv=/caminho/para/rs_month_crime.csv
 ```
 
 ### 2) M2 — perfil da vítima condicionado a macrocrimes-alvo
@@ -46,6 +51,7 @@ Rscript scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R --m1_ta
 - Sem `setwd()`.
 - Entradas ficam em `data/raw/rs_seguro/`.
 - Saídas regeneráveis ficam em `outputs/`.
+- O M1 roda por padrão em `macrocrime`; o nível `crime` depende de arquivo adicional ainda não versionado.
 - Para instalar dependências:
 
 ```bash

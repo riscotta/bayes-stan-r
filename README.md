@@ -16,6 +16,12 @@ Rscript scripts/<pasta>/<script>.R
 Rscript scripts/_setup/install_deps.R
 ```
 
+- Se você pretende rodar o exemplo **INHALER** usando `brms::inhaler`, ou usar testes/relatórios, prefira:
+
+```bash
+Rscript scripts/_setup/install_deps.R --all
+```
+
 - Instalar CmdStan (necessário para `cmdstanr`):
 
 ```bash
@@ -114,8 +120,22 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/figures/inhaler_ordinal_plots.pdf`
   - `outputs/tables/inhaler_ordinal_report.txt`
 
+### 12) RS Seguro — séries mensais e perfil da vítima
+
+- Pasta: `scripts/rs_seguro/`
+- Entradas principais:
+  - `scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R`
+  - `scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R`
+- Dados:
+  - `data/raw/rs_seguro/rs_month_macrocrime.csv`
+  - `data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv`
+  - `data/raw/rs_seguro/rs_month_crime.csv` *(opcional / não versionado no repo atual; exigido apenas se `--analysis_layer=crime` no M1)*
+- Saídas (quando rodado via `Rscript`):
+  - `outputs/tables/rs_seguro/*.csv`
+  - `outputs/figures/rs_seguro/*.pdf`
+
 ## Convenções
 
-- **1 pasta = 1 exemplo** (com `README.md` curto)
+- **1 pasta = 1 tema/exemplo** (com `README.md` curto)
 - preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
 - artefatos regeneráveis vão em `outputs/`

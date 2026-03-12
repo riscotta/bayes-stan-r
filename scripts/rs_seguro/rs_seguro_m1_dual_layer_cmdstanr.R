@@ -267,9 +267,20 @@ write_plot_pdf <- function(path, ...) {
 }
 
 if (!file.exists(opts$input_csv)) {
+  extra_hint <- if (identical(opts$analysis_layer, "crime") && identical(opts$input_csv, file.path("data", "raw", "rs_seguro", "rs_month_crime.csv"))) {
+    paste0(
+      "\n",
+      "Observação: `data/raw/rs_seguro/rs_month_crime.csv` não está versionado no repo atual. ",
+      "Forneça --input_csv=/caminho/para/rs_month_crime.csv ou adicione o arquivo localmente."
+    )
+  } else {
+    ""
+  }
+
   stop(
     "Arquivo de entrada não encontrado: ", opts$input_csv, "\n",
-    "Ajuste --input_csv=... ou adicione o arquivo em data/raw/rs_seguro/."
+    "Ajuste --input_csv=... ou adicione o arquivo em data/raw/rs_seguro/.",
+    extra_hint
   )
 }
 

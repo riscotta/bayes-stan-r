@@ -53,7 +53,8 @@ install_pkgs <- function(pkgs) {
   }
 }
 
-# “mínimo” para os scripts que você já tem hoje
+# “mínimo” para a maior parte dos scripts do repositório
+# Observação: o exemplo INHALER usando `brms::inhaler` requer `--all` (ou CSV local).
 pkgs_min <- c(
   "data.table",
   "cmdstanr",
@@ -96,6 +97,7 @@ installed <- rownames(installed.packages())
 missing <- pkgs[!pkgs %in% installed]
 
 message("==> instalando dependências R (", if (flag_all) "ALL" else "MINIMAL", ")")
+if (!flag_all) message("==> dica: use --all para testes, relatórios e o exemplo INHALER via brms::inhaler.")
 message("==> repos em uso: ", paste(names(getOption("repos")), collapse = ", "))
 
 if (length(missing) == 0) {
