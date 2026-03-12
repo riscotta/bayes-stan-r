@@ -1,141 +1,164 @@
-# Scripts
+# bayes-stan-r
 
-Aqui ficam os scripts “executáveis” do repositório.
+Repositório de estudos, exemplos e experimentos em **Estatística Bayesiana com R e Stan**, com foco em scripts reproduzíveis, organização por tema e separação clara entre:
 
-**Regra geral:** rode a partir do **root** do repo (sem `setwd()`):
+- dados de entrada
+- scripts executáveis
+- artefatos gerados
+- relatórios opcionais
+- testes opcionais
+
+Este repositório **não é um pacote R**. A unidade principal aqui é o **script executável por exemplo/tema**.
+
+## Objetivo do repositório
+
+Organizar exemplos práticos e estudos aplicados em Bayes/Stan de forma que cada tema tenha:
+
+- um script principal
+- uma pasta própria
+- documentação curta local
+- entradas de dados bem definidas
+- saídas previsíveis em `outputs/` quando aplicável
+
+## Estrutura do projeto
+
+```text
+.
+├── config/         # configurações opcionais do repositório
+├── data/
+│   ├── raw/        # dados brutos
+│   ├── interim/    # dados intermediários (não versionar artefatos)
+│   └── processed/  # dados processados (não versionar artefatos)
+├── outputs/
+│   ├── figures/    # gráficos gerados
+│   ├── models/     # objetos/modelos salvos, quando aplicável
+│   └── tables/     # tabelas e relatórios textuais
+├── reports/        # relatórios opcionais (Quarto / R Markdown)
+├── scripts/        # scripts executáveis do repositório
+└── tests/          # testes opcionais
+```
+
+## Como usar
+
+A regra geral é rodar tudo a partir da **raiz do repositório**, sem `setwd()`.
 
 ```bash
 Rscript scripts/<pasta>/<script>.R
 ```
 
-## Setup (uma vez por máquina)
+Exemplo:
 
-- Instalar dependências R:
+```bash
+Rscript scripts/therapeutic_touch/therapeutic_touch.R
+```
+
+## Setup inicial
+
+### 1) Instalar dependências R
+
+Mínimo:
 
 ```bash
 Rscript scripts/_setup/install_deps.R
 ```
 
-- Se você pretende rodar o exemplo **INHALER** usando `brms::inhaler`, ou usar testes/relatórios, prefira:
+Mais completo (útil para testes, relatórios e dependências opcionais):
 
 ```bash
 Rscript scripts/_setup/install_deps.R --all
 ```
 
-- Instalar CmdStan (necessário para `cmdstanr`):
+### 2) Instalar CmdStan
+
+Necessário para os exemplos que usam `cmdstanr`.
 
 ```bash
 Rscript scripts/_setup/install_cmdstan.R
 ```
 
-## Exemplos disponíveis
+Exemplo com opções:
 
-### 1) Therapeutic Touch
+```bash
+Rscript scripts/_setup/install_cmdstan.R --version=2.35.0 --cores=4
+```
 
-- Pasta: `scripts/therapeutic_touch/`
-- Entrada: `scripts/therapeutic_touch/therapeutic_touch.R`
-- Dados: `data/raw/TherapeuticTouchData.csv`
-- Saídas (quando rodado via `Rscript`):
-  - `outputs/figures/therapeutic_touch_plots.pdf`
-  - `outputs/tables/therapeutic_touch_report.txt`
+## Onde encontrar cada coisa
 
-### 2) Hierárquico (Baseball: 3 níveis)
+- `scripts/README.md`  
+  Índice dos scripts executáveis e dos exemplos disponíveis.
 
-- Pasta: `scripts/hierarchical/`
-- Entrada: `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
-- Dados: `data/raw/BattingAverage.csv`
-- Observação: *console-only* (não grava arquivos por padrão)
+- `config/README.md`  
+  Convenções para centralizar parâmetros e caminhos do projeto, caso você queira evoluir essa camada.
 
+- `reports/README.md`  
+  Uso opcional de relatórios reproduzíveis.
 
-### 3) Mortalidade (Poisson hierárquico com offset)
+- `tests/README.md`  
+  Informações sobre os testes disponíveis e como executá-los.
 
-- Pasta: `scripts/mortality/`
-- Entrada: `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
-- Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
-- Observação: *console-only* (não grava arquivos por padrão)
+## Exemplos atualmente organizados em `scripts/`
 
+Entre os temas já estruturados no repositório:
 
-### 4) ISUS / SIA — Monte Carlo robusto (cluster bootstrap por CNES)
+- Therapeutic Touch
+- Modelo hierárquico de baseball (3 níveis)
+- Mortalidade com Poisson hierárquico e offset
+- ISUS / SIA com Monte Carlo robusto
+- SAheart com regressão logística Bayesiana
+- Deck: número de partidas até alcançar vitórias
+- Hidrômetro: degradação / erro de medição
+- Média vs ruído
+- Coortes de aposentadoria
+- Kidney survival
+- INHALER ordinal crossover
+- RS Seguro
 
-- Pasta: `scripts/isus_sia/`
-- Entrada: `scripts/isus_sia/mc_isus_sia.R`
-- Dados: `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`)*
-- Observação: *console-only* (não grava arquivos por design)
+Para detalhes de entrada, saída e execução de cada exemplo, consulte:
 
-### 5) SAheart (regressão logística Bayesiana)
+`scripts/README.md`
 
-- Pasta: `scripts/saheart/`
-- Entrada: `scripts/saheart/saheart_logistic_cmdstanr.R`
-- Dados (opcional): `data/raw/SAheart.data` *(se não existir, o script tenta baixar automaticamente)*
-- Observação: *console-only* (não grava arquivos por padrão)
+## Convenções adotadas
 
-### 6) Deck — Quantas partidas para chegar em r vitórias?
+- **1 pasta = 1 tema ou exemplo**
+- cada tema deve ter um **script principal** claramente identificável
+- quando necessário, cada pasta pode ter um `README.md` próprio
+- artefatos regeneráveis devem ir para `outputs/`
+- dados derivados devem ficar em `data/interim/` ou `data/processed/`
+- scripts devem funcionar a partir da raiz do repositório
 
-- Pasta: `scripts/deck_15wins/`
-- Entrada: `scripts/deck_15wins/deck_15wins_negbin_beta_cmdstanr.R`
-- Dados: (simulados no próprio script)
-- Observação: *console-only* (não grava arquivos por padrão)
+## Saídas e versionamento
 
+Por padrão, este repositório evita versionar artefatos regeneráveis, como:
 
-### 7) Hidrômetro — degradação/erro de medição (hierárquico)
+- figuras
+- tabelas
+- modelos salvos
+- dados intermediários
+- dados processados
 
-- Pasta: `scripts/hidrometro_degradacao/`
-- Entrada: `scripts/hidrometro_degradacao/hidrometro_degradacao_cmdstanr.R`
-- Dados: (simulados no próprio script)
-- Observação: *console-only* por padrão; opcionalmente salva PDF/TXT em `outputs/` via `--save_plots=1` e `--save_report=1`
+A estrutura de pastas é preservada com `.gitkeep` quando necessário.
 
-### 8) Média vs Ruído (μ) — “o ruído se cancela” com N
+## Testes
 
-- Pasta: `scripts/media_ruido_mu/`
-- Entrada: `scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R`
-- Dados: (simulados no próprio script)
-- Saídas (quando rodado via `Rscript`):
-  - `outputs/figures/media_ruido_mu_plots.pdf`
-  - `outputs/tables/media_ruido_mu_sim_summary.csv`
-  - `outputs/tables/media_ruido_mu_posterior_summary.csv`
+Quando houver testes disponíveis, rode:
 
+```bash
+Rscript tests/run_tests.R
+```
 
-### 9) Coortes de Aposentadoria (Brasil) — 30 anos (retornos reais)
+Os testes deste repositório são auxiliares e não definem a estrutura principal do projeto, que continua sendo orientada a scripts.
 
-- Pasta: `scripts/coortes_aposentadoria/`
-- Entrada: `scripts/coortes_aposentadoria/coortes_aposentadoria_console_only_v2.R`
-- Dados: (baixados automaticamente via Yahoo Finance + BCB/SGS)
-- Observação: *console-only* (não grava arquivos por design)
+## Perfil do repositório
 
-### 10) Kidney — survival (lognormal com censura à direita)
+Este projeto foi organizado para priorizar:
 
-- Pasta: `scripts/kidney_survival/`
-- Entrada: `scripts/kidney_survival/kidney_lognormal_survival_cmdstanr.R`
-- Dados: `survival::kidney` (embutido no pacote)
-- Observação: *console-only* (não grava arquivos por padrão; usa tempdir)
+- clareza operacional
+- reprodutibilidade
+- separação entre dados, scripts e saídas
+- facilidade de expansão por novos exemplos
 
-### 11) INHALER — ordinal crossover (cutpoints via softplus)
+Em outras palavras: a porta de entrada do repositório é este `README`, e o catálogo operacional detalhado dos exemplos fica em `scripts/README.md`.
 
-- Pasta: `scripts/inhaler_ordinal/`
-- Entrada: `scripts/inhaler_ordinal/inhaler_ordinal_softplus_cmdstanr.R`
-- Dados:
-  - `brms::inhaler` (embutido no pacote **brms**) **ou**
-  - `data/raw/inhaler.csv` (opcional, via `--data_path=...`)
-- Saídas (padrão):
-  - `outputs/figures/inhaler_ordinal_plots.pdf`
-  - `outputs/tables/inhaler_ordinal_report.txt`
+## Licença
 
-### 12) RS Seguro — séries mensais e perfil da vítima
-
-- Pasta: `scripts/rs_seguro/`
-- Entradas principais:
-  - `scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R`
-  - `scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R`
-- Dados:
-  - `data/raw/rs_seguro/rs_month_macrocrime.csv`
-  - `data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv`
-  - `data/raw/rs_seguro/rs_month_crime.csv` *(opcional / não versionado no repo atual; exigido apenas se `--analysis_layer=crime` no M1)*
-- Saídas (quando rodado via `Rscript`):
-  - `outputs/tables/rs_seguro/*.csv`
-  - `outputs/figures/rs_seguro/*.pdf`
-
-## Convenções
-
-- **1 pasta = 1 tema/exemplo** (com `README.md` curto)
-- preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
-- artefatos regeneráveis vão em `outputs/`
+Consulte o arquivo `LICENSE`.
