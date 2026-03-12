@@ -1,46 +1,65 @@
 # bayes-stan-r
 
-Repositório de estudos, exemplos e experimentos em **Estatística Bayesiana com R e Stan**, com foco em scripts reproduzíveis, organização por tema e separação clara entre:
+Repositório dedicado a **Estatística Bayesiana com R e Stan**, reunindo estudos, experimentos, modelos aplicados e exemplos reproduzíveis organizados por tema.
 
-- dados de entrada
-- scripts executáveis
-- artefatos gerados
-- relatórios opcionais
-- testes opcionais
+A proposta deste projeto é transformar conceitos bayesianos em **scripts executáveis, estruturas reutilizáveis e análises transparentes**, com foco em modelagem, simulação, inferência e documentação prática.
 
-Este repositório **não é um pacote R**. A unidade principal aqui é o **script executável por exemplo/tema**.
+## Visão geral
 
-## Objetivo do repositório
+Este repositório foi construído para servir como base de trabalho e estudo em:
 
-Organizar exemplos práticos e estudos aplicados em Bayes/Stan de forma que cada tema tenha:
+- modelagem bayesiana com **Stan**
+- análise de dados com **R**
+- simulação e inferência probabilística
+- organização reproduzível de experimentos
+- documentação por exemplo e por tema
 
-- um script principal
-- uma pasta própria
-- documentação curta local
-- entradas de dados bem definidas
-- saídas previsíveis em `outputs/` quando aplicável
+Em vez de concentrar tudo em notebooks isolados ou scripts dispersos, o projeto adota uma estrutura em que cada estudo pode evoluir de forma clara, auditável e expansível.
 
-## Estrutura do projeto
+## Objetivo
+
+O objetivo central é manter um ambiente em que modelos e análises possam ser:
+
+- escritos com clareza
+- executados a partir da raiz do projeto
+- documentados por contexto
+- expandidos para novos casos de uso
+- reutilizados como base para estudos, artigos, relatórios e aplicações futuras
+
+## Estrutura do repositório
 
 ```text
 .
-├── config/         # configurações opcionais do repositório
+├── config/         # configurações opcionais do projeto
 ├── data/
 │   ├── raw/        # dados brutos
-│   ├── interim/    # dados intermediários (não versionar artefatos)
-│   └── processed/  # dados processados (não versionar artefatos)
+│   ├── interim/    # dados intermediários
+│   └── processed/  # dados processados
 ├── outputs/
 │   ├── figures/    # gráficos gerados
-│   ├── models/     # objetos/modelos salvos, quando aplicável
-│   └── tables/     # tabelas e relatórios textuais
+│   ├── models/     # modelos e objetos salvos
+│   └── tables/     # tabelas e saídas textuais
 ├── reports/        # relatórios opcionais (Quarto / R Markdown)
-├── scripts/        # scripts executáveis do repositório
-└── tests/          # testes opcionais
+├── scripts/        # núcleo operacional: scripts por tema
+└── tests/          # testes e validações opcionais
 ```
 
-## Como usar
+## Filosofia do projeto
 
-A regra geral é rodar tudo a partir da **raiz do repositório**, sem `setwd()`.
+Este repositório não foi estruturado como pacote R tradicional.  
+A unidade principal aqui é o **script reproduzível por tema ou problema**.
+
+A lógica é simples:
+
+- cada tema fica organizado em sua própria pasta
+- cada exemplo possui um script principal claramente executável
+- dados, saídas e documentação ficam separados
+- a raiz do repositório funciona como ponto de entrada
+- os detalhes operacionais ficam documentados localmente nas pastas apropriadas
+
+## Como executar
+
+Os scripts devem ser executados a partir da **raiz do repositório**, sem uso de `setwd()`.
 
 ```bash
 Rscript scripts/<pasta>/<script>.R
@@ -54,110 +73,123 @@ Rscript scripts/therapeutic_touch/therapeutic_touch.R
 
 ## Setup inicial
 
-### 1) Instalar dependências R
+### Instalação de dependências R
 
-Mínimo:
+Instalação mínima:
 
 ```bash
 Rscript scripts/_setup/install_deps.R
 ```
 
-Mais completo (útil para testes, relatórios e dependências opcionais):
+Instalação ampliada, incluindo dependências opcionais:
 
 ```bash
 Rscript scripts/_setup/install_deps.R --all
 ```
 
-### 2) Instalar CmdStan
+### Instalação do CmdStan
 
-Necessário para os exemplos que usam `cmdstanr`.
+Necessário para os exemplos que utilizam `cmdstanr`.
 
 ```bash
 Rscript scripts/_setup/install_cmdstan.R
 ```
 
-Exemplo com opções:
+Exemplo com parâmetros:
 
 ```bash
 Rscript scripts/_setup/install_cmdstan.R --version=2.35.0 --cores=4
 ```
 
-## Onde encontrar cada coisa
+## Organização da documentação
+
+A documentação do projeto está distribuída por função:
+
+- `README.md` da raiz  
+  Apresenta a visão geral do repositório.
 
 - `scripts/README.md`  
-  Índice dos scripts executáveis e dos exemplos disponíveis.
+  Funciona como catálogo operacional dos scripts e exemplos disponíveis.
 
 - `config/README.md`  
-  Convenções para centralizar parâmetros e caminhos do projeto, caso você queira evoluir essa camada.
+  Descreve convenções e possibilidades de configuração centralizada.
 
 - `reports/README.md`  
-  Uso opcional de relatórios reproduzíveis.
+  Explica o uso opcional de relatórios reproduzíveis.
 
 - `tests/README.md`  
-  Informações sobre os testes disponíveis e como executá-los.
+  Reúne orientações sobre testes e validações.
 
-## Exemplos atualmente organizados em `scripts/`
+## Temas e exemplos
 
-Entre os temas já estruturados no repositório:
+O repositório já reúne estudos e exemplos em áreas como:
+
+- modelos hierárquicos
+- regressão logística bayesiana
+- modelos de contagem com Poisson
+- simulações Monte Carlo
+- sobrevivência
+- modelos ordinais
+- estudos aplicados em saúde, risco e inferência
+
+Entre os exemplos organizados em `scripts/`, estão temas como:
 
 - Therapeutic Touch
-- Modelo hierárquico de baseball (3 níveis)
+- Baseball hierárquico em 3 níveis
 - Mortalidade com Poisson hierárquico e offset
-- ISUS / SIA com Monte Carlo robusto
 - SAheart com regressão logística Bayesiana
-- Deck: número de partidas até alcançar vitórias
-- Hidrômetro: degradação / erro de medição
-- Média vs ruído
-- Coortes de aposentadoria
 - Kidney survival
 - INHALER ordinal crossover
 - RS Seguro
+- estudos de simulação e comparação entre sinal e ruído
 
-Para detalhes de entrada, saída e execução de cada exemplo, consulte:
+Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
 `scripts/README.md`
 
 ## Convenções adotadas
 
-- **1 pasta = 1 tema ou exemplo**
-- cada tema deve ter um **script principal** claramente identificável
-- quando necessário, cada pasta pode ter um `README.md` próprio
-- artefatos regeneráveis devem ir para `outputs/`
+Este projeto segue algumas convenções simples para facilitar manutenção e expansão:
+
+- **1 pasta = 1 tema, estudo ou experimento**
+- cada pasta deve ter um **script principal**
+- saídas regeneráveis devem ser gravadas em `outputs/`
 - dados derivados devem ficar em `data/interim/` ou `data/processed/`
+- documentação local pode ser adicionada quando um tema exigir contexto extra
 - scripts devem funcionar a partir da raiz do repositório
 
-## Saídas e versionamento
+## Reprodutibilidade e versionamento
 
-Por padrão, este repositório evita versionar artefatos regeneráveis, como:
+O repositório prioriza reprodutibilidade e organização.  
+Por isso, artefatos regeneráveis normalmente não devem ser versionados, como:
 
-- figuras
-- tabelas
+- gráficos
+- tabelas exportadas
 - modelos salvos
 - dados intermediários
-- dados processados
+- dados processados derivados
 
-A estrutura de pastas é preservada com `.gitkeep` quando necessário.
+A estrutura de diretórios é preservada quando necessário com arquivos auxiliares como `.gitkeep`.
 
 ## Testes
 
-Quando houver testes disponíveis, rode:
+Quando houver testes implementados, eles podem ser executados com:
 
 ```bash
 Rscript tests/run_tests.R
 ```
 
-Os testes deste repositório são auxiliares e não definem a estrutura principal do projeto, que continua sendo orientada a scripts.
+Os testes têm papel de apoio à validação, mas a arquitetura principal do repositório continua centrada em **scripts reproduzíveis por tema**.
 
-## Perfil do repositório
+## Para quem este repositório foi pensado
 
-Este projeto foi organizado para priorizar:
+Este projeto foi organizado para ser útil a quem deseja:
 
-- clareza operacional
-- reprodutibilidade
-- separação entre dados, scripts e saídas
-- facilidade de expansão por novos exemplos
-
-Em outras palavras: a porta de entrada do repositório é este `README`, e o catálogo operacional detalhado dos exemplos fica em `scripts/README.md`.
+- estudar Bayes de forma aplicada
+- transformar teoria em implementação
+- manter exemplos executáveis e auditáveis
+- construir uma base técnica sólida em **R + Stan**
+- evoluir estudos em direção a relatórios, artigos, produtos ou aplicações práticas
 
 ## Licença
 
