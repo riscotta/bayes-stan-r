@@ -141,6 +141,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - Kidney survival
 - INHALER ordinal crossover
 - RS Seguro
+- DETER mensal por bioma-UF
 - estudos de simulação e comparação entre sinal e ruído
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:

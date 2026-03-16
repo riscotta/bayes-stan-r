@@ -112,6 +112,20 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - para usar o modo `crime`, forneça `--input_csv=...` ou adicione o arquivo em `data/raw/rs_seguro/`
   - mantenha o mesmo contrato mínimo de colunas: `ym`, `crime`, `occ`, `vit`
 
+
+
+### `deter_mensal_bioma_uf.csv` (opcional / não versionado)
+
+- **Usado em:** `scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R`
+- **Descrição:** série mensal de alertas DETER agregada por `bioma`, `uf`, `ano`, `mes` e área de alerta em km².
+- **Fonte:** *(documente a origem exata do extrato quando possível)*
+- **Licença / restrições:** *(verifique a política de redistribuição dos dados antes de versionar no repo público)*
+- **Observações:**
+  - este arquivo é **opcional** e não vem no repo por padrão
+  - o script aceita nomes alternativos de colunas e reconstrói `ciclo` quando a coluna não existe
+  - o recorte analítico usa, por padrão, os meses `Ago, Set, Out, Nov, Dez, Jan`
+  - para rodar localmente, coloque o CSV em `data/raw/deter_mensal_bioma_uf.csv` ou informe `--input_csv=...`
+
 ## Convenções recomendadas
 
 - **Nomes de arquivos:** `CamelCase` ou `snake_case` (mas manter consistente no repo)

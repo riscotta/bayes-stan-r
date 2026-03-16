@@ -139,3 +139,10 @@ Rscript scripts/_setup/install_cmdstan.R
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
 - preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
 - artefatos regeneráveis vão em `outputs/`
+
+### 13) DETER mensal por bioma-UF
+
+- Pasta: `scripts/deter_mensal_bioma_uf/`
+- Entrada: `scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R`
+- Dados: `data/raw/deter_mensal_bioma_uf.csv` *(opcional / não versionado no repo atual)*
+- Observação: imprime relatório no console; opcionalmente salva PDF/TXT em `outputs/` via `--save_plots=1` e `--save_report=1`
