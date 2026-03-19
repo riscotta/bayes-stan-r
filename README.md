@@ -142,6 +142,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - INHALER ordinal crossover
 - RS Seguro
 - DETER mensal por bioma-UF
+- IPCA / SIDRA 1419 com decomposição por grupos e ajuste em Stan
 - estudos de simulação e comparação entre sinal e ruído
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:

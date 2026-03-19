@@ -146,3 +146,12 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R`
 - Dados: `data/raw/deter_mensal_bioma_uf.csv` *(opcional / não versionado no repo atual)*
 - Observação: imprime relatório no console; opcionalmente salva PDF/TXT em `outputs/` via `--save_plots=1` e `--save_report=1`
+
+### 14) IPCA / SIDRA 1419 -> Stan
+
+- Pasta: `scripts/ipca_sidra_1419/`
+- Entrada: `scripts/ipca_sidra_1419/ipca_sidra_1419_cmdstanr.R`
+- Dados: consulta online ao SIDRA/IBGE *(tabelas 1737 e 7060)*
+- Saídas opcionais:
+  - `outputs/tables/ipca_sidra_1419/ipca_sidra_1419_report.txt`
+  - `outputs/tables/ipca_sidra_1419/*.csv`
