@@ -133,3 +133,17 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 - **Separador:** vírgula (preferencial); quando necessário `;` (padrão PT-BR)
 - **Header:** primeira linha com nomes de colunas
 - **Tamanho:** se um dataset crescer muito, prefira um script de download em `scripts/_setup/get_data.R` e ignore o arquivo grande no git.
+
+
+---
+
+### `data/raw/censo_escolar/` (cache local opcional / ignorado no git)
+
+- **Usado em:** `scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R`
+- **Descrição:** cache local dos ZIPs oficiais do **Censo Escolar** baixados automaticamente pelo script.
+- **Fonte:** página oficial de microdados do INEP — `https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar`
+- **Licença / restrições:** verificar termos e avisos publicados pelo INEP para redistribuição e uso dos microdados.
+- **Observações:**
+  - esta pasta existe apenas para **cache local**
+  - os arquivos grandes baixados aqui **não devem ser versionados**
+  - por padrão o script reaproveita os ZIPs já baixados; use `--force_download=1` para renovar o cache

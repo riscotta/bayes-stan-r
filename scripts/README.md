@@ -155,3 +155,12 @@ Rscript scripts/_setup/install_cmdstan.R
 - Saídas opcionais:
   - `outputs/tables/ipca_sidra_1419/ipca_sidra_1419_report.txt`
   - `outputs/tables/ipca_sidra_1419/*.csv`
+
+### 15) Censo Escolar 2021-2025 -> tempo integral na rede publica
+
+- Pasta: `scripts/censo_escolar_tempo_integral/`
+- Entrada: `scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R`
+- Dados: downloads oficiais do INEP com cache local em `data/raw/censo_escolar/` *(ignorado no git)*
+- Saidas opcionais:
+  - `outputs/tables/censo_escolar_tempo_integral/censo_escolar_tempo_integral_report.txt`
+  - `outputs/tables/censo_escolar_tempo_integral/*.csv`

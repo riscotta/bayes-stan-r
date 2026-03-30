@@ -77,3 +77,9 @@ data/raw/SAheart.data
 
 # Patch files (ad-hoc diffs)
 *.patch
+
+
+# Cache local dos microdados oficiais do Censo Escolar (arquivos grandes)
+data/raw/censo_escolar/**
+!data/raw/censo_escolar/
+!data/raw/censo_escolar/.gitkeep
