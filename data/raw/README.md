@@ -147,3 +147,17 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - esta pasta existe apenas para **cache local**
   - os arquivos grandes baixados aqui **não devem ser versionados**
   - por padrão o script reaproveita os ZIPs já baixados; use `--force_download=1` para renovar o cache
+
+
+---
+
+### `SAT.csv` (online / não versionado)
+
+- **Usado em:** `scripts/sat_model_selection/sat_stan_model_selection_rstan.R`
+- **Descrição:** base pública do estudo SAT com variáveis `expend`, `ratio`, `salary`, `frac` e resposta `sat`, usada para seleção Bayesiana de variáveis e comparação exaustiva de modelos.
+- **Fonte:** *Rdatasets / mosaicData — `SAT.csv`.*
+- **Licença / restrições:** verificar os termos da fonte pública caso você opte por versionar uma cópia local.
+- **Observações:**
+  - este arquivo **não vem no repositório** por padrão
+  - o script lê diretamente da URL pública do Rdatasets
+  - se desejar congelar a entrada, salve uma cópia local em `data/raw/` e ajuste o script/URL conforme sua conveniência

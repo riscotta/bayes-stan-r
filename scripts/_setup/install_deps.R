@@ -58,9 +58,11 @@ install_pkgs <- function(pkgs) {
 pkgs_min <- c(
   "data.table",
   "cmdstanr",
+  "rstan",
   "posterior",
   "bayesplot",
   "loo",
+  "bridgesampling",
   "ggplot2",
   "dplyr",
   "tidyr",

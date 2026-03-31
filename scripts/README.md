@@ -134,6 +134,14 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/tables/rs_seguro/*.csv`
   - `outputs/figures/rs_seguro/*.pdf`
 
+
+### 16) SAT — seleção Bayesiana de variáveis
+
+- Pasta: `scripts/sat_model_selection/`
+- Entrada: `scripts/sat_model_selection/sat_stan_model_selection_rstan.R`
+- Dados: consulta online ao Rdatasets (`mosaicData::SAT`)
+- Observação: *console-only* (não grava arquivos por padrão); usa **rstan** + **bridgesampling**
+
 ## Convenções
 
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
