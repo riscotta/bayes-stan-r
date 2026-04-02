@@ -165,18 +165,18 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 ---
 
 
-### `data/raw/pnadc_desocupacao/` (local / não versionado)
+### `data/raw/pnadc_desocupacao/` (versionado no repositório)
 
 - **Usado em:** `scripts/pnadc_desocupacao/pnadc_desocupacao_rstan.R`
-- **Descrição:** diretório local para os CSVs exportados da PNAD Contínua usados no estudo de desocupação.
-- **Arquivos esperados:**
+- **Descrição:** CSVs exportados da PNAD Contínua usados no estudo de desocupação.
+- **Arquivos incluídos:**
   - `pnadc_mensal_taxa_desocupacao_6381.csv`
   - `pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv`
-  - `pnadc_mensal_taxa_desocupacao_jan_2026.csv` *(opcional; usado como checagem de consistência)*
+  - `pnadc_mensal_taxa_desocupacao_jan_2026.csv` *(cheque pontual de consistência para 202601)*
 - **Fonte:** exportações tabulares da PNAD Contínua / SIDRA conforme o recorte do estudo.
-- **Licença / restrições:** verificar os termos oficiais de redistribuição da fonte antes de versionar os CSVs.
+- **Licença / restrições:** verificar os termos oficiais de redistribuição e uso da fonte pública.
 - **Observações:**
-  - esta pasta existe para armazenar os CSVs localmente
-  - os arquivos de entrada **não devem ser versionados** por padrão
+  - os CSVs foram versionados para permitir reprodução imediata do estudo após o clone
   - o script assume separador `;` e nomes de colunas compatíveis com as exportações usadas no estudo
+  - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
 

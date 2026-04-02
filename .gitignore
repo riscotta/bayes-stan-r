@@ -84,7 +84,7 @@ data/raw/censo_escolar/**
 !data/raw/censo_escolar/
 !data/raw/censo_escolar/.gitkeep
 
-# Cache/local raw files da PNAD Contínua (não versionar)
-data/raw/pnadc_desocupacao/**
-!data/raw/pnadc_desocupacao/
-!data/raw/pnadc_desocupacao/.gitkeep
+# PNAD Contínua — os CSVs deste estudo estão versionados no repositório.
+# Mantemos apenas a possibilidade de ignorar artefatos auxiliares temporários.
+data/raw/pnadc_desocupacao/*.tmp
+data/raw/pnadc_desocupacao/*.bak

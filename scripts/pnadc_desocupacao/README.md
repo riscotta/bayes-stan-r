@@ -71,4 +71,4 @@ Rscript scripts/_setup/install_deps.R --all
 - Sem `setwd()`.
 - O script deve ser rodado a partir da raiz do repositório.
 - Por padrão, ele **não grava** saídas analíticas em disco.
-- Os CSVs de entrada **não são versionados** por padrão; coloque-os localmente em `data/raw/pnadc_desocupacao/`.
+- Os CSVs de entrada deste estudo **estão versionados** em `data/raw/pnadc_desocupacao/`, o que permite rodar o exemplo logo após o clone do repositório.

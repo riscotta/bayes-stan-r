@@ -178,6 +178,8 @@ Por isso, artefatos regeneráveis normalmente não devem ser versionados, como:
 
 A estrutura de diretórios é preservada quando necessário com arquivos auxiliares como `.gitkeep`.
 
+Exceção intencional neste momento: o estudo **PNAD Contínua — desocupação** inclui os CSVs de entrada em `data/raw/pnadc_desocupacao/` para permitir reprodução imediata do pipeline.
+
 ## Testes
 
 Quando houver testes implementados, eles podem ser executados com:
