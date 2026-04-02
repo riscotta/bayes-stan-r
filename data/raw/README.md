@@ -161,3 +161,22 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - este arquivo **não vem no repositório** por padrão
   - o script lê diretamente da URL pública do Rdatasets
   - se desejar congelar a entrada, salve uma cópia local em `data/raw/` e ajuste o script/URL conforme sua conveniência
+
+---
+
+
+### `data/raw/pnadc_desocupacao/` (local / não versionado)
+
+- **Usado em:** `scripts/pnadc_desocupacao/pnadc_desocupacao_rstan.R`
+- **Descrição:** diretório local para os CSVs exportados da PNAD Contínua usados no estudo de desocupação.
+- **Arquivos esperados:**
+  - `pnadc_mensal_taxa_desocupacao_6381.csv`
+  - `pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv`
+  - `pnadc_mensal_taxa_desocupacao_jan_2026.csv` *(opcional; usado como checagem de consistência)*
+- **Fonte:** exportações tabulares da PNAD Contínua / SIDRA conforme o recorte do estudo.
+- **Licença / restrições:** verificar os termos oficiais de redistribuição da fonte antes de versionar os CSVs.
+- **Observações:**
+  - esta pasta existe para armazenar os CSVs localmente
+  - os arquivos de entrada **não devem ser versionados** por padrão
+  - o script assume separador `;` e nomes de colunas compatíveis com as exportações usadas no estudo
+

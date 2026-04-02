@@ -181,3 +181,15 @@ Rscript scripts/_setup/install_cmdstan.R
 - Saídas opcionais:
   - `outputs/figures/fruitflies_aft/fruitflies_aft_plots.pdf`
   - `outputs/tables/fruitflies_aft/fruitflies_aft_report.txt`
+
+
+### 18) PNAD Contínua — desocupação
+
+- Pasta: `scripts/pnadc_desocupacao/`
+- Entrada: `scripts/pnadc_desocupacao/pnadc_desocupacao_rstan.R`
+- Dados:
+  - `data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_6381.csv`
+  - `data/raw/pnadc_desocupacao/pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv`
+  - `data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_jan_2026.csv` *(opcional / checagem)*
+- Observação: *console-only* (não grava arquivos por padrão); usa **rstan**
+

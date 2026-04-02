@@ -83,3 +83,8 @@ data/raw/SAheart.data
 data/raw/censo_escolar/**
 !data/raw/censo_escolar/
 !data/raw/censo_escolar/.gitkeep
+
+# Cache/local raw files da PNAD Contínua (não versionar)
+data/raw/pnadc_desocupacao/**
+!data/raw/pnadc_desocupacao/
+!data/raw/pnadc_desocupacao/.gitkeep

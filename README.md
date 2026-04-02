@@ -144,9 +144,11 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - DETER mensal por bioma-UF
 - IPCA / SIDRA 1419 com decomposição por grupos e ajuste em Stan
 - Censo Escolar 2021-2025 com modelagem de tempo integral na rede pública
+- PNAD Contínua — desocupação com série mensal total e série trimestral por sexo via rstan
 - FruitFlies com modelo AFT log-normal via Stan
 - SAT com seleção Bayesiana de variáveis e comparação entre modelos
 - estudos de simulação e comparação entre sinal e ruído
+- PNAD Contínua — desocupação
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
