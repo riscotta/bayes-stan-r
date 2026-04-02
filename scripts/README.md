@@ -172,3 +172,12 @@ Rscript scripts/_setup/install_cmdstan.R
 - Saidas opcionais:
   - `outputs/tables/censo_escolar_tempo_integral/censo_escolar_tempo_integral_report.txt`
   - `outputs/tables/censo_escolar_tempo_integral/*.csv`
+
+### 17) FruitFlies — replicação AFT log-normal
+
+- Pasta: `scripts/fruitflies_aft/`
+- Entrada: `scripts/fruitflies_aft/fruitflies_aft_lognormal_cmdstanr.R`
+- Dados: `Stat2Data::FruitFlies`
+- Saídas opcionais:
+  - `outputs/figures/fruitflies_aft/fruitflies_aft_plots.pdf`
+  - `outputs/tables/fruitflies_aft/fruitflies_aft_report.txt`

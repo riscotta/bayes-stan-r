@@ -80,7 +80,8 @@ pkgs_min <- c(
   "xts",
   "zoo",
   "rbcb",
-  "survival"
+  "survival",
+  "Stat2Data"
 )
 
 # “all” (ferramentas úteis pro repo crescer)
