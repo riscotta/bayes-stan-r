@@ -148,7 +148,6 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - FruitFlies com modelo AFT log-normal via Stan
 - SAT com seleção Bayesiana de variáveis e comparação entre modelos
 - estudos de simulação e comparação entre sinal e ruído
-- PNAD Contínua — desocupação
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
@@ -178,7 +177,16 @@ Por isso, artefatos regeneráveis normalmente não devem ser versionados, como:
 
 A estrutura de diretórios é preservada quando necessário com arquivos auxiliares como `.gitkeep`.
 
-Exceção intencional neste momento: o estudo **PNAD Contínua — desocupação** inclui os CSVs de entrada em `data/raw/pnadc_desocupacao/` para permitir reprodução imediata do pipeline.
+Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quando isso melhora a reprodução imediata do estudo, a utilidade didática ou a estabilidade de exemplos compactos. Exemplos atuais:
+
+- `data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_6381.csv`
+- `data/raw/pnadc_desocupacao/pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv`
+- `data/raw/rs_seguro/rs_month_macrocrime.csv`
+- `data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv`
+- `data/raw/BattingAverage.csv`
+- `data/raw/TherapeuticTouchData.csv`
+
+Em contrapartida, caches grandes, artefatos auxiliares e derivados continuam fora do versionamento. Para o inventário e as observações de origem/licença dos dados, consulte também `data/raw/README.md`.
 
 ## Testes
 

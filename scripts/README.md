@@ -46,14 +46,12 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: `data/raw/BattingAverage.csv`
 - Observação: *console-only* (não grava arquivos por padrão)
 
-
 ### 3) Mortalidade (Poisson hierárquico com offset)
 
 - Pasta: `scripts/mortality/`
 - Entrada: `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
 - Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
 - Observação: *console-only* (não grava arquivos por padrão)
-
 
 ### 4) ISUS / SIA — Monte Carlo robusto (cluster bootstrap por CNES)
 
@@ -76,7 +74,6 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: (simulados no próprio script)
 - Observação: *console-only* (não grava arquivos por padrão)
 
-
 ### 7) Hidrômetro — degradação/erro de medição (hierárquico)
 
 - Pasta: `scripts/hidrometro_degradacao/`
@@ -94,7 +91,6 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/tables/media_ruido_mu_sim_summary.csv`
   - `outputs/tables/media_ruido_mu_posterior_summary.csv`
 
-
 ### 9) Coortes de Aposentadoria (Brasil) — 30 anos (retornos reais)
 
 - Pasta: `scripts/coortes_aposentadoria/`
@@ -107,7 +103,7 @@ Rscript scripts/_setup/install_cmdstan.R
 - Pasta: `scripts/kidney_survival/`
 - Entrada: `scripts/kidney_survival/kidney_lognormal_survival_cmdstanr.R`
 - Dados: `survival::kidney` (embutido no pacote)
-- Observação: *console-only* (não grava arquivos por padrão; usa tempdir)
+- Observação: *console-only* (não grava arquivos por padrão; usa `tempdir()`)
 
 ### 11) INHALER — ordinal crossover (cutpoints via softplus)
 
@@ -134,20 +130,6 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/tables/rs_seguro/*.csv`
   - `outputs/figures/rs_seguro/*.pdf`
 
-
-### 16) SAT — seleção Bayesiana de variáveis
-
-- Pasta: `scripts/sat_model_selection/`
-- Entrada: `scripts/sat_model_selection/sat_stan_model_selection_rstan.R`
-- Dados: consulta online ao Rdatasets (`mosaicData::SAT`)
-- Observação: *console-only* (não grava arquivos por padrão); usa **rstan** + **bridgesampling**
-
-## Convenções
-
-- **1 pasta = 1 tema/exemplo** (com `README.md` curto)
-- preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
-- artefatos regeneráveis vão em `outputs/`
-
 ### 13) DETER mensal por bioma-UF
 
 - Pasta: `scripts/deter_mensal_bioma_uf/`
@@ -164,14 +146,21 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/tables/ipca_sidra_1419/ipca_sidra_1419_report.txt`
   - `outputs/tables/ipca_sidra_1419/*.csv`
 
-### 15) Censo Escolar 2021-2025 -> tempo integral na rede publica
+### 15) Censo Escolar 2021-2025 -> tempo integral na rede pública
 
 - Pasta: `scripts/censo_escolar_tempo_integral/`
 - Entrada: `scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R`
 - Dados: downloads oficiais do INEP com cache local em `data/raw/censo_escolar/` *(ignorado no git)*
-- Saidas opcionais:
+- Saídas opcionais:
   - `outputs/tables/censo_escolar_tempo_integral/censo_escolar_tempo_integral_report.txt`
   - `outputs/tables/censo_escolar_tempo_integral/*.csv`
+
+### 16) SAT — seleção Bayesiana de variáveis
+
+- Pasta: `scripts/sat_model_selection/`
+- Entrada: `scripts/sat_model_selection/sat_stan_model_selection_rstan.R`
+- Dados: consulta online ao Rdatasets (`mosaicData::SAT`)
+- Observação: *console-only* (não grava arquivos por padrão); usa **rstan** + **bridgesampling**
 
 ### 17) FruitFlies — replicação AFT log-normal
 
@@ -181,7 +170,6 @@ Rscript scripts/_setup/install_cmdstan.R
 - Saídas opcionais:
   - `outputs/figures/fruitflies_aft/fruitflies_aft_plots.pdf`
   - `outputs/tables/fruitflies_aft/fruitflies_aft_report.txt`
-
 
 ### 18) PNAD Contínua — desocupação
 
@@ -193,3 +181,8 @@ Rscript scripts/_setup/install_cmdstan.R
   - `data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_jan_2026.csv` *(opcional / checagem)*
 - Observação: *console-only* (não grava arquivos por padrão); usa **rstan**
 
+## Convenções
+
+- **1 pasta = 1 tema/exemplo** (com `README.md` curto)
+- preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
+- artefatos regeneráveis vão em `outputs/`

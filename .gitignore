@@ -78,6 +78,9 @@ data/raw/SAheart.data
 # Patch files (ad-hoc diffs)
 *.patch
 
+# Quarto / relatórios gerados
+reports/_site/
+
 
 # Cache local dos microdados oficiais do Censo Escolar (arquivos grandes)
 data/raw/censo_escolar/**

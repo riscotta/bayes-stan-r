@@ -7,6 +7,6 @@ Pasta opcional para relatórios (Quarto/R Markdown).
 Sugestão de convenção:
 
 - fontes do relatório: `reports/<nome-do-exemplo>/` (ou usar `reports/template/` como base)
-- artefatos gerados (HTML/PDF): não versionar; salvar em `reports/_site/...` (ignorados via `.gitignore`)
+- artefatos gerados (HTML/PDF): não versionar; salvar em `reports/_site/...` (ignorado via `.gitignore`)
 
 Se você não usa relatórios aqui, pode simplesmente ignorar esta pasta.
