@@ -145,6 +145,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - IPCA / SIDRA 1419 com decomposição por grupos e ajuste em Stan
 - Censo Escolar 2021-2025 com modelagem de tempo integral na rede pública
 - PNAD Contínua — desocupação com série mensal total e série trimestral por sexo via rstan
+- PMS / Serviços em janeiro de 2026 com nível ancorado e tendência AR(1) via rstan
 - FruitFlies com modelo AFT log-normal via Stan
 - SAT com seleção Bayesiana de variáveis e comparação entre modelos
 - estudos de simulação e comparação entre sinal e ruído
@@ -185,6 +186,7 @@ Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quan
 - `data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv`
 - `data/raw/BattingAverage.csv`
 - `data/raw/TherapeuticTouchData.csv`
+- `data/raw/pms_servicos/pms_base_analitica_stan.csv`
 
 Em contrapartida, caches grandes, artefatos auxiliares e derivados continuam fora do versionamento. Para o inventário e as observações de origem/licença dos dados, consulte também `data/raw/README.md`.
 

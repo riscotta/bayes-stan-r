@@ -180,3 +180,18 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - o script assume separador `;` e nomes de colunas compatíveis com as exportações usadas no estudo
   - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
 
+---
+
+### `data/raw/pms_servicos/` (versionado no repositório)
+
+- **Usado em:** `scripts/pms_servicos/pms_servicos_rstan.R`
+- **Descrição:** base analítica consolidada da Pesquisa Mensal de Serviços usada para verificar a manchete de jan/2026 e ajustar o modelo em Stan.
+- **Arquivos incluídos:**
+  - `pms_base_analitica_stan.csv`
+- **Fonte:** base analítica preparada a partir do estudo da PMS conforme o recorte reproduzido no repositório.
+- **Licença / restrições:** verifique a política de redistribuição dos dados de origem e mantenha atenção ao contexto de publicação do derivado analítico.
+- **Observações:**
+  - o CSV foi versionado para permitir reprodução imediata do estudo após o clone
+  - o script assume separador `;` e cabeçalho compatível com a base analítica gerada
+  - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
+

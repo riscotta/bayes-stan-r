@@ -91,3 +91,8 @@ data/raw/censo_escolar/**
 # Mantemos apenas a possibilidade de ignorar artefatos auxiliares temporários.
 data/raw/pnadc_desocupacao/*.tmp
 data/raw/pnadc_desocupacao/*.bak
+
+# PMS / Serviços — o CSV deste estudo está versionado no repositório.
+# Mantemos apenas a possibilidade de ignorar artefatos auxiliares temporários.
+data/raw/pms_servicos/*.tmp
+data/raw/pms_servicos/*.bak

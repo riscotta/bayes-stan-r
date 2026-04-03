@@ -181,6 +181,14 @@ Rscript scripts/_setup/install_cmdstan.R
   - `data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_jan_2026.csv` *(opcional / checagem)*
 - Observação: *console-only* (não grava arquivos por padrão); usa **rstan**
 
+### 19) PMS / Serviços em janeiro de 2026
+
+- Pasta: `scripts/pms_servicos/`
+- Entrada: `scripts/pms_servicos/pms_servicos_rstan.R`
+- Dados:
+  - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
+- Observação: *console-only* (não grava arquivos por padrão); usa **rstan**
+
 ## Convenções
 
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
