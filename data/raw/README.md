@@ -195,3 +195,16 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - o script assume separador `;` e cabeçalho compatível com a base analítica gerada
   - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
 
+
+
+### `retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` (externo / não versionado)
+
+- **Usado em:** `scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R`
+- **Descrição:** base global de retratações científicas usada para modelar o tempo até retratação.
+- **Fonte:** Kaggle — *Global Scientific Retractions 1927–2026*
+- **URL informada para obtenção:** `https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026`
+- **Licença / restrições:** verificar os termos publicados na página da base antes de redistribuir.
+- **Observações:**
+  - este CSV **não vem no repositório** por padrão
+  - salve o arquivo em `data/raw/retractions_time_to_retraction/`
+  - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`

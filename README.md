@@ -149,6 +149,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - FruitFlies com modelo AFT log-normal via Stan
 - SAT com seleção Bayesiana de variáveis e comparação entre modelos
 - estudos de simulação e comparação entre sinal e ruído
+- retratações científicas globais: tempo até retratação com modelo Bayesiano em Stan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
@@ -187,6 +188,8 @@ Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quan
 - `data/raw/BattingAverage.csv`
 - `data/raw/TherapeuticTouchData.csv`
 - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
+
+Bases externas grandes ou sob download manual podem ficar fora do versionamento e ser referenciadas na documentação local em `data/raw/` e `scripts/`. Este é o caso do estudo de retratações científicas globais.
 
 Em contrapartida, caches grandes, artefatos auxiliares e derivados continuam fora do versionamento. Para o inventário e as observações de origem/licença dos dados, consulte também `data/raw/README.md`.
 

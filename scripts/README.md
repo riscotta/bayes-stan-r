@@ -194,3 +194,14 @@ Rscript scripts/_setup/install_cmdstan.R
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
 - preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
 - artefatos regeneráveis vão em `outputs/`
+
+
+### 20) Retratações científicas globais — tempo até retratação
+
+- Pasta: `scripts/retractions_time_to_retraction/`
+- Entrada: `scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R`
+- Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
+- Saídas padrão:
+  - `outputs/tables/retractions_time_to_retraction/*.csv`
+  - `outputs/tables/retractions_time_to_retraction/retractions_time_to_retraction_report.txt`
+  - `outputs/figures/retractions_time_to_retraction/*.png`

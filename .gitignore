@@ -96,3 +96,6 @@ data/raw/pnadc_desocupacao/*.bak
 # Mantemos apenas a possibilidade de ignorar artefatos auxiliares temporários.
 data/raw/pms_servicos/*.tmp
 data/raw/pms_servicos/*.bak
+
+# Retratacoes cientificas — base externa do Kaggle (nao versionar CSV bruto)
+data/raw/retractions_time_to_retraction/*.csv
