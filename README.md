@@ -149,7 +149,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - FruitFlies com modelo AFT log-normal via Stan
 - SAT com seleção Bayesiana de variáveis e comparação entre modelos
 - estudos de simulação e comparação entre sinal e ruído
-- retratações científicas globais: tempo até retratação com modelo Bayesiano em Stan
+- retratações científicas globais: tempo até retratação e tendência temporal com modelos Bayesianos em Stan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 

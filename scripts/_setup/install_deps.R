@@ -71,6 +71,7 @@ pkgs_min <- c(
   "readxl",
   "tibble",
   "stringr",
+  "forcats",
   "stringi",
   "janitor",
   "lubridate",

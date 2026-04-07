@@ -205,3 +205,11 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/tables/retractions_time_to_retraction/*.csv`
   - `outputs/tables/retractions_time_to_retraction/retractions_time_to_retraction_report.txt`
   - `outputs/figures/retractions_time_to_retraction/*.png`
+
+### 21) Retratações científicas globais — tendência temporal
+
+- Pasta: `scripts/retractions_trend/`
+- Entrada: `scripts/retractions_trend/retractions_trend_rstan.R`
+- Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
+- Observação: *console-only* (não grava arquivos do estudo por padrão); usa **rstan**
+
