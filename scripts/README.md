@@ -213,3 +213,9 @@ Rscript scripts/_setup/install_cmdstan.R
 - Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
 - Observação: *console-only* (não grava arquivos do estudo por padrão); usa **rstan**
 
+### 22) Retratações científicas globais — composição dos motivos
+
+- Pasta: `scripts/retractions_reason_composition/`
+- Entrada: `scripts/retractions_reason_composition/retractions_reason_composition_rstan.R`
+- Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
+- Observação: *console-only* (não grava artefatos do estudo por padrão); usa **rstan**

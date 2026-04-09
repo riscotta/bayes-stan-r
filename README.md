@@ -150,6 +150,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - SAT com seleção Bayesiana de variáveis e comparação entre modelos
 - estudos de simulação e comparação entre sinal e ruído
 - retratações científicas globais: tempo até retratação e tendência temporal com modelos Bayesianos em Stan
+- retratações científicas globais: composição dos motivos com modelo Dirichlet-multinomial hierárquico em Stan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 

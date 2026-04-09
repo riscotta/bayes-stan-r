@@ -10,6 +10,8 @@ Salve o arquivo como:
 
 `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv`
 
-Script associado:
+Scripts associados:
 
 - `scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R`
+- `scripts/retractions_trend/retractions_trend_rstan.R`
+- `scripts/retractions_reason_composition/retractions_reason_composition_rstan.R`
