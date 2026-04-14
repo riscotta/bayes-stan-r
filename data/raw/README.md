@@ -126,6 +126,23 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - o recorte analítico usa, por padrão, os meses `Ago, Set, Out, Nov, Dez, Jan`
   - para rodar localmente, coloque o CSV em `data/raw/deter_mensal_bioma_uf.csv` ou informe `--input_csv=...`
 
+
+### `data/raw/consumer_shopping_trends/` (externo / não versionado)
+
+- **Usado em:** `scripts/consumer_shopping_trends_beta/consumer_shopping_trends_beta_rstan.R`
+- **Descrição:** base externa do Kaggle com perfis de consumidores, comportamento digital, frequência de compras e variáveis de gasto como `avg_online_spend` e `avg_store_spend`.
+- **Fonte:** Kaggle — *Consumer Shopping Trends Analysis*
+- **URL informada para obtenção:** `https://www.kaggle.com/datasets/minahilfatima12328/consumer-shopping-trends-analysis`
+- **Licença / restrições:** verificar os termos publicados na página da base antes de redistribuir.
+- **Observações:**
+  - este CSV **não vem no repositório** por padrão
+  - salve o arquivo em `data/raw/consumer_shopping_trends/`
+  - o nome esperado por padrão é `Consumer_Shopping_Trends_2026 (6).csv`
+  - se o nome local for diferente, informe `--input_csv=...`
+  - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
+
+---
+
 ## Convenções recomendadas
 
 - **Nomes de arquivos:** `CamelCase` ou `snake_case` (mas manter consistente no repo)

@@ -151,6 +151,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - estudos de simulação e comparação entre sinal e ruído
 - retratações científicas globais: tempo até retratação e tendência temporal com modelos Bayesianos em Stan
 - retratações científicas globais: composição dos motivos com modelo Dirichlet-multinomial hierárquico em Stan
+- Consumer Shopping Trends: gasto online/loja com modelo Beta Bayesiano em rstan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 

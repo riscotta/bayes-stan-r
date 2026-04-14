@@ -99,3 +99,6 @@ data/raw/pms_servicos/*.bak
 
 # Retratacoes cientificas — base externa do Kaggle (nao versionar CSV bruto)
 data/raw/retractions_time_to_retraction/*.csv
+
+# Consumer Shopping Trends — base externa do Kaggle (nao versionar CSV bruto)
+data/raw/consumer_shopping_trends/**/*.csv

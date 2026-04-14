@@ -219,3 +219,15 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/retractions_reason_composition/retractions_reason_composition_rstan.R`
 - Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
 - Observação: *console-only* (não grava artefatos do estudo por padrão); usa **rstan**
+
+### 23) Consumer Shopping Trends — modelo Beta Bayesiano
+
+- Pasta: `scripts/consumer_shopping_trends_beta/`
+- Entrada: `scripts/consumer_shopping_trends_beta/consumer_shopping_trends_beta_rstan.R`
+- Dados: `data/raw/consumer_shopping_trends/Consumer_Shopping_Trends_2026 (6).csv` *(externo / não versionado; ver documentação local)*
+- Saídas padrão:
+  - `outputs/tables/consumer_shopping_trends_beta/*.csv`
+  - `outputs/tables/consumer_shopping_trends_beta/*.txt`
+  - `outputs/figures/consumer_shopping_trends_beta/*.png`
+  - `outputs/models/consumer_shopping_trends_beta/*.rds`
+- Observação: usa **rstan**; o modelo Stan é compilado em memória e não grava arquivo `.stan`
