@@ -218,3 +218,20 @@ Este projeto foi organizado para ser útil a quem deseja:
 ## Licença
 
 Consulte o arquivo `LICENSE`.
+
+## Estudo incluído: Importações anuais por país — World Bank + Stan
+
+Este repositório agora inclui o estudo reproduzível de importações anuais por país, organizado no padrão do projeto:
+
+- script final: `scripts/importacoes_world_bank/Script.R`
+- modelo Stan: `scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.stan`
+- dado bruto versionado: `data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv`
+- saídas regeneráveis: `outputs/tables/importacoes_world_bank/`, `outputs/figures/importacoes_world_bank/` e `outputs/models/importacoes_world_bank/`
+
+Execução a partir da raiz do repositório:
+
+```bash
+Rscript scripts/importacoes_world_bank/Script.R
+```
+
+O estudo usa `cmdstanr` e não salva objetos `.rds` por padrão; os diagnósticos de amostragem são exportados em CSV, logs e arquivos de configuração.

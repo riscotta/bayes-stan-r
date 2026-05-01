@@ -102,3 +102,10 @@ data/raw/retractions_time_to_retraction/*.csv
 
 # Consumer Shopping Trends — base externa do Kaggle (nao versionar CSV bruto)
 data/raw/consumer_shopping_trends/**/*.csv
+
+# Importações World Bank — artefatos de compilação CmdStan gerados ao lado do .stan
+scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t
+scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.exe
+scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.hpp
+scripts/importacoes_world_bank/*.o
+scripts/importacoes_world_bank/*.d

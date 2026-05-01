@@ -226,3 +226,16 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - salve o arquivo em `data/raw/retractions_time_to_retraction/`
   - a mesma base alimenta o estudo de tempo até retratação e o estudo de tendência temporal
   - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
+
+---
+
+### `data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv`
+
+- **Usado em:** `scripts/importacoes_world_bank/Script.R`
+- **Descrição:** painel anual de importações em USD corrente por país, enriquecido com classificações geográficas e socioeconômicas usadas no estudo.
+- **Fonte:** exportação consolidada do projeto de análise de importações anuais por país, baseada em dados do World Bank conforme material-fonte do estudo.
+- **Licença / restrições:** verificar os termos de redistribuição da fonte original antes de republicação externa do dataset.
+- **Observações:**
+  - este CSV foi versionado para permitir reprodução imediata do estudo após o clone;
+  - mantenha este arquivo como dado bruto;
+  - saídas derivadas devem ser regeneradas pelo script em `outputs/`.

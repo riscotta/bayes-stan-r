@@ -231,3 +231,15 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/figures/consumer_shopping_trends_beta/*.png`
   - `outputs/models/consumer_shopping_trends_beta/*.rds`
 - Observação: usa **rstan**; o modelo Stan é compilado em memória e não grava arquivo `.stan`
+
+### 24) Importações anuais por país — World Bank + Stan
+
+- Pasta: `scripts/importacoes_world_bank/`
+- Entrada: `scripts/importacoes_world_bank/Script.R`
+- Modelo Stan: `scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.stan`
+- Dados: `data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv`
+- Saídas padrão:
+  - `outputs/tables/importacoes_world_bank/**/*.csv`
+  - `outputs/figures/importacoes_world_bank/**/*.png`
+  - `outputs/models/importacoes_world_bank/cmdstan_csv/*.csv`
+- Observação: usa **cmdstanr**; não salva objetos `.rds` por padrão. A auditoria MCMC é feita por CSVs do CmdStan, tabelas de diagnóstico, logs e configurações exportadas.

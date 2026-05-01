@@ -67,6 +67,7 @@ pkgs_min <- c(
   "dplyr",
   "tidyr",
   "purrr",
+  "jsonlite",
   "readr",
   "readxl",
   "tibble",
