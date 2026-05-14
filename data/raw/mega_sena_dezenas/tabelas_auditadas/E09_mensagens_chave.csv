@@ -1,0 +1,7 @@
+tipo,texto,uso
+mensagem central,"Na escala agregada fator x dezena, não há evidência posterior forte de mudança substantiva na distribuição das dezenas por período analítico, faixa temporal, década histórica ou dia da semana.",Comunicação principal da análise.
+nuance obrigatória,A posição ordenada publicada tem associação com a dezena por construção: ordenar as seis dezenas cria estatísticas de ordem. Isso não é evidência de mudança no mecanismo do sorteio.,Usar sempre que a posição ordenada aparecer.
+ressalva,"O fator ano deve permanecer como sensibilidade exploratória, porque é granular, tem maior incerteza e apresentou uma divergência MCMC.",Não usar como chamada principal.
+limite prático,"Os maiores desvios locais dos fatores principais ficam, em média, entre 0,51 e 0,68 ocorrência por 100 concursos, com limites superiores de 95% abaixo de 2 ocorrências por 100 concursos.",Traduzir magnitude para escala substantiva.
+restrição de comunicação,"Não comunicar rankings de dezenas, pares nível-dezena ou “dezenas quentes/frias” como achados substantivos.",Evitar superinterpretação.
+reprodutibilidade,"A interpretação repousa nos CSVs CmdStan, diagnósticos MCMC, tabelas posteriores e checagem preditiva auditados na E08.",Base da rastreabilidade para E10.

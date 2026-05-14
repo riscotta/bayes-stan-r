@@ -1,0 +1,5 @@
+fator,status_e08,divergencias,tau_delta_media,Pr_tau_delta_maior_0_05,max_delta100_media,max_delta100_ic95,Pr_max_delta100_maior_2,ppc_pvalue,uso_e09
+ano,ATENCAO,1,0.0258819939587242,0.12925,0.97663084783285,"[0,04; 2,68]",0.10625,0.9235,Apenas diagnóstico exploratório: granularidade alta e uma divergência MCMC.
+periodo_5_anos,APROVADO,0,0.0194469897257114,0.0195,0.6353370982951425,"[0,03; 1,63]",0.00475,0.85075,Sensibilidade temporal; consistente com estabilidade prática.
+faixa_temporal_tercil_concursos,APROVADO,0,0.0298207560977687,0.1515,0.888654977105775,"[0,04; 2,03]",0.0275,0.47775,"Sensibilidade temporal; tau maior, mas desvio local ainda pequeno."
+faixa_temporal_metade_concursos,APROVADO,0,0.0318671433955077,0.16075,0.9040190935278024,"[0,05; 1,97]",0.02125,0.48575,"Sensibilidade temporal; tau maior, mas desvio local ainda pequeno."

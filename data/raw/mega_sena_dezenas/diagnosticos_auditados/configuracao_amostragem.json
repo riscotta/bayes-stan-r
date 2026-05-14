@@ -1,0 +1,20 @@
+{
+  "etapa": "E07_Implementacao_Estimacao",
+  "configuracao_stan_planejada_E06": {
+    "chains": 4,
+    "iter_warmup": 1000,
+    "iter_sampling": 1000,
+    "adapt_delta": 0.95,
+    "max_treedepth": 12,
+    "seed": 20260513
+  },
+  "execucao_stan_cmdstanr_realizada": false,
+  "motivo_nao_execucao_stan": "Ambiente sem R, Rscript, cmdstanr, CmdStan e stanc.",
+  "execucao_substituta_realizada": true,
+  "metodo_substituto": "Posterior Dirichlet-multinomial independente por nível de fator, com baseline global Dirichlet.",
+  "n_amostras_substitutas": 2500,
+  "prior_substituto": "Dirichlet(1,...,1) sobre as 60 probabilidades de slot.",
+  "seed": 20260514,
+  "sem_rds": true,
+  "observacao": "Execução substituta não substitui a validação MCMC do modelo Stan M1 da E06."
+}

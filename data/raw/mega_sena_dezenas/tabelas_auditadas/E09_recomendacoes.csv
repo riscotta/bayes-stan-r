@@ -1,0 +1,6 @@
+recomendacao,justificativa,prioridade
+Comunicar estabilidade prática como conclusão central.,"Os fatores principais têm tau_delta baixo, baixas probabilidades de desvio global relevante e desvios locais pequenos por 100 concursos.",Alta
+"Evitar linguagem de previsão, sorteio viciado, dezenas quentes ou dezenas frias.",A análise não encontrou mudança substantiva e não permite inferir vantagem preditiva.,Alta
+"Na E10, escolher uma peça executiva curta ou um texto de LinkedIn com foco em método e interpretação responsável.",O achado é mais forte como demonstração de análise bayesiana auditável do que como descoberta operacional sobre apostas.,Alta
+Registrar limitação da likelihood multinomial agregada.,O modelo não representa diretamente a dependência sem reposição dentro de cada concurso.,Média
+"Se o projeto for estendido, executar checagem preditiva por concurso sem reposição.",A E06 planejou checagem em escala de concurso; a E08 validou principalmente escala agregada fator x dezena.,Média

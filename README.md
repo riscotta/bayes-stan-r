@@ -152,6 +152,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - retratações científicas globais: tempo até retratação e tendência temporal com modelos Bayesianos em Stan
 - retratações científicas globais: composição dos motivos com modelo Dirichlet-multinomial hierárquico em Stan
 - Consumer Shopping Trends: gasto online/loja com modelo Beta Bayesiano em rstan
+- Mega-Sena: análise Bayesiana da distribuição das dezenas por fatores nominais e temporais com modelo multinomial log-linear em Stan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
@@ -190,6 +191,7 @@ Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quan
 - `data/raw/BattingAverage.csv`
 - `data/raw/TherapeuticTouchData.csv`
 - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
+- `data/raw/mega_sena_dezenas/base_analitica.csv`
 
 Bases externas grandes ou sob download manual podem ficar fora do versionamento e ser referenciadas na documentação local em `data/raw/` e `scripts/`. Este é o caso do estudo de retratações científicas globais.
 

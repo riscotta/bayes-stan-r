@@ -143,6 +143,26 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 
 ---
 
+
+### `data/raw/mega_sena_dezenas/` (versionado no repositório)
+
+- **Usado em:** `scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R`
+- **Descrição:** base analítica longa da Mega-Sena e artefatos auditáveis da modelagem Bayesiana usados para recompor a entrega final.
+- **Arquivos principais:**
+  - `base_analitica.csv`
+  - `concursos_analiticos.csv`
+  - `dicionario_base_analitica.csv`
+  - `tabelas_auditadas/*.csv`
+  - `diagnosticos_auditados/*.csv`
+- **Fonte:** resultados históricos da Mega-Sena conforme base preparada no estudo analítico.
+- **Licença / restrições:** verificar os termos oficiais da fonte original antes de redistribuição externa.
+- **Observações:**
+  - os CSVs foram versionados para permitir reprodução imediata após o clone;
+  - os CSVs brutos completos do CmdStan não foram versionados por serem artefatos pesados de execução;
+  - para reamostrar o modelo, execute o script com `--run_stan=1`.
+
+---
+
 ## Convenções recomendadas
 
 - **Nomes de arquivos:** `CamelCase` ou `snake_case` (mas manter consistente no repo)

@@ -1,0 +1,5 @@
+fator,status_e08,tau_delta_media,tau_delta_ic95,Pr_tau_delta_maior_0_05,max_delta100_media,max_delta100_ic95,Pr_max_delta100_maior_2,ppc_pvalue,interpretacao_e09
+periodo_analitico,APROVADO,0.0173893819386383,"[0,001; 0,047]",0.01425,0.5443868780903676,"[0,02; 1,48]",0.00125,0.93,Estabilidade prática; desvios locais pequenos e computação aprovada.
+faixa_temporal,APROVADO,0.0209231538699491,"[0,001; 0,054]",0.043,0.6802008265704925,"[0,03; 1,80]",0.0105,0.885,"Estabilidade prática; maior entre os fatores principais, ainda sem magnitude substantiva."
+decada_historica,APROVADO,0.0164821644736692,"[0,001; 0,045]",0.01075,0.5050029634554074,"[0,02; 1,41]",0.00175,0.9215,Estabilidade prática por década; não há sinal temporal substantivo.
+dia_semana,APROVADO,0.0161976947042505,"[0,001; 0,043]",0.00525,0.5294964618045637,"[0,02; 1,43]",0.002,0.98175,"Estabilidade prática por dia da semana; PPC alto recomenda cautela, não mudança substantiva."

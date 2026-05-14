@@ -109,3 +109,13 @@ scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.exe
 scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.hpp
 scripts/importacoes_world_bank/*.o
 scripts/importacoes_world_bank/*.d
+
+# Mega-Sena — artefatos de compilação CmdStan gerados ao lado dos .stan
+scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator
+scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator.exe
+scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator.hpp
+scripts/mega_sena_dezenas/modelo_multinomial_global
+scripts/mega_sena_dezenas/modelo_multinomial_global.exe
+scripts/mega_sena_dezenas/modelo_multinomial_global.hpp
+scripts/mega_sena_dezenas/*.o
+scripts/mega_sena_dezenas/*.d

@@ -1,0 +1,24 @@
+coluna,tipo,descricao,origem_regra
+concurso,integer,Número do concurso da Mega-Sena. Chave do sorteio.,Entrada original / normalização
+data_sorteio,date,Data do sorteio em formato ISO yyyy-mm-dd.,Parse de data original dd/mm/yyyy ou yyyy-mm-dd
+ano,integer,Ano calendário do sorteio.,Derivada de data_sorteio
+mes,integer,Mês calendário do sorteio.,Derivada de data_sorteio
+dia_mes,integer,Dia do mês do sorteio.,Derivada de data_sorteio
+data_ano_mes,date,"Primeiro dia do mês do sorteio, para agregações mensais.",Derivada de data_sorteio
+trimestre,integer,Trimestre calendário do sorteio.,Derivada de data_sorteio
+semestre,integer,Semestre calendário do sorteio.,Derivada de data_sorteio
+dia_semana_num,integer,"Dia da semana ISO, segunda=1 ... domingo=7.",Derivada de data_sorteio
+dia_semana,factor/text,Nome do dia da semana em português sem acento.,Derivada de data_sorteio
+decada_historica,text,"Agrupamento: 1996-1999, 2000-2009, 2010-2019, 2020-2026.",Regra analítica da E04
+faixa_temporal,text,"Faixas quinquenais aproximadas: 1996-1999, 2000-2004, ..., 2025-2026.",Regra analítica da E04
+periodo_analitico,text,"Agrupamento operacional analítico, não regulatório.",Regra analítica da E04
+posicao_ordenada_publicada,integer,Posição 1..6 da dezena na linha de entrada ou na ordem crescente quando a base vier sem ordem de sorteio.,Entrada/derivação
+dezena,integer,"Dezena sorteada, valor entre 1 e 60.",Entrada original
+dezena_str,text,Dezena formatada com dois dígitos.,Derivada de dezena
+dezena_grupo_10,text,"Grupo decimal: 01-10, 11-20, ..., 51-60.",Derivada de dezena
+dezena_paridade,text,Paridade da dezena: par/impar.,Derivada de dezena
+dezena_metade,text,Metade do volante: 01-30 ou 31-60.,Derivada de dezena
+ocorrencia_id,text,Identificador único da ocorrência: concurso_posição.,Derivada
+unidade_amostral,text,Valor fixo: dezena_em_concurso.,Metadado analítico
+grupo_sorteio_id,text,Identificador do agrupamento de dependência: concurso.,Metadado analítico
+peso_unidade_concurso,numeric,Peso 1/6 para evitar tratar as seis dezenas do mesmo concurso como independência plena.,Regra analítica da E04

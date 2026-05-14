@@ -1,0 +1,2 @@
+status,motivo,arquivo_cmdstan_csv
+nao_disponivel,Stan/cmdstanr não executado; ambiente sem R/Rscript/cmdstanr/CmdStan/stanc.,ausente

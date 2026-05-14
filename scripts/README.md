@@ -189,6 +189,21 @@ Rscript scripts/_setup/install_cmdstan.R
   - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
 - Observação: *console-only* (não grava arquivos por padrão); usa **rstan**
 
+
+### 25) Mega-Sena — distribuição das dezenas por fatores nominais e temporais
+
+- Pasta: `scripts/mega_sena_dezenas/`
+- Entrada: `scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R`
+- Modelos Stan:
+  - `scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator.stan`
+  - `scripts/mega_sena_dezenas/modelo_multinomial_global.stan`
+- Dados e artefatos auditáveis: `data/raw/mega_sena_dezenas/`
+- Saídas padrão:
+  - `outputs/mega_sena_dezenas/tables/*.csv`
+  - `outputs/mega_sena_dezenas/figures/*.png`
+  - `outputs/mega_sena_dezenas/logs/*.txt`
+- Observação: por padrão o script recompõe a entrega final a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
+
 ## Convenções
 
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
