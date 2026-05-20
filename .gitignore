@@ -119,3 +119,16 @@ scripts/mega_sena_dezenas/modelo_multinomial_global.exe
 scripts/mega_sena_dezenas/modelo_multinomial_global.hpp
 scripts/mega_sena_dezenas/*.o
 scripts/mega_sena_dezenas/*.d
+
+# Exercises Dataset — artefatos de compilação CmdStan gerados ao lado dos .stan
+scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento
+scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento.exe
+scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento.hpp
+scripts/exercises_dataset/modelo_ordinal_dificuldade_com_equipamento_diagnostico
+scripts/exercises_dataset/modelo_ordinal_dificuldade_com_equipamento_diagnostico.exe
+scripts/exercises_dataset/modelo_ordinal_dificuldade_com_equipamento_diagnostico.hpp
+scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade
+scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.exe
+scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.hpp
+scripts/exercises_dataset/*.o
+scripts/exercises_dataset/*.d

@@ -259,3 +259,18 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - este CSV foi versionado para permitir reprodução imediata do estudo após o clone;
   - mantenha este arquivo como dado bruto;
   - saídas derivadas devem ser regeneradas pelo script em `outputs/`.
+
+---
+
+### `data/raw/exercises_dataset/` (versionado no repositório)
+
+- **Usado em:** `scripts/exercises_dataset/exercises_dataset_cmdstanr.R`
+- **Descrição:** base de exercícios físicos usada para análise de cobertura do catálogo, dificuldade declarada, grupos corporais, equipamentos, alvos musculares e estrutura textual das instruções.
+- **Arquivos incluídos:**
+  - `final_exercise_dataset.csv`
+- **Fonte:** Kaggle Exercises Dataset conforme arquivo consolidado usado no projeto analítico.
+- **Licença / restrições:** verificar os termos publicados na fonte original antes de redistribuição externa.
+- **Observações:**
+  - o CSV foi versionado para permitir reprodução imediata do estudo após o clone;
+  - o script gera derivados em `outputs/exercises_dataset/`;
+  - os CSVs brutos do CmdStan não são versionados por padrão; para reamostrar, execute o script com `--run_stan=1`.

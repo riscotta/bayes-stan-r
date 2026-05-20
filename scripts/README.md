@@ -258,3 +258,19 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/figures/importacoes_world_bank/**/*.png`
   - `outputs/models/importacoes_world_bank/cmdstan_csv/*.csv`
 - Observação: usa **cmdstanr**; não salva objetos `.rds` por padrão. A auditoria MCMC é feita por CSVs do CmdStan, tabelas de diagnóstico, logs e configurações exportadas.
+
+### 26) Exercises Dataset — dificuldade, cobertura e modelagem ordinal
+
+- Pasta: `scripts/exercises_dataset/`
+- Entrada: `scripts/exercises_dataset/exercises_dataset_cmdstanr.R`
+- Modelos Stan:
+  - `scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento.stan`
+  - `scripts/exercises_dataset/modelo_ordinal_dificuldade_com_equipamento_diagnostico.stan`
+  - `scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.stan`
+- Dados: `data/raw/exercises_dataset/final_exercise_dataset.csv`
+- Saídas padrão:
+  - `outputs/exercises_dataset/tables/*.csv`
+  - `outputs/exercises_dataset/logs/*.txt` ou `*.log`
+  - `outputs/exercises_dataset/data_stan/*.json`
+  - `outputs/exercises_dataset/cmdstan_csv/*.csv`, apenas quando `--run_stan=1`
+- Observação: por padrão o script prepara a base, recompõe tabelas descritivas e gera os dados Stan sem reamostrar; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.

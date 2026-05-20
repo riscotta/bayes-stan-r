@@ -153,6 +153,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - retratações científicas globais: composição dos motivos com modelo Dirichlet-multinomial hierárquico em Stan
 - Consumer Shopping Trends: gasto online/loja com modelo Beta Bayesiano em rstan
 - Mega-Sena: análise Bayesiana da distribuição das dezenas por fatores nominais e temporais com modelo multinomial log-linear em Stan
+- Exercises Dataset: análise de cobertura do catálogo de exercícios e modelagem ordinal Bayesiana da dificuldade com Stan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
@@ -237,3 +238,26 @@ Rscript scripts/importacoes_world_bank/Script.R
 ```
 
 O estudo usa `cmdstanr` e não salva objetos `.rds` por padrão; os diagnósticos de amostragem são exportados em CSV, logs e arquivos de configuração.
+
+## Estudo incluído: Exercises Dataset — dificuldade e cobertura do catálogo
+
+Este repositório agora inclui o estudo reproduzível do Exercises Dataset, organizado no padrão do projeto:
+
+- script final: `scripts/exercises_dataset/exercises_dataset_cmdstanr.R`
+- modelos Stan: `scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento.stan`, `scripts/exercises_dataset/modelo_ordinal_dificuldade_com_equipamento_diagnostico.stan` e `scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.stan`
+- dado bruto versionado: `data/raw/exercises_dataset/final_exercise_dataset.csv`
+- saídas regeneráveis: `outputs/exercises_dataset/`
+
+Execução a partir da raiz do repositório:
+
+```bash
+Rscript scripts/exercises_dataset/exercises_dataset_cmdstanr.R
+```
+
+Para reexecutar a amostragem Stan/cmdstanr:
+
+```bash
+Rscript scripts/exercises_dataset/exercises_dataset_cmdstanr.R --run_stan=1
+```
+
+A execução padrão não salva objetos `.rds`; os dados preparados, tabelas, JSONs para Stan, logs e diagnósticos são exportados em arquivos auditáveis.
