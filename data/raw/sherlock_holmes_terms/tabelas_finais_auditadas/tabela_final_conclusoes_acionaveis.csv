@@ -1,0 +1,7 @@
+tipo,conclusao
+fato observado,O corpus analítico contém 48 obras. 12 termos. 576 células obra-termo. 574.773 tokens literários e 258 células zeradas.
+inferência validada,"A posterior CmdStan/NUTS é adequada para interpretar padrões agregados, taxas por 10 mil tokens e contrastes fortes."
+inferência substantiva,"Sherlock Holmes e Dr. Watson são os termos centrais mais difusos; termos como Irene Adler, Mycroft Holmes, Professor Moriarty e Mrs Hudson são episódicos."
+inferência condicionada,"O efeito de tipo de obra sugere menor taxa de Sherlock Holmes e Dr. Watson em romances do que em contos, mas os demais termos têm incerteza maior."
+limitação,A análise não deve ser apresentada como conclusão sobre o cânone completo de 60 obras nem como estudo lexical exaustivo.
+recomendação,"Avançar para E10 com PDF executivo técnico e script final reprodutível, mantendo a pendência de sensibilidade como qualificação."

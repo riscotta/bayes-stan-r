@@ -274,3 +274,16 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/exercises_dataset/data_stan/*.json`
   - `outputs/exercises_dataset/cmdstan_csv/*.csv`, apenas quando `--run_stan=1`
 - Observação: por padrão o script prepara a base, recompõe tabelas descritivas e gera os dados Stan sem reamostrar; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
+
+### 27) Sherlock Holmes — frequências de termos/personagens
+
+- Pasta: `scripts/sherlock_holmes_terms/`
+- Entrada: `scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R`
+- Modelo Stan: `scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07.stan`
+- Dados e artefatos auditáveis: `data/raw/sherlock_holmes_terms/`
+- Saídas padrão:
+  - `outputs/sherlock_holmes_terms/tables/*.csv`
+  - `outputs/sherlock_holmes_terms/figures/*.png`
+  - `outputs/sherlock_holmes_terms/logs/*.csv`
+  - `outputs/sherlock_holmes_terms/cmdstan_csv/*.csv`, apenas quando `--run_stan=1`
+- Observação: por padrão o script recompõe auditorias, tabelas finais e figuras a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.

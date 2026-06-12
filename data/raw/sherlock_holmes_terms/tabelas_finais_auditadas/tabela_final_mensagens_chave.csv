@@ -1,0 +1,7 @@
+ordem,mensagem_chave,fundamento
+1,"A análise deve ser comunicada em taxas posteriores por 10 mil tokens, não em contagens brutas.",As obras têm exposições textuais muito diferentes; o modelo usa offset de tokens/10.000 e estima taxas latentes.
+2,A computação principal está validada para interpretação agregada e contrastes fortes.,"E08: 0 divergências, 0 saturações de treedepth, E-BFMI mínimo 0,759, R-hat máximo não gerado 1,0057 e ESS bulk mínimo 854,5."
+3,"Sherlock Holmes e Dr. Watson dominam as menções controladas, mas ainda variam substantivamente entre obras.","Taxas posteriores globais ponderadas de 43,36 e 14,03 por 10 mil tokens, respectivamente; Sherlock aparece em todas as 48 obras e Watson em 47."
+4,Personagens secundários e raros são episódicos; seus picos por obra devem ser interpretados com shrinkage e sensibilidade.,Irene Adler e Mycroft Holmes têm 44 células zeradas em 48; Moriarty tem 42; Mrs Hudson tem 36; deduction tem 32.
+5,Apenas alguns contrastes top1 versus top2 são fortes o bastante para comunicação direta.,"Dr. Watson e Irene Adler têm P(top1 > top2) acima de 0,95; a maioria dos demais termos tem disputa posterior relevante."
+6,"O modelo reproduz os aspectos centrais dos dados observados, mas a sensibilidade a priors/NB2 permanece pendente.",PPC global e celular aprovado; 0 de 576 células fora do intervalo preditivo de 90%; não houve execução alternativa com priors modificados ou NB2.

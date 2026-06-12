@@ -1,0 +1,9 @@
+resultado,por_que_nao_comunicar_isoladamente
+Rankings top1/top2 por mediana posterior,Em vários termos a probabilidade de superioridade do top1 é moderada; a diferença top1-top2 inclui incerteza relevante.
+Contagens brutas de termos por obra,Obras têm tamanhos muito diferentes; contagem bruta mistura intensidade textual e exposição.
+Coeficientes beta_novel e beta_year na escala log,A escala log não é intuitiva; comunicar razões de taxas ou taxas preditas.
+Efeito temporal como tendência literária do cânone,"O corpus contém 48 obras, com 12 ausentes; a publicação é irregular e confundida com composição do corpus."
+Zeros de personagens raros como ausência substantiva absoluta,"Zeros podem refletir baixa taxa, exposição limitada, dicionário/regex e shrinkage posterior."
+PPC aceitável como prova de modelo verdadeiro,"A checagem mostra compatibilidade com aspectos avaliados, não prova unicidade nem descarta alternativas."
+Execução fallback HMC da E07,A E08 definiu a execução CmdStan/NUTS como fonte primária; fallback é apenas referência.
+Resultados do corpus como se fossem do cânone completo de 60 obras,O dataset analisado contém 48 obras disponíveis; as 12 obras ausentes permanecem fora do escopo.

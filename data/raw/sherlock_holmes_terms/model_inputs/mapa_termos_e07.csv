@@ -1,0 +1,13 @@
+term_idx,termo_canonico,categoria
+1,sherlock_holmes,personagem
+2,dr_watson,personagem
+3,professor_moriarty,personagem
+4,mycroft_holmes,personagem
+5,inspector_lestrade,personagem
+6,irene_adler,personagem
+7,mrs_hudson,personagem
+8,baker_street,lugar
+9,london,lugar
+10,deduction,tema
+11,evidence,tema
+12,crime,tema

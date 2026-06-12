@@ -1,0 +1,10 @@
+bloco,sintese
+dados,"Foram modeladas 576 células obra-termo, formadas por 48 obras disponíveis e 12 termos controlados. A resposta é a contagem do termo na obra; a exposição é o número de tokens literários da obra dividido por 10.000."
+modelo,"O modelo operacional é Poisson-lognormal hierárquico com offset de exposição, efeitos por termo, efeito romance/conto por termo, efeito temporal exploratório por termo, efeito global de obra e desvio obra-termo."
+priors,"Os priors foram fracamente informativos na escala log da taxa, com regularização hierárquica para controlar estimativas extremas e permitir shrinkage, especialmente em termos raros."
+computacao,"A execução principal CmdStan/NUTS usou 4 cadeias, 1000 warmup e 1000 amostras pós-warmup por cadeia, adapt_delta 0,95, max_treedepth 12 e seed 20260611. A E08 validou convergência e energia."
+posterior,"A posterior deve ser lida por taxas por 10 mil tokens, razões de taxas, diferenças absolutas e probabilidades posteriores; coeficientes log não devem ser comunicados isoladamente."
+checagem,"A PPC reproduziu os aspectos centrais: total de contagens, zeros, células positivas, máximo de célula, totais por termo e obra. Nenhuma célula ficou fora do intervalo preditivo de 90%."
+interpretacao,"A posterior é confiável para padrões agregados, contrastes fortes e leituras com incerteza explícita. Rankings finos e termos raros permanecem condicionais."
+limitacoes,"O corpus tem 48 obras, não 60; o dicionário é controlado e não exaustivo; metadados e regex afetam as contagens; não há sensibilidade quantitativa a priors alternativos ou NB2 no pacote recebido."
+recomendacao,"Avançar para E10 com PDF executivo técnico, mantendo incerteza, validação computacional, checagem preditiva e limitações como parte da comunicação."

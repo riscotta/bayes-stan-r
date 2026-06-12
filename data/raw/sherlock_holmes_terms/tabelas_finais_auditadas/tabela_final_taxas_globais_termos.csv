@@ -1,0 +1,13 @@
+termo_canonico,categoria,ocorrencias,taxa_obs_global_10k,taxa_posterior_media_pond_10k,zeros_em_48_obras,obras_com_ocorrencia,leitura_e09
+sherlock_holmes,personagem,2493,43.37364489981262,43.36226181997637,0,48,termo central e difuso no corpus
+dr_watson,personagem,807,14.040325485017563,14.025703013742696,1,47,termo central e difuso no corpus
+crime,tema,358,6.228545878111881,6.226666661123553,1,47,termo intermediário; interpretar por taxa e contraste
+london,lugar,338,5.880582421234122,5.878051951485156,3,45,termo intermediário; interpretar por taxa e contraste
+inspector_lestrade,personagem,243,4.227756001064768,4.2318732824466,35,13,termo raro/concentrado; interpretar com sensibilidade
+evidence,tema,128,2.226966124017656,2.2183082917553154,13,35,termo intermediário; interpretar por taxa e contraste
+baker_street,lugar,105,1.8268081486082333,1.8229727565073897,7,41,termo intermediário; interpretar por taxa e contraste
+mycroft_holmes,personagem,56,0.9742976792577244,0.982628356011516,44,4,termo raro/concentrado; interpretar com sensibilidade
+professor_moriarty,personagem,53,0.9221031607260604,0.9325266498242036,42,6,termo raro/concentrado; interpretar com sensibilidade
+mrs_hudson,personagem,29,0.5045470124727501,0.5076961677124248,36,12,termo raro/concentrado; interpretar com sensibilidade
+deduction,tema,26,0.4523524939410863,0.4554910550805647,32,16,termo raro/concentrado; interpretar com sensibilidade
+irene_adler,personagem,15,0.260972592658319,0.273158400759029,44,4,termo raro/concentrado; interpretar com sensibilidade

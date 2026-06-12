@@ -1,0 +1,49 @@
+work_idx,book_id,book_canonical,book_order,first_publication_year,year_centered_decade,work_type,is_novel_int,tokens_exposicao
+1,B001,A Study in Scarlet,1,1887,-1.1583333333333257,novel,1,43289
+2,B002,The Sign of the Four,2,1890,-0.8583333333333257,novel,1,43050
+3,B003,A Scandal in Bohemia,3,1891,-0.7583333333333258,short_story,0,8530
+4,B004,The Red-Headed League,4,1891,-0.7583333333333258,short_story,0,9100
+5,B005,A Case of Identity,5,1891,-0.7583333333333258,short_story,0,6978
+6,B006,The Boscombe Valley Mystery,6,1891,-0.7583333333333258,short_story,0,9618
+7,B007,The Five Orange Pips,7,1891,-0.7583333333333258,short_story,0,7313
+8,B008,The Man with the Twisted Lip,8,1891,-0.7583333333333258,short_story,0,9197
+9,B009,The Adventure of the Blue Carbuncle,9,1892,-0.6583333333333258,short_story,0,7814
+10,B010,The Adventure of the Speckled Band,10,1892,-0.6583333333333258,short_story,0,9809
+11,B011,The Adventure of the Engineer's Thumb,11,1892,-0.6583333333333258,short_story,0,8291
+12,B012,The Adventure of the Noble Bachelor,12,1892,-0.6583333333333258,short_story,0,8122
+13,B013,The Adventure of the Beryl Coronet,13,1892,-0.6583333333333258,short_story,0,9680
+14,B014,The Adventure of the Copper Beeches,14,1892,-0.6583333333333258,short_story,0,9950
+15,B015,Silver Blaze,15,1892,-0.6583333333333258,short_story,0,9568
+16,B016,The Yellow Face,16,1893,-0.5583333333333258,short_story,0,7504
+17,B017,The Stock-Broker's Clerk,17,1893,-0.5583333333333258,short_story,0,6784
+18,B018,"The ""Gloria Scott""",18,1893,-0.5583333333333258,short_story,0,7834
+19,B019,The Musgrave Ritual,19,1893,-0.5583333333333258,short_story,0,7590
+20,B020,The Reigate Squires,20,1893,-0.5583333333333258,short_story,0,7213
+21,B021,The Crooked Man,21,1893,-0.5583333333333258,short_story,0,7131
+22,B022,The Resident Patient,22,1893,-0.5583333333333258,short_story,0,6615
+23,B023,The Greek Interpreter,23,1893,-0.5583333333333258,short_story,0,7017
+24,B024,The Naval Treaty,24,1893,-0.5583333333333258,short_story,0,12627
+25,B025,The Final Problem,25,1893,-0.5583333333333258,short_story,0,7163
+26,B026,The Adventure of the Empty House,26,1903,0.4416666666666742,short_story,0,8699
+27,B027,The Adventure of the Norwood Builder,27,1903,0.4416666666666742,short_story,0,9248
+28,B028,The Adventure of the Dancing Men,28,1903,0.4416666666666742,short_story,0,9706
+29,B029,The Adventure of the Solitary Cyclist,29,1904,0.5416666666666743,short_story,0,7837
+30,B030,The Adventure of the Priory School,30,1904,0.5416666666666743,short_story,0,11471
+31,B031,The Adventure of Black Peter,31,1904,0.5416666666666743,short_story,0,8123
+32,B032,The Adventure of Charles Augustus Milverton,32,1904,0.5416666666666743,short_story,0,6727
+33,B033,The Adventure of the Six Napoleons,33,1904,0.5416666666666743,short_story,0,8332
+34,B034,The Adventure of the Three Students,34,1904,0.5416666666666743,short_story,0,6470
+35,B035,The Adventure of the Golden Pince-Nez,35,1904,0.5416666666666743,short_story,0,8954
+36,B036,The Adventure of the Missing Three-Quarter,36,1904,0.5416666666666743,short_story,0,8028
+37,B037,The Adventure of the Abbey Grange,37,1904,0.5416666666666743,short_story,0,9168
+38,B038,The Adventure of the Second Stain,38,1904,0.5416666666666743,short_story,0,9672
+39,B039,The Hound of the Baskervilles,39,1901,0.2416666666666742,novel,1,59157
+40,B040,The Valley of Fear,40,1914,1.5416666666666743,novel,1,57790
+41,B041,The Adventure of Wisteria Lodge,41,1908,0.9416666666666742,short_story,0,11397
+42,B042,The Adventure of the Cardboard Box,42,1893,-0.5583333333333258,short_story,0,8650
+43,B043,The Adventure of the Red Circle,43,1911,1.2416666666666742,short_story,0,7324
+44,B044,The Adventure of the Bruce-Partington Plans,44,1908,0.9416666666666742,short_story,0,10685
+45,B045,The Adventure of the Dying Detective,45,1913,1.4416666666666742,short_story,0,5794
+46,B046,The Disappearance of Lady Frances Carfax,46,1911,1.2416666666666742,short_story,0,7686
+47,B047,The Adventure of the Devil's Foot,47,1910,1.1416666666666742,short_story,0,9998
+48,B048,His Last Bow,48,1917,1.8416666666666743,short_story,0,6070

@@ -1,0 +1,7 @@
+prioridade,recomendacao,justificativa
+alta,Usar a execução CmdStan/NUTS como base única da comunicação final.,A E08 validou a computação principal e manteve a execução fallback apenas como referência de sensibilidade computacional.
+alta,"Comunicar resultados em três níveis: padrão global dos termos, contrastes fortes por obra e limitações explícitas.",Essa estrutura evita rankings determinísticos e preserva a incerteza posterior.
+alta,"No material final, apresentar taxas por 10 mil tokens, intervalos e probabilidades posteriores; não apresentar coeficientes log como resultado substantivo.",Os parâmetros do modelo estão na escala log da taxa; a interpretação substantiva depende de transformações.
+média,"Tratar o efeito temporal como exploratório, não como tendência histórica fechada.","A sequência de publicação é irregular, o corpus está incompleto e tipo de obra pode se confundir com período."
+média,"Antes de afirmações fortes sobre termos raros, executar sensibilidade com priors alternativos e/ou modelo negativa binomial.",A E08 aprovou a passagem com essa pendência parcial.
+média,"Para a E10, recomendar PDF executivo técnico como entrega principal e, opcionalmente, derivar um post curto para LinkedIn depois.","O projeto tem inferência bayesiana auditável, diagnósticos e limitações que cabem melhor em PDF do que em post único."

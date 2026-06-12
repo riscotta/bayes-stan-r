@@ -132,3 +132,10 @@ scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.exe
 scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.hpp
 scripts/exercises_dataset/*.o
 scripts/exercises_dataset/*.d
+
+# Sherlock Holmes — artefatos de compilação CmdStan gerados ao lado do .stan
+scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07
+scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07.exe
+scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07.hpp
+scripts/sherlock_holmes_terms/*.o
+scripts/sherlock_holmes_terms/*.d

@@ -1,0 +1,5 @@
+estatistica,observado,yrep_mean,yrep_median,yrep_q2_5,yrep_q5,yrep_q95,yrep_q97_5,p_yrep_ge_obs,p_yrep_le_obs,obs_dentro_95pct,obs_dentro_90pct
+total_count,4651.0,4649.91825,4649.0,4461.0,4487.0,4812.0,4843.0,0.4955,0.50725,True,True
+zero_cells,258.0,250.5575,251.0,234.0,236.0,264.0,267.0,0.2105,0.82325,True,True
+positive_cells,318.0,325.4425,325.0,309.0,312.0,340.0,342.0,0.82325,0.2105,True,True
+max_cell,192.0,193.96475,193.0,159.0,164.0,225.0,232.0,0.5375,0.48425,True,True

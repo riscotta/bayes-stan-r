@@ -261,3 +261,27 @@ Rscript scripts/exercises_dataset/exercises_dataset_cmdstanr.R --run_stan=1
 ```
 
 A execução padrão não salva objetos `.rds`; os dados preparados, tabelas, JSONs para Stan, logs e diagnósticos são exportados em arquivos auditáveis.
+
+## Estudo incluído: Sherlock Holmes — frequências de termos/personagens
+
+Este repositório agora inclui o estudo reproduzível sobre frequências de termos/personagens no corpus Sherlock Holmes, organizado no padrão do projeto:
+
+- script final: `scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R`
+- modelo Stan: `scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07.stan`
+- dado bruto versionado: `data/raw/sherlock_holmes_terms/12_Sherlock_Holmes_Texts.csv`
+- dados de modelagem e tabelas auditadas: `data/raw/sherlock_holmes_terms/`
+- saídas regeneráveis: `outputs/sherlock_holmes_terms/`
+
+Execução a partir da raiz do repositório:
+
+```bash
+Rscript scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R
+```
+
+Para reexecutar a amostragem Stan/cmdstanr:
+
+```bash
+Rscript scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R --run_stan=1
+```
+
+A execução padrão não reamostra o modelo; ela recompõe auditorias, tabelas finais e figuras a partir dos artefatos auditáveis versionados. O estudo usa um modelo Poisson-lognormal hierárquico com offset de exposição textual para comparar taxas por 10 mil tokens.

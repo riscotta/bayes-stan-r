@@ -1,0 +1,10 @@
+item,resultado,evidencia
+completude_pacote_e07,aprovado,16/16 artefatos mínimos encontrados.
+divergencias_cmdstan,aprovado,0 divergências pós-warmup.
+treedepth_cmdstan,aprovado,Treedeph máximo observado 8; saturações no limite 12: 0.
+e_bfmi_cmdstan,aprovado,E-BFMI mínimo 0.759.
+rhat_ess_parametros,aprovado,R-hat máximo entre parâmetros não gerados 1.0057; ESS bulk mínimo 854.5.
+ppc_global,aprovado_com_ressalvas,Estatísticas globais observadas dentro dos intervalos preditivos de 90%: True
+ppc_celular,aprovado,0 de 576 células ficaram fora do intervalo preditivo de 90%.
+sensibilidade_priors,pendente_parcial,Não há execução alternativa com priors/especificação NB2 no pacote recebido; avaliação quantitativa plena deve ser feita antes de conclusões fortes sobre termos raros.
+passagem_para_e09,aprovado_com_condicoes,"A computação principal é confiável; a E09 pode avançar usando conclusões em escala agregada e contrastes fortes, mas deve tratar rankings top1/top2 e termos raros como condicionais."

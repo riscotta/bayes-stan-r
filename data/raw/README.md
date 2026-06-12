@@ -274,3 +274,23 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - o CSV foi versionado para permitir reprodução imediata do estudo após o clone;
   - o script gera derivados em `outputs/exercises_dataset/`;
   - os CSVs brutos do CmdStan não são versionados por padrão; para reamostrar, execute o script com `--run_stan=1`.
+
+### `data/raw/sherlock_holmes_terms/` (versionado no repositório)
+
+- **Usado em:** `scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R`
+- **Descrição:** corpus Sherlock Holmes e artefatos auditáveis do estudo Bayesiano de frequências de termos/personagens por obra.
+- **Arquivos principais:**
+  - `12_Sherlock_Holmes_Texts.csv`
+  - `model_inputs/dados_modelo_obra_termo_e07.csv`
+  - `model_inputs/dados_stan_e07_entrada.json`
+  - `model_inputs/mapa_obras_e07.csv`
+  - `model_inputs/mapa_termos_e07.csv`
+  - `tabelas_finais_auditadas/*.csv`
+- **Fonte:** pacote analítico E10 consolidado a partir do dataset público de textos completos de Sherlock Holmes usado no estudo.
+- **Licença / restrições:** verificar os termos da fonte original antes de redistribuição externa.
+- **Observações:**
+  - os arquivos foram versionados para permitir reprodução imediata após o clone;
+  - os CSVs brutos completos do CmdStan não foram versionados por serem artefatos de execução;
+  - para reamostrar o modelo, execute o script com `--run_stan=1`.
+
+---
