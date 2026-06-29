@@ -287,3 +287,18 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/sherlock_holmes_terms/logs/*.csv`
   - `outputs/sherlock_holmes_terms/cmdstan_csv/*.csv`, apenas quando `--run_stan=1`
 - Observação: por padrão o script recompõe auditorias, tabelas finais e figuras a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
+
+### 28) IOM Missing Migrants Project — mortos e desaparecidos por rota-mês
+
+- Pasta: `scripts/missing_migrants/`
+- Entrada: `scripts/missing_migrants/missing_migrants_cmdstanr.R`
+- Modelo Stan: `scripts/missing_migrants/modelo_nb_hierarquico_rota_mes_estavel.stan`
+- Dados e artefatos auditáveis: `data/raw/missing_migrants/`
+- Saídas padrão:
+  - `outputs/missing_migrants/tables/*.csv`
+  - `outputs/missing_migrants/figures/*.png`
+  - `outputs/missing_migrants/logs/*.log`
+  - `outputs/missing_migrants/data_stan/*.csv` e `*.json`
+  - `outputs/missing_migrants/cmdstan_csv/*.csv`, apenas quando `--run_stan=1`
+- Observação: por padrão o script recria a base mínima, gera dados Stan e recompõe resultados finais a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
+

@@ -1,0 +1,13 @@
+﻿dimensao,indicador,valor,observacao
+Base completa,Registros,22076,Base analítica final.
+Base completa,Mortos e desaparecidos registrados,83760,Soma da resposta na base completa.
+Base modelada,Incidentes simples,21476,Unidade usada na modelagem rota-mês.
+Base modelada,Mortos e desaparecidos,70900,Total modelado após restrição a incidentes simples.
+EDA,Eventos extremos >=80,111,Eventos com total observado >= 80.
+EDA,Percentual da carga em eventos extremos,23.48,Participação dos eventos extremos no total observado.
+Posterior,RR anual global mediano,1.09571585,"Interpretação com ressalva por R-hat=1,014."
+Posterior,Intervalo 90% do RR anual global,1.016469 a 1.187689,Quantis 5% e 95%.
+Posterior,Probabilidade posterior RR anual > 1,0.97625,Probabilidade condicional ao modelo validado.
+MCMC,Divergências,0,HMC sem divergências.
+MCMC,R-hat máximo,1.014404734150084,Acima do alvo estrito em 4 quantidades.
+PPC,Falhas principais,n_zeros e desvio_padrao,Modelo não reproduz bem zeros e dispersão.

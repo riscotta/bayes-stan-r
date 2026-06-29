@@ -154,6 +154,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - Consumer Shopping Trends: gasto online/loja com modelo Beta Bayesiano em rstan
 - Mega-Sena: análise Bayesiana da distribuição das dezenas por fatores nominais e temporais com modelo multinomial log-linear em Stan
 - Exercises Dataset: análise de cobertura do catálogo de exercícios e modelagem ordinal Bayesiana da dificuldade com Stan
+- IOM Missing Migrants Project: análise Bayesiana de mortos e desaparecidos registrados por rota migratória e mês com modelo NB2 hierárquico em Stan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
@@ -193,6 +194,7 @@ Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quan
 - `data/raw/TherapeuticTouchData.csv`
 - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
 - `data/raw/mega_sena_dezenas/base_analitica.csv`
+- `data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv`
 
 Bases externas grandes ou sob download manual podem ficar fora do versionamento e ser referenciadas na documentação local em `data/raw/` e `scripts/`. Este é o caso do estudo de retratações científicas globais.
 
@@ -285,3 +287,28 @@ Rscript scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R --run_sta
 ```
 
 A execução padrão não reamostra o modelo; ela recompõe auditorias, tabelas finais e figuras a partir dos artefatos auditáveis versionados. O estudo usa um modelo Poisson-lognormal hierárquico com offset de exposição textual para comparar taxas por 10 mil tokens.
+
+## Estudo incluído: IOM Missing Migrants Project — rota-mês + Stan
+
+Este repositório inclui o estudo reproduzível sobre mortos e desaparecidos registrados pelo IOM Missing Migrants Project, organizado no padrão do projeto:
+
+- script final: `scripts/missing_migrants/missing_migrants_cmdstanr.R`
+- modelo Stan: `scripts/missing_migrants/modelo_nb_hierarquico_rota_mes_estavel.stan`
+- dado bruto versionado: `data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv`
+- artefatos auditáveis: `data/raw/missing_migrants/model_inputs/` e `data/raw/missing_migrants/resultados_auditados/`
+- saídas regeneráveis: `outputs/missing_migrants/tables/`, `outputs/missing_migrants/figures/`, `outputs/missing_migrants/logs/`, `outputs/missing_migrants/data_stan/` e `outputs/missing_migrants/cmdstan_csv/`
+
+Execução padrão a partir da raiz do repositório:
+
+```bash
+Rscript scripts/missing_migrants/missing_migrants_cmdstanr.R
+```
+
+A execução padrão recompõe bases mínimas, dados Stan, tabelas e figuras finais a partir dos artefatos auditáveis versionados. Para reamostrar o modelo com `cmdstanr`, use:
+
+```bash
+Rscript scripts/missing_migrants/missing_migrants_cmdstanr.R --run_stan=1
+```
+
+O estudo usa `cmdstanr` e não salva objetos `.rds` por padrão; os diagnósticos de amostragem são preservados em CSV, logs e arquivos de configuração.
+

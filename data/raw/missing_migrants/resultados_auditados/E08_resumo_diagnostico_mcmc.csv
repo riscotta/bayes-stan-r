@@ -1,0 +1,11 @@
+metrica,valor,criterio,avaliacao
+n_parametros_ou_quantidades,13658.0,informativo,informativo
+rhat_max,1.014404734150084,<= 1.01 preferencial; <= 1.05 aceitavel com ressalva,ressalva
+n_rhat_gt_1_01,4.0,0 pelo criterio estrito da E06,ressalva
+n_rhat_gt_1_05,0.0,0,ok
+ess_bulk_min,382.2404174447588,>= 400 como alvo operacional,ressalva
+ess_tail_min,705.6034241884331,>= 400 como alvo operacional,ok
+divergencias_total,0.0,0,ok
+treedepth_max_observado,10.0,< max_treedepth=14,ok
+saturacoes_treedepth,0.0,0,ok
+ebfmi_min,0.6559090909528192,>= 0.30 como criterio operacional de energia,ok

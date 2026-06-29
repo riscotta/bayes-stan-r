@@ -294,3 +294,24 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - para reamostrar o modelo, execute o script com `--run_stan=1`.
 
 ---
+
+---
+
+### `data/raw/missing_migrants/` (versionado no repositório)
+
+- **Usado em:** `scripts/missing_migrants/missing_migrants_cmdstanr.R`
+- **Descrição:** dados e artefatos auditáveis do estudo sobre mortos e desaparecidos registrados pelo IOM Missing Migrants Project.
+- **Arquivos incluídos:**
+  - `Missing_Migrants_Global_Figures_allData.csv`
+  - `model_inputs/E06_dados_modelo_rota_mes.csv`
+  - `model_inputs/E06_mapa_rotas.csv`
+  - `model_inputs/E06_stan_data_rota_mes.json`
+  - `resultados_auditados/*.csv`
+  - `resultados_auditados/configuracao_amostragem.json`
+- **Fonte:** IOM Missing Migrants Project, conforme base consolidada usada no estudo.
+- **Licença / restrições:** verificar os termos oficiais da fonte antes de redistribuição externa do dataset.
+- **Observações:**
+  - o CSV bruto foi versionado para permitir reprodução imediata do estudo após o clone;
+  - os artefatos auditáveis permitem recompor a entrega final sem depender de objetos `.rds`;
+  - a reamostragem completa com Stan é opcional e pode ser acionada por `--run_stan=1`.
+

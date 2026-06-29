@@ -1,0 +1,13 @@
+﻿classe,arquivo_no_pacote,funcao
+Dados brutos,dados/Missing_Migrants_Global_Figures_allData.csv,CSV original usado no projeto.
+Base analítica,dados/base_analitica.csv,Base tratada da E04.
+Base de modelagem,dados/E06_dados_modelo_rota_mes.csv,Painel rota-mês usado pelo modelo principal.
+Dados Stan,dados/E06_stan_data_rota_mes.json,Entrada do Stan/cmdstanr.
+Modelo Stan,modelos/modelo_nb_hierarquico_rota_mes_estavel.stan,Modelo NB2 hierárquico rota-mês validado na E08.
+Script final,codigo/script_final_reprodutivel.R,"Orquestra leitura, preparação, estimação e tabelas finais."
+Configuração MCMC,resultados_reuso/configuracao_amostragem.json,"Cadeias, iterações, seed, adapt_delta e max_treedepth."
+Resumo posterior,resultados_reuso/resumo_posterior_cmdstan.csv,Resumo completo exportado pelo CmdStan.
+Diagnósticos,resultados_reuso/diagnosticos_mcmc.csv,"R-hat, ESS e quantidades principais."
+Sampler diagnostics,resultados_reuso/sampler_diagnostics_cmdstan.csv,Diagnósticos de HMC por draw/cadeia.
+PDF executivo,documentacao/E10_pdf_executivo.pdf,Peça final de comunicação executiva.
+Relatório E10,documentacao/E10_relatorio.docx,Fechamento documental da etapa 10.
