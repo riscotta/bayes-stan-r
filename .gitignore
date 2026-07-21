@@ -81,7 +81,6 @@ data/raw/SAheart.data
 # Quarto / relatórios gerados
 reports/_site/
 
-
 # Cache local dos microdados oficiais do Censo Escolar (arquivos grandes)
 data/raw/censo_escolar/**
 !data/raw/censo_escolar/
@@ -147,3 +146,14 @@ scripts/missing_migrants/modelo_nb_hierarquico_rota_mes_estavel.hpp
 scripts/missing_migrants/*.o
 scripts/missing_migrants/*.d
 
+# Sobrevivência cadastral POA — base individual e artefatos de compilação CmdStan
+data/raw/sobrevivencia_cadastral_poa/base_individual/**
+data/raw/sobrevivencia_cadastral_poa/**/*cnpj*.csv
+scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr
+scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr.exe
+scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr.hpp
+scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr
+scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.exe
+scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.hpp
+scripts/sobrevivencia_cadastral_poa/*.o
+scripts/sobrevivencia_cadastral_poa/*.d
