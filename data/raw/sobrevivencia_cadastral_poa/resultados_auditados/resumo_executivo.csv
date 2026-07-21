@@ -1,0 +1,8 @@
+item;resultado;leitura
+Amostra principal;19.134 estabelecimentos;"Alimentação fora do lar; Porto Alegre; coortes 2000-2025"
+Eventos;7.110 baixas cadastrais;Eventos observados em até 60 meses
+Sobrevivência em 12 meses;86,6%;Risco acumulado observado de 13,4%
+Sobrevivência em 60 meses;57,9%;Risco acumulado observado de 42,1%
+Modelo principal;M1;Sobrevivência discreta mensal com efeitos temporais
+Comparação interna;ΔELPD-LOO = 284,9 (EP 23,6);"M1 superior ao M0; nenhum Pareto-k > 0,7"
+MCMC M1;"0 divergências; 0 saturações";"R-hat máximo 1,0099; E-BFMI mínimo 0,409"

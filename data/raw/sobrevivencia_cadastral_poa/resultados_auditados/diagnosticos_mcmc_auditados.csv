@@ -1,0 +1,3 @@
+modelo,n_cadeias,amostras_pos_warmup,divergencias,pct_divergencias,treedepth_limite,treedepth_max_observado,n_saturacoes_treedepth,pct_saturacoes_treedepth,ebfmi_min,rhat_max,parametro_rhat_max,ess_bulk_min,parametro_ess_bulk_min,ess_tail_min,parametro_ess_tail_min,status_rhat,status_ess,status_divergencias,status_treedepth,status_ebfmi
+M0,4,4000,0,0.0,13,5,0,0.0,0.34364248324655233,1.00329469087454,alpha[53],531.875646865174,sigma_rw2,993.760216367424,sigma_rw2,OK,OK,OK,OK,OK
+M1,4,4000,0,0.0,13,5,0,0.0,0.40894453114668056,1.00989187664255,sigma_rw2,539.6546586255,sigma_rw2,1009.33740808194,sigma_rw2,OK,OK,OK,OK,OK

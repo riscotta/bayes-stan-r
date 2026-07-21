@@ -1,0 +1,11 @@
+prioridade;eixo;recomendacao;criticidade;momento;justificativa
+1;Comunicação;Substituir a narrativa “80% fecham no primeiro ano” pelos quatro horizontes observados e pela definição de baixa cadastral.;Alta;Imediato;Evita uma premissa falsa e torna a mensagem verificável.
+2;Gestão/monitoramento;Construir painéis e alertas por coorte e tempo desde a abertura, com faixas 0–12, 13–24 e 25–60 meses.;Alta;Imediato;Os riscos mudam com a coorte e com a idade do negócio.
+3;Redes e filiais;Acompanhar filiais de forma mais intensa após o primeiro ano, quando o hazard relativo cresce.;Alta;Imediato, como triagem;Associação forte e crescente, mas ainda sem correção final de dependência intraempresa.
+4;Segmentação;"Evitar ranking estático de subclasses; usar curvas ou contrastes por horizonte.";Alta;Imediato;Lanchonetes e bares sem entretenimento cruzam a referência ao longo do tempo.
+5;Uso do modelo;Não implantar o M1 como escore individual ou ferramenta prospectiva antes de validação temporal.;Alta;Antes de uso operacional;A superioridade foi demonstrada apenas dentro da amostra.
+6;Desfecho;"Manter “baixa cadastral” em títulos, tabelas e conclusões; não traduzir automaticamente como falência ou fechamento econômico.";Alta;Imediato;Há defasagem e heterogeneidade administrativa no cadastro.
+7;Validação futura;"Executar refit 2000–2018 e validação 2019–2020; depois avaliar coortes posteriores.";Alta;Próxima extensão metodológica;Necessário para afirmações prospectivas.
+8;Robustez do evento;Refazer o M1 com evento voluntário e exclusão de motivos administrativos.;Alta;Próxima extensão metodológica;Necessário para robustez completa dos coeficientes à definição do desfecho.
+9;Estrutura empresarial;Executar M2 reparametrizado com frailty por CNPJ básico.;Média;Extensão;Quantifica dependência entre unidades da mesma empresa e revisa incerteza.
+10;Priors;Redesenhar o prior RW2 em escala substantiva antes de uso cumulativo, prospectivo ou em amostras menores.;Média;Antes de reutilização do modelo;O prior predictive atual gera curvas quase degeneradas em cerca de metade das simulações.
