@@ -1,0 +1,32 @@
+{
+  "modelo_rw2": "centrado_direto_em_alpha",
+  "efeitos_fixos": "QR_fino_com_priors_aplicados_aos_coeficientes_originais",
+  "piloto": {
+    "chains": 2,
+    "parallel_chains": 2,
+    "iter_warmup": 800,
+    "iter_sampling": 400,
+    "adapt_delta": 0.95,
+    "max_treedepth": 12,
+    "metric": "dense_e",
+    "seed": 20260721
+  },
+  "final": {
+    "chains": 4,
+    "parallel_chains": 4,
+    "iter_warmup": 1500,
+    "iter_sampling": 1000,
+    "adapt_delta": 0.95,
+    "max_treedepth": 13,
+    "metric": "dense_e",
+    "seed": 20260721
+  },
+  "criterios_aceite": {
+    "divergencias": 0,
+    "pct_saturacao_treedepth_max": 0.0,
+    "rhat_max": 1.01,
+    "ess_bulk_min_parametros_centrais": 400,
+    "ess_tail_min_parametros_centrais": 400,
+    "ebfmi_min": 0.3
+  }
+}
