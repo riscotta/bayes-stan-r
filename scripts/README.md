@@ -189,7 +189,6 @@ Rscript scripts/_setup/install_cmdstan.R
   - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
 - Observação: *console-only* (não grava arquivos por padrão); usa **rstan**
 
-
 ### 25) Mega-Sena — distribuição das dezenas por fatores nominais e temporais
 
 - Pasta: `scripts/mega_sena_dezenas/`
@@ -209,7 +208,6 @@ Rscript scripts/_setup/install_cmdstan.R
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
 - preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
 - artefatos regeneráveis vão em `outputs/`
-
 
 ### 20) Retratações científicas globais — tempo até retratação
 
@@ -302,3 +300,17 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/missing_migrants/cmdstan_csv/*.csv`, apenas quando `--run_stan=1`
 - Observação: por padrão o script recria a base mínima, gera dados Stan e recompõe resultados finais a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
 
+### 29) Sobrevivência cadastral de estabelecimentos em Porto Alegre
+
+- Pasta: `scripts/sobrevivencia_cadastral_poa/`
+- Entrada: `scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R`
+- Modelos Stan:
+  - `scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr.stan`
+  - `scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.stan`
+- Dados agregados e resultados auditáveis: `data/raw/sobrevivencia_cadastral_poa/`
+- Saídas padrão:
+  - `outputs/sobrevivencia_cadastral_poa/tables/`
+  - `outputs/sobrevivencia_cadastral_poa/figures/`
+  - `outputs/sobrevivencia_cadastral_poa/logs/`
+  - `outputs/sobrevivencia_cadastral_poa/models/`, apenas quando `--run_stan=1`
+- Observação: a execução padrão recompõe tabelas e figuras sem reamostrar. Use `--run_stan=1` para reexecutar M0 e M1 com **cmdstanr**. A base individual com CNPJ e endereço não é versionada.

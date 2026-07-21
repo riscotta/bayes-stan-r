@@ -64,6 +64,7 @@ pkgs_min <- c(
   "loo",
   "bridgesampling",
   "ggplot2",
+  "scales",
   "dplyr",
   "tidyr",
   "purrr",

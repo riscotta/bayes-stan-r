@@ -155,6 +155,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - Mega-Sena: análise Bayesiana da distribuição das dezenas por fatores nominais e temporais com modelo multinomial log-linear em Stan
 - Exercises Dataset: análise de cobertura do catálogo de exercícios e modelagem ordinal Bayesiana da dificuldade com Stan
 - IOM Missing Migrants Project: análise Bayesiana de mortos e desaparecidos registrados por rota migratória e mês com modelo NB2 hierárquico em Stan
+- sobrevivência cadastral de estabelecimentos de alimentação fora do lar em Porto Alegre, com modelo Bayesiano em tempo discreto e efeitos que variam no tempo
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
@@ -195,8 +196,10 @@ Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quan
 - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
 - `data/raw/mega_sena_dezenas/base_analitica.csv`
 - `data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv`
+- `data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M0_agregado.json.gz`
+- `data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M1_agregado.json.gz`
 
-Bases externas grandes ou sob download manual podem ficar fora do versionamento e ser referenciadas na documentação local em `data/raw/` e `scripts/`. Este é o caso do estudo de retratações científicas globais.
+Bases externas grandes, arquivos com registros individualizados ou fontes sob download manual podem ficar fora do versionamento e ser referenciados na documentação local em `data/raw/` e `scripts/`. No estudo de sobrevivência cadastral, a base individual com CNPJ e endereço não é publicada; apenas insumos agregados e resultados auditáveis são versionados.
 
 Em contrapartida, caches grandes, artefatos auxiliares e derivados continuam fora do versionamento. Para o inventário e as observações de origem/licença dos dados, consulte também `data/raw/README.md`.
 
@@ -312,3 +315,26 @@ Rscript scripts/missing_migrants/missing_migrants_cmdstanr.R --run_stan=1
 
 O estudo usa `cmdstanr` e não salva objetos `.rds` por padrão; os diagnósticos de amostragem são preservados em CSV, logs e arquivos de configuração.
 
+## Estudo incluído: sobrevivência cadastral de estabelecimentos em Porto Alegre
+
+Este repositório inclui o estudo reproduzível sobre a permanência cadastral de estabelecimentos de alimentação fora do lar em Porto Alegre:
+
+- script final: `scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R`
+- modelos Stan: `scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr.stan` e `scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.stan`
+- insumos agregados para Stan: `data/raw/sobrevivencia_cadastral_poa/model_inputs/`
+- resultados auditáveis: `data/raw/sobrevivencia_cadastral_poa/resultados_auditados/`
+- saídas regeneráveis: `outputs/sobrevivencia_cadastral_poa/`
+
+Execução padrão a partir da raiz do repositório:
+
+```bash
+Rscript scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R
+```
+
+Para reexecutar M0 e M1 com `cmdstanr`:
+
+```bash
+Rscript scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R --run_stan=1
+```
+
+A execução padrão recompõe tabelas e figuras a partir de artefatos auditáveis. A base individual com CNPJ e endereço permanece fora do versionamento; o repositório publica somente matrizes agregadas suficientes para reamostrar os modelos e reproduzir as conclusões centrais.

@@ -32,7 +32,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 
 ---
 
-
 ### `mortality/Dados_Mortalidade.xlsx`
 
 - **Usado em:** `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
@@ -46,7 +45,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 
 ---
 
-
 ### `isus_sia/ISUS_SIA_PARS.zip`
 
 - **Usado em:** `scripts/isus_sia/mc_isus_sia.R`
@@ -56,7 +54,7 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 - **Observações:**
   - mantenha este arquivo como “raw”
   - o script aceita CSV direto (`--csv_path=...`) ou ZIP (`--zip_path=...`) e extrai para um diretório temporário
-  - se houver limpeza/padronização, gerar derivado em `data/processed/isus_sia/`
+  - se houver limpeza/padronização, gerar um derivado em `data/processed/isus_sia/`
   - se o dataset for sensível ou privado, prefira **não versionar** e substitua por um script de ingestão/download em `scripts/_setup/`
 
 ---
@@ -112,8 +110,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - para usar o modo `crime`, forneça `--input_csv=...` ou adicione o arquivo em `data/raw/rs_seguro/`
   - mantenha o mesmo contrato mínimo de colunas: `ym`, `crime`, `occ`, `vit`
 
-
-
 ### `deter_mensal_bioma_uf.csv` (opcional / não versionado)
 
 - **Usado em:** `scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R`
@@ -125,7 +121,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - o script aceita nomes alternativos de colunas e reconstrói `ciclo` quando a coluna não existe
   - o recorte analítico usa, por padrão, os meses `Ago, Set, Out, Nov, Dez, Jan`
   - para rodar localmente, coloque o CSV em `data/raw/deter_mensal_bioma_uf.csv` ou informe `--input_csv=...`
-
 
 ### `data/raw/consumer_shopping_trends/` (externo / não versionado)
 
@@ -142,7 +137,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
 
 ---
-
 
 ### `data/raw/mega_sena_dezenas/` (versionado no repositório)
 
@@ -171,7 +165,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 - **Header:** primeira linha com nomes de colunas
 - **Tamanho:** se um dataset crescer muito, prefira um script de download em `scripts/_setup/get_data.R` e ignore o arquivo grande no git.
 
-
 ---
 
 ### `data/raw/censo_escolar/` (cache local opcional / ignorado no git)
@@ -184,7 +177,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - esta pasta existe apenas para **cache local**
   - os arquivos grandes baixados aqui **não devem ser versionados**
   - por padrão o script reaproveita os ZIPs já baixados; use `--force_download=1` para renovar o cache
-
 
 ---
 
@@ -200,7 +192,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - se desejar congelar a entrada, salve uma cópia local em `data/raw/` e ajuste o script/URL conforme sua conveniência
 
 ---
-
 
 ### `data/raw/pnadc_desocupacao/` (versionado no repositório)
 
@@ -231,8 +222,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - o CSV foi versionado para permitir reprodução imediata do estudo após o clone
   - o script assume separador `;` e cabeçalho compatível com a base analítica gerada
   - mantenha eventuais derivados fora desta pasta, em `data/interim/`, `data/processed/` ou `outputs/`
-
-
 
 ### `retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` (externo / não versionado)
 
@@ -295,8 +284,6 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 
 ---
 
----
-
 ### `data/raw/missing_migrants/` (versionado no repositório)
 
 - **Usado em:** `scripts/missing_migrants/missing_migrants_cmdstanr.R`
@@ -315,3 +302,22 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - os artefatos auditáveis permitem recompor a entrega final sem depender de objetos `.rds`;
   - a reamostragem completa com Stan é opcional e pode ser acionada por `--run_stan=1`.
 
+---
+
+### `data/raw/sobrevivencia_cadastral_poa/` (agregado e versionado)
+
+- **Usado em:** `scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R`
+- **Descrição:** insumos agregados e artefatos auditáveis do estudo de sobrevivência cadastral de estabelecimentos de alimentação fora do lar em Porto Alegre.
+- **Arquivos principais:**
+  - `model_inputs/stan_data_M0_agregado.json.gz`
+  - `model_inputs/stan_data_M1_agregado.json.gz`
+  - `resultados_auditados/*.csv`
+  - `metadados/configuracao_amostragem_E07B.json`
+  - `metadados/session_info_E07B.txt`
+- **Fontes originais:** Cadastro Nacional da Pessoa Jurídica da Receita Federal e dados de alvarás de Porto Alegre, conforme documentação local do estudo.
+- **Licença / restrições:** verificar os termos das fontes originais antes de redistribuir extratos cadastrais individualizados.
+- **Observações:**
+  - a base individual com CNPJ, endereço e outros campos cadastrais **não é publicada**;
+  - os JSONs agregados preservam a capacidade de reamostrar M0 e M1 sem expor registros individualizados;
+  - resultados, diagnósticos, PPC, LOO e sensibilidades auditáveis ficam versionados para recomposição da entrega;
+  - o desfecho deve ser comunicado como **baixa cadastral**, não como falência ou encerramento econômico real.
