@@ -122,8 +122,8 @@ run_audit <- function() {
   missing <- needed[!file.exists(file.path(audited_dir, needed))]
   if (length(missing)) stop("Artefatos auditados ausentes: ", paste(missing, collapse = ", "), call. = FALSE)
 
-  m1 <- read.csv(file.path(audited_dir, "E09_quantidades_derivadas_M1.csv"), check.names = FALSE, fileEncoding = "UTF-8-BOM")
-  rast <- read.csv(file.path(audited_dir, "E09_tabela_rastreabilidade.csv"), check.names = FALSE, fileEncoding = "UTF-8-BOM")
+  m1 <- read.csv(file.path(audited_dir, "E09_quantidades_derivadas_M1.csv"), check.names = FALSE, fileEncoding = "UTF-8")
+  rast <- read.csv(file.path(audited_dir, "E09_tabela_rastreabilidade.csv"), check.names = FALSE, fileEncoding = "UTF-8")
   ppc2 <- read.csv(file.path(audited_dir, "PPC_global_M2.csv"), check.names = FALSE)
   ppc3 <- read.csv(file.path(audited_dir, "PPC_global_M3.csv"), check.names = FALSE)
   sex <- read.csv(file.path(audited_dir, "sensibilidade_painel_completo_M3_sex_diff.csv"), check.names = FALSE)
