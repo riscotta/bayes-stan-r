@@ -1,4 +1,3 @@
-<PARSED TEXT FOR SHEET: 1 / 1 TABS
-TAB NAME: diagnosticos_transicoes_M2_M3.csv>index,model,n_trans,divergences,treedepth_max,treedepth_12,n_leapfrog_max,accept_mean,ebfmi_min
-0,M2,16000,0,6,0,127,0.9518585023975,0.6418522031524649
-1,M3,8000,0,12,1,4095,0.952165140535,0.5118285759144383
+model,n_trans,divergences,treedepth_max,treedepth_12,n_leapfrog_max,accept_mean,ebfmi_min
+M2,16000,0,6,0,127,0.9518585023975,0.6418522031524649
+M3,8000,0,12,1,4095,0.952165140535,0.5118285759144383

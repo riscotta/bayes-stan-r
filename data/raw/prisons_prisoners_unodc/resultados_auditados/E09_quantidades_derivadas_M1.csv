@@ -1,7 +1,6 @@
-<PARSED TEXT FOR SHEET: 1 / 1 TABS
-TAB NAME: E09_quantidades_derivadas_M1.csv>index,quantidade,param_mean,param_q05,param_q95,transform_mean,transform_q05,transform_q95,interpretacao
-0,M1_alpha_ref_original,4.91984763734167,4.84151879,4.99570482,136.9817406942603,126.66157805558836,147.7770649172926,exp(alpha): nível global de referência na escala original; não é média mundial
-1,M1_country_factor_1sd,0.662404459505833,0.6117071275,0.7157992325,1.9394500616365349,1.8435759331312205,2.045821115750265,exp(sigma_country): fator multiplicativo aproximado associado a 1 DP entre países
-2,M1_global_rw_factor,0.0148939944449333,0.00835821542,0.02361131435,1.0150054626951504,1.0083932428233542,1.0238922683057157,fator multiplicativo aproximado da inovação anual global
-3,M1_region_rw_factor,0.02244677396775,0.0171029316,0.02877460455,1.0227005984207258,1.0172500241091689,1.0291925930024384,fator multiplicativo aproximado da inovação anual regional
-4,M1_obs_factor,0.131040868860833,0.124167256,0.137920815,1.1400143714486353,1.132205223280406,1.1478846514291905,fator multiplicativo aproximado do ruído na parte positiva
+quantidade,param_mean,param_q05,param_q95,transform_mean,transform_q05,transform_q95,interpretacao
+M1_alpha_ref_original,4.91984763734167,4.84151879,4.99570482,136.9817406942603,126.66157805558836,147.7770649172926,exp(alpha): nível global de referência na escala original; não é média mundial
+M1_country_factor_1sd,0.662404459505833,0.6117071275,0.7157992325,1.9394500616365349,1.8435759331312205,2.045821115750265,exp(sigma_country): fator multiplicativo aproximado associado a 1 DP entre países
+M1_global_rw_factor,0.0148939944449333,0.00835821542,0.02361131435,1.0150054626951504,1.0083932428233542,1.0238922683057157,fator multiplicativo aproximado da inovação anual global
+M1_region_rw_factor,0.02244677396775,0.0171029316,0.02877460455,1.0227005984207258,1.0172500241091689,1.0291925930024384,fator multiplicativo aproximado da inovação anual regional
+M1_obs_factor,0.131040868860833,0.124167256,0.137920815,1.1400143714486353,1.132205223280406,1.1478846514291905,fator multiplicativo aproximado do ruído na parte positiva
