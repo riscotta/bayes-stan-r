@@ -321,3 +321,23 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
   - os JSONs agregados preservam a capacidade de reamostrar M0 e M1 sem expor registros individualizados;
   - resultados, diagnósticos, PPC, LOO e sensibilidades auditáveis ficam versionados para recomposição da entrega;
   - o desfecho deve ser comunicado como **baixa cadastral**, não como falência ou encerramento econômico real.
+
+---
+
+### `data/raw/prisons_prisoners_unodc/` (versionado no repositório)
+
+- **Usado em:** `scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R`
+- **Descrição:** base analítica, dados congelados para Stan e artefatos auditáveis do estudo UNODC *Prisons and Prisoners* sobre `held_rate`, percentual sem sentença e contraste Female−Male.
+- **Arquivos principais:**
+  - `model_inputs/base_analitica_nucleo_nacional.csv`
+  - `model_inputs/stan_data_M1.json`
+  - `model_inputs/stan_data_M2.json`
+  - `model_inputs/stan_data_M3.json`
+  - `resultados_auditados/*.csv`
+- **Fonte:** UNODC — *Prisons and Prisoners*; camada nacional com metadado interno de 11/06/2025, v2, conforme a versão congelada no estudo.
+- **Licença / restrições:** verificar os termos oficiais da fonte antes de redistribuir novamente a planilha bruta original.
+- **Observações:**
+  - a base analítica e os JSONs permitem reprodução imediata do núcleo estatístico após o clone;
+  - os JSONs são as entradas efetivamente usadas pelos três modelos finais;
+  - os resultados auditados permitem conferir a síntese sem depender de objetos `.rds`;
+  - saídas de nova execução devem ser regeneradas em `outputs/prisons_prisoners_unodc/`.

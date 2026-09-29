@@ -314,3 +314,19 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/sobrevivencia_cadastral_poa/logs/`
   - `outputs/sobrevivencia_cadastral_poa/models/`, apenas quando `--run_stan=1`
 - Observação: a execução padrão recompõe tabelas e figuras sem reamostrar. Use `--run_stan=1` para reexecutar M0 e M1 com **cmdstanr**. A base individual com CNPJ e endereço não é versionada.
+
+### 30) UNODC Prisons and Prisoners — held_rate e prisão sem sentença
+
+- Pasta: `scripts/prisons_prisoners_unodc/`
+- Entrada: `scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R`
+- Modelos Stan:
+  - `scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5.stan`
+  - `scripts/prisons_prisoners_unodc/modelo_M2_unsentenced_total.stan`
+  - `scripts/prisons_prisoners_unodc/modelo_M3_unsentenced_sex.stan`
+- Dados: `data/raw/prisons_prisoners_unodc/model_inputs/`
+- Resultados auditados: `data/raw/prisons_prisoners_unodc/resultados_auditados/`
+- Saídas:
+  - `outputs/prisons_prisoners_unodc/tables/`
+  - `outputs/prisons_prisoners_unodc/logs/`
+  - `outputs/prisons_prisoners_unodc/cmdstan_csv/`, apenas quando `--run_stan=1`
+- Observação: por padrão o script recompõe a síntese final sem reamostrar; use `--run_stan=1` para reexecutar M1 REV5, M2 REV4.1 e M3 REV4.1 com **cmdstanr**.

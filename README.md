@@ -156,6 +156,7 @@ Entre os exemplos organizados em `scripts/`, estão temas como:
 - Exercises Dataset: análise de cobertura do catálogo de exercícios e modelagem ordinal Bayesiana da dificuldade com Stan
 - IOM Missing Migrants Project: análise Bayesiana de mortos e desaparecidos registrados por rota migratória e mês com modelo NB2 hierárquico em Stan
 - sobrevivência cadastral de estabelecimentos de alimentação fora do lar em Porto Alegre, com modelo Bayesiano em tempo discreto e efeitos que variam no tempo
+- UNODC Prisons and Prisoners: análise Bayesiana de `held_rate`, prisão sem sentença e contraste Female−Male com três modelos hierárquicos em Stan
 
 Para o catálogo detalhado de execução, entradas e saídas, consulte:
 
@@ -198,6 +199,8 @@ Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quan
 - `data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv`
 - `data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M0_agregado.json.gz`
 - `data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M1_agregado.json.gz`
+- `data/raw/prisons_prisoners_unodc/model_inputs/base_analitica_nucleo_nacional.csv`
+- `data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M1.json`
 
 Bases externas grandes, arquivos com registros individualizados ou fontes sob download manual podem ficar fora do versionamento e ser referenciados na documentação local em `data/raw/` e `scripts/`. No estudo de sobrevivência cadastral, a base individual com CNPJ e endereço não é publicada; apenas insumos agregados e resultados auditáveis são versionados.
 
@@ -338,3 +341,27 @@ Rscript scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr
 ```
 
 A execução padrão recompõe tabelas e figuras a partir de artefatos auditáveis. A base individual com CNPJ e endereço permanece fora do versionamento; o repositório publica somente matrizes agregadas suficientes para reamostrar os modelos e reproduzir as conclusões centrais.
+
+## Estudo incluído: UNODC Prisons and Prisoners — encarceramento e prisão sem sentença
+
+Este repositório inclui o estudo reproduzível sobre encarceramento e prisão sem sentença com dados do UNODC *Prisons and Prisoners*:
+
+- script final: `scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R`
+- modelos Stan finais: `scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5.stan`, `modelo_M2_unsentenced_total.stan` e `modelo_M3_unsentenced_sex.stan`
+- base analítica nacional e entradas congeladas dos modelos: `data/raw/prisons_prisoners_unodc/model_inputs/`
+- resultados compactos auditados: `data/raw/prisons_prisoners_unodc/resultados_auditados/`
+- saídas regeneráveis: `outputs/prisons_prisoners_unodc/`
+
+Execução padrão a partir da raiz:
+
+```bash
+Rscript scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R
+```
+
+Para reexecutar os três ajustes finais com `cmdstanr`:
+
+```bash
+Rscript scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R --run_stan=1
+```
+
+A execução padrão recompõe e valida a síntese final a partir de artefatos auditados. O modo `--run_stan=1` usa os dados Stan congelados e as especificações finais M1 REV5 / M2-M3 REV4.1. O estudo é descritivo/associativo: não sustenta causalidade nem generalização validada para países novos.

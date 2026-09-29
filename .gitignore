@@ -157,3 +157,17 @@ scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.exe
 scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.hpp
 scripts/sobrevivencia_cadastral_poa/*.o
 scripts/sobrevivencia_cadastral_poa/*.d
+
+
+# UNODC Prisons and Prisoners — artefatos de compilação CmdStan
+scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5
+scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5.exe
+scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5.hpp
+scripts/prisons_prisoners_unodc/modelo_M2_unsentenced_total
+scripts/prisons_prisoners_unodc/modelo_M2_unsentenced_total.exe
+scripts/prisons_prisoners_unodc/modelo_M2_unsentenced_total.hpp
+scripts/prisons_prisoners_unodc/modelo_M3_unsentenced_sex
+scripts/prisons_prisoners_unodc/modelo_M3_unsentenced_sex.exe
+scripts/prisons_prisoners_unodc/modelo_M3_unsentenced_sex.hpp
+scripts/prisons_prisoners_unodc/*.o
+scripts/prisons_prisoners_unodc/*.d
