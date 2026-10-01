@@ -189,26 +189,6 @@ Rscript scripts/_setup/install_cmdstan.R
   - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
 - Observação: *console-only* (não grava arquivos por padrão); usa **rstan**
 
-### 25) Mega-Sena — distribuição das dezenas por fatores nominais e temporais
-
-- Pasta: `scripts/mega_sena_dezenas/`
-- Entrada: `scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R`
-- Modelos Stan:
-  - `scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator.stan`
-  - `scripts/mega_sena_dezenas/modelo_multinomial_global.stan`
-- Dados e artefatos auditáveis: `data/raw/mega_sena_dezenas/`
-- Saídas padrão:
-  - `outputs/mega_sena_dezenas/tables/*.csv`
-  - `outputs/mega_sena_dezenas/figures/*.png`
-  - `outputs/mega_sena_dezenas/logs/*.txt`
-- Observação: por padrão o script recompõe a entrega final a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
-
-## Convenções
-
-- **1 pasta = 1 tema/exemplo** (com `README.md` curto)
-- preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
-- artefatos regeneráveis vão em `outputs/`
-
 ### 20) Retratações científicas globais — tempo até retratação
 
 - Pasta: `scripts/retractions_time_to_retraction/`
@@ -256,6 +236,20 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/importacoes_world_bank/figures/**/*.png`
   - `outputs/importacoes_world_bank/cmdstan_csv/*.csv`
 - Observação: usa **cmdstanr**; não salva objetos `.rds` por padrão. A auditoria MCMC é feita por CSVs do CmdStan, tabelas de diagnóstico, logs e configurações exportadas.
+
+### 25) Mega-Sena — distribuição das dezenas por fatores nominais e temporais
+
+- Pasta: `scripts/mega_sena_dezenas/`
+- Entrada: `scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R`
+- Modelos Stan:
+  - `scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator.stan`
+  - `scripts/mega_sena_dezenas/modelo_multinomial_global.stan`
+- Dados e artefatos auditáveis: `data/raw/mega_sena_dezenas/`
+- Saídas padrão:
+  - `outputs/mega_sena_dezenas/tables/*.csv`
+  - `outputs/mega_sena_dezenas/figures/*.png`
+  - `outputs/mega_sena_dezenas/logs/*.txt`
+- Observação: por padrão o script recompõe a entrega final a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
 
 ### 26) Exercises Dataset — dificuldade, cobertura e modelagem ordinal
 
@@ -331,3 +325,9 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/prisons_prisoners_unodc/logs/`
   - `outputs/prisons_prisoners_unodc/cmdstan_csv/`, apenas quando `--run_stan=1`
 - Observação: por padrão o script recompõe a síntese final sem reamostrar; use `--run_stan=1` para reexecutar M1 REV5, M2 REV4.1 e M3 REV4.1 com **cmdstanr**.
+
+## Convenções
+
+- **1 pasta = 1 tema/exemplo** (com `README.md` curto)
+- preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
+- artefatos regeneráveis vão em `outputs/`
