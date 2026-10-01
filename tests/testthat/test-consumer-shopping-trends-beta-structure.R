@@ -3,9 +3,9 @@ testthat::test_that("Consumer Shopping Trends Beta está integrado ao padrão do
   testthat::expect_true(file.exists(file.path("scripts", "consumer_shopping_trends_beta", "README.md")))
   testthat::expect_true(file.exists(file.path("data", "raw", "consumer_shopping_trends", ".gitkeep")))
   testthat::expect_true(file.exists(file.path("data", "raw", "consumer_shopping_trends", "README.md")))
-  testthat::expect_true(file.exists(file.path("outputs", "figures", "consumer_shopping_trends_beta", ".gitkeep")))
-  testthat::expect_true(file.exists(file.path("outputs", "tables", "consumer_shopping_trends_beta", ".gitkeep")))
-  testthat::expect_true(file.exists(file.path("outputs", "models", "consumer_shopping_trends_beta", ".gitkeep")))
+  testthat::expect_true(file.exists(file.path("outputs", "consumer_shopping_trends_beta", "figures", ".gitkeep")))
+  testthat::expect_true(file.exists(file.path("outputs", "consumer_shopping_trends_beta", "tables", ".gitkeep")))
+  testthat::expect_true(file.exists(file.path("outputs", "consumer_shopping_trends_beta", "models", ".gitkeep")))
 
   readme_root <- readLines("README.md", warn = FALSE, encoding = "UTF-8")
   readme_scripts <- readLines(file.path("scripts", "README.md"), warn = FALSE, encoding = "UTF-8")

@@ -61,9 +61,9 @@ Rscript scripts/inhaler_ordinal/inhaler_ordinal_softplus_cmdstanr.R
 
 - Saídas:
   - `--save_plots=1` | `0`
-  - `--plots_path=outputs/figures/inhaler_ordinal_plots.pdf`
+  - `--plots_path=outputs/inhaler_ordinal/figures/inhaler_ordinal_plots.pdf`
   - `--save_report=1` | `0`
-  - `--report_path=outputs/tables/inhaler_ordinal_report.txt`
+  - `--report_path=outputs/inhaler_ordinal/tables/inhaler_ordinal_report.txt`
 
 - Dados:
   - `--data_path=data/raw/inhaler.csv`  (se existir, usa esse CSV)
@@ -74,8 +74,8 @@ Rscript scripts/inhaler_ordinal/inhaler_ordinal_softplus_cmdstanr.R
 
 Quando `--save_plots=1` e `--save_report=1`, o exemplo salva:
 
-- `outputs/figures/inhaler_ordinal_plots.pdf`
-- `outputs/tables/inhaler_ordinal_report.txt`
+- `outputs/inhaler_ordinal/figures/inhaler_ordinal_plots.pdf`
+- `outputs/inhaler_ordinal/tables/inhaler_ordinal_report.txt`
 
 ---
 

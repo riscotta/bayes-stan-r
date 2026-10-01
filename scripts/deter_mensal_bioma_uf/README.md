@@ -16,8 +16,8 @@ O script:
 - Script: `scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R`
 - Entrada padrão: `data/raw/deter_mensal_bioma_uf.csv`
 - Saídas opcionais:
-  - `outputs/tables/deter_mensal_bioma_uf/deter_mensal_bioma_uf_report.txt`
-  - `outputs/figures/deter_mensal_bioma_uf/deter_mensal_bioma_uf_plots.pdf`
+  - `outputs/deter_mensal_bioma_uf/tables/deter_mensal_bioma_uf_report.txt`
+  - `outputs/deter_mensal_bioma_uf/figures/deter_mensal_bioma_uf_plots.pdf`
 
 ## Como rodar
 

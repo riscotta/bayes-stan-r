@@ -16,10 +16,10 @@ O estudo:
 - Script: `scripts/consumer_shopping_trends_beta/consumer_shopping_trends_beta_rstan.R`
 - Entrada padrão: `data/raw/consumer_shopping_trends/Consumer_Shopping_Trends_2026 (6).csv`
 - Saídas padrão:
-  - `outputs/tables/consumer_shopping_trends_beta/*.csv`
-  - `outputs/tables/consumer_shopping_trends_beta/*.txt`
-  - `outputs/figures/consumer_shopping_trends_beta/*.png`
-  - `outputs/models/consumer_shopping_trends_beta/*.rds`
+  - `outputs/consumer_shopping_trends_beta/tables/*.csv`
+  - `outputs/consumer_shopping_trends_beta/tables/*.txt`
+  - `outputs/consumer_shopping_trends_beta/figures/*.png`
+  - `outputs/consumer_shopping_trends_beta/models/*.rds`
 
 ## Base de dados
 

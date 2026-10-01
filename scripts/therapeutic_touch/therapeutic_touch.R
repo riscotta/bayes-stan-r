@@ -98,8 +98,8 @@ try(here::i_am("scripts/therapeutic_touch/therapeutic_touch.R"), silent = TRUE)
 # 0.1) Saídas (quando aplicável)
 # ============================================================
 
-out_pdf    <- here::here("outputs", "figures", "therapeutic_touch_plots.pdf")
-out_report <- here::here("outputs", "tables",  "therapeutic_touch_report.txt")
+out_pdf    <- here::here("outputs", "therapeutic_touch", "figures", "therapeutic_touch_plots.pdf")
+out_report <- here::here("outputs", "therapeutic_touch", "tables", "therapeutic_touch_report.txt")
 
 if (SAVE_ARTIFACTS) {
   dir.create(dirname(out_pdf), recursive = TRUE, showWarnings = FALSE)

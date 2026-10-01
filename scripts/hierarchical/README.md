@@ -79,7 +79,7 @@ Este exemplo é **console-only** (não grava arquivos por padrão).
 
 Se você quiser salvar artefatos depois (tabelas/figuras), a convenção do repo é usar:
 
-- `outputs/tables/` e `outputs/figures/`
+- `outputs/hierarchical/tables/` e `outputs/hierarchical/figures/`
 
 ---
 

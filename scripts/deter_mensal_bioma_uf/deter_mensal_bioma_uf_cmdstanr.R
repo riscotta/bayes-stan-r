@@ -43,8 +43,8 @@ parse_args <- function(args) {
 
     save_plots = 0L,
     save_report = 0L,
-    output_tables_dir = file.path("outputs", "tables", "deter_mensal_bioma_uf"),
-    output_figures_dir = file.path("outputs", "figures", "deter_mensal_bioma_uf"),
+    output_tables_dir = file.path("outputs", "deter_mensal_bioma_uf", "tables"),
+    output_figures_dir = file.path("outputs", "deter_mensal_bioma_uf", "figures"),
     output_prefix = "deter_mensal_bioma_uf"
   )
 
@@ -803,7 +803,7 @@ if (opts$save_plots == 1L) {
 } else if (interactive()) {
   for (p in plot_list) print(p)
 } else {
-  cat("\nGráficos não foram salvos. Use '--save_plots=1' se quiser exportar PDF em outputs/figures/.\n")
+  cat("\nGráficos não foram salvos. Use '--save_plots=1' se quiser exportar PDF em outputs/deter_mensal_bioma_uf/figures/.\n")
 }
 
 if (opts$keep_temp_files != 1L) {

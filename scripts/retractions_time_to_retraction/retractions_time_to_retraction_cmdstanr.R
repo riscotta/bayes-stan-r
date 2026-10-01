@@ -28,9 +28,9 @@ set.seed(42)
 parse_args <- function(args) {
   out <- list(
     input_csv = file.path("data", "raw", "retractions_time_to_retraction", "global_scientific_retractions_1927_2026.csv"),
-    figures_dir = file.path("outputs", "figures", "retractions_time_to_retraction"),
-    tables_dir = file.path("outputs", "tables", "retractions_time_to_retraction"),
-    models_dir = file.path("outputs", "models", "retractions_time_to_retraction"),
+    figures_dir = file.path("outputs", "retractions_time_to_retraction", "figures"),
+    tables_dir = file.path("outputs", "retractions_time_to_retraction", "tables"),
+    models_dir = file.path("outputs", "retractions_time_to_retraction", "models"),
     cutoff_original_year = 2021L,
     publisher_min_n = 500L,
     subject_min_n = 1000L,
@@ -756,10 +756,10 @@ report_lines <- c(
   paste0("  posterior sd(log lag)   = ", fmt_num(ppc$mean[ppc$variable == "y_rep_log_sd"], 3)),
   "",
   "Arquivos exportados (quando habilitados):",
-  "  - outputs/tables/retractions_time_to_retraction/*.csv",
-  "  - outputs/tables/retractions_time_to_retraction/retractions_time_to_retraction_report.txt",
-  "  - outputs/figures/retractions_time_to_retraction/*.png",
-  "  - outputs/models/retractions_time_to_retraction/*.rds"
+  "  - outputs/retractions_time_to_retraction/tables/*.csv",
+  "  - outputs/retractions_time_to_retraction/tables/retractions_time_to_retraction_report.txt",
+  "  - outputs/retractions_time_to_retraction/figures/*.png",
+  "  - outputs/retractions_time_to_retraction/models/*.rds"
 )
 
 if (opt$save_report == 1L) {

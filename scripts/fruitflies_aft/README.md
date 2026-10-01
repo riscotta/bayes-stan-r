@@ -16,8 +16,8 @@ O script:
 - Script: `scripts/fruitflies_aft/fruitflies_aft_lognormal_cmdstanr.R`
 - Entrada: `Stat2Data::FruitFlies`
 - Saídas opcionais:
-  - `outputs/figures/fruitflies_aft/fruitflies_aft_plots.pdf`
-  - `outputs/tables/fruitflies_aft/fruitflies_aft_report.txt`
+  - `outputs/fruitflies_aft/figures/fruitflies_aft_plots.pdf`
+  - `outputs/fruitflies_aft/tables/fruitflies_aft_report.txt`
 
 ## Como rodar
 

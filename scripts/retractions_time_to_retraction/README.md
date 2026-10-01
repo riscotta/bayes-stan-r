@@ -15,10 +15,10 @@ O estudo:
 - Script: `scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R`
 - Entrada padrao: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv`
 - Saidas padrao:
-  - `outputs/tables/retractions_time_to_retraction/*.csv`
-  - `outputs/tables/retractions_time_to_retraction/retractions_time_to_retraction_report.txt`
-  - `outputs/figures/retractions_time_to_retraction/*.png`
-  - `outputs/models/retractions_time_to_retraction/*.rds` *(opcional, via flag)*
+  - `outputs/retractions_time_to_retraction/tables/*.csv`
+  - `outputs/retractions_time_to_retraction/tables/retractions_time_to_retraction_report.txt`
+  - `outputs/retractions_time_to_retraction/figures/*.png`
+  - `outputs/retractions_time_to_retraction/models/*.rds` *(opcional, via flag)*
 
 ## Base de dados
 

@@ -42,14 +42,14 @@ Pacotes usados diretamente pelo script: `readr`, `dplyr`, `tidyr`, `tibble`, `st
 
 O script não salva objetos `.rds` por padrão. As saídas regeneráveis ficam em:
 
-- `outputs/tables/importacoes_world_bank/E04_Preparacao_Base_Analitica/`
-- `outputs/tables/importacoes_world_bank/E05_EDA/`
-- `outputs/tables/importacoes_world_bank/E07_Implementacao_Estimacao/`
-- `outputs/tables/importacoes_world_bank/E08_Diagnostico_Validacao/`
-- `outputs/figures/importacoes_world_bank/E05_EDA/`
-- `outputs/figures/importacoes_world_bank/E07_Implementacao_Estimacao/`
-- `outputs/figures/importacoes_world_bank/E08_Diagnostico_Validacao/`
-- `outputs/models/importacoes_world_bank/cmdstan_csv/`
+- `outputs/importacoes_world_bank/tables/E04_Preparacao_Base_Analitica/`
+- `outputs/importacoes_world_bank/tables/E05_EDA/`
+- `outputs/importacoes_world_bank/tables/E07_Implementacao_Estimacao/`
+- `outputs/importacoes_world_bank/tables/E08_Diagnostico_Validacao/`
+- `outputs/importacoes_world_bank/figures/E05_EDA/`
+- `outputs/importacoes_world_bank/figures/E07_Implementacao_Estimacao/`
+- `outputs/importacoes_world_bank/figures/E08_Diagnostico_Validacao/`
+- `outputs/importacoes_world_bank/cmdstan_csv/`
 
 ## Observação computacional
 

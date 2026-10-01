@@ -10,7 +10,7 @@ options(stringsAsFactors = FALSE)
 # - rodar a partir do root do repositório
 # - sem setwd()
 # - entrada padrão em data/raw/consumer_shopping_trends/
-# - saídas em outputs/{figures,tables,models}/consumer_shopping_trends_beta/
+# - saídas em outputs/consumer_shopping_trends_beta/{figures,tables,models}/
 # - o modelo Stan é compilado em memória; nenhum arquivo .stan é gravado em disco
 #
 # Como rodar:
@@ -214,9 +214,9 @@ safe_density <- function(x, from, to, n = 512) {
 # Caminhos e configuração efetiva
 # -----------------------------
 INPUT_DIR <- opts$input_dir
-TABLES_DIR <- file.path("outputs", "tables", "consumer_shopping_trends_beta")
-FIGURES_DIR <- file.path("outputs", "figures", "consumer_shopping_trends_beta")
-MODELS_DIR <- file.path("outputs", "models", "consumer_shopping_trends_beta")
+TABLES_DIR <- file.path("outputs", "consumer_shopping_trends_beta", "tables")
+FIGURES_DIR <- file.path("outputs", "consumer_shopping_trends_beta", "figures")
+MODELS_DIR <- file.path("outputs", "consumer_shopping_trends_beta", "models")
 
 if (!dir.exists(INPUT_DIR)) {
   fail("Diretório de entrada não encontrado: %s", INPUT_DIR)

@@ -11,7 +11,7 @@ options(pillar.sigfig = 6)
 # - sem setwd()
 # - coleta online via SIDRA (tabelas 1737 e 7060)
 # - resultados finais em console por padrao
-# - artefatos opcionais em outputs/tables/
+# - artefatos opcionais em outputs/ipca_sidra_1419/tables/
 #
 # Exemplos:
 #   Rscript scripts/ipca_sidra_1419/ipca_sidra_1419_cmdstanr.R
@@ -37,7 +37,7 @@ parse_args <- function(args) {
     refresh = 200L,
     save_report = 0L,
     save_tables = 0L,
-    output_tables_dir = file.path("outputs", "tables", "ipca_sidra_1419"),
+    output_tables_dir = file.path("outputs", "ipca_sidra_1419", "tables"),
     output_prefix = "ipca_sidra_1419"
   )
 

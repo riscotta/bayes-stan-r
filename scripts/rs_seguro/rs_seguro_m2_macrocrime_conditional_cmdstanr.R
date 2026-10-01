@@ -14,7 +14,7 @@ options(stringsAsFactors = FALSE)
 #
 # Exemplos:
 #   Rscript scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R --targets=VULNERAVEIS_E_CUIDADO,ORDEM_PUBLICA_E_OUTROS
-#   Rscript scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R --m1_targets_csv=outputs/tables/rs_seguro/rs_seguro_m1_macrocrime_crime_trend.csv
+#   Rscript scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R --m1_targets_csv=outputs/rs_seguro/tables/rs_seguro_m1_macrocrime_crime_trend.csv
 ############################################################
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -23,8 +23,8 @@ AUTO_INSTALL_PKGS <- "--auto-install" %in% args
 parse_args <- function(args) {
   out <- list(
     input_csv = file.path("data", "raw", "rs_seguro", "rs_month_macrocrime_profile_v1_1vict.csv"),
-    output_tables_dir = file.path("outputs", "tables", "rs_seguro", "m2_macrocrime_conditional"),
-    output_figures_dir = file.path("outputs", "figures", "rs_seguro", "m2_macrocrime_conditional"),
+    output_tables_dir = file.path("outputs", "rs_seguro", "tables", "m2_macrocrime_conditional"),
+    output_figures_dir = file.path("outputs", "rs_seguro", "figures", "m2_macrocrime_conditional"),
 
     data_version_id = "",
     seed = 20260310L,
@@ -41,7 +41,7 @@ parse_args <- function(args) {
     save_plots = if (interactive()) 0L else 1L,
 
     targets = "",
-    m1_targets_csv = file.path("outputs", "tables", "rs_seguro", "rs_seguro_m1_macrocrime_crime_trend.csv"),
+    m1_targets_csv = file.path("outputs", "rs_seguro", "tables", "rs_seguro_m1_macrocrime_crime_trend.csv"),
     m1_prob_col = "p_gt_0",
     m1_name_col = "crime",
     m1_threshold = 0.90,

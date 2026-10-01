@@ -56,6 +56,7 @@ As saídas regeneráveis são salvas em:
 - `outputs/sherlock_holmes_terms/figures/`
 - `outputs/sherlock_holmes_terms/logs/`
 - `outputs/sherlock_holmes_terms/cmdstan_csv/`, apenas quando `--run_stan=1`
+- `outputs/sherlock_holmes_terms/models/`, para o objeto `.rds` do ajuste
 
 ## Conclusão substantiva do estudo
 

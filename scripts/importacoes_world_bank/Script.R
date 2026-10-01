@@ -32,7 +32,7 @@ args <- commandArgs(trailingOnly = TRUE)
 project_dir <- if (length(args) >= 1) normalizePath(args[1], winslash = "/", mustWork = FALSE) else getwd()
 
 input_csv <- file.path(project_dir, "data", "raw", "importacoes_world_bank", "world_bank_Import_Usd_enriched.csv")
-output_dir <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E04_Preparacao_Base_Analitica")
+output_dir <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E04_Preparacao_Base_Analitica")
 
 if (!file.exists(input_csv)) {
   stop("Arquivo de entrada não encontrado: ", input_csv)
@@ -366,10 +366,10 @@ message_line("Arquivos gerados em: ", output_dir)
 args <- commandArgs(trailingOnly = TRUE)
 project_dir <- if (length(args) >= 1) normalizePath(args[1], winslash = "/", mustWork = FALSE) else getwd()
 
-input_model <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E04_Preparacao_Base_Analitica", "base_analitica_modelavel.csv")
-input_full <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E04_Preparacao_Base_Analitica", "base_analitica_ampla.csv")
-output_dir <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E05_EDA")
-fig_dir <- file.path(project_dir, "outputs", "figures", "importacoes_world_bank", "E05_EDA")
+input_model <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E04_Preparacao_Base_Analitica", "base_analitica_modelavel.csv")
+input_full <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E04_Preparacao_Base_Analitica", "base_analitica_ampla.csv")
+output_dir <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E05_EDA")
+fig_dir <- file.path(project_dir, "outputs", "importacoes_world_bank", "figures", "E05_EDA")
 tab_dir <- output_dir
 
 if (!file.exists(input_model)) stop("Base modelável não encontrada: ", input_model)
@@ -711,12 +711,12 @@ set.seed(20260429)
 args <- commandArgs(trailingOnly = TRUE)
 project_dir <- if (length(args) >= 1) normalizePath(args[1], winslash = "/", mustWork = FALSE) else getwd()
 
-dir_base <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E04_Preparacao_Base_Analitica")
-dir_etapa <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E07_Implementacao_Estimacao")
+dir_base <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E04_Preparacao_Base_Analitica")
+dir_etapa <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E07_Implementacao_Estimacao")
 dir_tabelas <- file.path(dir_etapa, "tabelas")
-dir_figuras <- file.path(project_dir, "outputs", "figures", "importacoes_world_bank", "E07_Implementacao_Estimacao")
+dir_figuras <- file.path(project_dir, "outputs", "importacoes_world_bank", "figures", "E07_Implementacao_Estimacao")
 dir_stan <- file.path(project_dir, "scripts", "importacoes_world_bank")
-dir_cmdstan_csv <- file.path(project_dir, "outputs", "models", "importacoes_world_bank", "cmdstan_csv")
+dir_cmdstan_csv <- file.path(project_dir, "outputs", "importacoes_world_bank", "cmdstan_csv")
 dir_logs <- file.path(dir_etapa, "logs")
 dir_config <- file.path(dir_etapa, "configuracoes")
 dir_dados_stan <- file.path(dir_etapa, "dados_stan")
@@ -1023,7 +1023,7 @@ writeLines(
 #
 # Como usar:
 # 1) Execute este script a partir da raiz do projeto.
-# 2) As saidas da E07 sao geradas automaticamente em outputs/tables/importacoes_world_bank/E07_Implementacao_Estimacao/.
+# 2) As saidas da E07 sao geradas automaticamente em outputs/importacoes_world_bank/tables/E07_Implementacao_Estimacao/.
 # 3) O script não reestima o modelo STAN; ele diagnostica os resultados já produzidos na E07.
 
 suppressPackageStartupMessages({
@@ -1035,11 +1035,11 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-dir_e07 <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E07_Implementacao_Estimacao")
-dir_e08 <- file.path(project_dir, "outputs", "tables", "importacoes_world_bank", "E08_Diagnostico_Validacao")
+dir_e07 <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E07_Implementacao_Estimacao")
+dir_e08 <- file.path(project_dir, "outputs", "importacoes_world_bank", "tables", "E08_Diagnostico_Validacao")
 dir_tabelas_e07 <- file.path(dir_e07, "tabelas")
 dir_tabelas_e08 <- file.path(dir_e08, "tabelas")
-dir_figuras_e08 <- file.path(project_dir, "outputs", "figures", "importacoes_world_bank", "E08_Diagnostico_Validacao")
+dir_figuras_e08 <- file.path(project_dir, "outputs", "importacoes_world_bank", "figures", "E08_Diagnostico_Validacao")
 
 if (!dir.exists(dir_tabelas_e07)) {
   stop("Pasta de tabelas da E07 nao encontrada: ", dir_tabelas_e07)

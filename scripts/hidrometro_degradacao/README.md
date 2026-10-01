@@ -23,8 +23,8 @@ Por padrão é *console-only* (não grava arquivos).
 
 Opcionalmente, você pode salvar:
 
-- PDF com gráficos em `outputs/figures/` via `--save_plots=1`
-- TXT com o resumo em `outputs/tables/` via `--save_report=1`
+- PDF com gráficos em `outputs/hidrometro_degradacao/figures/` via `--save_plots=1`
+- TXT com o resumo em `outputs/hidrometro_degradacao/tables/` via `--save_report=1`
 
 Exemplo:
 

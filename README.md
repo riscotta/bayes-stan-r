@@ -36,9 +36,13 @@ O objetivo central é manter um ambiente em que modelos e análises possam ser:
 │   ├── interim/    # dados intermediários
 │   └── processed/  # dados processados
 ├── outputs/
-│   ├── figures/    # gráficos gerados
-│   ├── models/     # modelos e objetos salvos
-│   └── tables/     # tabelas e saídas textuais
+│   └── <estudo>/   # saídas regeneráveis agrupadas por estudo
+│       ├── figures/
+│       ├── tables/
+│       ├── models/
+│       ├── logs/
+│       ├── cmdstan_csv/
+│       └── data_stan/
 ├── reports/        # relatórios opcionais (Quarto / R Markdown)
 ├── scripts/        # núcleo operacional: scripts por tema
 └── tests/          # testes e validações opcionais
@@ -181,10 +185,22 @@ Este projeto segue algumas convenções simples para facilitar manutenção e ex
 
 - **1 pasta = 1 tema, estudo ou experimento**
 - cada pasta deve ter um **script principal**
-- saídas regeneráveis devem ser gravadas em `outputs/`
+- saídas regeneráveis devem ser gravadas em `outputs/<estudo>/<tipo>/`, mantendo o estudo como primeiro nível
 - dados derivados devem ficar em `data/interim/` ou `data/processed/`
 - documentação local pode ser adicionada quando um tema exigir contexto extra
 - scripts devem funcionar a partir da raiz do repositório
+
+## Convenção de saídas
+
+O padrão canônico do repositório é:
+
+```text
+outputs/<estudo>/<tipo>/
+```
+
+O nome do estudo vem sempre imediatamente após `outputs/`. Os tipos mais comuns são `figures`, `tables`, `models`, `logs`, `cmdstan_csv` e `data_stan`; cada estudo usa apenas os diretórios de que precisa. O padrão antigo `outputs/<tipo>/<estudo>/` não deve ser usado.
+
+Consulte `outputs/README.md` para os detalhes.
 
 ## Reprodutibilidade e versionamento
 
@@ -251,7 +267,7 @@ Este repositório agora inclui o estudo reproduzível de importações anuais po
 - script final: `scripts/importacoes_world_bank/Script.R`
 - modelo Stan: `scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.stan`
 - dado bruto versionado: `data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv`
-- saídas regeneráveis: `outputs/tables/importacoes_world_bank/`, `outputs/figures/importacoes_world_bank/` e `outputs/models/importacoes_world_bank/`
+- saídas regeneráveis: `outputs/importacoes_world_bank/tables/`, `outputs/importacoes_world_bank/figures/` e `outputs/importacoes_world_bank/models/`
 
 Execução a partir da raiz do repositório:
 
