@@ -211,7 +211,7 @@ O workflow `.github/workflows/ci.yml` roda em pushes e pull requests para `main`
 O CI mínimo:
 
 - usa R 4.5.1;
-- valida a sintaxe de todos os scripts `.R` em `scripts/`;
+- valida a sintaxe dos arquivos `.R` em `scripts/` e `tests/`;
 - executa a suíte estrutural em `tests/testthat/`.
 
 A pipeline não executa ajustes Stan completos em cada commit. Compilação, amostragem e validações estatísticas integrais continuam sendo etapas explícitas dos estudos quando necessárias.
