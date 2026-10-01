@@ -45,15 +45,17 @@ jobs:
         run: |
           Rscript -e 'install.packages("testthat", repos = "https://cloud.r-project.org", Ncpus = 2L)'
 
-      - name: Parse all R scripts
+      - name: Parse repository R files
         shell: Rscript {0}
         run: |
-          files <- list.files(
-            "scripts",
-            pattern = "\\.R$",
-            recursive = TRUE,
-            full.names = TRUE
-          )
+          files <- unlist(lapply(c("scripts", "tests"), function(root) {
+            list.files(
+              root,
+              pattern = "\\.R$",
+              recursive = TRUE,
+              full.names = TRUE
+            )
+          }), use.names = FALSE)
 
           failures <- lapply(files, function(path) {
             tryCatch(
@@ -80,7 +82,7 @@ jobs:
             )
           }
 
-          message("Sintaxe válida em ", length(files), " scripts R.")
+          message("Sintaxe válida em ", length(files), " arquivos R.")
 
       - name: Run structural tests
         run: Rscript tests/run_tests.R
