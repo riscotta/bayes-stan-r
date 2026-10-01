@@ -42,6 +42,23 @@ vignettes/*.pdf
 # pkgdown site
 docs/
 
+# ------------------------------------------------------------
+# renv
+#
+# Versionar:
+# - renv.lock
+# - .Rprofile
+# - renv/activate.R
+# - renv/settings.json
+#
+# Nao versionar bibliotecas, staging ou integracoes locais.
+# ------------------------------------------------------------
+renv/library/
+renv/staging/
+renv/python/
+renv/sandbox/
+
+
 # translation temp files
 po/*~
 
