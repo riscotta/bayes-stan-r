@@ -1,0 +1,24 @@
+environment:
+  reference_date: "2026-10-01"
+  r:
+    version: "4.5.1"
+    version_file: ".R-version"
+    lockfile: "renv.lock"
+
+  cmdstanr:
+    version: "0.9.0"
+    source: "https://stan-dev.r-universe.dev"
+
+  cmdstan:
+    version: "2.40.0"
+    installer: "scripts/_setup/install_cmdstan.R"
+    note: "Canonical CmdStan version for repository reproductions using cmdstanr."
+
+  rstan:
+    version: "2.32.7"
+    note: "Resolved from renv.lock. rstan uses its own Stan/StanHeaders stack and does not use CmdStan."
+
+policy:
+  general_r_packages: "CRAN stable releases"
+  cmdstanr_only: "Stan r-universe"
+  generated_outputs: "not versioned"

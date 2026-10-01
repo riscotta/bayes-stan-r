@@ -73,32 +73,45 @@ Rscript scripts/therapeutic_touch/therapeutic_touch.R
 
 ## Setup inicial
 
-### Instalação de dependências R
+### Ambiente reproduzível com `renv`
 
-Instalação mínima:
+O ambiente R do projeto é congelado com `renv`, usando **R 4.5.1** como versão de referência. A toolchain canônica inclui `cmdstanr 0.9.0`, `rstan 2.32.7` e **CmdStan 2.40.0**; os detalhes ficam em `config/environment.yml`.
+
+Em um clone que já contenha o `renv.lock` oficial:
+
+```bash
+Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); renv::restore(prompt = FALSE)"
+```
+
+Para inicializar ou reconstruir deliberadamente o lockfile do projeto:
+
+```bash
+Rscript scripts/_setup/init_renv.R
+```
+
+O conjunto de dependências é centralizado em `scripts/_setup/dependencies.R`.
+
+### Instalação direta de dependências R
+
+Fora do ambiente `renv`, continuam disponíveis os instaladores tradicionais:
 
 ```bash
 Rscript scripts/_setup/install_deps.R
-```
-
-Instalação ampliada, incluindo dependências opcionais:
-
-```bash
 Rscript scripts/_setup/install_deps.R --all
 ```
 
 ### Instalação do CmdStan
 
-Necessário para os exemplos que utilizam `cmdstanr`.
+O `renv` congela os pacotes R, inclusive `cmdstanr`, mas não o binário do CmdStan. Para instalá-lo:
 
 ```bash
 Rscript scripts/_setup/install_cmdstan.R
 ```
 
-Exemplo com parâmetros:
+O instalador usa **CmdStan 2.40.0** por padrão. Exemplo explícito equivalente:
 
 ```bash
-Rscript scripts/_setup/install_cmdstan.R --version=2.35.0 --cores=4
+Rscript scripts/_setup/install_cmdstan.R --version=2.40.0 --cores=4
 ```
 
 ## Organização da documentação
@@ -175,7 +188,8 @@ Este projeto segue algumas convenções simples para facilitar manutenção e ex
 
 ## Reprodutibilidade e versionamento
 
-O repositório prioriza reprodutibilidade e organização.  
+O repositório prioriza reprodutibilidade e organização. O ambiente R é controlado por `renv`: o `renv.lock` registra versões de pacotes e repositórios, enquanto `.R-version` declara a versão de referência do R. O CmdStan é tratado separadamente, pois não é gerenciado pelo `renv`; sua versão canônica é registrada em `config/environment.yml` e aplicada por `scripts/_setup/install_cmdstan.R`.  
+
 Por isso, artefatos regeneráveis normalmente não devem ser versionados, como:
 
 - gráficos
