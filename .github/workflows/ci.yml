@@ -12,9 +12,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: r-ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   validate:
