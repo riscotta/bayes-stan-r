@@ -37,12 +37,14 @@ testthat::test_that("outputs usam o estudo como primeiro nivel", {
     }
   }
 
-  testthat::expect_length(
-    violations,
-    0L,
-    info = paste(
-      "Use outputs/<estudo>/<tipo>/; referencias legadas:",
-      paste(unique(violations), collapse = "; ")
+  if (length(violations)) {
+    testthat::fail(
+      paste(
+        "Use outputs/<estudo>/<tipo>/; referencias legadas:",
+        paste(unique(violations), collapse = "; ")
+      )
     )
-  )
+  }
+
+  testthat::expect_length(violations, 0L)
 })
