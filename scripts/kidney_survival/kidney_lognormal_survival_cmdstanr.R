@@ -29,7 +29,7 @@ ensure_pkg <- function(pkg) {
       "Como resolver (recomendado):\n",
       "  Rscript scripts/_setup/install_deps.R\n\n",
       "Ou instale manualmente no R:\n",
-      "  install.packages('\", pkg, "')\n",
+      "  install.packages('", pkg, "')\n",
       call. = FALSE
     )
   }

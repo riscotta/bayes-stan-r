@@ -14,7 +14,7 @@ testthat::test_that("PNADC desocupacao esta integrada ao padrao do repositorio",
   testthat::expect_true(any(grepl("PNAD Contínua — desocupação", readme_root, fixed = TRUE)))
   testthat::expect_true(any(grepl("pnadc_desocupacao_rstan.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/pnadc_desocupacao/", readme_data, fixed = TRUE)))
-  testthat::expect_false(any(grepl("data/raw/pnadc_desocupacao/\*\*", gitignore)))
+  testthat::expect_false(any(grepl("data/raw/pnadc_desocupacao/**", gitignore, fixed = TRUE)))
 
   mens_header <- readLines(file.path("data", "raw", "pnadc_desocupacao", "pnadc_mensal_taxa_desocupacao_6381.csv"), n = 1L, warn = FALSE, encoding = "UTF-8")
   sexo_header <- readLines(file.path("data", "raw", "pnadc_desocupacao", "pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv"), n = 1L, warn = FALSE, encoding = "UTF-8")

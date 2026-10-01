@@ -1,0 +1,88 @@
+name: R CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+
+jobs:
+  validate:
+    name: R 4.5.1 — syntax and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    container:
+      image: rocker/r-ver:4.5.1
+
+    env:
+      R_PROFILE_USER: /dev/null
+      RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
+
+    steps:
+      - name: Install runner requirements
+        shell: bash
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates git libuv1-dev
+          rm -rf /var/lib/apt/lists/*
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Verify R version
+        run: |
+          Rscript -e 'stopifnot(getRversion() == "4.5.1"); message("R ", getRversion())'
+
+      - name: Install CI dependencies
+        run: |
+          Rscript -e 'install.packages("testthat", repos = "https://cloud.r-project.org", Ncpus = 2L)'
+
+      - name: Parse repository R files
+        shell: Rscript {0}
+        run: |
+          files <- unlist(lapply(c("scripts", "tests"), function(root) {
+            list.files(
+              root,
+              pattern = "\\.R$",
+              recursive = TRUE,
+              full.names = TRUE
+            )
+          }), use.names = FALSE)
+
+          failures <- lapply(files, function(path) {
+            tryCatch(
+              {
+                parse(file = path, keep.source = FALSE)
+                NULL
+              },
+              error = function(e) {
+                sprintf("%s: %s", path, conditionMessage(e))
+              }
+            )
+          })
+
+          failures <- Filter(Negate(is.null), failures)
+
+          if (length(failures)) {
+            stop(
+              paste(
+                "Falhas de sintaxe encontradas:",
+                paste(unlist(failures), collapse = "\n"),
+                sep = "\n"
+              ),
+              call. = FALSE
+            )
+          }
+
+          message("Sintaxe válida em ", length(files), " arquivos R.")
+
+      - name: Run structural tests
+        run: Rscript tests/run_tests.R

@@ -16,7 +16,7 @@ testthat::test_that("Consumer Shopping Trends Beta está integrado ao padrão do
   testthat::expect_true(any(grepl("Consumer Shopping Trends", readme_root, fixed = TRUE)))
   testthat::expect_true(any(grepl("consumer_shopping_trends_beta_rstan.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/consumer_shopping_trends/", readme_data, fixed = TRUE)))
-  testthat::expect_true(any(grepl("data/raw/consumer_shopping_trends/\\*\\*", gitignore)))
+  testthat::expect_true(any(grepl("data/raw/consumer_shopping_trends/**", gitignore, fixed = TRUE)))
   testthat::expect_true(any(grepl("avg_online_spend", script_lines, fixed = TRUE)))
   testthat::expect_true(any(grepl("avg_store_spend", script_lines, fixed = TRUE)))
   testthat::expect_true(any(grepl("rstan_options(auto_write = FALSE)", script_lines, fixed = TRUE)))

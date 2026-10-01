@@ -1,5 +1,7 @@
 # bayes-stan-r
 
+[![R CI](https://github.com/riscotta/bayes-stan-r/actions/workflows/ci.yml/badge.svg)](https://github.com/riscotta/bayes-stan-r/actions/workflows/ci.yml)
+
 Repositório dedicado a **Estatística Bayesiana com R e Stan**, reunindo estudos, experimentos, modelos aplicados e exemplos reproduzíveis organizados por tema.
 
 A proposta deste projeto é transformar conceitos bayesianos em **scripts executáveis, estruturas reutilizáveis e análises transparentes**, com foco em modelagem, simulação, inferência e documentação prática.
@@ -201,6 +203,18 @@ outputs/<estudo>/<tipo>/
 O nome do estudo vem sempre imediatamente após `outputs/`. Os tipos mais comuns são `figures`, `tables`, `models`, `logs`, `cmdstan_csv` e `data_stan`; cada estudo usa apenas os diretórios de que precisa. O padrão antigo `outputs/<tipo>/<estudo>/` não deve ser usado.
 
 Consulte `outputs/README.md` para os detalhes.
+
+## Integração contínua
+
+O workflow `.github/workflows/ci.yml` roda em pushes e pull requests para `main` e pode ser disparado manualmente.
+
+O CI mínimo:
+
+- usa R 4.5.1;
+- valida a sintaxe dos arquivos `.R` em `scripts/` e `tests/`;
+- executa a suíte estrutural em `tests/testthat/`.
+
+A pipeline não executa ajustes Stan completos em cada commit. Compilação, amostragem e validações estatísticas integrais continuam sendo etapas explícitas dos estudos quando necessárias.
 
 ## Reprodutibilidade e versionamento
 

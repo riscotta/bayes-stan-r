@@ -12,7 +12,7 @@ testthat::test_that("PMS servicos esta integrada ao padrao do repositorio", {
   testthat::expect_true(any(grepl("PMS / Serviços em janeiro de 2026", readme_root, fixed = TRUE)))
   testthat::expect_true(any(grepl("pms_servicos_rstan.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/pms_servicos/", readme_data, fixed = TRUE)))
-  testthat::expect_false(any(grepl("data/raw/pms_servicos/\*\*", gitignore)))
+  testthat::expect_false(any(grepl("data/raw/pms_servicos/**", gitignore, fixed = TRUE)))
 
   csv_header <- readLines(
     file.path("data", "raw", "pms_servicos", "pms_base_analitica_stan.csv"),
