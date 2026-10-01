@@ -248,7 +248,7 @@ Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quan
 
 Bases externas grandes, arquivos com registros individualizados ou fontes sob download manual podem ficar fora do versionamento e ser referenciados na documentação local em `data/raw/` e `scripts/`. No estudo de sobrevivência cadastral, a base individual com CNPJ e endereço não é publicada; apenas insumos agregados e resultados auditáveis são versionados.
 
-Em contrapartida, caches grandes, artefatos auxiliares e derivados continuam fora do versionamento. Para o inventário e as observações de origem/licença dos dados, consulte também `data/raw/README.md`.
+Em contrapartida, caches grandes, artefatos auxiliares e derivados continuam fora do versionamento. Para o inventário canônico de origem, licença e status de redistribuição dos dados, consulte `data/DATA_PROVENANCE.md` e `data/DATA_PROVENANCE.csv`; `data/raw/README.md` mantém os detalhes operacionais por estudo.
 
 ## Testes
 
@@ -272,7 +272,9 @@ Este projeto foi organizado para ser útil a quem deseja:
 
 ## Licença
 
-Consulte o arquivo `LICENSE`.
+O código e a documentação autoral do repositório são disponibilizados conforme o arquivo `LICENSE`.
+
+Datasets de terceiros, mesmo quando versionados em `data/raw/`, podem estar sujeitos a licenças, termos de uso ou restrições próprias. A licença MIT do repositório não deve ser interpretada como relicenciamento desses dados. Consulte `data/DATA_PROVENANCE.md` e `data/DATA_PROVENANCE.csv` antes de redistribuir datasets.
 
 ## Estudo incluído: Importações anuais por país — World Bank + Stan
 

@@ -4,6 +4,15 @@ Esta pasta contém dados **brutos** usados pelos exemplos em `scripts/`.
 
 A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, transformação ou feature engineering, gere um arquivo derivado em `data/processed/` (ou salve em `outputs/` se for algo específico do experimento).
 
+## Proveniência e licenças
+
+O inventário canônico está em:
+
+- `data/DATA_PROVENANCE.md` — critérios, fontes verificadas e pendências;
+- `data/DATA_PROVENANCE.csv` — inventário estruturado usado pelo CI.
+
+A licença MIT do repositório **não licencia automaticamente dados de terceiros**. Quando a licença de um dataset não estiver documentalmente estabelecida, este README e o inventário devem registrá-la como não identificada ou sujeita a revisão, em vez de inferir uma licença a partir do código.
+
 ---
 
 ## Arquivos
@@ -13,7 +22,7 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 - **Usado em:** `scripts/therapeutic_touch/therapeutic_touch.R`
 - **Descrição:** dataset do experimento “Therapeutic Touch”, usado como exemplo didático em modelagem bayesiana.
 - **Fonte:** *Rosa L, Rosa E, Sarner L, Barrett S. A Close Look at Therapeutic Touch. JAMA. 1998;279(13):1005–1010.*
-- **Licença:** *MIT License*
+- **Licença / restrições:** não identificada para o dataset; a licença MIT do repositório não se estende automaticamente a este dado. Ver `data/DATA_PROVENANCE.csv`.
 - **Observações:**
   - mantenha este arquivo como “raw”
   - se houver uma versão limpa/padronizada, crie em `data/processed/therapeutic_touch/`
@@ -25,7 +34,7 @@ A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, t
 - **Usado em:** `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
 - **Descrição:** dataset para batting average (jogador/posição), usado para demonstrar modelo hierárquico em 3 níveis.
 - **Fonte:** *Dados de batting da MLB (temporada regular 2012) conforme usados por Kruschke; coletados do ESPN (conforme indicado pelo autor em post técnico).*
-- **Licença:** *MIT License*
+- **Licença / restrições:** não identificada para o dataset; a licença MIT do repositório não se estende automaticamente a este dado. Ver `data/DATA_PROVENANCE.csv`.
 - **Observações:**
   - mantenha este arquivo como “raw”
   - se houver uma versão processada (ex.: filtros/recortes), gerar em `data/processed/baseball/`
