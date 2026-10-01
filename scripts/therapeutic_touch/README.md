@@ -35,8 +35,8 @@ Rscript scripts/therapeutic_touch/therapeutic_touch.R
 
 Por padrão, quando você roda via `Rscript` (não-interativo), o script salva:
 
-- `outputs/figures/therapeutic_touch_plots.pdf`
-- `outputs/tables/therapeutic_touch_report.txt`
+- `outputs/therapeutic_touch/figures/therapeutic_touch_plots.pdf`
+- `outputs/therapeutic_touch/tables/therapeutic_touch_report.txt`
 
 Se você não quiser salvar artefatos e preferir somente console:
 
@@ -57,8 +57,8 @@ Em geral, o script:
 
 Quando salva artefatos (via `Rscript`), este exemplo usa:
 
-- `outputs/figures/therapeutic_touch_plots.pdf`
-- `outputs/tables/therapeutic_touch_report.txt`
+- `outputs/therapeutic_touch/figures/therapeutic_touch_plots.pdf`
+- `outputs/therapeutic_touch/tables/therapeutic_touch_report.txt`
 
 ---
 

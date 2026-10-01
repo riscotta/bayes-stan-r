@@ -17,8 +17,8 @@ O script:
 - Entrada: downloads oficiais do INEP (sem necessidade de versionar os ZIPs no git)
 - Cache local padrao: `data/raw/censo_escolar/`
 - Saidas opcionais:
-  - `outputs/tables/censo_escolar_tempo_integral/censo_escolar_tempo_integral_report.txt`
-  - `outputs/tables/censo_escolar_tempo_integral/*.csv`
+  - `outputs/censo_escolar_tempo_integral/tables/censo_escolar_tempo_integral_report.txt`
+  - `outputs/censo_escolar_tempo_integral/tables/*.csv`
 
 ## Fonte oficial
 

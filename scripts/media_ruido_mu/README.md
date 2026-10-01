@@ -16,9 +16,9 @@ Rscript scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R
 
 Por padrão, quando rodado via `Rscript` (não-interativo), ele salva:
 
-- `outputs/figures/media_ruido_mu_plots.pdf` (plots)
-- `outputs/tables/media_ruido_mu_sim_summary.csv` (resumo do bloco A)
-- `outputs/tables/media_ruido_mu_posterior_summary.csv` (resumo do bloco B)
+- `outputs/media_ruido_mu/figures/media_ruido_mu_plots.pdf` (plots)
+- `outputs/media_ruido_mu/tables/media_ruido_mu_sim_summary.csv` (resumo do bloco A)
+- `outputs/media_ruido_mu/tables/media_ruido_mu_posterior_summary.csv` (resumo do bloco B)
 
 ## Parâmetros via CLI (opcional)
 

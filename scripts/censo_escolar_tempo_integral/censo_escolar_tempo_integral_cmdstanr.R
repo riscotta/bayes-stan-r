@@ -43,7 +43,7 @@ parse_args <- function(args) {
     download_timeout = 7200L,
     save_report = 0L,
     save_tables = 0L,
-    output_tables_dir = file.path("outputs", "tables", "censo_escolar_tempo_integral"),
+    output_tables_dir = file.path("outputs", "censo_escolar_tempo_integral", "tables"),
     output_prefix = "censo_escolar_tempo_integral"
   )
 

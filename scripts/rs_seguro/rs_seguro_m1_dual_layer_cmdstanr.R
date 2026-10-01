@@ -39,8 +39,8 @@ parse_args <- function(args) {
 
     save_outputs = if (interactive()) 0L else 1L,
     save_plots   = if (interactive()) 0L else 1L,
-    output_tables_dir  = file.path("outputs", "tables", "rs_seguro"),
-    output_figures_dir = file.path("outputs", "figures", "rs_seguro"),
+    output_tables_dir  = file.path("outputs", "rs_seguro", "tables"),
+    output_figures_dir = file.path("outputs", "rs_seguro", "figures"),
     output_prefix = ""
   )
 

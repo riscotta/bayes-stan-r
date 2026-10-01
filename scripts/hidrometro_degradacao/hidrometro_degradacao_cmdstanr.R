@@ -27,9 +27,9 @@
 #   --refresh=100
 #
 #   --save_plots=0|1
-#   --plots_path=outputs/figures/hidrometro_degradacao_plots.pdf
+#   --plots_path=outputs/hidrometro_degradacao/figures/hidrometro_degradacao_plots.pdf
 #   --save_report=0|1
-#   --report_path=outputs/tables/hidrometro_degradacao_report.txt
+#   --report_path=outputs/hidrometro_degradacao/tables/hidrometro_degradacao_report.txt
 ############################################################
 
 # ----------------------------
@@ -55,9 +55,9 @@ parse_args <- function(args) {
 
     # outputs
     save_plots = 0L,
-    plots_path = file.path("outputs", "figures", "hidrometro_degradacao_plots.pdf"),
+    plots_path = file.path("outputs", "hidrometro_degradacao", "figures", "hidrometro_degradacao_plots.pdf"),
     save_report = 0L,
-    report_path = file.path("outputs", "tables", "hidrometro_degradacao_report.txt")
+    report_path = file.path("outputs", "hidrometro_degradacao", "tables", "hidrometro_degradacao_report.txt")
   )
 
   if (length(args) == 0) return(out)

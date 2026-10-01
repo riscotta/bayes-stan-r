@@ -101,9 +101,9 @@ try(here::i_am("scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R"), silent = TRU
 # Saídas (quando aplicável)
 # ------------------------------------------------------------
 
-out_pdf   <- here::here("outputs", "figures", "media_ruido_mu_plots.pdf")
-out_post  <- here::here("outputs", "tables",  "media_ruido_mu_posterior_summary.csv")
-out_sim   <- here::here("outputs", "tables",  "media_ruido_mu_sim_summary.csv")
+out_pdf   <- here::here("outputs", "media_ruido_mu", "figures", "media_ruido_mu_plots.pdf")
+out_post  <- here::here("outputs", "media_ruido_mu", "tables", "media_ruido_mu_posterior_summary.csv")
+out_sim   <- here::here("outputs", "media_ruido_mu", "tables", "media_ruido_mu_sim_summary.csv")
 
 if (SAVE_ARTIFACTS) {
   dir.create(dirname(out_pdf),  recursive = TRUE, showWarnings = FALSE)

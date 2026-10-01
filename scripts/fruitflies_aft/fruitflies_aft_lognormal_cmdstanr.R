@@ -411,7 +411,7 @@ cat(
 # 11) Saidas opcionais
 # -----------------------------
 if (opt$save_plots == 1L) {
-  fig_dir <- file.path("outputs", "figures", "fruitflies_aft")
+  fig_dir <- file.path("outputs", "fruitflies_aft", "figures")
   dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
   fig_path <- file.path(fig_dir, "fruitflies_aft_plots.pdf")
 
@@ -424,7 +424,7 @@ if (opt$save_plots == 1L) {
 }
 
 if (opt$save_report == 1L) {
-  tab_dir <- file.path("outputs", "tables", "fruitflies_aft")
+  tab_dir <- file.path("outputs", "fruitflies_aft", "tables")
   dir.create(tab_dir, recursive = TRUE, showWarnings = FALSE)
   report_path <- file.path(tab_dir, "fruitflies_aft_report.txt")
 

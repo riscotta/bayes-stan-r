@@ -15,8 +15,8 @@ O script:
 - Script: `scripts/ipca_sidra_1419/ipca_sidra_1419_cmdstanr.R`
 - Entrada: consulta online ao SIDRA (nao exige arquivo local)
 - Saidas opcionais:
-  - `outputs/tables/ipca_sidra_1419/ipca_sidra_1419_report.txt`
-  - `outputs/tables/ipca_sidra_1419/*.csv`
+  - `outputs/ipca_sidra_1419/tables/ipca_sidra_1419_report.txt`
+  - `outputs/ipca_sidra_1419/tables/*.csv`
 
 ## Como rodar
 

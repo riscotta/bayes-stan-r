@@ -120,7 +120,8 @@ out_tables <- file.path(out_dir, "tables")
 out_figures <- file.path(out_dir, "figures")
 out_logs <- file.path(out_dir, "logs")
 out_cmdstan <- file.path(out_dir, "cmdstan_csv")
-for (d in c(out_tables, out_figures, out_logs, out_cmdstan)) dir.create(d, recursive = TRUE, showWarnings = FALSE)
+out_models <- file.path(out_dir, "models")
+for (d in c(out_tables, out_figures, out_logs, out_cmdstan, out_models)) dir.create(d, recursive = TRUE, showWarnings = FALSE)
 
 log_msg <- function(...) cat(format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "-", ..., "\n")
 
@@ -308,7 +309,7 @@ if (run_stan) {
 
   readr::write_csv(fit$summary(), file.path(out_tables, "resumo_posterior_cmdstan_reexecutado.csv"))
   readr::write_csv(fit$sampler_diagnostics(format = "df"), file.path(out_tables, "sampler_diagnostics_cmdstan_reexecutado.csv"))
-  fit$save_object(file.path(out_dir, "modelo_cmdstan_fit.rds"))
+  fit$save_object(file.path(out_models, "modelo_cmdstan_fit.rds"))
   log_msg("Amostragem finalizada")
 } else {
   log_msg("Execução padrão sem reamostragem Stan. Use --run_stan=1 para reexecutar CmdStan/NUTS.")

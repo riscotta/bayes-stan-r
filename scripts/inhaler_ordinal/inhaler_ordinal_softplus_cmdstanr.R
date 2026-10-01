@@ -23,9 +23,9 @@
 #   --prob_draws=1000
 #
 #   --save_plots=1|0
-#   --plots_path=outputs/figures/inhaler_ordinal_plots.pdf
+#   --plots_path=outputs/inhaler_ordinal/figures/inhaler_ordinal_plots.pdf
 #   --save_report=1|0
-#   --report_path=outputs/tables/inhaler_ordinal_report.txt
+#   --report_path=outputs/inhaler_ordinal/tables/inhaler_ordinal_report.txt
 #
 #   --data_path=data/raw/inhaler.csv
 ###############################################################################
@@ -49,9 +49,9 @@ parse_args <- function(args) {
 
     # outputs
     save_plots = 1L,
-    plots_path = file.path("outputs", "figures", "inhaler_ordinal_plots.pdf"),
+    plots_path = file.path("outputs", "inhaler_ordinal", "figures", "inhaler_ordinal_plots.pdf"),
     save_report = 1L,
-    report_path = file.path("outputs", "tables", "inhaler_ordinal_report.txt"),
+    report_path = file.path("outputs", "inhaler_ordinal", "tables", "inhaler_ordinal_report.txt"),
 
     # data (opcional)
     data_path = file.path("data", "raw", "inhaler.csv")

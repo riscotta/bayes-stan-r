@@ -36,8 +36,8 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/therapeutic_touch/therapeutic_touch.R`
 - Dados: `data/raw/TherapeuticTouchData.csv`
 - Saídas (quando rodado via `Rscript`):
-  - `outputs/figures/therapeutic_touch_plots.pdf`
-  - `outputs/tables/therapeutic_touch_report.txt`
+  - `outputs/therapeutic_touch/figures/therapeutic_touch_plots.pdf`
+  - `outputs/therapeutic_touch/tables/therapeutic_touch_report.txt`
 
 ### 2) Hierárquico (Baseball: 3 níveis)
 
@@ -87,9 +87,9 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R`
 - Dados: (simulados no próprio script)
 - Saídas (quando rodado via `Rscript`):
-  - `outputs/figures/media_ruido_mu_plots.pdf`
-  - `outputs/tables/media_ruido_mu_sim_summary.csv`
-  - `outputs/tables/media_ruido_mu_posterior_summary.csv`
+  - `outputs/media_ruido_mu/figures/media_ruido_mu_plots.pdf`
+  - `outputs/media_ruido_mu/tables/media_ruido_mu_sim_summary.csv`
+  - `outputs/media_ruido_mu/tables/media_ruido_mu_posterior_summary.csv`
 
 ### 9) Coortes de Aposentadoria (Brasil) — 30 anos (retornos reais)
 
@@ -113,8 +113,8 @@ Rscript scripts/_setup/install_cmdstan.R
   - `brms::inhaler` (embutido no pacote **brms**) **ou**
   - `data/raw/inhaler.csv` (opcional, via `--data_path=...`)
 - Saídas (padrão):
-  - `outputs/figures/inhaler_ordinal_plots.pdf`
-  - `outputs/tables/inhaler_ordinal_report.txt`
+  - `outputs/inhaler_ordinal/figures/inhaler_ordinal_plots.pdf`
+  - `outputs/inhaler_ordinal/tables/inhaler_ordinal_report.txt`
 
 ### 12) RS Seguro — séries mensais e perfil da vítima
 
@@ -127,8 +127,8 @@ Rscript scripts/_setup/install_cmdstan.R
   - `data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv`
   - `data/raw/rs_seguro/rs_month_crime.csv` *(opcional / não versionado no repo atual; exigido apenas se `--analysis_layer=crime` no M1)*
 - Saídas (quando rodado via `Rscript`):
-  - `outputs/tables/rs_seguro/*.csv`
-  - `outputs/figures/rs_seguro/*.pdf`
+  - `outputs/rs_seguro/tables/*.csv`
+  - `outputs/rs_seguro/figures/*.pdf`
 
 ### 13) DETER mensal por bioma-UF
 
@@ -143,8 +143,8 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/ipca_sidra_1419/ipca_sidra_1419_cmdstanr.R`
 - Dados: consulta online ao SIDRA/IBGE *(tabelas 1737 e 7060)*
 - Saídas opcionais:
-  - `outputs/tables/ipca_sidra_1419/ipca_sidra_1419_report.txt`
-  - `outputs/tables/ipca_sidra_1419/*.csv`
+  - `outputs/ipca_sidra_1419/tables/ipca_sidra_1419_report.txt`
+  - `outputs/ipca_sidra_1419/tables/*.csv`
 
 ### 15) Censo Escolar 2021-2025 -> tempo integral na rede pública
 
@@ -152,8 +152,8 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R`
 - Dados: downloads oficiais do INEP com cache local em `data/raw/censo_escolar/` *(ignorado no git)*
 - Saídas opcionais:
-  - `outputs/tables/censo_escolar_tempo_integral/censo_escolar_tempo_integral_report.txt`
-  - `outputs/tables/censo_escolar_tempo_integral/*.csv`
+  - `outputs/censo_escolar_tempo_integral/tables/censo_escolar_tempo_integral_report.txt`
+  - `outputs/censo_escolar_tempo_integral/tables/*.csv`
 
 ### 16) SAT — seleção Bayesiana de variáveis
 
@@ -168,8 +168,8 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/fruitflies_aft/fruitflies_aft_lognormal_cmdstanr.R`
 - Dados: `Stat2Data::FruitFlies`
 - Saídas opcionais:
-  - `outputs/figures/fruitflies_aft/fruitflies_aft_plots.pdf`
-  - `outputs/tables/fruitflies_aft/fruitflies_aft_report.txt`
+  - `outputs/fruitflies_aft/figures/fruitflies_aft_plots.pdf`
+  - `outputs/fruitflies_aft/tables/fruitflies_aft_report.txt`
 
 ### 18) PNAD Contínua — desocupação
 
@@ -215,9 +215,9 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R`
 - Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
 - Saídas padrão:
-  - `outputs/tables/retractions_time_to_retraction/*.csv`
-  - `outputs/tables/retractions_time_to_retraction/retractions_time_to_retraction_report.txt`
-  - `outputs/figures/retractions_time_to_retraction/*.png`
+  - `outputs/retractions_time_to_retraction/tables/*.csv`
+  - `outputs/retractions_time_to_retraction/tables/retractions_time_to_retraction_report.txt`
+  - `outputs/retractions_time_to_retraction/figures/*.png`
 
 ### 21) Retratações científicas globais — tendência temporal
 
@@ -239,10 +239,10 @@ Rscript scripts/_setup/install_cmdstan.R
 - Entrada: `scripts/consumer_shopping_trends_beta/consumer_shopping_trends_beta_rstan.R`
 - Dados: `data/raw/consumer_shopping_trends/Consumer_Shopping_Trends_2026 (6).csv` *(externo / não versionado; ver documentação local)*
 - Saídas padrão:
-  - `outputs/tables/consumer_shopping_trends_beta/*.csv`
-  - `outputs/tables/consumer_shopping_trends_beta/*.txt`
-  - `outputs/figures/consumer_shopping_trends_beta/*.png`
-  - `outputs/models/consumer_shopping_trends_beta/*.rds`
+  - `outputs/consumer_shopping_trends_beta/tables/*.csv`
+  - `outputs/consumer_shopping_trends_beta/tables/*.txt`
+  - `outputs/consumer_shopping_trends_beta/figures/*.png`
+  - `outputs/consumer_shopping_trends_beta/models/*.rds`
 - Observação: usa **rstan**; o modelo Stan é compilado em memória e não grava arquivo `.stan`
 
 ### 24) Importações anuais por país — World Bank + Stan
@@ -252,9 +252,9 @@ Rscript scripts/_setup/install_cmdstan.R
 - Modelo Stan: `scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.stan`
 - Dados: `data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv`
 - Saídas padrão:
-  - `outputs/tables/importacoes_world_bank/**/*.csv`
-  - `outputs/figures/importacoes_world_bank/**/*.png`
-  - `outputs/models/importacoes_world_bank/cmdstan_csv/*.csv`
+  - `outputs/importacoes_world_bank/tables/**/*.csv`
+  - `outputs/importacoes_world_bank/figures/**/*.png`
+  - `outputs/importacoes_world_bank/cmdstan_csv/*.csv`
 - Observação: usa **cmdstanr**; não salva objetos `.rds` por padrão. A auditoria MCMC é feita por CSVs do CmdStan, tabelas de diagnóstico, logs e configurações exportadas.
 
 ### 26) Exercises Dataset — dificuldade, cobertura e modelagem ordinal
@@ -284,6 +284,7 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/sherlock_holmes_terms/figures/*.png`
   - `outputs/sherlock_holmes_terms/logs/*.csv`
   - `outputs/sherlock_holmes_terms/cmdstan_csv/*.csv`, apenas quando `--run_stan=1`
+  - `outputs/sherlock_holmes_terms/models/*.rds`, quando o ajuste Stan é executado
 - Observação: por padrão o script recompõe auditorias, tabelas finais e figuras a partir dos artefatos auditáveis versionados; use `--run_stan=1` para reexecutar a amostragem com **cmdstanr**.
 
 ### 28) IOM Missing Migrants Project — mortos e desaparecidos por rota-mês
