@@ -1,6 +1,6 @@
 # Tests
 
-Testes são opcionais neste repositório (que é focado em scripts).
+O repositório é focado em scripts, mas os testes estruturais são executados automaticamente pelo CI.
 
 Os testes em `tests/testthat/` cobrem smoke checks de estrutura do repo, documentação do índice principal, contratos mínimos de estudos específicos e a convenção `outputs/<estudo>/<tipo>/`.
 
@@ -11,3 +11,7 @@ Rscript tests/run_tests.R
 ```
 
 Se não houver testes, o runner apenas informa e encerra.
+
+## CI
+
+O workflow `.github/workflows/ci.yml` valida a sintaxe de todos os scripts R e executa este runner em pushes e pull requests para `main`.
