@@ -14,4 +14,4 @@ Se não houver testes, o runner apenas informa e encerra.
 
 ## CI
 
-O workflow `.github/workflows/ci.yml` valida a sintaxe de todos os scripts R e executa este runner em pushes e pull requests para `main`.
+O workflow `.github/workflows/ci.yml` valida a sintaxe dos arquivos R em `scripts/` e `tests/` e executa este runner em pushes e pull requests para `main`.
