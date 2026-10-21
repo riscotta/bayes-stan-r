@@ -188,3 +188,9 @@ scripts/prisons_prisoners_unodc/modelo_M3_unsentenced_sex.exe
 scripts/prisons_prisoners_unodc/modelo_M3_unsentenced_sex.hpp
 scripts/prisons_prisoners_unodc/*.o
 scripts/prisons_prisoners_unodc/*.d
+
+
+# Cães F5 — manter fora do Git a base individual E04 e os retornos locais.
+data/raw/caes_raca_f5/base_F5_principal_E04.csv
+scripts/caes_raca_f5/original/E08_MP_Entregaveis/04_dados_imutaveis/
+scripts/caes_raca_f5/original/E08_MP_Entregaveis/07_retornos/

@@ -130,3 +130,8 @@ Antes de adicionar um novo dado bruto a `data/raw/`:
 6. quando aplicável, documentar data de extração, versão, tabela/API e hash.
 
 O CI verifica que todo item de primeiro nível versionado em `data/raw/` esteja coberto pelo inventário.
+
+
+### Darwin's Ark — cães, raça declarada e F5
+
+Fonte: Morrill et al. (2022), [Dryad DOI 10.5061/dryad.g4f4qrfr0](https://doi.org/10.5061/dryad.g4f4qrfr0). Em `data/raw/caes_raca_f5/` há **somente resultados agregados auditados**. A base por animal E04 e os retornos completos do CmdStan permanecem fora do Git. A reutilização dos registros originais deve observar os termos da fonte; a licença MIT do código autoral não transfere direitos sobre dados de terceiros. Limites científicos: `scripts/caes_raca_f5/README.md`.

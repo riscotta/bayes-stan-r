@@ -1,0 +1,170 @@
+{
+  "id": "ESTUDO_CAES_RACA_F5_E06",
+  "versao": "1.0",
+  "data": "2026-10-15",
+  "etapa": "E06",
+  "status": "ESPECIFICADO_SEM_AJUSTE",
+  "proveniencia": {
+    "pacote_E05_sha256": "c8ce471e5610371f0f85a036cfe842ba7346aabef5bbd80c1a5fd6b637b800cd",
+    "pacote_E04_sha256": "4c0d0167145870da4955f123b114db9c8eb90cf5b564df73175ee0dbf92e0c7b",
+    "fonte_base": "saida/base_F5_principal_E04.csv dentro de E04 dentro de E05",
+    "fonte_F4": "saida/base_F4_observado_mesma_coorte_E04.csv dentro de E04 dentro de E05"
+  },
+  "pergunta": "A raça pura declarada pelo tutor acrescenta capacidade preditiva fora da amostra para o escore F5, além de características individuais?",
+  "tipo_inferencia": "preditiva_associativa_nao_causal",
+  "populacao_alvo": "Cães com F5 observado, declarados de raça pura, raça nomeada e características básicas completas, em registros semelhantes aos observados na fonte Darwin’s Ark; não se estende automaticamente à população canina geral.",
+  "unidade": "dog_id (cão)",
+  "amostra_principal": {
+    "n_esperado": 2084,
+    "racas_esperadas": 196,
+    "criterios": "Conforme E04, não refazer seleção usando desfecho; um cão por registro",
+    "desfecho": "f5_score_norm",
+    "orientacao": "maior = polo diffident, não corresponde a ocorrência de agressão/mordida"
+  },
+  "features_basicas": {
+    "proibidas": [
+      "dog_id",
+      "f4_score_norm",
+      "itens_answers",
+      "n_respostas_observadas",
+      "itens_da_escala_F5",
+      "flags_elegibilidade",
+      "n_pares_resposta_conflitante"
+    ],
+    "permitidas": [
+      "sex",
+      "size",
+      "sterilized",
+      "f5_age_years"
+    ],
+    "sex": {
+      "referencia": "female",
+      "indicador": [
+        "male"
+      ]
+    },
+    "size": {
+      "referencia": "2",
+      "dummies": [
+        "0",
+        "1",
+        "3",
+        "4"
+      ],
+      "interpretacao": "códigos categóricos, sem kg"
+    },
+    "sterilized": {
+      "referencia": "yes",
+      "indicador": [
+        "no"
+      ]
+    },
+    "idade": {
+      "transformacao": "z=(idade-media_idade_treino)/dp_amostral_idade_treino; termos z e z^2; treino apenas; se dp<=0 interromper"
+    },
+    "ordem_X": [
+      "male",
+      "size_0",
+      "size_1",
+      "size_3",
+      "size_4",
+      "sterilized_no",
+      "age_z",
+      "age_z_sq"
+    ],
+    "n_colunas": 8
+  },
+  "modelos": {
+    "M0": {
+      "classe": "média treino",
+      "definicao": "Predição constante = média de F5 no treino de cada fold; sem Stan",
+      "comparador": "referência sem covariáveis"
+    },
+    "M1": {
+      "classe": "regressão bayesiana Student-t",
+      "likelihood": "F5_i | x_i, alpha,beta,sigma ~ Student_t(nu=5, mu_i, sigma); mu_i=alpha+x_i beta",
+      "priors": [
+        "alpha ~ Normal(0,1.5)",
+        "beta_k ~ Normal(0,0.5) independentemente",
+        "sigma ~ half-Normal(0,1.0)"
+      ],
+      "parametros": "sigma>0; nu=5 fixo; resultado em F5 original"
+    },
+    "M2": {
+      "classe": "regressão bayesiana Student-t hierárquica com intercepto de raça",
+      "likelihood": "F5_i ~ Student_t(nu=5, mu_i, sigma); mu_i=alpha+x_i beta+u[raca_i]",
+      "hierarquia": "u_j = tau*z_j, z_j~Normal(0,1) (não centrada), tau~half-Normal(0,0.5)",
+      "priors": [
+        "alpha ~ Normal(0,1.5)",
+        "beta_k ~ Normal(0,0.5) independentemente",
+        "sigma ~ half-Normal(0,1.0)",
+        "tau ~ half-Normal(0,0.5)",
+        "z_j ~ Normal(0,1) independentemente"
+      ],
+      "raça_nova": "Para a raça ausente do treino, E[u_new|treino]=0 para previsão pontual; incerteza preditiva deve marginalizar u_new~Normal(0,tau), e não inventar coeficiente ou usá-la como categoria observada."
+    }
+  },
+  "estimandos": {
+    "primario": "Delta_RMSE = RMSE_OOF(M1) - RMSE_OOF(M2). Delta>0 representa redução de erro pela raça no conjunto de validação interna.",
+    "secundarios": [
+      "Delta_MAE = MAE_OOF(M1)-MAE_OOF(M2)",
+      "Delta_logscore = média logdens_OOF(M2)-média logdens_OOF(M1)",
+      "RMSE(M0) para escala de comparação",
+      "tau como heterogeneidade residual por raça, não como ganho preditivo em si"
+    ],
+    "padrao_agregacao": "Cada repetição: prever cada cão uma vez. Métrica principal = média dos dois RMSE por repetição; NÃO computar pseudoamostra de 4.168 cães independentes.",
+    "sem_limite_clinico": "Não fixar limiar clínico de relevância sem função de utilidade válida; magnitude em unidades F5 e variação relativa versus M1, sem alegar utilidade individual."
+  },
+  "validacao": {
+    "metodo": "5-fold randomizado por cão, 2 repetições, folds congelados antes do ajuste",
+    "K": 5,
+    "repeticoes": 2,
+    "seeds": [
+      20261015,
+      20261016
+    ],
+    "geracao_folds": "Para cada repetição e cão: SHA256(string seed + \":\" + dog_id); ordenar por digest hexadecimal e depois dog_id; fold=(posicao base 0 mod 5)+1",
+    "holdout_externo": false,
+    "folds_em": "saida/folds_E06.csv",
+    "preprocessamento": "Estimativas de escalonamento e todos os parâmetros aprendidos só com treino do fold; tratar categoria de raça inédita no teste sem vazamento. Nenhuma predição pode usar respostas ou F4 como feature de F5.",
+    "avaliacao": "Predição média posterior pontual; densidade Student-t integrada sobre draws de parâmetros, e u_new quando raça desconhecida.",
+    "incerteza": "Bootstrap pareado de cães (id como bloco), 2.000 réplicas seed 20261017 sobre perdas OOF pareadas por repetição; intervalo percentil 95% descritivo. Dependência entre folds e possíveis cães do mesmo tutor não observados impedem leitura ingênua do intervalo como cobertura garantida.",
+    "estratos_exploratorios": [
+      "raça presente no treino versus inédita",
+      "contagem de treino da raça 1-4, 5-19, >=20",
+      "sexo, porte, faixas etárias (sem ranqueamento racial)"
+    ],
+    "resultado_aceitavel": "Relatar delta, intervalo bootstrap, ganho relativo e resultados por repetição; não transformar diferença negativa ou inconclusiva em ganho comprovado."
+  },
+  "sensibilidades": {
+    "S1": "Mesmo desenho/folds, M1 e M2 com likelihood Normal em vez de Student_t(5): robustez à cauda negativa.",
+    "S2": "Região e ambiente como covariáveis categóricas e categoria explícita de ausência, no mesmo n=2084, com nova comparação M1 versus M2; níveis raros agrupados por regra definida somente no treino se indispensável.",
+    "S3": "Repetir M1 versus M2 nos 2407 cães raciais, criando nível ausente para sexo, porte e castração, sem excluir 323 registros; idade presente conforme E04; não interpretar como correção comprovada de seleção.",
+    "S4": "F4 Biddability como desfecho separado na subamostra n=2012, usando f4_age_years (não f5_age_years), folds E06 filtrados por dog_id e especificação M1/M2 análoga. É teste de especificidade, não controle negativo causal.",
+    "S5": "Prior de tau mais concentrado half-Normal(0,0.25) e mais disperso half-Normal(0,1.0), sempre reavaliando em folds; não selecionar retrospectivamente só melhor especificação."
+  },
+  "checagens_modelagem_E07": [
+    "Validar esquema, níveis fixos e IDs; checar ausência de F5/F4 nos preditores",
+    "Verificar treinos e testes exaustivos, disjuntos e sementes",
+    "Simular priors antes de ajuste: plausibilidade da faixa preditiva, destacando idade extrema",
+    "Compilar Stan conforme versão real, pedantic e smoke test",
+    "Executar MCMC com configuração efetiva registrada; avaliar R-hat, ESS bulk/tail, MCSE, divergências, treedepth e E-BFMI",
+    "Calcular PPC, cobertura 50/90%, concentração de resíduos e caudas",
+    "Calcular OOF, métricas pares, grupos de suporte e sensibilidade",
+    "Preservar CSVs do CmdStan e outputs auditáveis sem fit .rds pesado"
+  ],
+  "limites": [
+    "Amostra selecionada de 2084 cães; não amostra probabilística de todos os cães",
+    "Raça autodeclarada, não ancestralidade genética aferida",
+    "F5 é escore psicométrico e não incidente de agressão",
+    "Sem identificador de tutor: CV por cão pode superestimar generalização para tutores novos",
+    "Ausências em outras covariáveis e 323 registros excluídos por completude",
+    "Categorização size sem semântica física documentada",
+    "Não existe estimando causal nem identificação genética independente da criação/ambiente"
+  ],
+  "gates": {
+    "E06": "Especificação congelada, fold design efetivamente gerado/reconciliado e artefatos documentalmente validados. Não significa modelo ajustado.",
+    "E07": "Necessita R/cmdstanr ou implementação justificada, compilação, estimação, predições, logs e diagnósticos.",
+    "E08": "Avalia correção, posterior, PPC, generalização, sensibilidade e fragilidades."
+  }
+}

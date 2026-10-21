@@ -326,6 +326,16 @@ Rscript scripts/_setup/install_cmdstan.R
   - `outputs/prisons_prisoners_unodc/cmdstan_csv/`, apenas quando `--run_stan=1`
 - Observação: por padrão o script recompõe a síntese final sem reamostrar; use `--run_stan=1` para reexecutar M1 REV5, M2 REV4.1 e M3 REV4.1 com **cmdstanr**.
 
+### 31) Estudo dos Cães — raça declarada e previsão do F5
+
+- Pasta: `scripts/caes_raca_f5/`
+- Entrada: `scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R`
+- Modelos Stan: `scripts/caes_raca_f5/original/E08_MP_Entregaveis/` (M1/M2 históricos; skew-normal E08_MP)
+- Resultados auditados: `data/raw/caes_raca_f5/resultados_auditados/`
+- Base E04 individual: **externa / não versionada**
+- Saídas regeneráveis: `outputs/caes_raca_f5/tables/` e `outputs/caes_raca_f5/logs/`
+- Execução padrão verifica métricas auditadas sem Stan; `--run_stan=1` reamostra com os códigos originais e a base local íntegra. Calibração condicional e generalização externa **não validadas**.
+
 ## Convenções
 
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)

@@ -411,3 +411,22 @@ Rscript scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R --run
 ```
 
 A execução padrão recompõe e valida a síntese final a partir de artefatos auditados. O modo `--run_stan=1` usa os dados Stan congelados e as especificações finais M1 REV5 / M2-M3 REV4.1. O estudo é descritivo/associativo: não sustenta causalidade nem generalização validada para países novos.
+
+
+## Estudo incluído: Cães — raça declarada e escore F5 (Darwin's Ark)
+
+Estudo bayesiano com regressão hierárquica para avaliar se a **raça pura declarada pelo tutor** acrescenta capacidade preditiva ao escore F5 (*Agonistic Threshold*) além de idade, sexo, porte e esterilização. Coorte de **2.084 cães / 196 raças**, cinco folds internos. Redução de RMSE: **0,85%–1,41%**, dependendo da família preditiva, sem calibração condicional geral, causalidade genética ou generalização externa demonstradas.
+
+- Entrada: `scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R`
+- Código R/Stan histórico: `scripts/caes_raca_f5/original/E08_MP_Entregaveis/`
+- Resultados auditáveis não individualizados: `data/raw/caes_raca_f5/resultados_auditados/`
+- Relatório: `reports/caes_raca_f5/relatorio_cientifico.md`
+- Base E04 individual e CSVs brutos das cadeias: **não versionados**.
+
+Para conferir a síntese sem reamostragem:
+
+```bash
+Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R
+```
+
+Para reexecutar os 30 ajustes com `--run_stan=1`, é necessária a base E04 original, fornecida separadamente e conferida por SHA-256, mais R/cmdstanr e CmdStan. Os detalhes e as ressalvas estão no README local.
