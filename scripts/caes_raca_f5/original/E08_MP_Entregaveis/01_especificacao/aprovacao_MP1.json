@@ -1,0 +1,19 @@
+{
+  "aprovado": true,
+  "autorizacao": "AJUSTES_E08_MP_APROVADOS",
+  "sha256_aditivo": "de37f4af702e04d96c16243af19aaf02b67505025a327680cf96a12e2bd64907",
+  "sha256_configuracao": "fa93550007758c6ea2851c614c4834918b4fe988307428daf65f9dda3bfcb1fa",
+  "estado": "MP1_V1_1_CONGELADO_USUARIO_SIM_2026_10_19",
+  "observacao": "Nao ativar somente por comando MP1; requer aprovacao expressa C0+C1, priors e desenho revisados.",
+  "decisao_usuario": "Sim: aprovados comparadores C0 Student-t(5)/Normal, candidata C1 skew-normal, lambda N(0,1.5^2), cinco folds por cao e limites internos; inicio de MP2 autorizado.",
+  "data_aprovacao": "2026-10-19",
+  "origem_registro": "Confirmacao explicita na presente conversa",
+  "proveniencia_zip_MP1_v1_1_sha256": "750c6e26f5590f21ec70393d75316335b57b176d3baeeb9e7d3da395879193c0",
+  "escopo_nao_autorizado": [
+    "E09",
+    "E10",
+    "alteracoes E06 E07",
+    "candidatas C2 skew-t suportes limitados",
+    "selecao pos-resultados"
+  ]
+}

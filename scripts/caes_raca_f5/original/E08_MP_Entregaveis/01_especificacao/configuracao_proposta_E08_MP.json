@@ -1,0 +1,23 @@
+{
+  "id": "E08_MP_C1_SEM_AJUSTE",
+  "status": "PROPOSTO_NAO_CONGELADO",
+  "estudo": "f5_score_norm",
+  "K_outer": 5,
+  "repeticoes_outer": 1,
+  "seed_outer": 20261021,
+  "seed_prior": 20261022,
+  "seed_smoke": 20261023,
+  "seed_full": 20261024,
+  "seed_bootstrap": 20261025,
+  "chains": 4,
+  "warmup": 1000,
+  "sampling": 1000,
+  "draw_limit": 1000,
+  "bootstrap_B": 2000,
+  "adapt_delta": 0.95,
+  "max_treedepth": 12,
+  "familias_full": ["t5", "normal", "skew"],
+  "comparacoes": ["M1", "M2"],
+  "status_modelos": "Prototipos de implementacao; exigir decisao MP1 antes dos ajustes",
+  "observacao": "C0 t5/normal sao reestimados nos novos folds para comparacao justa. C1 skew-normal e nova. Sem selecao adaptativa/tuning; sem holdout independente."
+}
