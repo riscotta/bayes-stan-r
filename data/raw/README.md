@@ -1,6 +1,8 @@
 # Datasets (raw)
 
-Esta pasta contém dados **brutos** usados pelos exemplos em `scripts/`.
+Esta pasta contém os dados de entrada dos estudos em `scripts/`. Há também exceções históricas de preservação em subpastas como `resultados_auditados/` e `model_inputs/`: esses arquivos são **derivados**, não dados brutos. Novas saídas regeneráveis devem ser geradas sob `outputs/<estudo>/<tipo>/` ou `data/processed/`, conforme sua finalidade.
+
+**Atenção à redistribuição:** um arquivo estar versionado **não comprova** que seu uso por terceiros esteja autorizado. Antes de baixar, publicar novamente ou ampliar uma fonte, consulte [o inventário de proveniência](../DATA_PROVENANCE.md), especialmente as entradas `review_required`. A licença MIT do código não se aplica automaticamente aos datasets.
 
 A ideia é: **não editar manualmente** os arquivos aqui. Se precisar limpeza, transformação ou feature engineering, gere um arquivo derivado em `data/processed/` (ou salve em `outputs/` se for algo específico do experimento).
 
