@@ -9,11 +9,14 @@ testthat::test_that("manifesto cobre exatamente os arquivos de dados versionados
   testthat::expect_true(all(grepl("^[a-f0-9]{40}$", manifest$git_blob_sha)))
 
   listing <- suppressWarnings(system2(
-    "git", c("ls-files", "--stage", "--", "data/raw"), stdout = TRUE, stderr = TRUE))
+    "git", c("-c", "safe.directory=*", "ls-files", "--stage", "--", "data/raw"), stdout = TRUE, stderr = TRUE))
   status <- attr(listing, "status")
-  testthat::expect_true(is.null(status) || status == 0L)
+  if (!is.null(status) && status != 0L) {
+    testthat::fail(paste0("Não foi possível consultar o índice Git (status ", status,
+                         "): ", paste(head(listing, 3L), collapse = "; ")))
+  }
   matched <- regmatches(listing,
-    regexec("^[0-7]{6} ([[:xdigit:]]{40}) 0\\t(.+)$", listing))
+    regexec("^[0-7]{6} ([[:xdigit:]]{40}) 0\\t(.+)$", listing, perl = TRUE))
   records <- Filter(function(x) length(x) == 3L, matched)
   paths <- vapply(records, function(x) x[[3]], character(1))
   shas <- tolower(vapply(records, function(x) x[[2]], character(1)))
