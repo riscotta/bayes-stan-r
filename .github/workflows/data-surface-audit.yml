@@ -1,0 +1,27 @@
+name: Data surface audit
+
+on:
+  pull_request:
+    paths:
+      - "data/raw/**"
+      - "scripts/_setup/audit_data_privacy_surface.py"
+      - ".github/workflows/data-surface-audit.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/raw/**"
+      - "scripts/_setup/audit_data_privacy_surface.py"
+      - ".github/workflows/data-surface-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect only CSV headers and archive metadata
+        run: python3 scripts/_setup/audit_data_privacy_surface.py

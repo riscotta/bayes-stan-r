@@ -1,0 +1,7 @@
+# Revisão de datasets e infraestrutura por responsável do repositório.
+# Para tornar esta revisão obrigatória, configurar regras de proteção da main.
+/data/raw/ @riscotta
+/data/DATA_PROVENANCE.csv @riscotta
+/data/TRACKED_DATA_MANIFEST.csv @riscotta
+/data/RAW_DATA_REVIEW_2026-10-28.md @riscotta
+/tests/testthat/test-data-file-manifest.R @riscotta

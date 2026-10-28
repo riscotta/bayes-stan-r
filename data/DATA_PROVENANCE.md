@@ -140,3 +140,19 @@ Fonte: Morrill et al. (2022), [Dryad DOI 10.5061/dryad.g4f4qrfr0](https://doi.or
 ### São Paulo — Mortalidade 0–74 (APVP/PRO-AIM e SEADE)
 
 Indicadores agregados da E09 (2006–2023) em `data/raw/mortalidade_sp_0_74/resultados_auditados/`. Fontes: contagem de óbitos APVP/PRO-AIM; denominadores estimados SEADE. **Base original e E04 celular não versionadas.** Compatibilidade territorial distrital histórica, licença de redistribuição dos extratos originais e reconstrução desde os primários ainda não verificadas. Somente sínteses numéricas agregadas são publicadas; a licença MIT do código não abrange automaticamente material de terceiros. Consulte o [README do estudo](../scripts/mortalidade_sp_0_74/README.md).
+
+## Revisão dirigida em 28/10/2026
+
+O [registro de decisões de publicação](RAW_DATA_REVIEW_2026-10-28.md) diferencia **licença da fonte**, **rastreabilidade da cópia** e **autorização institucional**. O [manifesto de arquivos](TRACKED_DATA_MANIFEST.csv) preserva os SHA Git e tamanhos dos 116 arquivos de dados versionados na data da revisão. A aprovação automática de testes **não** equivale a autorização para publicar.
+
+### Evidência oficial adicional: Dryad
+
+A página do [dataset Morrill et al., 2022](https://datadryad.org/dataset/doi%3A10.5061/dryad.g4f4qrfr0) identifica a origem do estudo de cães e a [política oficial de reutilização](https://datadryad.org/help/guides/reuse) informa **CC0 1.0** para datasets publicados no Dryad. Esta confirmação foi registrada na entrada `caes_raca_f5`, sem mudar seu estado `aggregates_only`. **Não** se estende automaticamente a materiais de outros repositórios, nem atesta uma verificação dos dados brutos por animal, que não estão versionados.
+
+### Fontes públicas não identificam necessariamente os arquivos internos
+
+- [SSP/RS — dados abertos](https://ssp.rs.gov.br/dados-abertos) disponibiliza dados públicos; **não** foi demonstrada identidade entre esses arquivos e os dois CSVs locais do estudo RS Seguro.
+- [World Bank — summary terms](https://data.worldbank.org/summary-terms-of-use) estabelece CC BY 4.0 por padrão, salvo metadados; as colunas adicionadas ao arquivo enriquecido continuam sem cadeia completa.
+- O [diretório ICRC do Missing Migrants Project](https://missingpersons.icrc.org/directory/iom-missing-migrants-project) menciona CC BY 4.0 para dados MMP, mas esta referência **secundária** não confirma a versão exata do CSV republicado nem substitui a verificação dos termos primários da IOM.
+
+**Os registros `review_required` permanecem pendentes.** A inspeção de nomes de colunas em alguns CSVs não é análise de anonimização nem verificação de direitos autorais; o conteúdo do ZIP ISUS/SIA e da planilha de mortalidade não foi examinado integralmente nesta etapa.
