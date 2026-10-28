@@ -60,3 +60,7 @@ O controle é preventivo em futuras propostas de alteração; ele não revoga o 
 ## Regra para resolução da Issue #14
 
 Para cada linha `review_required`, exigir: fonte original identificável, versão/data de extração, termos ou autorização aplicáveis, processo de transformação, checagem de dados pessoais/sigilo, decisão documentada de publicação. Para os extratos institucionais, a decisão final depende da autoridade responsável. Não fazer limpeza destrutiva do histórico sem antes avaliar dependências, cópias e procedimento de resposta a incidentes.
+
+### Auditoria automatizada de superfície (não conclusiva)
+
+O workflow [Data surface audit](../.github/workflows/data-surface-audit.yml) executa `scripts/_setup/audit_data_privacy_surface.py` sobre arquivos já públicos: lê apenas cabeçalhos CSV e metadados de ZIP/XLSX, e inspeciona cabeçalhos de arquivos textuais internos aos ZIPs. Não imprime linhas de dados ou nomes de campos, não extrai arquivos, não identifica pessoas, não avalia relações entre registros e **não substitui a inspeção local pelo responsável**. Para XLSX, não interpreta as planilhas armazenadas em XML. Sinais de colunas potencialmente identificáveis são avisos, não validação jurídica ou homologação.
