@@ -42,7 +42,7 @@ O pacote integral de origem passou por verificação de **105 arquivos e 0 incid
 Se `obitos` representa Y e `populacao` representa P na célula distrito d, ano t, sexo s, faixa a, calculamos a **taxa bruta anual** assim:
 
 $$
-R_t=100.000\frac{\sum_{d,s,a}Y_{dtsa}}{\sum_{d,s,a}P_{dtsa}}.
+R_t=10^{5}\,\frac{\sum_{d,s,a}Y_{dtsa}}{\sum_{d,s,a}P_{dtsa}}.
 $$
 
 Em 2019, por exemplo, `obitos` somam 42.225 e `populacao` soma 10.999.233, resultando em **383,89 óbitos por 100 mil habitantes estimados na faixa de 0–74 anos**. Uma taxa populacional não deve ser obtida pela média simples de taxas dos 96 distritos ou das 2.880 células anuais: cada célula possui um denominador diferente.
@@ -53,7 +53,7 @@ Para comparar anos com **a mesma distribuição idade × sexo**, utilizamos a pa
 
 $$
 w_{sa}^{2019}=\frac{\sum_d P_{d,2019,s,a}}{\sum_{d,s,a}P_{d,2019,s,a}},\qquad
-R_t^{pad2019}=100.000\sum_{s,a}w_{sa}^{2019}\frac{\sum_dY_{dtsa}}{\sum_dP_{dtsa}}.
+R_t^{pad2019}=10^{5}\sum_{s,a}w_{sa}^{2019}\frac{\sum_dY_{dtsa}}{\sum_dP_{dtsa}}.
 $$
 
 Os **30 pesos fixos** somam 1. É uma convenção analítica interna, **não** um padrão epidemiológico oficial. Ela mantém idêntica a composição por idade e sexo, mas não elimina incerteza de limites distritais, denominadores, registro ou causas de morte.
@@ -77,7 +77,7 @@ Os **30 pesos fixos** somam 1. É uma convenção analítica interna, **não** u
 
 ## 3. Separação exata: mudança das taxas versus mudança da composição
 
-Uma padronização fixa é uma primeira comparação. Para separar **algebricamente** os dois componentes de uma diferença bruta, aplicamos uma decomposição simétrica (forma de Kitagawa) para cada estrato k = sexo × faixa etária. Escrevemos `r_{tk}` para a taxa específica por 100 mil e `w_{tk}` para o peso do estrato na população anual. Entre dois anos 0 e 1:
+Uma padronização fixa é uma primeira comparação. Para separar **algebricamente** os dois componentes de uma diferença bruta, aplicamos uma decomposição simétrica (forma de Kitagawa) para cada estrato k = sexo × faixa etária. Escrevemos $r_{tk}$ para a taxa específica por 100 mil e $w_{tk}$ para o peso do estrato na população anual. Entre dois anos 0 e 1:
 
 $$
 \Delta R=R_1-R_0=\Delta R_{\mathrm{taxas}}+\Delta R_{\mathrm{composicao}}.
