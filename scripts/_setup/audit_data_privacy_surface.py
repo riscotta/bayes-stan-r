@@ -64,6 +64,10 @@ def main() -> int:
         direct_columns += direct
         suspect_csvs += bool(direct)
         joint_quasi += quasi >= 3
+        if direct:
+            print(f"::warning file={file.relative_to(ROOT)}::Cabecalho com {direct} nome(s) de campo(s) potencialmente identificaveis; revisar localmente, sem imprimir valores.")
+        if quasi >= 3:
+            print(f"::notice file={file.relative_to(ROOT)}::Tres ou mais quase-identificadores aparentes no cabecalho; avaliar risco de reidentificacao.")
 
     print("Escopo: cabecalhos CSV e metadados de arquivos ZIP/XLSX.")
     print(f"CSV inspecionados: {processed}; arquivos com possiveis nomes de identificadores diretos: {suspect_csvs}; campos sinalizados: {direct_columns}; cabecalhos com tres ou mais quase-identificadores: {joint_quasi}")
