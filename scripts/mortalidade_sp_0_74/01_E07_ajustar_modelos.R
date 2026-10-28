@@ -32,8 +32,9 @@ calc_group<-function(z)c(celulas=nrow(z),obitos=sum(z$obitos),previstos=sum(z$pr
 by_groups<-function(z,columns){
  ix<-interaction(z[,columns,drop=FALSE],drop=TRUE,lex.order=TRUE)
  spl<-split(z,ix,drop=TRUE)
- do.call(rbind,lapply(spl,function(part)
-   cbind(part[1,columns,drop=FALSE],as.data.frame(as.list(calc_group(part)))))
+ do.call(rbind,lapply(spl,function(part) {
+   cbind(part[1,columns,drop=FALSE],as.data.frame(as.list(calc_group(part))))
+ }))
 }
 for(fo in folds){
  tr<-d[d$ano<=fo$cutoff,,drop=FALSE];te<-d[d$ano %in% fo$test,,drop=FALSE]
