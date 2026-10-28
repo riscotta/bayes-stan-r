@@ -14,7 +14,7 @@ A unidade de organização é o **estudo**, não um pacote R. Cada pasta em §sc
 | Inferência hierárquica | [Baseball em três níveis](scripts/hierarchical/README.md) | *Pooling* parcial e heterogeneidade por posição/jogador |
 | Modelagem e interpretação | [Mortalidade 0–74 em São Paulo](scripts/mortalidade_sp_0_74/README.md) | Padronização por idade e sexo, decomposição e limites territoriais; modelo ajustado em R, não em Stan |
 | Avaliação preditiva | [Raça declarada e escore F5 em cães](scripts/caes_raca_f5/README.md) | Ganho pequeno de RMSE e calibração condicional insuficiente |
-| Diagnóstico de modelo | [Missing Migrants, IOM](scripts/missing_migrants/README.md) | Modelo NB2 hierárquico, limitações do registro e falhas de PPC |
+| Diagnóstico de modelo | [IOM Missing Migrants Project](scripts/missing_migrants/README.md) | Modelo NB2 hierárquico, limitações do registro e falhas de PPC |
 
 **[Catálogo completo de scripts, dados e comandos](scripts/README.md)**. Inclui modelos ordinais, sobrevivência, Poisson/NB2, séries temporais, regressão logística, simulações e estudos de saúde, risco, economia e educação.
 
@@ -62,7 +62,7 @@ Resultados históricos auditados publicados dentro de §data/raw/<estudo>/result
 
 **Mortalidade em São Paulo, 2006–2023.** A taxa bruta e a taxa padronizada por idade/sexo levam a conclusões diferentes em alguns intervalos. Os dados distritais usam correspondência territorial provisória; a execução pública **reconstitui indicadores agregados**, não a integração completa dos dados primários. [Relatório científico](reports/mortalidade_sp_0_74/relatorio_cientifico.md) e [caderno E01–E10](reports/mortalidade_sp_0_74/caderno_E01_E10.md).
 
-**Missing Migrants.** A modelagem trata a carga **registrada** de mortos e desaparecidos, não a mortalidade real total. Há ressalvas de §R-hat§ e checagens preditivas dos zeros e da dispersão. [Escopo do estudo](scripts/missing_migrants/README.md).
+**IOM Missing Migrants Project.** A modelagem trata a carga **registrada** de mortos e desaparecidos, não a mortalidade real total. Há ressalvas de §R-hat§ e checagens preditivas dos zeros e da dispersão. [Escopo do estudo](scripts/missing_migrants/README.md).
 
 ## O que é validado automaticamente?
 
