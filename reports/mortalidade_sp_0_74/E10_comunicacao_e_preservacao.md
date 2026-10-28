@@ -22,7 +22,7 @@ Comunicar bem exige declarar **qual população, qual numerador, qual denominado
 
 Para cada ano t e estrato k de sexo × idade, definimos Y(t,k) como a soma de óbitos dos distritos e P(t,k) como a soma das exposições populacionais. A taxa do estrato é r(t,k) = 100.000 × Y(t,k)/P(t,k). Escolhemos w(2019,k) = P(2019,k)/soma_k P(2019,k), que soma 1 entre os 30 estratos. A taxa padronizada de um ano usa soma_k w(2019,k) × r(t,k). Fixar os pesos responde: **como se comparam as taxas específicas se a estrutura por idade e sexo for a mesma?**
 
-No código, essa operação não é `mean(taxa)` nem `sum(óbitos)/sum(população)` aplicado depois de agregações inadequadas. Exige preservar os 30 estratos, estimar as taxas em cada um e recombiná-los com os mesmos pesos. O script `script/03_E09_calcular.R` contém essas operações literais. O arquivo `tabelas/E09_pesos_2019_sexo_idade.csv` permite conferir pesos e cada parcela.
+No código, essa operação não é `mean(taxa)` nem `sum(óbitos)/sum(população)` aplicado depois de agregações inadequadas. Exige preservar os 30 estratos, estimar as taxas em cada um e recombiná-los com os mesmos pesos. O script `scripts/mortalidade_sp_0_74/E09_analise_completa.R` contém essas operações literais. O arquivo `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_pesos_2019_sexo_idade.csv` permite conferir pesos e cada parcela.
 
 A decomposição simétrica responde outra pergunta: quanto da diferença bruta pode ser atribuído *algebricamente* à troca de taxas específicas e quanto à troca de pesos, usando as médias dos dois períodos? Sua soma é uma identidade exata. Não é atribuição causal do envelhecimento nem do período pandêmico.
 
