@@ -430,3 +430,21 @@ Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R
 ```
 
 Para reexecutar os 30 ajustes com `--run_stan=1`, é necessária a base E04 original, fornecida separadamente e conferida por SHA-256, mais R/cmdstanr e CmdStan. Os detalhes e as ressalvas estão no README local.
+
+## Estudo incluído: Mortalidade de 0 a 74 anos em São Paulo (2006–2023)
+
+Estudo exploratório com **padronização direta por idade e sexo**, decomposição simétrica de taxas brutas e avaliação preditiva de modelos de contagem Poisson/NB2. A base derivada original reúne **51.840 células** (96 distritos × 18 anos × dois sexos × 15 faixas etárias), mas a compatibilidade territorial histórica está **pendente de homologação**. Não é estudo causal, não apresenta estatísticas oficiais, e não usou Stan neste ajuste (os modelos foram ajustados em R).
+
+- Script padrão de auditoria e gráficos: [`scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R`](scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R).
+- Código da E09 para recálculo desde a base derivada: [`E09_analise_completa.R`](scripts/mortalidade_sp_0_74/E09_analise_completa.R), dependente dos insumos locais da E07/E08.
+- Resultados agregados congelados e auditados: [`data/raw/mortalidade_sp_0_74/resultados_auditados/`](data/raw/mortalidade_sp_0_74/resultados_auditados/).
+- [Relatório científico](reports/mortalidade_sp_0_74/relatorio_cientifico.md) e [notas de execução/proveniência](scripts/mortalidade_sp_0_74/README.md).
+- Saídas regeneráveis: `outputs/mortalidade_sp_0_74/{tables,figures}/`.
+
+Execução a partir da raiz do repositório:
+
+```bash
+Rscript --vanilla scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R
+```
+
+Essa execução recompõe a síntese a partir das **tabelas agregadas congeladas**, sem refazer a integração territorial ou os ajustes. A base celular E04, os CSVs primários APVP/SEADE, o crosswalk e as cadeias não são redistribuídos; a reprodução desde os registros de origem continua dependente de acesso, revisão de termos e validação científica.
