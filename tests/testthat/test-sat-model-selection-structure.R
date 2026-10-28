@@ -7,7 +7,7 @@ testthat::test_that("SAT está integrado ao padrão do repositório", {
   readme_data <- readLines(file.path("data", "raw", "README.md"), warn = FALSE, encoding = "UTF-8")
   install_deps <- readLines(file.path("scripts", "_setup", "dependencies.R"), warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("SAT com seleção Bayesiana de variáveis", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("SAT — seleção Bayesiana de variáveis", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("sat_stan_model_selection_rstan.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("SAT.csv", readme_data, fixed = TRUE)))
   testthat::expect_true(any(grepl('"rstan"', install_deps, fixed = TRUE)))

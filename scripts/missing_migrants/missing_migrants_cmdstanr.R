@@ -368,7 +368,7 @@ resumo_posterior_path <- first_existing(c(
   file.path(out_tables, "resumo_posterior_cmdstan_reestimado.csv")
 ))
 diag_path <- first_existing(c(
-  file.path(audited_dir, "diagnosticos_mcmc.csv"),
+  file.path(audited_dir, "resumo_posterior_cmdstan.csv"),
   file.path(out_tables, "resumo_posterior_cmdstan_reestimado.csv")
 ))
 ppc_path <- first_existing(c(file.path(audited_dir, "E08_checagem_preditiva_cmdstan_rota.csv")))

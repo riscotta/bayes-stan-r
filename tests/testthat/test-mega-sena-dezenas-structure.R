@@ -12,7 +12,7 @@ testthat::test_that("Mega-Sena: índices documentam o estudo", {
   readme_scripts <- readLines(file.path("scripts", "README.md"), warn = FALSE, encoding = "UTF-8")
   readme_raw <- readLines(file.path("data", "raw", "README.md"), warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("Mega-Sena", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("Mega-Sena", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("mega_sena_dezenas_cmdstanr.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/mega_sena_dezenas/", readme_raw, fixed = TRUE)))
 })

@@ -8,7 +8,7 @@ testthat::test_that("Censo Escolar esta integrado ao padrao do repositorio", {
   readme_data <- readLines(file.path("data", "raw", "README.md"), warn = FALSE, encoding = "UTF-8")
   gitignore <- readLines(".gitignore", warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("Censo Escolar 2021-2025", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("Censo Escolar 2021-2025", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("censo_escolar_tempo_integral_cmdstanr.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/censo_escolar/", readme_data, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/censo_escolar/**", gitignore, fixed = TRUE)))

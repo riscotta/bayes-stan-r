@@ -13,7 +13,7 @@ testthat::test_that("Missing Migrants: índices documentam o estudo", {
   readme_scripts <- readLines(file.path("scripts", "README.md"), warn = FALSE, encoding = "UTF-8")
   readme_raw <- readLines(file.path("data", "raw", "README.md"), warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("IOM Missing Migrants Project", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("IOM Missing Migrants Project", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("missing_migrants_cmdstanr.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/missing_migrants/", readme_raw, fixed = TRUE)))
 })

@@ -1,21 +1,25 @@
-# Tests
+# Testes e validação
 
-O repositório é focado em scripts, mas os testes estruturais são executados automaticamente pelo CI.
+O repositório reúne estudos independentes, não um pacote R. Executar a partir da raiz:
 
-Os testes em `tests/testthat/` cobrem smoke checks de estrutura do repo, documentação do índice principal, contratos mínimos de estudos específicos e a convenção `outputs/<estudo>/<tipo>/`.
-
-Para rodar:
-
-```bash
+§§§bash
 Rscript tests/run_tests.R
-```
+§§§
 
-Se não houver testes, o runner apenas informa e encerra.
+## Cobertura efetiva
 
-## Proveniência de dados
+- **Sintaxe R:** o workflow [R CI](../.github/workflows/ci.yml) faz §parse()§ dos scripts R e dos testes.
+- **Contratos de estudos e dados:** §tests/testthat/§ verifica arquivos, colunas, referências e convenções.
+- **Integridade de links relativos:** §tests/testthat/test-markdown-links.R§ examina destinos Markdown nos documentos do repositório, ignorando blocos de código e URLs HTTP. Não resolve redirecionamentos externos ou links mencionados apenas como texto.
+- **Invariantes numéricos publicados:** testes confrontam identidades de taxas e decomposição do estudo de mortalidade SP, e verificam ganhos/folds/intervalos do estudo de cães F5. São verificações de *agregados já preservados*, não reestimações.
+- **Auditoria pública de São Paulo:** a CI executa o pipeline §--modo=auditar§, que recompõe e confere indicadores congelados. Não recalcula dados primários.
+- **Links externos:** o workflow [External links](../.github/workflows/external-links.yml) roda semanalmente ou manualmente, sem impedir a CI dos PRs. Apenas 404/410 confirmados são falhas; bloqueios HTTP, timeout e rate limits são inconclusivos.
 
-O teste `tests/testthat/test-data-provenance.R` garante que todo item de primeiro nível versionado ou documentado em `data/raw/` esteja coberto por `data/DATA_PROVENANCE.csv` e que registros marcados como versionados apontem para caminhos existentes.
+## Fora da cobertura automática
 
-## CI
+- Instalação integral do §renv.lock§ e compilação/amostragem dos modelos Stan.
+- Recuperação de parâmetros com simulações, SBC, PPC completos e validação preditiva em novos dados para todos os estudos.
+- Reconstituição a partir de bases privadas, externas ou cuja redistribuição não está confirmada.
+- Verificação das licenças de terceiros.
 
-O workflow `.github/workflows/ci.yml` valida a sintaxe dos arquivos R em `scripts/` e `tests/` e executa este runner em pushes e pull requests para `main`.
+Não chamar a aprovação de um teste estrutural de “reprodução integral”. Para uma publicação científica, executar as rotinas estatísticas apropriadas por estudo, preservar sementes, dados de entrada, versões, diagnósticos e comparação de resultados.

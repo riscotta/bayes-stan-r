@@ -6,7 +6,7 @@ A versão estruturada, destinada a validação automática, está em:
 
 `data/DATA_PROVENANCE.csv`
 
-**Data da auditoria:** 2026-10-01.
+**Data da auditoria inicial:** 2026-10-01. **Revisão editorial do inventário:** 2026-10-28 (sem nova homologação de licenças ou permissões).
 
 ## Regra principal
 

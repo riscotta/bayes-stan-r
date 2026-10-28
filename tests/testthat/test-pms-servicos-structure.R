@@ -9,7 +9,7 @@ testthat::test_that("PMS servicos esta integrada ao padrao do repositorio", {
   readme_data <- readLines(file.path("data", "raw", "README.md"), warn = FALSE, encoding = "UTF-8")
   gitignore <- readLines(".gitignore", warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("PMS / Serviços em janeiro de 2026", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("PMS / Serviços em janeiro de 2026", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("pms_servicos_rstan.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/pms_servicos/", readme_data, fixed = TRUE)))
   testthat::expect_false(any(grepl("data/raw/pms_servicos/**", gitignore, fixed = TRUE)))

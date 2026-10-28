@@ -53,19 +53,18 @@ O modelo estatístico usa Poisson e binomial negativa em **R (MASS)**; não há 
 
 ## Continuidade E07–E10 e níveis de reprodução
 
-O código histórico de E07/E08 está preservado em \`01_E07_ajustar_modelos.R\` e \`02_E08_diagnosticar.R\`. O pipeline \`reproduzir_E10.R\` oferece:
+O código histórico de E07/E08 está preservado em `01_E07_ajustar_modelos.R` e `02_E08_diagnosticar.R`. O pipeline `reproduzir_E10.R` oferece:
 
-- \`--modo=auditar\`: **público**, sem base E04, usa indicadores congelados e regenera tabelas/figuras; é executado na CI.
-- \`--modo=conferir\`: exige a **base E04 local** e os quatro CSVs R E07 locais em \`data/raw/mortalidade_sp_0_74/\`. Recalcula diagnósticos E08 e todas as tabelas E09 sem reajustar o modelo.
-- \`--modo=completo\`: exige a **base E04 local** e o pacote R MASS. Reajusta os oito modelos E07 (quatro Poisson e quatro NB2), recalcula E08 em R e E09. Pode haver variação numérica do bootstrap R frente ao histórico NumPy.
+- `--modo=auditar`: **público**, sem base E04, usa indicadores congelados e regenera tabelas/figuras; é executado na CI.
+- `--modo=conferir`: exige a **base E04 local** e os quatro CSVs R E07 locais em `data/raw/mortalidade_sp_0_74/`. Recalcula diagnósticos E08 e todas as tabelas E09 sem reajustar o modelo.
+- `--modo=completo`: exige a **base E04 local** e o pacote R MASS. Reajusta os oito modelos E07 (quatro Poisson e quatro NB2), recalcula E08 em R e E09. Pode haver variação numérica do bootstrap R frente ao histórico NumPy.
 
-\`\`\`bash
+```bash
 Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=auditar
 Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=conferir
 Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=completo
-\`\`\`
+```
 
-Para o modo \`conferir\`, acrescentar localmente, sem publicar: \`base_analitica_celular_PROVISORIA.csv\`, \`E07_R_validacao_anual.csv\`, \`E07_R_calibracao_distrito_ano.csv\`, \`E07_R_calibracao_idade_sexo_ano.csv\`, \`E07_R_diagnosticos_ajuste.csv\`. Todos existem no pacote histórico E10. Os modos \`conferir\` e \`completo\` **não estão comprovados pela CI pública**.
+Para o modo `conferir`, acrescentar localmente, sem publicar: `base_analitica_celular_PROVISORIA.csv`, `E07_R_validacao_anual.csv`, `E07_R_calibracao_distrito_ano.csv`, `E07_R_calibracao_idade_sexo_ano.csv`, `E07_R_diagnosticos_ajuste.csv`. Todos existem no pacote histórico E10. Os modos `conferir` e `completo` **não estão comprovados pela CI pública**.
 
 Os artefatos congelados foram auditados em Python na E10 histórica; os scripts R integrados ao GitHub passam por parse sintático da CI, mas isso não constitui prova de reajuste dos modelos. Veja a [matriz de evidências](../../reports/mortalidade_sp_0_74/matriz_evidencias.md).
-

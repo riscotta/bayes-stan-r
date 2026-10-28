@@ -12,7 +12,7 @@ testthat::test_that("Sherlock Holmes: índices documentam o estudo", {
   readme_scripts <- readLines(file.path("scripts", "README.md"), warn = FALSE, encoding = "UTF-8")
   readme_raw <- readLines(file.path("data", "raw", "README.md"), warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("Sherlock Holmes", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("Sherlock Holmes", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("sherlock_holmes_terms_cmdstanr.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/sherlock_holmes_terms/", readme_raw, fixed = TRUE)))
 })
