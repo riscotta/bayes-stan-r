@@ -11,9 +11,9 @@
 | E03 — Qualidade | Qual é a integridade e onde falha a comparabilidade? | Relatório E04 e auditorias posteriores: contagens, chaves, exposição positiva, territorialidade pendente. Não há capítulo E03 autônomo. |
 | E04 — Base analítica | Como unir óbitos e população? | Script e relatório E04 disponíveis. Base derivada preservada; os três CSVs primários e a homologação territorial estão ausentes. |
 | E05 — Exploração | Que padrões motivam as comparações? | Exploração recuperável das tabelas E06–E09; não há relatório E05 original no pacote. |
-| E06 — Modelo | Que processo de contagem foi adotado? | `fontes_historicas/E06_ESPECIFICACAO_MODELO.md`: Poisson e NB2, exposição, idade, sexo, distrito e tendência. |
+| E06 — Modelo | Que processo de contagem foi adotado? | documento E06 no pacote de continuidade histórico (não versionado neste GitHub): Poisson e NB2, exposição, idade, sexo, distrito e tendência. |
 | E07 — Execução | Quais saídas R foram de fato produzidas? | Script E07 e resultados R E07 com sessionInfo, diagnósticos e validação temporal. Ajuste realizado anteriormente pelo usuário. |
-| E08 — Crítica | As previsões se sustentam? | `fontes_historicas/E08_RELATORIO_FINAL.md`: diagnóstico, bootstrap de cobertura, sensibilidade e limites. |
+| E08 — Crítica | As previsões se sustentam? | documento E08 no pacote de continuidade histórico (não versionado neste GitHub): diagnóstico, bootstrap de cobertura, sensibilidade e limites. |
 
 A unidade **não** é pessoa. Uma linha é uma célula de combinação de atributos. A população anual é denominador aproximado; somá-la por 18 anos produz unidades de exposição somadas, não o número de habitantes de um único ano. O rótulo “APVP” é o tabulador de origem e a coluna `obitos` contém contagens, **não anos potenciais de vida perdidos**. A janela 0–74 é convenção operacional explícita.
 
@@ -24,6 +24,10 @@ Um erro estrutural importante foi identificado na compatibilidade entre códigos
 # E09 — Interpretar a mortalidade observada sem confundir composição, tendência e previsão
 
 **Projeto Kaggle / São Paulo, 2006–2023.** 28 de outubro de 2026. **Modo Estudo.**
+
+
+
+> **Nota de publicação no GitHub:** os gráficos SVG abaixo foram reconstruídos a partir dos CSVs auditados da E09 para leitura no repositório. Os PNGs e o registro histórico de execução continuam preservados no pacote E10 original; a reconstrução visual não altera os resultados.
 
 ## 1. O problema substantivo
 
@@ -37,9 +41,9 @@ O pacote integral de origem passou por verificação de **105 arquivos e 0 incid
 
 Se `obitos` representa Y e `populacao` representa P na célula distrito d, ano t, sexo s, faixa a, calculamos a **taxa bruta anual** assim:
 
-\[
+$$
 R_t=100.000\frac{\sum_{d,s,a}Y_{dtsa}}{\sum_{d,s,a}P_{dtsa}}.
-\]
+$$
 
 Em 2019, por exemplo, `obitos` somam 42.225 e `populacao` soma 10.999.233, resultando em **383,89 óbitos por 100 mil habitantes estimados na faixa de 0–74 anos**. Uma taxa populacional não deve ser obtida pela média simples de taxas dos 96 distritos ou das 2.880 células anuais: cada célula possui um denominador diferente.
 
@@ -47,10 +51,10 @@ A população estudada mudou de composição: a participação estimada das pess
 
 Para comparar anos com **a mesma distribuição idade × sexo**, utilizamos a padronização direta com a população interna de 2019:
 
-\[
+$$
 w_{sa}^{2019}=\frac{\sum_d P_{d,2019,s,a}}{\sum_{d,s,a}P_{d,2019,s,a}},\qquad
 R_t^{pad2019}=100.000\sum_{s,a}w_{sa}^{2019}\frac{\sum_dY_{dtsa}}{\sum_dP_{dtsa}}.
-\]
+$$
 
 Os **30 pesos fixos** somam 1. É uma convenção analítica interna, **não** um padrão epidemiológico oficial. Ela mantém idêntica a composição por idade e sexo, mas não elimina incerteza de limites distritais, denominadores, registro ou causas de morte.
 
@@ -63,7 +67,7 @@ Os **30 pesos fixos** somam 1. É uma convenção analítica interna, **não** u
 | 2022 | 44.914 | 10.895.443 | 412,23 | 388,05 |
 | 2023 | 42.857 | 10.859.080 | 394,67 | 364,64 |
 
-[Figura 1 — evolução bruta e padronizada](../figuras/E09_01_taxa_bruta_vs_padronizada.png). A tabela integral tem todos os 18 anos no arquivo `tabelas/E09_taxas_anuais_e_sensibilidade.csv`.
+![Figura 1 — taxa bruta versus padronizada](figures/E09_01_taxa_bruta_vs_padronizada.svg). A tabela integral contém os 18 anos: [consultar CSV](../../data/raw/mortalidade_sp_0_74/resultados_auditados/E09_taxas_anuais_e_sensibilidade.csv).
 
 **Primeira interpretação:** de 2006 a 2019, a taxa bruta praticamente não mudou (**+0,55 por 100 mil**), enquanto a padronizada com pesos de 2019 caiu **98,65 por 100 mil**, ou cerca de **20,4%** de seu nível em 2006. A estabilidade bruta encobriu a queda das taxas específicas resumidas sob composição fixa.
 
@@ -75,11 +79,19 @@ Os **30 pesos fixos** somam 1. É uma convenção analítica interna, **não** u
 
 Uma padronização fixa é uma primeira comparação. Para separar **algebricamente** os dois componentes de uma diferença bruta, aplicamos uma decomposição simétrica (forma de Kitagawa) para cada estrato k = sexo × faixa etária. Escrevemos `r_{tk}` para a taxa específica por 100 mil e `w_{tk}` para o peso do estrato na população anual. Entre dois anos 0 e 1:
 
-\[
-\underbrace{R_1-R_0}_{\text{diferença observada bruta}}=
-\underbrace{\sum_k(r_{1k}-r_{0k})\frac{w_{1k}+w_{0k}}{2}}_{\text{componente da mudança das taxas}}+
-\underbrace{\sum_k(w_{1k}-w_{0k})\frac{r_{1k}+r_{0k}}{2}}_{\text{componente da composição}}.
-\]
+$$
+\Delta R=R_1-R_0=\Delta R_{\mathrm{taxas}}+\Delta R_{\mathrm{composicao}}.
+$$
+
+$$
+\Delta R_{\mathrm{taxas}}
+=\sum_k (r_{1k}-r_{0k})\,\frac{w_{1k}+w_{0k}}{2}.
+$$
+
+$$
+\Delta R_{\mathrm{composicao}}
+=\sum_k (w_{1k}-w_{0k})\,\frac{r_{1k}+r_{0k}}{2}.
+$$
 
 A igualdade é **exata**, sem termo residual. Os valores abaixo estão em óbitos por 100 mil; eles são componentes matemáticos **descritivos, não causalidade atribuível**.
 
@@ -94,7 +106,7 @@ A queda de **98,65** por 100 mil na padronização fixa de 2019 não é igual ao
 
 Assim, no período **2006–2019**, mudanças de composição e taxas específicas se compensaram quase exatamente. Em **2019–2021**, cerca de **89% da diferença bruta**, por esta regra simétrica de decomposição, foi alocada ao componente das taxas específicas e 11% ao da composição. Em **2019–2023**, o componente de taxas é negativo, mas a composição mais velha contribui positivamente para a taxa bruta. Essas percentagens são **partes de uma identidade aritmética condicionada à estratificação**, não frações de mortes causadas por um fator.
 
-[Figura 4 — decomposição simétrica](../figuras/E09_04_decomposicao_descritiva.png).
+![Figura 4 — decomposição simétrica](figures/E09_04_decomposicao_descritiva.svg).
 
 ## 4. A escolha da população-padrão altera o nível, mas preserva a conclusão principal
 
@@ -117,7 +129,7 @@ No intervalo 2019–2021, as 30 células municipais agregadas por sexo × idade 
 
 Somadas as faixas **55–74 anos dos dois sexos**, a contribuição à variação padronizada de 2019–2021 foi de aproximadamente **98,51 por 100 mil**, representando **64,5%** da diferença padronizada total. Entre os **18.941 óbitos observados adicionais** (2021 menos 2019), **13.043** ocorreram nas faixas de 55–74 anos; essa contagem bruta não é comparável diretamente à contribuição padronizada. Na faixa de **0–4 anos**, a contribuição foi negativa (aproximadamente **−3,14 por 100 mil**). O padrão não autoriza identificar quais causas específicas de morte mudaram.
 
-[Figura 2 — contribuições por faixa etária](../figuras/E09_02_contribuicao_por_idade_2019_2021.png).
+![Figura 2 — contribuições por idade](figures/E09_02_contribuicao_por_idade_2019_2021.svg).
 
 Por sexo, a padronização **da idade dentro de cada sexo** com pesos específicos de 2019 produziu:
 
@@ -134,11 +146,11 @@ A E07 ajustou, **no R do usuário**, modelos Poisson e binomial negativa NB2, us
 
 Na parametrização adotada:
 
-\[
+$$
 Y_i \mid \mu_i,\theta\sim NB2(\mu_i,\theta),\quad
 \mathrm{Var}(Y_i\mid\mu_i)=\mu_i+\frac{\mu_i^2}{\theta},\quad
 \log(\mu_i)=\log(P_i)+\eta_i.
-\]
+$$
 
 A `P_i` entra como exposição conhecida condicionalmente (offset); `mu_i` é **a média prevista de óbitos**, não uma taxa nem um contrafactual causal identificado. A heterogeneidade entre células se expressa em `eta_i`, com idade, sexo, interação, distrito e ano. A NB2 admite variância maior que a Poisson. Isso **não** elimina automaticamente correlação temporal, sub-registro, mudanças territoriais ou choques não representados.
 
@@ -152,7 +164,7 @@ A `P_i` entra como exposição conhecida condicionalmente (offset); `mu_i` é **
 | 2022 | 44.914 | 42.214 | 1,064 | 94,55% |
 | 2023 | 42.857 | 42.180 | 1,016 | 95,69% |
 
-[Figura 3 — observado vs. previsão NB2](../figuras/E09_03_observado_vs_previsto_nb2.png).
+![Figura 3 — observado versus previsto NB2](figures/E09_03_observado_vs_previsto_nb2.svg).
 
 Em **2021**, a diferença é **61.166 − 42.279,93 ≈ 18.886 óbitos**, um desvio **de previsão** de **44,7% do valor previsto**. A soma dos desvios para 2020–2023 é **aproximadamente 30.909 óbitos**. **Nenhum desses valores mede excesso de mortalidade causalmente atribuível à pandemia.** O modelo foi treinado até 2019 e extrapolado por horizontes de um a quatro anos; mudança de regime, horizonte e eventual especificação incorreta estão misturados. A quantidade de **18.941** (diferença de óbitos observados entre 2019 e 2021) e a de **18.886** (desvio contra a previsão NB2) têm definições diferentes, apesar da proximidade numérica.
 
@@ -193,18 +205,18 @@ Também não estão presentes os CSVs primários de óbitos APVP, de populaçõe
 
 Arquivos produzidos:
 
-- `tabelas/E09_taxas_anuais_e_sensibilidade.csv` — 18 anos, taxas e quatro padrões internos.
-- `tabelas/E09_pesos_2019_sexo_idade.csv` — pesos 2019 dos 30 estratos.
-- `tabelas/E09_decomposicao_descritiva_simetrica.csv` — quatro contrastes, identidade numérica verificada.
-- `tabelas/E09_contribuicoes_2019_2021_sexo_idade.csv` e `E09_contribuicoes_2019_2023_sexo_idade.csv` — taxas específicas e contribuições.
-- `tabelas/E09_contribuicoes_2019_2021_faixa_etaria.csv` — resumo por idade.
-- `tabelas/E09_taxas_por_sexo.csv` — séries estratificadas com idade padronizada dentro do sexo.
-- `tabelas/E09_validacao_NB2_e_cobertura.csv` — desempenho e heterogeneidade da cobertura, sem intervalos do total.
-- `figuras/E09_01...04...png` — quatro figuras para estudo.
-- `scripts/E09_auditoria_reproducivel.py` — **executado e conferido** no ambiente do assistente; testa contagens, chaves, somas, pesos, identidade da decomposição e observados contra validação R.
-- `scripts/E09_analise_completa.R` — equivalente **escrito, não executado aqui** (Rscript indisponível). Reproduz as medidas e tabelas a partir do CSV E04 derivado e dos CSVs E07/E08; gráficos podem diferir de aparência.
+- `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_taxas_anuais_e_sensibilidade.csv` — 18 anos, taxas e quatro padrões internos.
+- `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_pesos_2019_sexo_idade.csv` — pesos 2019 dos 30 estratos.
+- `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_decomposicao_descritiva_simetrica.csv` — quatro contrastes, identidade numérica verificada.
+- `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_contribuicoes_2019_2021_sexo_idade.csv` e `E09_contribuicoes_2019_2023_sexo_idade.csv` — taxas específicas e contribuições.
+- `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_contribuicoes_2019_2021_faixa_etaria.csv` — resumo por idade.
+- `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_taxas_por_sexo.csv` — séries estratificadas com idade padronizada dentro do sexo.
+- `data/raw/mortalidade_sp_0_74/resultados_auditados/E09_validacao_NB2_e_cobertura.csv` — desempenho e heterogeneidade da cobertura, sem intervalos do total.
+- `reports/mortalidade_sp_0_74/figures/E09_01...04...svg` — quatro figuras para estudo.
+- `scripts/E09_auditoria_reproducivel.py` (do pacote histórico E09; não versionado neste GitHub) — **executado e conferido** no ambiente do assistente; testa contagens, chaves, somas, pesos, identidade da decomposição e observados contra validação R.
+- `scripts/mortalidade_sp_0_74/E09_analise_completa.R` — equivalente **escrito, não executado aqui** (Rscript indisponível). Reproduz as medidas e tabelas a partir do CSV E04 derivado e dos CSVs E07/E08; gráficos podem diferir de aparência.
 
-Entradas preservadas em `dados/`; **não** foram modificadas. Ver `README.md` para comandos. Não foi feito novo ajuste Poisson, NB2 ou Stan, não foram geradas novas predições nem intervalos inferenciais. A verificação com R ainda depende de uma execução efetiva do script entregue: a concordância Python × R da **E09** não pode ser declarada como testada.
+Entradas preservadas em `dados/`; **não** foram modificadas. Ver [README do estudo](../../scripts/mortalidade_sp_0_74/README.md) para comandos. Não foi feito novo ajuste Poisson, NB2 ou Stan, não foram geradas novas predições nem intervalos inferenciais. A verificação com R ainda depende de uma execução efetiva do script entregue: a concordância Python × R da **E09** não pode ser declarada como testada.
 
 
 ---
@@ -233,7 +245,7 @@ Comunicar bem exige declarar **qual população, qual numerador, qual denominado
 
 Para cada ano t e estrato k de sexo × idade, definimos Y(t,k) como a soma de óbitos dos distritos e P(t,k) como a soma das exposições populacionais. A taxa do estrato é r(t,k) = 100.000 × Y(t,k)/P(t,k). Escolhemos w(2019,k) = P(2019,k)/soma_k P(2019,k), que soma 1 entre os 30 estratos. A taxa padronizada de um ano usa soma_k w(2019,k) × r(t,k). Fixar os pesos responde: **como se comparam as taxas específicas se a estrutura por idade e sexo for a mesma?**
 
-No código, essa operação não é `mean(taxa)` nem `sum(óbitos)/sum(população)` aplicado depois de agregações inadequadas. Exige preservar os 30 estratos, estimar as taxas em cada um e recombiná-los com os mesmos pesos. O script `script/03_E09_calcular.R` contém essas operações literais. O arquivo `tabelas/E09_pesos_2019_sexo_idade.csv` permite conferir pesos e cada parcela.
+No código, essa operação não é `mean(taxa)` nem `sum(óbitos)/sum(população)` aplicado depois de agregações inadequadas. Exige preservar os 30 estratos, estimar as taxas em cada um e recombiná-los com os mesmos pesos. O script [E09_analise_completa.R](../../scripts/mortalidade_sp_0_74/E09_analise_completa.R) contém essas operações literais. O arquivo [E09_pesos_2019_sexo_idade.csv](../../data/raw/mortalidade_sp_0_74/resultados_auditados/E09_pesos_2019_sexo_idade.csv) permite conferir os pesos.
 
 A decomposição simétrica responde outra pergunta: quanto da diferença bruta pode ser atribuído *algebricamente* à troca de taxas específicas e quanto à troca de pesos, usando as médias dos dois períodos? Sua soma é uma identidade exata. Não é atribuição causal do envelhecimento nem do período pandêmico.
 
@@ -246,14 +258,14 @@ Nenhum modelo Stan foi implementado neste estudo. A simples disponibilidade dos 
 ## 5. Três níveis de reprodução diferentes
 
 1. **Recalcular a descrição E09 com entradas congeladas:** possível com `dados/base_analitica_celular_PROVISORIA.csv`, `dados/E07_R_validacao_anual.csv` e `dados/E08_incerteza_cobertura_bootstrap_distrito.csv`. O código Python foi executado anteriormente e a auditoria da E10 reconfirmou os principais números e reexecutou as rotinas Python E08/E09, reproduzindo as tabelas históricas. O script R foi entregue, mas não executado neste ambiente.
-2. **Reajustar E07 e reavaliar E08/E09:** possível *em princípio* desde a base E04 derivada, pelo `script/reproduzir_E10.R --modo=completo`, com R e MASS. Esse caminho não foi executado durante a E10. A reamostragem bootstrap em R usa gerador pseudoaleatório diferente daquele de NumPy; os percentis simulados podem variar ligeiramente. O pipeline não deve ser anunciado como testado enquanto não for efetivamente executado.
+2. **Reajustar E07 e reavaliar E08/E09:** possível *em princípio* desde a base E04 derivada, pelo `scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=completo`, com R e MASS. Esse caminho não foi executado durante a E10. A reamostragem bootstrap em R usa gerador pseudoaleatório diferente daquele de NumPy; os percentis simulados podem variar ligeiramente. O pipeline não deve ser anunciado como testado enquanto não for efetivamente executado.
 3. **Reconstruir desde as fontes primárias:** **ainda não é possível** com este pacote. O script E04 exige `obitos_APVP_2006_2023_0a74.csv`, `populacao_SEADE_2006_2023_0a74_LONG.csv` e `crosswalk_distritos_PROVISORIO.csv`, indisponíveis. A documentação sobre a estabilidade dos limites administrativos históricos e dos denominadores também continua pendente. Sem essas fontes não se certifica a correspondência territorial.
 
 Esses três níveis não são equivalentes. Um teste de consistência de uma base derivada não certifica a origem; uma concordância entre duas implementações não valida pressupostos científicos; e convergência numérica de um ajuste não resolve identificação causal.
 
 ## 6. Como preservar resultados interpretáveis
 
-A unidade principal é este caderno consolidado. Os diretórios `dados/` e `fontes_historicas/` preservam insumos e evidências recebidos; `tabelas/` e `figuras/` são as saídas congeladas da E09; `script/` contém o código R de ajuste e interpretação e a auditoria Python; `execucoes/`, quando criado, registra novas execuções sem substituir a referência. O manifesto SHA-256 identifica byte a byte o conteúdo entregue, não sua qualidade estatística. O arquivo `provas/VALIDACAO_PYTHON_E10.json` contém os testes efetivamente executados na E10.
+A unidade principal é este caderno consolidado. Os diretórios Os diretórios `dados/` e `fontes_historicas/` pertencem ao pacote E10 original. Neste GitHub, os agregados auditados estão em `data/raw/mortalidade_sp_0_74/resultados_auditados/`, as figuras para leitura em `reports/mortalidade_sp_0_74/figures/` e os scripts em `scripts/mortalidade_sp_0_74/`. Saídas regeneráveis são gravadas sob `outputs/mortalidade_sp_0_74/`. O manifesto SHA-256 identifica byte a byte o conteúdo entregue, não sua qualidade estatística. O arquivo `provas/VALIDACAO_PYTHON_E10.json` está no pacote E10 histórico. Aqui, os testes públicos estão em `tests/testthat/test-mortalidade-sp-0-74.R`.
 
 Publicar o repositório não é o mesmo que demonstrar reprodutibilidade desde os dados originais. Se as fontes primárias forem anexadas, reconstruir a E04 em um diretório novo, comparar as chaves e todos os totais, revisar o problema de correspondência territorial e então avaliar se as conclusões agregadas permanecem. Não sobrescrever as evidências congeladas.
 
