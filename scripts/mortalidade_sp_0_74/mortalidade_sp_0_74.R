@@ -36,9 +36,10 @@ if ("--recalcular=1" %in% args) {
   stopifnot(max(abs(dec$parcela_mudanca_taxas_100mil +
                    dec$parcela_composicao_100mil -
                    dec$diferenca_bruta_100mil)) < 1e-7)
-  write.csv(annual, file.path(out, "tables", "E09_taxas_anuais_e_sensibilidade.csv"), row.names = FALSE)
-  write.csv(dec, file.path(out, "tables", "E09_decomposicao_descritiva_simetrica.csv"), row.names = FALSE)
-  write.csv(nb, file.path(out, "tables", "E09_validacao_NB2_e_cobertura.csv"), row.names = FALSE)
+  frozen <- list.files(audit, pattern = "^E09_.*[.]csv$", full.names = TRUE)
+  stopifnot(length(frozen) == 8L)
+  copies <- file.copy(frozen, file.path(out, "tables"), overwrite = TRUE)
+  stopifnot(all(copies))
   png(file.path(out, "figures", "taxa_bruta_vs_padronizada.png"), width = 1100, height = 650, res = 125)
   plot(annual$ano, annual$taxa_bruta_100mil, type = "o", pch = 16,
        xlab = "Ano", ylab = "Óbitos por 100 mil", main = "Mortalidade 0–74 em São Paulo",
@@ -56,5 +57,29 @@ if ("--recalcular=1" %in% args) {
   abline(v = 2019.5, lty = 3)
   legend("topleft", c("Observado", "Previsto"), lty = c(1, 2), pch = c(16, 15), bty = "n")
   dev.off()
-  cat("Tabelas congeladas conferidas e figuras reconstituídas. Não houve recálculo desde E04.\n")
+  age <- read_audit("E09_contribuicoes_2019_2021_faixa_etaria.csv")
+  stopifnot(nrow(age) == 15L,
+            abs(sum(age$contribuicao_delta_padronizada_100mil) -
+                (val(2021, "taxa_padronizada_2019_100mil") -
+                 val(2019, "taxa_padronizada_2019_100mil"))) < 1e-7)
+  png(file.path(out, "figures", "contribuicoes_por_faixa_etaria.png"),
+      width = 1100, height = 650, res = 125)
+  par(mar = c(8, 5, 4, 2))
+  barplot(age$contribuicao_delta_padronizada_100mil, names.arg = age$faixa_etaria,
+          las = 2, xlab = "Faixa etária", ylab = "Contribuição por 100 mil",
+          main = "Variação padronizada 2019–2021 por faixa etária")
+  abline(h = 0)
+  dev.off()
+  png(file.path(out, "figures", "decomposicao_simetrica.png"),
+      width = 1100, height = 650, res = 125)
+  barplot(rbind(dec$parcela_mudanca_taxas_100mil,
+                dec$parcela_composicao_100mil),
+          beside = TRUE, names.arg = paste(dec$inicio, dec$fim, sep = "–"),
+          ylab = "Contribuição por 100 mil",
+          main = "Decomposição simétrica das taxas brutas")
+  abline(h = 0)
+  legend("topright", c("Taxas específicas", "Composição"),
+         fill = c("gray20", "gray80"), bty = "n")
+  dev.off()
+  cat("Oito tabelas agregadas conferidas e quatro figuras reconstituídas. Não houve recálculo desde E04.\n")
 }

@@ -448,3 +448,8 @@ Rscript --vanilla scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R
 ```
 
 Essa execução recompõe a síntese a partir das **tabelas agregadas congeladas**, sem refazer a integração territorial ou os ajustes. A base celular E04, os CSVs primários APVP/SEADE, o crosswalk e as cadeias não são redistribuídos; a reprodução desde os registros de origem continua dependente de acesso, revisão de termos e validação científica.
+
+
+### Complemento do estudo SP — E07–E10
+
+Foram acrescentados os scripts históricos E07/E08 e um orquestrador R com três modos de execução. O modo público `--modo=auditar` é testado na CI; os modos `--modo=conferir` e `--modo=completo` dependem da base E04 mantida localmente. Consulte [README do estudo](scripts/mortalidade_sp_0_74/README.md) e [caderno E01–E10](reports/mortalidade_sp_0_74/caderno_E01_E10.md).

@@ -86,3 +86,6 @@ jobs:
 
       - name: Run structural tests
         run: Rscript tests/run_tests.R
+
+      - name: Verify published Sao Paulo mortality indicators
+        run: Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=auditar

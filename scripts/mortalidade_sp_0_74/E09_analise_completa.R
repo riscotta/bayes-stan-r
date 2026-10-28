@@ -10,16 +10,19 @@ if (length(arg) != 1L) stop('Execute por Rscript --vanilla scripts/E09_analise_c
 script <- normalizePath(sub('^--file=', '', arg), winslash='/', mustWork=TRUE)
 root <- normalizePath(file.path(dirname(script),'..','..'),winslash='/',mustWork=TRUE)
 infile <- function(n) file.path(root,'data','raw','mortalidade_sp_0_74',n)
-outfile <- function(n) file.path(root,'outputs','mortalidade_sp_0_74','tables',n)
-figfile <- function(n) file.path(root,'outputs','mortalidade_sp_0_74','figures',n)
-dir.create(file.path(root,'outputs','mortalidade_sp_0_74','tables'),showWarnings=FALSE,recursive=TRUE)
-dir.create(file.path(root,'outputs','mortalidade_sp_0_74','figures'),showWarnings=FALSE,recursive=TRUE)
+val_path <- Sys.getenv('E10_E07_ANUAL',infile('E07_R_validacao_anual.csv'))
+boot_path <- Sys.getenv('E10_E08_BOOTSTRAP',file.path(root,'data','raw','mortalidade_sp_0_74','resultados_auditados','E08_incerteza_cobertura_bootstrap_distrito.csv'))
+out_root <- Sys.getenv('E10_E09_OUT',file.path(root,'outputs','mortalidade_sp_0_74'))
+outfile <- function(n) file.path(out_root,'tables',n)
+figfile <- function(n) file.path(out_root,'figures',n)
+dir.create(file.path(out_root,'tables'),showWarnings=FALSE,recursive=TRUE)
+dir.create(file.path(out_root,'figures'),showWarnings=FALSE,recursive=TRUE)
 stopifnot(file.exists(infile('base_analitica_celular_PROVISORIA.csv')),
-          file.exists(infile('E07_R_validacao_anual.csv')),
-          file.exists(file.path(root,'data','raw','mortalidade_sp_0_74','resultados_auditados','E08_incerteza_cobertura_bootstrap_distrito.csv')))
+          file.exists(val_path),
+          file.exists(boot_path))
 d <- read.csv(infile('base_analitica_celular_PROVISORIA.csv'),stringsAsFactors=FALSE,fileEncoding='UTF-8')
-validation <- read.csv(infile('E07_R_validacao_anual.csv'),stringsAsFactors=FALSE)
-bootstrap <- read.csv(infile('E08_incerteza_cobertura_bootstrap_distrito.csv'),stringsAsFactors=FALSE)
+validation <- read.csv(val_path,stringsAsFactors=FALSE)
+bootstrap <- read.csv(boot_path,stringsAsFactors=FALSE)
 keys <- c('codigo_apvp_distrito','ano','sexo','faixa_etaria')
 stopifnot(nrow(d)==51840L,all(d$populacao>0),sum(d$obitos)==778039,
   sum(d$populacao)==196070964, length(unique(d$codigo_apvp_distrito))==96L,
