@@ -336,6 +336,16 @@ Rscript scripts/_setup/install_cmdstan.R
 - Saídas regeneráveis: `outputs/caes_raca_f5/tables/` e `outputs/caes_raca_f5/logs/`
 - Execução padrão verifica métricas auditadas sem Stan; `--run_stan=1` reamostra com os códigos originais e a base local íntegra. Calibração condicional e generalização externa **não validadas**.
 
+### 32) Mortalidade de 0–74 anos — São Paulo (2006–2023)
+
+- Pasta: `scripts/mortalidade_sp_0_74/`
+- Entrada padrão: `scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R`
+- Recálculo condicionado: `scripts/mortalidade_sp_0_74/E09_analise_completa.R`
+- Resultados agregados auditados: `data/raw/mortalidade_sp_0_74/resultados_auditados/`
+- Saídas: `outputs/mortalidade_sp_0_74/tables/` e `outputs/mortalidade_sp_0_74/figures/`
+- Relatório: `reports/mortalidade_sp_0_74/relatorio_cientifico.md`
+- Observação: execução padrão reconstitui gráficos e síntese de dados agregados congelados; recálculo dos indicadores requer a base E04 e resultados da E07/E08 fornecidos localmente. Compatibilidade territorial histórica pendente; inferência descritiva, não causal. Ajuste em R (Poisson/NB2), sem Stan neste estudo.
+
 ## Convenções
 
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)

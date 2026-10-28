@@ -135,3 +135,8 @@ O CI verifica que todo item de primeiro nível versionado em `data/raw/` esteja 
 ### Darwin's Ark — cães, raça declarada e F5
 
 Fonte: Morrill et al. (2022), [Dryad DOI 10.5061/dryad.g4f4qrfr0](https://doi.org/10.5061/dryad.g4f4qrfr0). Em `data/raw/caes_raca_f5/` há **somente resultados agregados auditados**. A base por animal E04 e os retornos completos do CmdStan permanecem fora do Git. A reutilização dos registros originais deve observar os termos da fonte; a licença MIT do código autoral não transfere direitos sobre dados de terceiros. Limites científicos: `scripts/caes_raca_f5/README.md`.
+
+
+### São Paulo — Mortalidade 0–74 (APVP/PRO-AIM e SEADE)
+
+Indicadores agregados da E09 (2006–2023) em `data/raw/mortalidade_sp_0_74/resultados_auditados/`. Fontes: contagem de óbitos APVP/PRO-AIM; denominadores estimados SEADE. **Base original e E04 celular não versionadas.** Compatibilidade territorial distrital histórica, licença de redistribuição dos extratos originais e reconstrução desde os primários ainda não verificadas. Somente sínteses numéricas agregadas são publicadas; a licença MIT do código não abrange automaticamente material de terceiros. Consulte o [README do estudo](../scripts/mortalidade_sp_0_74/README.md).
