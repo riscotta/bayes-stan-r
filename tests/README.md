@@ -23,3 +23,5 @@ Rscript tests/run_tests.R
 - Verificação das licenças de terceiros.
 
 Não chamar a aprovação de um teste estrutural de “reprodução integral”. Para uma publicação científica, executar as rotinas estatísticas apropriadas por estudo, preservar sementes, dados de entrada, versões, diagnósticos e comparação de resultados.
+
+- **Limites científicos publicados:** `test-scientific-published-diagnostics.R` verifica concordância de resumos IOM e alertas sobre PSIS-LOO, R-hat e SBC do estudo UNODC. O workflow publica [um relatório de ressalvas](../reports/SCIENTIFIC_VALIDITY_GATE_2026-10-28.md). **Não reexecuta Stan.**
