@@ -13,7 +13,7 @@ testthat::test_that("Consumer Shopping Trends Beta está integrado ao padrão do
   gitignore <- readLines(".gitignore", warn = FALSE, encoding = "UTF-8")
   script_lines <- readLines(file.path("scripts", "consumer_shopping_trends_beta", "consumer_shopping_trends_beta_rstan.R"), warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("Consumer Shopping Trends", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("Consumer Shopping Trends", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("consumer_shopping_trends_beta_rstan.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/consumer_shopping_trends/", readme_data, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/consumer_shopping_trends/**", gitignore, fixed = TRUE)))

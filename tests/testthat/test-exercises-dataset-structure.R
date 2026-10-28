@@ -11,7 +11,7 @@ testthat::test_that("Exercises Dataset: índices documentam o estudo", {
   readme_scripts <- readLines(file.path("scripts", "README.md"), warn = FALSE, encoding = "UTF-8")
   readme_raw <- readLines(file.path("data", "raw", "README.md"), warn = FALSE, encoding = "UTF-8")
 
-  testthat::expect_true(any(grepl("Exercises Dataset", readme_root, fixed = TRUE)))
+  testthat::expect_true(any(grepl("Exercises Dataset", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("exercises_dataset_cmdstanr.R", readme_scripts, fixed = TRUE)))
   testthat::expect_true(any(grepl("data/raw/exercises_dataset/", readme_raw, fixed = TRUE)))
 })
