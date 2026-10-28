@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Se este repositório for útil em trabalho ou pesquisa, cite o software e o estudo específico utilizado."
+type: software
+title: "Bayes, R e Stan — estudos aplicados"
+authors:
+  - family-names: "Scotta"
+    given-names: "Ricardo"
+repository-code: "https://github.com/riscotta/bayes-stan-r"
+license: MIT
+abstract: "Estudos de inferência e modelagem estatística em R e Stan, com códigos, diagnósticos e documentação de reprodutibilidade por estudo."

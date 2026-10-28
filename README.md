@@ -1,455 +1,83 @@
-# bayes-stan-r
+# Bayes, R e Stan — estudos aplicados
 
 [![R CI](https://github.com/riscotta/bayes-stan-r/actions/workflows/ci.yml/badge.svg)](https://github.com/riscotta/bayes-stan-r/actions/workflows/ci.yml)
+[![Licença MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-blue)](LICENSE)
 
-Repositório dedicado a **Estatística Bayesiana com R e Stan**, reunindo estudos, experimentos, modelos aplicados e exemplos reproduzíveis organizados por tema.
+Ajustar um modelo é apenas parte de uma análise estatística. Este repositório reúne estudos em **R e Stan** com atenção à especificação, às verificações computacionais, à capacidade preditiva e aos limites do que pode ser concluído.
 
-A proposta deste projeto é transformar conceitos bayesianos em **scripts executáveis, estruturas reutilizáveis e análises transparentes**, com foco em modelagem, simulação, inferência e documentação prática.
+A unidade de organização é o **estudo**, não um pacote R. Cada pasta em §scripts/§ tem entrada e documentação próprias. Alguns estudos refazem o ajuste a partir dos dados disponíveis; outros reconstroem tabelas a partir de artefatos auditados, e alguns dependem de insumos que não podem ser redistribuídos. **Esses níveis de reprodução não são equivalentes.**
 
-## Visão geral
+## Por onde começar
 
-Este repositório foi construído para servir como base de trabalho e estudo em:
+| Interesse | Estudo | O que observar |
+| --- | --- | --- |
+| Inferência hierárquica | [Baseball em três níveis](scripts/hierarchical/README.md) | *Pooling* parcial e heterogeneidade por posição/jogador |
+| Modelagem e interpretação | [Mortalidade 0–74 em São Paulo](scripts/mortalidade_sp_0_74/README.md) | Padronização por idade e sexo, decomposição e limites territoriais; modelo ajustado em R, não em Stan |
+| Avaliação preditiva | [Raça declarada e escore F5 em cães](scripts/caes_raca_f5/README.md) | Ganho pequeno de RMSE e calibração condicional insuficiente |
+| Diagnóstico de modelo | [Missing Migrants, IOM](scripts/missing_migrants/README.md) | Modelo NB2 hierárquico, limitações do registro e falhas de PPC |
 
-- modelagem bayesiana com **Stan**
-- análise de dados com **R**
-- simulação e inferência probabilística
-- organização reproduzível de experimentos
-- documentação por exemplo e por tema
+**[Catálogo completo de scripts, dados e comandos](scripts/README.md)**. Inclui modelos ordinais, sobrevivência, Poisson/NB2, séries temporais, regressão logística, simulações e estudos de saúde, risco, economia e educação.
 
-Em vez de concentrar tudo em notebooks isolados ou scripts dispersos, o projeto adota uma estrutura em que cada estudo pode evoluir de forma clara, auditável e expansível.
+## Execução
 
-## Objetivo
+Use a raiz do repositório como diretório de trabalho; não é necessário chamar §setwd()§.
 
-O objetivo central é manter um ambiente em que modelos e análises possam ser:
+§§§bash
+git clone https://github.com/riscotta/bayes-stan-r.git
+cd bayes-stan-r
 
-- escritos com clareza
-- executados a partir da raiz do projeto
-- documentados por contexto
-- expandidos para novos casos de uso
-- reutilizados como base para estudos, artigos, relatórios e aplicações futuras
-
-## Estrutura do repositório
-
-```text
-.
-├── config/         # configurações opcionais do projeto
-├── data/
-│   ├── raw/        # dados brutos
-│   ├── interim/    # dados intermediários
-│   └── processed/  # dados processados
-├── outputs/
-│   └── <estudo>/   # saídas regeneráveis agrupadas por estudo
-│       ├── figures/
-│       ├── tables/
-│       ├── models/
-│       ├── logs/
-│       ├── cmdstan_csv/
-│       └── data_stan/
-├── reports/        # relatórios opcionais (Quarto / R Markdown)
-├── scripts/        # núcleo operacional: scripts por tema
-└── tests/          # testes e validações opcionais
-```
-
-## Filosofia do projeto
-
-Este repositório não foi estruturado como pacote R tradicional.  
-A unidade principal aqui é o **script reproduzível por tema ou problema**.
-
-A lógica é simples:
-
-- cada tema fica organizado em sua própria pasta
-- cada exemplo possui um script principal claramente executável
-- dados, saídas e documentação ficam separados
-- a raiz do repositório funciona como ponto de entrada
-- os detalhes operacionais ficam documentados localmente nas pastas apropriadas
-
-## Como executar
-
-Os scripts devem ser executados a partir da **raiz do repositório**, sem uso de `setwd()`.
-
-```bash
-Rscript scripts/<pasta>/<script>.R
-```
-
-Exemplo:
-
-```bash
-Rscript scripts/therapeutic_touch/therapeutic_touch.R
-```
-
-## Setup inicial
-
-### Ambiente reproduzível com `renv`
-
-O ambiente R do projeto é congelado com `renv`, usando **R 4.5.1** como versão de referência. A toolchain canônica inclui `cmdstanr 0.9.0`, `rstan 2.32.7` e **CmdStan 2.40.0**; os detalhes ficam em `config/environment.yml`.
-
-Em um clone que já contenha o `renv.lock` oficial:
-
-```bash
+# Restaurar os pacotes R declarados no renv.lock
 Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); renv::restore(prompt = FALSE)"
-```
 
-Para inicializar ou reconstruir deliberadamente o lockfile do projeto:
+# Exemplo: uma análise concreta
+Rscript scripts/therapeutic_touch/therapeutic_touch.R
+§§§
 
-```bash
-Rscript scripts/_setup/init_renv.R
-```
+Ambiente de referência: **R 4.5.1**, §cmdstanr§ **0.9.0**, §rstan§ **2.32.7** e **CmdStan 2.40.0**. O §renv.lock§ controla pacotes R, não o compilador CmdStan. Para executar estudos com §cmdstanr§:
 
-O conjunto de dependências é centralizado em `scripts/_setup/dependencies.R`.
-
-### Instalação direta de dependências R
-
-Fora do ambiente `renv`, continuam disponíveis os instaladores tradicionais:
-
-```bash
-Rscript scripts/_setup/install_deps.R
-Rscript scripts/_setup/install_deps.R --all
-```
-
-### Instalação do CmdStan
-
-O `renv` congela os pacotes R, inclusive `cmdstanr`, mas não o binário do CmdStan. Para instalá-lo:
-
-```bash
+§§§bash
 Rscript scripts/_setup/install_cmdstan.R
-```
+§§§
 
-O instalador usa **CmdStan 2.40.0** por padrão. Exemplo explícito equivalente:
+Alternativa para instalar dependências fora do §renv§: §Rscript scripts/_setup/install_deps.R§. Os detalhes estão em [config/environment.yml](config/environment.yml) e [scripts/_setup/README.md](scripts/_setup/README.md).
 
-```bash
-Rscript scripts/_setup/install_cmdstan.R --version=2.40.0 --cores=4
-```
+O comando padrão **não necessariamente reamostra Stan**. Em estudos que disponibilizam §--run_stan=1§, esse parâmetro aciona uma nova amostragem e pode exigir dados externos, compilador e tempo computacional. Consulte o README local antes de interpretá-lo como reprodução integral.
 
-## Organização da documentação
+## Organização
 
-A documentação do projeto está distribuída por função:
+| Caminho | Finalidade |
+| --- | --- |
+| [scripts/](scripts/README.md) | Código R/Stan e instruções por estudo |
+| [data/raw/](data/raw/README.md) | Fontes recebidas e insumos históricos selecionados |
+| [data/DATA_PROVENANCE.md](data/DATA_PROVENANCE.md) | Origens, licenças e permissões ainda pendentes |
+| [outputs/](outputs/README.md) | Arquivos regeneráveis, agrupados em §outputs/<estudo>/<tipo>/§ |
+| [reports/](reports/README.md) | Relatórios e cadernos de interpretação |
+| [tests/](tests/README.md) | Contratos estruturais e verificações numéricas |
 
-- `README.md` da raiz  
-  Apresenta a visão geral do repositório.
+Resultados históricos auditados publicados dentro de §data/raw/<estudo>/resultados_auditados/§ são **exceções de preservação**, não dados brutos nem arquivos produzidos pela execução padrão. Não reorganize esses caminhos sem ajustar código, manifestos, documentação e testes.
 
-- `scripts/README.md`  
-  Funciona como catálogo operacional dos scripts e exemplos disponíveis.
+## Resultados representativos e ressalvas
 
-- `config/README.md`  
-  Descreve convenções e possibilidades de configuração centralizada.
+**Cães / F5.** Nos 2.084 cães analisados, adicionar raça declarada produziu redução interna de RMSE de **0,85% a 1,41%**, dependendo da família de distribuição. A melhora foi pequena, não foi confirmada em coorte externa e **não** identifica causalidade genética nem risco individual de mordida. [Análise e ressalvas](reports/caes_raca_f5/relatorio_cientifico.md).
 
-- `reports/README.md`  
-  Explica o uso opcional de relatórios reproduzíveis.
+**Mortalidade em São Paulo, 2006–2023.** A taxa bruta e a taxa padronizada por idade/sexo levam a conclusões diferentes em alguns intervalos. Os dados distritais usam correspondência territorial provisória; a execução pública **reconstitui indicadores agregados**, não a integração completa dos dados primários. [Relatório científico](reports/mortalidade_sp_0_74/relatorio_cientifico.md) e [caderno E01–E10](reports/mortalidade_sp_0_74/caderno_E01_E10.md).
 
-- `tests/README.md`  
-  Reúne orientações sobre testes e validações.
+**Missing Migrants.** A modelagem trata a carga **registrada** de mortos e desaparecidos, não a mortalidade real total. Há ressalvas de §R-hat§ e checagens preditivas dos zeros e da dispersão. [Escopo do estudo](scripts/missing_migrants/README.md).
 
-## Temas e exemplos
+## O que é validado automaticamente?
 
-O repositório já reúne estudos e exemplos em áreas como:
+O [workflow R CI](.github/workflows/ci.yml) verifica a sintaxe dos scripts R, executa a suíte §testthat§ e uma reconstituição pública dos resultados agregados de mortalidade de São Paulo. Há também uma verificação local de caminhos Markdown e uma rotina separada para URLs externos.
 
-- modelos hierárquicos
-- regressão logística bayesiana
-- modelos de contagem com Poisson
-- simulações Monte Carlo
-- sobrevivência
-- modelos ordinais
-- estudos aplicados em saúde, risco e inferência
+**Passar na CI não comprova a validade estatística de todos os ajustes**, não instala todos os pacotes do §renv.lock§ e não reexecuta todas as cadeias MCMC. Veja [tests/README.md](tests/README.md) para saber o que efetivamente é coberto.
 
-Entre os exemplos organizados em `scripts/`, estão temas como:
-
-- Therapeutic Touch
-- Baseball hierárquico em 3 níveis
-- Mortalidade com Poisson hierárquico e offset
-- SAheart com regressão logística Bayesiana
-- Kidney survival
-- INHALER ordinal crossover
-- RS Seguro
-- DETER mensal por bioma-UF
-- IPCA / SIDRA 1419 com decomposição por grupos e ajuste em Stan
-- Censo Escolar 2021-2025 com modelagem de tempo integral na rede pública
-- PNAD Contínua — desocupação com série mensal total e série trimestral por sexo via rstan
-- PMS / Serviços em janeiro de 2026 com nível ancorado e tendência AR(1) via rstan
-- FruitFlies com modelo AFT log-normal via Stan
-- SAT com seleção Bayesiana de variáveis e comparação entre modelos
-- estudos de simulação e comparação entre sinal e ruído
-- retratações científicas globais: tempo até retratação e tendência temporal com modelos Bayesianos em Stan
-- retratações científicas globais: composição dos motivos com modelo Dirichlet-multinomial hierárquico em Stan
-- Consumer Shopping Trends: gasto online/loja com modelo Beta Bayesiano em rstan
-- Mega-Sena: análise Bayesiana da distribuição das dezenas por fatores nominais e temporais com modelo multinomial log-linear em Stan
-- Exercises Dataset: análise de cobertura do catálogo de exercícios e modelagem ordinal Bayesiana da dificuldade com Stan
-- IOM Missing Migrants Project: análise Bayesiana de mortos e desaparecidos registrados por rota migratória e mês com modelo NB2 hierárquico em Stan
-- sobrevivência cadastral de estabelecimentos de alimentação fora do lar em Porto Alegre, com modelo Bayesiano em tempo discreto e efeitos que variam no tempo
-- UNODC Prisons and Prisoners: análise Bayesiana de `held_rate`, prisão sem sentença e contraste Female−Male com três modelos hierárquicos em Stan
-
-Para o catálogo detalhado de execução, entradas e saídas, consulte:
-
-`scripts/README.md`
-
-## Convenções adotadas
-
-Este projeto segue algumas convenções simples para facilitar manutenção e expansão:
-
-- **1 pasta = 1 tema, estudo ou experimento**
-- cada pasta deve ter um **script principal**
-- saídas regeneráveis devem ser gravadas em `outputs/<estudo>/<tipo>/`, mantendo o estudo como primeiro nível
-- dados derivados devem ficar em `data/interim/` ou `data/processed/`
-- documentação local pode ser adicionada quando um tema exigir contexto extra
-- scripts devem funcionar a partir da raiz do repositório
-
-## Convenção de saídas
-
-O padrão canônico do repositório é:
-
-```text
-outputs/<estudo>/<tipo>/
-```
-
-O nome do estudo vem sempre imediatamente após `outputs/`. Os tipos mais comuns são `figures`, `tables`, `models`, `logs`, `cmdstan_csv` e `data_stan`; cada estudo usa apenas os diretórios de que precisa. O padrão antigo `outputs/<tipo>/<estudo>/` não deve ser usado.
-
-Consulte `outputs/README.md` para os detalhes.
-
-## Integração contínua
-
-O workflow `.github/workflows/ci.yml` roda em pushes e pull requests para `main` e pode ser disparado manualmente.
-
-O CI mínimo:
-
-- usa R 4.5.1;
-- valida a sintaxe dos arquivos `.R` em `scripts/` e `tests/`;
-- executa a suíte estrutural em `tests/testthat/`.
-
-A pipeline não executa ajustes Stan completos em cada commit. Compilação, amostragem e validações estatísticas integrais continuam sendo etapas explícitas dos estudos quando necessárias.
-
-## Reprodutibilidade e versionamento
-
-O repositório prioriza reprodutibilidade e organização. O ambiente R é controlado por `renv`: o `renv.lock` registra versões de pacotes e repositórios, enquanto `.R-version` declara a versão de referência do R. O CmdStan é tratado separadamente, pois não é gerenciado pelo `renv`; sua versão canônica é registrada em `config/environment.yml` e aplicada por `scripts/_setup/install_cmdstan.R`.  
-
-Por isso, artefatos regeneráveis normalmente não devem ser versionados, como:
-
-- gráficos
-- tabelas exportadas
-- modelos salvos
-- dados intermediários
-- dados processados derivados
-
-A estrutura de diretórios é preservada quando necessário com arquivos auxiliares como `.gitkeep`.
-
-Ao mesmo tempo, alguns **dados brutos selecionados** permanecem versionados quando isso melhora a reprodução imediata do estudo, a utilidade didática ou a estabilidade de exemplos compactos. Exemplos atuais:
-
-- `data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_6381.csv`
-- `data/raw/pnadc_desocupacao/pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv`
-- `data/raw/rs_seguro/rs_month_macrocrime.csv`
-- `data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv`
-- `data/raw/BattingAverage.csv`
-- `data/raw/TherapeuticTouchData.csv`
-- `data/raw/pms_servicos/pms_base_analitica_stan.csv`
-- `data/raw/mega_sena_dezenas/base_analitica.csv`
-- `data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv`
-- `data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M0_agregado.json.gz`
-- `data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M1_agregado.json.gz`
-- `data/raw/prisons_prisoners_unodc/model_inputs/base_analitica_nucleo_nacional.csv`
-- `data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M1.json`
-
-Bases externas grandes, arquivos com registros individualizados ou fontes sob download manual podem ficar fora do versionamento e ser referenciados na documentação local em `data/raw/` e `scripts/`. No estudo de sobrevivência cadastral, a base individual com CNPJ e endereço não é publicada; apenas insumos agregados e resultados auditáveis são versionados.
-
-Em contrapartida, caches grandes, artefatos auxiliares e derivados continuam fora do versionamento. Para o inventário canônico de origem, licença e status de redistribuição dos dados, consulte `data/DATA_PROVENANCE.md` e `data/DATA_PROVENANCE.csv`; `data/raw/README.md` mantém os detalhes operacionais por estudo.
-
-## Testes
-
-Quando houver testes implementados, eles podem ser executados com:
-
-```bash
+§§§bash
 Rscript tests/run_tests.R
-```
+§§§
 
-Os testes têm papel de apoio à validação, mas a arquitetura principal do repositório continua centrada em **scripts reproduzíveis por tema**.
+## Dados, licença e contribuição
 
-## Para quem este repositório foi pensado
+O código e a documentação autoral estão sob [MIT](LICENSE). **Isso não concede licença sobre dados de terceiros.** O [inventário de proveniência](data/DATA_PROVENANCE.csv) registra arquivos cujas fontes ou permissões de redistribuição ainda não foram homologadas, inclusive algumas bases já versionadas. Consulte esses registros antes de reutilizar qualquer dataset. Dados individualizados não publicados não são necessários para navegar nos exemplos que usam apenas agregados.
 
-Este projeto foi organizado para ser útil a quem deseja:
+Para propor mudanças, consulte [CONTRIBUTING.md](CONTRIBUTING.md). Para citar o código, veja [CITATION.cff](CITATION.cff). O histórico de mudanças editoriais e de infraestrutura está em [CHANGELOG.md](CHANGELOG.md).
 
-- estudar Bayes de forma aplicada
-- transformar teoria em implementação
-- manter exemplos executáveis e auditáveis
-- construir uma base técnica sólida em **R + Stan**
-- evoluir estudos em direção a relatórios, artigos, produtos ou aplicações práticas
-
-## Licença
-
-O código e a documentação autoral do repositório são disponibilizados conforme o arquivo `LICENSE`.
-
-Datasets de terceiros, mesmo quando versionados em `data/raw/`, podem estar sujeitos a licenças, termos de uso ou restrições próprias. A licença MIT do repositório não deve ser interpretada como relicenciamento desses dados. Consulte `data/DATA_PROVENANCE.md` e `data/DATA_PROVENANCE.csv` antes de redistribuir datasets.
-
-## Estudo incluído: Importações anuais por país — World Bank + Stan
-
-Este repositório agora inclui o estudo reproduzível de importações anuais por país, organizado no padrão do projeto:
-
-- script final: `scripts/importacoes_world_bank/Script.R`
-- modelo Stan: `scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.stan`
-- dado bruto versionado: `data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv`
-- saídas regeneráveis: `outputs/importacoes_world_bank/tables/`, `outputs/importacoes_world_bank/figures/` e `outputs/importacoes_world_bank/models/`
-
-Execução a partir da raiz do repositório:
-
-```bash
-Rscript scripts/importacoes_world_bank/Script.R
-```
-
-O estudo usa `cmdstanr` e não salva objetos `.rds` por padrão; os diagnósticos de amostragem são exportados em CSV, logs e arquivos de configuração.
-
-## Estudo incluído: Exercises Dataset — dificuldade e cobertura do catálogo
-
-Este repositório agora inclui o estudo reproduzível do Exercises Dataset, organizado no padrão do projeto:
-
-- script final: `scripts/exercises_dataset/exercises_dataset_cmdstanr.R`
-- modelos Stan: `scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento.stan`, `scripts/exercises_dataset/modelo_ordinal_dificuldade_com_equipamento_diagnostico.stan` e `scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.stan`
-- dado bruto versionado: `data/raw/exercises_dataset/final_exercise_dataset.csv`
-- saídas regeneráveis: `outputs/exercises_dataset/`
-
-Execução a partir da raiz do repositório:
-
-```bash
-Rscript scripts/exercises_dataset/exercises_dataset_cmdstanr.R
-```
-
-Para reexecutar a amostragem Stan/cmdstanr:
-
-```bash
-Rscript scripts/exercises_dataset/exercises_dataset_cmdstanr.R --run_stan=1
-```
-
-A execução padrão não salva objetos `.rds`; os dados preparados, tabelas, JSONs para Stan, logs e diagnósticos são exportados em arquivos auditáveis.
-
-## Estudo incluído: Sherlock Holmes — frequências de termos/personagens
-
-Este repositório agora inclui o estudo reproduzível sobre frequências de termos/personagens no corpus Sherlock Holmes, organizado no padrão do projeto:
-
-- script final: `scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R`
-- modelo Stan: `scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07.stan`
-- dado bruto versionado: `data/raw/sherlock_holmes_terms/12_Sherlock_Holmes_Texts.csv`
-- dados de modelagem e tabelas auditadas: `data/raw/sherlock_holmes_terms/`
-- saídas regeneráveis: `outputs/sherlock_holmes_terms/`
-
-Execução a partir da raiz do repositório:
-
-```bash
-Rscript scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R
-```
-
-Para reexecutar a amostragem Stan/cmdstanr:
-
-```bash
-Rscript scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R --run_stan=1
-```
-
-A execução padrão não reamostra o modelo; ela recompõe auditorias, tabelas finais e figuras a partir dos artefatos auditáveis versionados. O estudo usa um modelo Poisson-lognormal hierárquico com offset de exposição textual para comparar taxas por 10 mil tokens.
-
-## Estudo incluído: IOM Missing Migrants Project — rota-mês + Stan
-
-Este repositório inclui o estudo reproduzível sobre mortos e desaparecidos registrados pelo IOM Missing Migrants Project, organizado no padrão do projeto:
-
-- script final: `scripts/missing_migrants/missing_migrants_cmdstanr.R`
-- modelo Stan: `scripts/missing_migrants/modelo_nb_hierarquico_rota_mes_estavel.stan`
-- dado bruto versionado: `data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv`
-- artefatos auditáveis: `data/raw/missing_migrants/model_inputs/` e `data/raw/missing_migrants/resultados_auditados/`
-- saídas regeneráveis: `outputs/missing_migrants/tables/`, `outputs/missing_migrants/figures/`, `outputs/missing_migrants/logs/`, `outputs/missing_migrants/data_stan/` e `outputs/missing_migrants/cmdstan_csv/`
-
-Execução padrão a partir da raiz do repositório:
-
-```bash
-Rscript scripts/missing_migrants/missing_migrants_cmdstanr.R
-```
-
-A execução padrão recompõe bases mínimas, dados Stan, tabelas e figuras finais a partir dos artefatos auditáveis versionados. Para reamostrar o modelo com `cmdstanr`, use:
-
-```bash
-Rscript scripts/missing_migrants/missing_migrants_cmdstanr.R --run_stan=1
-```
-
-O estudo usa `cmdstanr` e não salva objetos `.rds` por padrão; os diagnósticos de amostragem são preservados em CSV, logs e arquivos de configuração.
-
-## Estudo incluído: sobrevivência cadastral de estabelecimentos em Porto Alegre
-
-Este repositório inclui o estudo reproduzível sobre a permanência cadastral de estabelecimentos de alimentação fora do lar em Porto Alegre:
-
-- script final: `scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R`
-- modelos Stan: `scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr.stan` e `scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.stan`
-- insumos agregados para Stan: `data/raw/sobrevivencia_cadastral_poa/model_inputs/`
-- resultados auditáveis: `data/raw/sobrevivencia_cadastral_poa/resultados_auditados/`
-- saídas regeneráveis: `outputs/sobrevivencia_cadastral_poa/`
-
-Execução padrão a partir da raiz do repositório:
-
-```bash
-Rscript scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R
-```
-
-Para reexecutar M0 e M1 com `cmdstanr`:
-
-```bash
-Rscript scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R --run_stan=1
-```
-
-A execução padrão recompõe tabelas e figuras a partir de artefatos auditáveis. A base individual com CNPJ e endereço permanece fora do versionamento; o repositório publica somente matrizes agregadas suficientes para reamostrar os modelos e reproduzir as conclusões centrais.
-
-## Estudo incluído: UNODC Prisons and Prisoners — encarceramento e prisão sem sentença
-
-Este repositório inclui o estudo reproduzível sobre encarceramento e prisão sem sentença com dados do UNODC *Prisons and Prisoners*:
-
-- script final: `scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R`
-- modelos Stan finais: `scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5.stan`, `modelo_M2_unsentenced_total.stan` e `modelo_M3_unsentenced_sex.stan`
-- base analítica nacional e entradas congeladas dos modelos: `data/raw/prisons_prisoners_unodc/model_inputs/`
-- resultados compactos auditados: `data/raw/prisons_prisoners_unodc/resultados_auditados/`
-- saídas regeneráveis: `outputs/prisons_prisoners_unodc/`
-
-Execução padrão a partir da raiz:
-
-```bash
-Rscript scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R
-```
-
-Para reexecutar os três ajustes finais com `cmdstanr`:
-
-```bash
-Rscript scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R --run_stan=1
-```
-
-A execução padrão recompõe e valida a síntese final a partir de artefatos auditados. O modo `--run_stan=1` usa os dados Stan congelados e as especificações finais M1 REV5 / M2-M3 REV4.1. O estudo é descritivo/associativo: não sustenta causalidade nem generalização validada para países novos.
-
-
-## Estudo incluído: Cães — raça declarada e escore F5 (Darwin's Ark)
-
-Estudo bayesiano com regressão hierárquica para avaliar se a **raça pura declarada pelo tutor** acrescenta capacidade preditiva ao escore F5 (*Agonistic Threshold*) além de idade, sexo, porte e esterilização. Coorte de **2.084 cães / 196 raças**, cinco folds internos. Redução de RMSE: **0,85%–1,41%**, dependendo da família preditiva, sem calibração condicional geral, causalidade genética ou generalização externa demonstradas.
-
-- Entrada: `scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R`
-- Código R/Stan histórico: `scripts/caes_raca_f5/original/E08_MP_Entregaveis/`
-- Resultados auditáveis não individualizados: `data/raw/caes_raca_f5/resultados_auditados/`
-- Relatório: `reports/caes_raca_f5/relatorio_cientifico.md`
-- Base E04 individual e CSVs brutos das cadeias: **não versionados**.
-
-Para conferir a síntese sem reamostragem:
-
-```bash
-Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R
-```
-
-Para reexecutar os 30 ajustes com `--run_stan=1`, é necessária a base E04 original, fornecida separadamente e conferida por SHA-256, mais R/cmdstanr e CmdStan. Os detalhes e as ressalvas estão no README local.
-
-## Estudo incluído: Mortalidade de 0 a 74 anos em São Paulo (2006–2023)
-
-Estudo exploratório com **padronização direta por idade e sexo**, decomposição simétrica de taxas brutas e avaliação preditiva de modelos de contagem Poisson/NB2. A base derivada original reúne **51.840 células** (96 distritos × 18 anos × dois sexos × 15 faixas etárias), mas a compatibilidade territorial histórica está **pendente de homologação**. Não é estudo causal, não apresenta estatísticas oficiais, e não usou Stan neste ajuste (os modelos foram ajustados em R).
-
-- Script padrão de auditoria e gráficos: [`scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R`](scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R).
-- Código da E09 para recálculo desde a base derivada: [`E09_analise_completa.R`](scripts/mortalidade_sp_0_74/E09_analise_completa.R), dependente dos insumos locais da E07/E08.
-- Resultados agregados congelados e auditados: [`data/raw/mortalidade_sp_0_74/resultados_auditados/`](data/raw/mortalidade_sp_0_74/resultados_auditados/).
-- [Relatório científico](reports/mortalidade_sp_0_74/relatorio_cientifico.md) e [notas de execução/proveniência](scripts/mortalidade_sp_0_74/README.md).
-- Saídas regeneráveis: `outputs/mortalidade_sp_0_74/{tables,figures}/`.
-
-Execução a partir da raiz do repositório:
-
-```bash
-Rscript --vanilla scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R
-```
-
-Essa execução recompõe a síntese a partir das **tabelas agregadas congeladas**, sem refazer a integração territorial ou os ajustes. A base celular E04, os CSVs primários APVP/SEADE, o crosswalk e as cadeias não são redistribuídos; a reprodução desde os registros de origem continua dependente de acesso, revisão de termos e validação científica.
-
-
-### Complemento do estudo SP — E07–E10
-
-Foram acrescentados os scripts históricos E07/E08 e um orquestrador R com três modos de execução. O modo público `--modo=auditar` é testado na CI; os modos `--modo=conferir` e `--modo=completo` dependem da base E04 mantida localmente. Consulte [README do estudo](scripts/mortalidade_sp_0_74/README.md) e [caderno E01–E10](reports/mortalidade_sp_0_74/caderno_E01_E10.md).
+Este repositório é um portfólio de estudos e trabalho em evolução; os relatórios devem ser lidos com suas respectivas limitações, e não como validações gerais para decisões operacionais.

@@ -23,7 +23,7 @@ Um erro estrutural importante foi identificado na compatibilidade entre códigos
 
 # E09 — Interpretar a mortalidade observada sem confundir composição, tendência e previsão
 
-**Projeto Kaggle / São Paulo, 2006–2023.** 28 de outubro de 2026. **Modo Estudo.**
+**São Paulo, 2006–2023.** Consolidação de 28 de outubro de 2026.
 
 
 
