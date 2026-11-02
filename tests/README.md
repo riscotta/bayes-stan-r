@@ -25,3 +25,5 @@ Rscript tests/run_tests.R
 Não chamar a aprovação de um teste estrutural de “reprodução integral”. Para uma publicação científica, executar as rotinas estatísticas apropriadas por estudo, preservar sementes, dados de entrada, versões, diagnósticos e comparação de resultados.
 
 - **Limites científicos publicados:** `test-scientific-published-diagnostics.R` verifica concordância de resumos IOM e alertas sobre PSIS-LOO, R-hat e SBC do estudo UNODC. O workflow publica [um relatório de ressalvas](../reports/SCIENTIFIC_VALIDITY_GATE_2026-10-28.md). **Não reexecuta Stan.**
+
+- **PNAD Contínua, Estudo I:** teste Python separado e executado localmente: `python scripts/pnadc_estudo_i/auditar_e10.py`, não incorporado à CI R. Confere síntese congelada, não E04–E09 ou Stan.

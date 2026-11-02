@@ -15,6 +15,7 @@ A unidade de organização é o **estudo**, não um pacote R. Cada pasta em §sc
 | Modelagem e interpretação | [Mortalidade 0–74 em São Paulo](scripts/mortalidade_sp_0_74/README.md) | Padronização por idade e sexo, decomposição e limites territoriais; modelo ajustado em R, não em Stan |
 | Avaliação preditiva | [Raça declarada e escore F5 em cães](scripts/caes_raca_f5/README.md) | Ganho pequeno de RMSE e calibração condicional insuficiente |
 | Diagnóstico de modelo | [IOM Missing Migrants Project](scripts/missing_migrants/README.md) | Modelo NB2 hierárquico, limitações do registro e falhas de PPC |
+| Mercado de trabalho multidimensional | [PNAD Contínua — Estudo I](scripts/pnadc_estudo_i/README.md) | 13 indicadores, 5 eixos; auditoria de síntese E09 sem MCMC ou posterior conjunta identificada |
 
 **[Catálogo completo de scripts, dados e comandos](scripts/README.md)**. Inclui modelos ordinais, sobrevivência, Poisson/NB2, séries temporais, regressão logística, simulações e estudos de saúde, risco, economia e educação.
 

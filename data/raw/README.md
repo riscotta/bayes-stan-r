@@ -352,3 +352,7 @@ A licença MIT do repositório **não licencia automaticamente dados de terceiro
   - os JSONs são as entradas efetivamente usadas pelos três modelos finais;
   - os resultados auditados permitem conferir a síntese sem depender de objetos `.rds`;
   - saídas de nova execução devem ser regeneradas em `outputs/prisons_prisoners_unodc/`.
+
+### PNAD Contínua — Estudo I (2026-09)
+
+Em `data/raw/pnadc_estudo_i/resultados_auditados/` há apenas uma projeção descritiva da E09 histórica, 26 contrastes. Snapshot SIDRA de 22.130 linhas, metadados e 52 cadeias não são versionados. Licença da vintage original não homologada. [README do estudo](../../scripts/pnadc_estudo_i/README.md).

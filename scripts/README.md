@@ -351,3 +351,12 @@ Rscript scripts/_setup/install_cmdstan.R
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
 - preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
 - artefatos regeneráveis vão em `outputs/`
+
+### 33) PNAD Contínua — Estudo I multidimensional (2026-09)
+
+- Pasta: `scripts/pnadc_estudo_i/`
+- Entrada: `python scripts/pnadc_estudo_i/auditar_e10.py` (somente auditoria de síntese congelada)
+- Modelos Stan históricos: `scripts/pnadc_estudo_i/stan/`
+- Tabela auditável: `data/raw/pnadc_estudo_i/resultados_auditados/`
+- Nota: `reports/pnadc_estudo_i/nota_cientifica.md`
+- Limites: esta branch não reproduz E04–E09 nem MCMC; código E09 exige insumos externos.
