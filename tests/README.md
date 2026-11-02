@@ -26,4 +26,4 @@ Não chamar a aprovação de um teste estrutural de “reprodução integral”.
 
 - **Limites científicos publicados:** `test-scientific-published-diagnostics.R` verifica concordância de resumos IOM e alertas sobre PSIS-LOO, R-hat e SBC do estudo UNODC. O workflow publica [um relatório de ressalvas](../reports/SCIENTIFIC_VALIDITY_GATE_2026-10-28.md). **Não reexecuta Stan.**
 
-- **PNAD Contínua, Estudo I:** teste Python separado e executado localmente: `python scripts/pnadc_estudo_i/auditar_e10.py`, não incorporado à CI R. Confere síntese congelada, não E04–E09 ou Stan.
+- **PNAD Contínua, Estudo I:** teste estrutural R em `tests/testthat/test-pnadc-estudo-i.R` (executado na CI) e teste Python independente, executado localmente: `python scripts/pnadc_estudo_i/auditar_e10.py`, não incorporado à CI R. Confere síntese congelada, não E04–E09 ou Stan.
