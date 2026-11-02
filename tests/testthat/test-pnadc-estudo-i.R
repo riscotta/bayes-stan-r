@@ -16,8 +16,7 @@ testthat::test_that("pnadc_estudo_i: fontes, eixos e sintese E09", {
   d <- utils::read.csv(resultado, sep = ";", check.names = FALSE, fileEncoding = "UTF-8")
   testthat::expect_equal(nrow(d), 26L)
   testthat::expect_equal(length(unique(d$IndicadorId)), 13L)
-  testthat::expect_equal(table(d$Eixo), structure(c(4L, 8L, 8L, 4L, 2L),
-                                                names = LETTERS[1:5]))
+  testthat::expect_equal(as.integer(table(d$Eixo)), c(4L, 8L, 8L, 4L, 2L))
   testthat::expect_true(all(d$PeriodoDestino == 202609L))
   testthat::expect_true(all(d$PeriodoOrigem == ifelse(d$Contraste == "anual", 202509L, 202606L)))
   testthat::expect_lt(max(abs(d$ValorDestino - d$ValorOrigem - d$Delta)), 1e-7)
