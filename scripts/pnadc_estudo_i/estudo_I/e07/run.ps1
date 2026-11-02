@@ -26,7 +26,7 @@ if (-not $Rscript) {
     }
 }
 if (-not $Rscript) {
-    foreach ($raizR in @($env:ProgramFiles, \${env:ProgramFiles(x86)})) {
+    foreach ($raizR in @($env:ProgramFiles, ${env:ProgramFiles(x86)})) {
         if (-not $raizR) { continue }
         $dirR = Join-Path $raizR 'R'
         if (-not (Test-Path -LiteralPath $dirR -PathType Container)) { continue }
