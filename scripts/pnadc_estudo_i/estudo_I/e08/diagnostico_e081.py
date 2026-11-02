@@ -19,7 +19,7 @@ for folder in sorted(x for x in results.iterdir() if x.is_dir()):
     energy=np.stack([a['energy__'].to_numpy() for a in arr],axis=0)
     yrep=np.stack([a['y_rep'].to_numpy() for a in arr],axis=0)
     diverg=sum(int(a['divergent__'].sum()) for a in arr)
-    max_depth=int(max(a['treedepth__'].max()) for a in arr)
+    max_depth=int(max(a['treedepth__'].max() for a in arr))
     depth_hits=sum(int((a['treedepth__']>=10).sum()) for a in arr)
     bfmi=az.bfmi(energy)
     rhat=float(az.rhat(diag,method='rank'))
