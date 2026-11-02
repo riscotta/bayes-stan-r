@@ -356,7 +356,7 @@ Rscript scripts/_setup/install_cmdstan.R
 
 - Pasta: `scripts/pnadc_estudo_i/`
 - Entrada: `python scripts/pnadc_estudo_i/auditar_e10.py` (somente auditoria de síntese congelada)
-- Modelos Stan históricos: `scripts/pnadc_estudo_i/estudo_I/e07/stan/`
+- Fontes originais E04–E09: `scripts/pnadc_estudo_i/estudo_I/` (15 arquivos, SHA Git 15/15 iguais aos do pacote local); modelos Stan em `estudo_I/e07/stan/`
 - Tabela auditável: `data/raw/pnadc_estudo_i/resultados_auditados/`
 - Nota: `reports/pnadc_estudo_i/nota_cientifica.md`
-- Limites: esta branch não reproduz E04–E09 nem MCMC; código E09 exige insumos externos.
+- Limites: os fontes foram preservados, mas a execução pública não reproduz E04–E09 nem MCMC; os scripts requerem insumos externos.
