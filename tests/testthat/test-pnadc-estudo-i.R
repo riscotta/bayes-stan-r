@@ -5,6 +5,15 @@ testthat::test_that("pnadc_estudo_i: fontes, eixos e sintese E09", {
                          "contrastes_descritos_e09.csv")
   testthat::expect_true(file.exists(file.path(estudo, "README.md")))
   testthat::expect_true(file.exists(file.path(estudo, "auditar_e10.py")))
+  para_verificar <- c(
+    "e04/construir_base_e04.py", "e05/explorar_e05.py",
+    "e07/run.ps1", "e08/diagnostico_e081.py", "e08/sensibilidade_e082.py",
+    "e08/sensibilidade_e083.py", "e08/avaliacao_e084.py",
+    "e09/consolidar_e09.py"
+  )
+  for (fonte in para_verificar) {
+    testthat::expect_true(file.exists(file.path(estudo, "estudo_I", fonte)))
+  }
   for (modelo in c("taxa_marginal.stan", "contagem_marginal.stan", "rendimento_marginal.stan")) {
     testthat::expect_true(file.exists(file.path(fontes, "stan", modelo)))
   }
