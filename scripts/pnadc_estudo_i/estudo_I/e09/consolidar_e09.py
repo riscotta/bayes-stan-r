@@ -6,8 +6,10 @@ ROOT = Path(__file__).resolve().parents[1]
 E08 = ROOT / 'e08'
 SAIDA = Path(__file__).resolve().parent / 'contrastes_e09_consolidado.csv'
 
+
 def carregar(nome):
     return pd.read_csv(E08 / nome, sep=';', encoding='utf-8-sig')
+
 
 cenarios = carregar('cenarios_contrastes_e082.csv')
 assert len(cenarios) == 104
@@ -26,7 +28,8 @@ quadro = quadro.rename(columns={
 })
 base = base.merge(quadro[chave + ['SituacaoOficialIBGE', 'DeltaOficialIBGE']],
                   on=chave, how='left', validate='one_to_one')
-base['SituacaoOficialIBGE'] = base['SituacaoOficialIBGE'].fillna('Não consta no Quadro Sintético')
+base['SituacaoOficialIBGE'] = base['SituacaoOficialIBGE'].fillna(
+    'Não consta no Quadro Sintético')
 base['UnidadeDelta'] = base['IndicadorId'].apply(
     lambda nome: 'p.p.' if nome.endswith('_pct') else
     ('Mil pessoas' if nome.endswith('_mil') else 'R$'))
