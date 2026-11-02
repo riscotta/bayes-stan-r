@@ -47,4 +47,6 @@ Desenho amostral complexo, sobreposição de trimestres móveis, arredondamento,
 
 Fonte: [IBGE/SIDRA](https://sidra.ibge.gov.br/) e [Quadro Sintético PNADC 202609](https://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Mensal/Quadro_Sintetico/2026/pnadc_202609_quadroSintetico.pdf). Licença específica da vintage de extrato **não confirmada**, por isso não publicamos o snapshot integral nem as cadeias. Ver inventário `data/DATA_PROVENANCE.csv`.
 
+**Ambiente histórico E10:** Python 3 e versões observadas em `requirements-historicos.txt`. A instalação das versões não foi testada em novo clone. Scripts originais podem gravar saídas nos diretórios legados `estudo_I/e04/saida`, `estudo_I/e05/saida` ou `estudo_I/e08/`; eles foram preservados literalmente para auditabilidade, mas esses caminhos não representam a convenção atual `outputs/<estudo>/<tipo>/`. Uma execução independente futura precisa insumos e adaptação de caminhos, com validação antes de publicar saídas.
+
 **Estados:** fontes (15/15) conferidos por identidade Git; síntese descritiva conferível neste repositório; inferências MCMC históricas e cenários condicionais; reprodução integral desde API/MCMC não testada aqui.
