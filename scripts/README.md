@@ -346,6 +346,16 @@ Rscript scripts/_setup/install_cmdstan.R
 - Relatório: `reports/mortalidade_sp_0_74/relatorio_cientifico.md`
 - Observação: execução padrão reconstitui gráficos e síntese de dados agregados congelados; recálculo dos indicadores requer a base E04 e resultados da E07/E08 fornecidos localmente. Compatibilidade territorial histórica pendente; inferência descritiva, não causal. Ajuste em R (Poisson/NB2), sem Stan neste estudo.
 
+
+### 33) PNAD Contínua — Estudo I multidimensional (2026-09)
+
+- Pasta: `scripts/pnadc_estudo_i/`
+- Entrada: `python scripts/pnadc_estudo_i/auditar_e10.py` (somente auditoria de síntese congelada)
+- Fontes originais E04–E09: `scripts/pnadc_estudo_i/estudo_I/` (15 arquivos, SHA Git 15/15 iguais aos do pacote local); modelos Stan em `estudo_I/e07/stan/`
+- Tabela auditável: `data/raw/pnadc_estudo_i/resultados_auditados/`
+- Nota: `reports/pnadc_estudo_i/nota_cientifica.md`
+- Limites: os fontes foram preservados, mas a execução pública não reproduz E04–E09 nem MCMC; os scripts requerem insumos externos.
+
 ## Convenções
 
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)

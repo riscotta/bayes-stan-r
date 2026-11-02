@@ -1,0 +1,27 @@
+Eixo;IndicadorId;Contraste;PeriodoOrigem;PeriodoDestino;ValorOrigem;ValorDestino;Delta;UnidadeDelta;SituacaoOficialIBGE
+A;desocupacao_pct;anual;202509;202609;5.600000000;5.200000000;-0.400000000;p.p.;caiu
+A;desocupacao_pct;recente;202606;202609;5.400000000;5.200000000;-0.200000000;p.p.;caiu
+A;desocupados_mil;anual;202509;202609;6045.000000000;5628.000000000;-417.000000000;Mil pessoas;caiu
+A;desocupados_mil;recente;202606;202609;5861.000000000;5628.000000000;-233.000000000;Mil pessoas;caiu
+B;forca_trabalho_mil;anual;202509;202609;108478.000000000;109266.000000000;788.000000000;Mil pessoas;cresceu
+B;forca_trabalho_mil;recente;202606;202609;108919.000000000;109266.000000000;347.000000000;Mil pessoas;cresceu
+B;nivel_ocupacao_pct;anual;202509;202609;58.700000000;59.000000000;0.300000000;p.p.;estavel
+B;nivel_ocupacao_pct;recente;202606;202609;58.800000000;59.000000000;0.200000000;p.p.;cresceu
+B;ocupados_mil;anual;202509;202609;102433.000000000;103638.000000000;1205.000000000;Mil pessoas;cresceu
+B;ocupados_mil;recente;202606;202609;103057.000000000;103638.000000000;581.000000000;Mil pessoas;cresceu
+B;participacao_pct;anual;202509;202609;62.200000000;62.200000000;0.000000000;p.p.;estavel
+B;participacao_pct;recente;202606;202609;62.100000000;62.200000000;0.100000000;p.p.;estavel
+C;desalentados_mil;anual;202509;202609;2637.000000000;2459.000000000;-178.000000000;Mil pessoas;caiu
+C;desalentados_mil;recente;202606;202609;2288.000000000;2459.000000000;171.000000000;Mil pessoas;cresceu
+C;desalento_pct;anual;202509;202609;2.400000000;2.200000000;-0.200000000;p.p.;caiu
+C;desalento_pct;recente;202606;202609;2.100000000;2.200000000;0.100000000;p.p.;cresceu
+C;subocupacao_horas_pct;anual;202509;202609;4.400000000;4.100000000;-0.300000000;p.p.;caiu
+C;subocupacao_horas_pct;recente;202606;202609;4.000000000;4.100000000;0.100000000;p.p.;cresceu
+C;subutilizacao_pct;anual;202509;202609;13.900000000;13.000000000;-0.900000000;p.p.;caiu
+C;subutilizacao_pct;recente;202606;202609;12.900000000;13.000000000;0.100000000;p.p.;estavel
+D;contrib_previdencia_pct;anual;202509;202609;66.000000000;66.300000000;0.300000000;p.p.;Não consta no Quadro Sintético
+D;contrib_previdencia_pct;recente;202606;202609;66.400000000;66.300000000;-0.100000000;p.p.;Não consta no Quadro Sintético
+D;informalidade_pct;anual;202509;202609;37.800000000;37.500000000;-0.300000000;p.p.;Não consta no Quadro Sintético
+D;informalidade_pct;recente;202606;202609;37.400000000;37.500000000;0.100000000;p.p.;Não consta no Quadro Sintético
+E;rendimento_real_habitual_rs;anual;202509;202609;3660.000000000;3790.000000000;130.000000000;R$;cresceu
+E;rendimento_real_habitual_rs;recente;202606;202609;3753.000000000;3790.000000000;37.000000000;R$;estavel
