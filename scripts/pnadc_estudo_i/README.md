@@ -17,11 +17,11 @@ Brasil; PNAD Contínua **agregada**; contrastes 202509→202609 (anual) e 202606
 ## Código e resultados aqui disponíveis
 
 - `auditar_e10.py` e [síntese histórica E09](../../data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv): auditoria de SHA-256, cardinalidade, períodos e identidades dos **26 contrastes** (projeção descritiva de 10 colunas da E09 original).
-- `stan/`: **três modelos Stan originais** usados na E07 histórica, não reamostrados neste trabalho de GitHub.
-- `originais/e09/consolidar_e09.py`: código **histórico** de consolidação E09; não roda isolado, exige as saídas E08.
+- `estudo_I/e07/stan/`: **três modelos Stan originais** usados na E07 histórica, não reamostrados neste trabalho de GitHub.
+- `estudo_I/e07/R/`: código histórico R/CmdStanR (reprocessamento de resumos disponível; MCMC somente por comando explícito).\n- `estudo_I/e08/diagnostico_e081.py`: diagnóstico histórico, requer cadeias externas.\n- `estudo_I/e09/consolidar_e09.py`: código **histórico** de consolidação E09; não roda isolado, exige as saídas E08.
 - [Nota científica](../../reports/pnadc_estudo_i/nota_cientifica.md) com limitações inferenciais.
 
-**Escopo desta contribuição é deliberadamente parcial:** os demais fontes E04, E05, E07 R e E08, os metadados SIDRA, o snapshot original de 22.130 linhas, o arquivo E09 completo e as 52 cadeias históricas constam apenas do **pacote local E10** entregue ao autor, e ainda não foram incluídos nesta branch. A obtenção original via API SIDRA não foi recuperada. Não afirmar reprodução integral E04–E09 a partir deste repositório.
+**Escopo desta contribuição é deliberadamente parcial:** os demais fontes E04, E05 e E08.2–E08.4, os metadados SIDRA, o snapshot original de 22.130 linhas, o arquivo E09 completo e as 52 cadeias históricas constam apenas do **pacote local E10** entregue ao autor, e ainda não foram incluídos nesta branch. A obtenção original via API SIDRA não foi recuperada. Não afirmar reprodução integral E04–E09 a partir deste repositório.
 
 ## Comando público testado
 
