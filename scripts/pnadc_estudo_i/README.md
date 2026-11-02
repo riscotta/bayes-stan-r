@@ -17,13 +17,17 @@ Brasil; PNAD Contínua **agregada**; contrastes 202509→202609 (anual) e 202606
 ## Código e resultados aqui disponíveis
 
 - `auditar_e10.py` e [síntese histórica E09](../../data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv): auditoria de SHA-256, cardinalidade, períodos e identidades dos **26 contrastes** (projeção descritiva de 10 colunas da E09 original).
+- `estudo_I/e04/construir_base_e04.py` e `estudo_I/e05/explorar_e05.py`: fontes originais de construção e exploração; exigem a extração SIDRA local e o manifesto de transporte.
 - `estudo_I/e07/stan/`: **três modelos Stan originais** usados na E07 histórica, não reamostrados neste trabalho de GitHub.
+- `estudo_I/e07/run.ps1`: comando Windows original, exige base E04 e R/CmdStanR local.
 - `estudo_I/e07/R/`: código histórico R/CmdStanR (reprocessamento de resumos disponível; MCMC somente por comando explícito).
-- `estudo_I/e08/diagnostico_e081.py`: diagnóstico histórico, requer cadeias externas.
+- `estudo_I/e08/`: quatro scripts Python E08.1–E08.4; diagnóstico, sensibilidades e confronto documental históricos, exigem entradas externas.
 - `estudo_I/e09/consolidar_e09.py`: código **histórico** de consolidação E09; não roda isolado, exige as saídas E08.
 - [Nota científica](../../reports/pnadc_estudo_i/nota_cientifica.md) com limitações inferenciais.
 
-**Escopo desta contribuição é deliberadamente parcial:** os demais fontes E04, E05 e E08.2–E08.4, os metadados SIDRA, o snapshot original de 22.130 linhas, o arquivo E09 completo e as 52 cadeias históricas constam apenas do **pacote local E10** entregue ao autor, e ainda não foram incluídos nesta branch. A obtenção original via API SIDRA não foi recuperada. Não afirmar reprodução integral E04–E09 a partir deste repositório.
+**Fontes preservados integralmente:** os **15 arquivos de código** do pacote local E10 (Python E04, E05, E08.1–E08.4 e E09; R/CmdStanR E07; três modelos Stan; run.ps1 Windows), no diretório `estudo_I/`. A identidade do conteúdo foi conferida por hashes Git SHA-1 (**15/15 correspondências**). Isso comprova fidelidade de transporte dos fontes, não reexecução.
+
+**Limite da execução pública:** os metadados SIDRA, o snapshot de 22.130 linhas, as saídas intermediárias E04–E08, a E09 integral e as 52 cadeias Stan históricas permanecem **apenas no pacote E10 local**, fora do GitHub. O coletor original da API SIDRA não foi recuperado. Scripts originais requerem os respectivos insumos e, alguns, os caminhos históricos; **não** executar `run.ps1 -Modo completo` para auditar saídas históricas. Não afirmar reprodução E04–E09 com um clone isolado.
 
 ## Comando público testado
 
@@ -43,4 +47,4 @@ Desenho amostral complexo, sobreposição de trimestres móveis, arredondamento,
 
 Fonte: [IBGE/SIDRA](https://sidra.ibge.gov.br/) e [Quadro Sintético PNADC 202609](https://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Mensal/Quadro_Sintetico/2026/pnadc_202609_quadroSintetico.pdf). Licença específica da vintage de extrato **não confirmada**, por isso não publicamos o snapshot integral nem as cadeias. Ver inventário `data/DATA_PROVENANCE.csv`.
 
-**Estados:** síntese descritiva conferível neste repositório; inferências MCMC históricas e cenários condicionais; reamostragem/API não testadas aqui.
+**Estados:** fontes (15/15) conferidos por identidade Git; síntese descritiva conferível neste repositório; inferências MCMC históricas e cenários condicionais; reprodução integral desde API/MCMC não testada aqui.
