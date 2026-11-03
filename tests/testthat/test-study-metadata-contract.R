@@ -10,8 +10,8 @@ testthat::test_that("contrato T02.2 define oito campos obrigatorios uma unica ve
   testthat::expect_gt(end, begin)
 
   template <- lines[seq.int(begin + 1L, end - 1L)]
-  field_lines <- grep("^\\*\\*[^*]+\\*\\*:", template, value = TRUE)
-  fields <- sub("^\\*\\*([^*]+)\\*\\*:.*$", "\\1", field_lines)
+  field_lines <- grep("^\\*\\*[^*]+:\\*\\*", template, value = TRUE)
+  fields <- sub("^\\*\\*([^*:]+):\\*\\*.*$", "\\1", field_lines)
   required <- c(
     "Pergunta", "Objeto", "Dados", "Método", "Estado",
     "Resultados", "Limites", "Responsável"
