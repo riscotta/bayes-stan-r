@@ -30,7 +30,11 @@ Rscript scripts/_setup/install_cmdstan.R
 
 ## Classificação editorial (T02.1)
 
-O [inventário por pasta](STUDY_TAXONOMY_T02_1.md) classifica os 33 tópicos como **Laboratório de modelos** (12) ou **Estudo aplicado** (21), preservando os identificadores históricos. A pasta `_setup/` é infraestrutura (N/A). **A classificação não atesta validade científica, privacidade, permissão de redistribuição, execução de MCMC ou completude E00–E10; depende de QA independente.**
+O [inventário por pasta](STUDY_TAXONOMY_T02_1.md) classifica os 33 tópicos como **Laboratório de modelos** (12) ou **Estudo aplicado** (21), preservando os identificadores históricos. A pasta `_setup/` é infraestrutura (N/A). **O QA editorial da T02.1 foi aprovado em 03/11/2026 (PR #23), mas a classificação não atesta validade científica, privacidade, permissão de redistribuição, execução de MCMC ou completude E00–E10.**
+
+## Contrato mínimo de metadados (T02.2)
+
+O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define pergunta, objeto, dados, método, estado, resultados, limites e responsável, com marcadores para informações ainda não verificadas. É uma proposta documental sujeita a QA próprio; **não** significa preenchimento ou validação retrospectiva das 33 pastas. A incorporação normativa ao `CONTRIBUTING.md` e o piloto pertencem à T02.7.
 
 ## Exemplos disponíveis
 
