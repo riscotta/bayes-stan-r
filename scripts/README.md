@@ -40,6 +40,10 @@ O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define 
 
 O [modelo editável de E00](STUDY_E00_TEMPLATE_T02_3.md) registra hipóteses concorrentes, critérios de escolha e revisão, decisões fecháveis, riscos, dependências, evidências e pendências justificadas. É **um formulário não preenchido**, não uma reconstrução histórica nem QA de estudo. Consulte os [oito metadados mínimos](STUDY_METADATA_CONTRACT_T02_2.md); o piloto e a formalização em `CONTRIBUTING.md` seguem reservados à T02.7.
 
+## Matriz E06 → E07 (T02.4)
+
+A [matriz editável de rastreabilidade matemática–código](STUDY_E06_E07_MATRIX_T02_4.md) define os campos e critérios para confrontar equações, dados, parâmetros, priors, likelihood, transformações e generated quantities entre E06 e Stan/R em E07. O formulário **não está preenchido para nenhum estudo** e não comprova equivalência ou execução; a revisão independente e o piloto continuam exigidos nos respectivos ciclos.
+
 ## Exemplos disponíveis
 
 ### 1) Therapeutic Touch
