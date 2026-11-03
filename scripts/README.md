@@ -44,6 +44,10 @@ O [modelo editável de E00](STUDY_E00_TEMPLATE_T02_3.md) registra hipóteses con
 
 A [matriz editável de rastreabilidade matemática–código](STUDY_E06_E07_MATRIX_T02_4.md) define os campos e critérios para confrontar equações, dados, parâmetros, priors, likelihood, transformações e generated quantities entre E06 e Stan/R em E07. O formulário **não está preenchido para nenhum estudo** e não comprova equivalência ou execução; a revisão independente e o piloto continuam exigidos nos respectivos ciclos.
 
+## Matriz E08 → E09 (T02.5)
+
+A [matriz editável de rastreabilidade entre evidências E08 e afirmações E09](STUDY_E08_E09_MATRIX_T02_5.md) exige fonte, diagnóstico, sensibilidade, limite de validade, hipótese e localizador por afirmação. É **um contrato vazio**, não auditoria de resultados científicos nem autorização de dados; a aplicação ao piloto e a formalização normativa permanecem T02.7.
+
 ## Exemplos disponíveis
 
 ### 1) Therapeutic Touch
