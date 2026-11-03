@@ -5,8 +5,8 @@ testthat::test_that("T02.6 define cinco estados fechados sem validar estudos", {
   txt <- paste(lines, collapse = "\n")
   codes <- c("APROVADO", "RESSALVA", "PENDENTE", "NAO_APLICAVEL",
              "INDISPONIVEL_NO_HISTORICO")
-  dictionary <- grep("^\\| \\x60[A-Z_]+\\x60 \\|", lines, value = TRUE)
-  found <- sub("^\\| \\x60([A-Z_]+)\\x60 \\|.*$", "\\1", dictionary)
+  dictionary <- grep("^\\| \`[A-Z_]+\` \\|", lines, value = TRUE)
+  found <- sub("^\\| \`([A-Z_]+)\` \\|.*$", "\\1", dictionary)
   testthat::expect_identical(found, codes)
   for (term in c("parecer independente", "SHA exato", "CI verde",
                  "busca documentada", "reconstruir", "dados",
@@ -40,9 +40,9 @@ testthat::test_that("T02.6 exige critérios e modelo com E00 a E10 sem estado ap
     sprintf("E%02d", 0:10)
   )
   for (row in rows) {
-    testthat::expect_true(grepl("| \\x60PENDENTE\\x60 |", row, fixed = TRUE))
+    testthat::expect_true(grepl("| \`PENDENTE\` |", row, fixed = TRUE))
     testthat::expect_true(grepl("PENDENTE_DE_VERIFICACAO", row, fixed = TRUE))
-    testthat::expect_false(grepl("\\x60APROVADO\\x60", row, fixed = TRUE))
+    testthat::expect_false(grepl("\`APROVADO\`", row, fixed = TRUE))
     testthat::expect_length(regmatches(row, gregexpr("|", row, fixed = TRUE))[[1]], 8L)
   }
 })
