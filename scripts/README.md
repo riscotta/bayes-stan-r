@@ -28,6 +28,10 @@ Rscript scripts/_setup/install_deps.R --all
 Rscript scripts/_setup/install_cmdstan.R
 ```
 
+## Classificação editorial (T02.1)
+
+O [inventário por pasta](STUDY_TAXONOMY_T02_1.md) classifica os 33 tópicos como **Laboratório de modelos** (12) ou **Estudo aplicado** (21), preservando os identificadores históricos. A pasta `_setup/` é infraestrutura (N/A). **A classificação não atesta validade científica, privacidade, permissão de redistribuição, execução de MCMC ou completude E00–E10; depende de QA independente.**
+
 ## Exemplos disponíveis
 
 ### 1) Therapeutic Touch
