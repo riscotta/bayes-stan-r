@@ -36,6 +36,10 @@ O [inventário por pasta](STUDY_TAXONOMY_T02_1.md) classifica os 33 tópicos com
 
 O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define pergunta, objeto, dados, método, estado, resultados, limites e responsável, com marcadores para informações ainda não verificadas. É uma proposta documental sujeita a QA próprio; **não** significa preenchimento ou validação retrospectiva das 33 pastas. A incorporação normativa ao `CONTRIBUTING.md` e o piloto pertencem à T02.7.
 
+## Modelo de planejamento E00 (T02.3)
+
+O [modelo editável de E00](STUDY_E00_TEMPLATE_T02_3.md) registra hipóteses concorrentes, critérios de escolha e revisão, decisões fecháveis, riscos, dependências, evidências e pendências justificadas. É **um formulário não preenchido**, não uma reconstrução histórica nem QA de estudo. Consulte os [oito metadados mínimos](STUDY_METADATA_CONTRACT_T02_2.md); o piloto e a formalização em `CONTRIBUTING.md` seguem reservados à T02.7.
+
 ## Exemplos disponíveis
 
 ### 1) Therapeutic Touch
