@@ -81,7 +81,7 @@ Identificador histórico: `PENDENTE_DE_VERIFICACAO`; classe editorial: `PENDENTE
 - **Cenário hipotético B:** se um Laboratório de modelos consistir declaradamente apenas em uma demonstração matemática sem análise empírica, o responsável pode **propor** `NAO_APLICAVEL` para uma etapa determinada, desde que justifique sua irrelevância, apresente fonte e obtenha revisão; a classificação de laboratório não basta.
 - **Cenário hipotético C:** se o código E07 existir, mas nenhuma execução de inferência for verificável, `PENDENTE` prevalece para exigências de execução, ainda que as linhas locais de T02.4 documentem conformidade de código. Nunca concluir `APROVADO` pela presença de scripts.
 
-O formulário não foi instanciado em nenhum estudo nesta T02.6. Fontes ausentes, hipóteses não identificadas, estatísticas não calculadas e responsabilidades não confirmadas devem continuar explicitamente pendentes. Informações de privacidade e redistribuição requerem homologação independente do estado editorial.
+O formulário não é auditoria científica e não foi instanciado em nenhum estudo nesta T02.6. Fontes ausentes, hipóteses não identificadas, estatísticas não calculadas e responsabilidades não confirmadas devem continuar explicitamente pendentes. Informações de privacidade e redistribuição requerem homologação independente do estado editorial.
 
 ## 7. Aceitação documental da T02.6 e fronteira do próximo ciclo
 
