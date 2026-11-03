@@ -58,6 +58,17 @@ testthat::test_that("T02.5 registra divergencias e nao confunde CI com validade"
   }
 })
 
+testthat::test_that("T02.5 usa estado local valido para restricao D5", {
+  lines <- readLines(file.path("scripts", "STUDY_E08_E09_MATRIX_T02_5.md"),
+                     warn = FALSE, encoding = "UTF-8")
+  d5 <- grep("^\\| D5 — RESTRICAO \\|", lines, value = TRUE)
+  testthat::expect_length(d5, 1L)
+  testthat::expect_true(grepl("`ABERTA`", d5, fixed = TRUE))
+  testthat::expect_true(grepl("`PENDENTE_DE_VERIFICACAO`", d5, fixed = TRUE))
+  testthat::expect_true(grepl("`INDISPONIVEL_NO_HISTORICO`", d5, fixed = TRUE))
+  testthat::expect_true(grepl("como **motivo**, não como estado local", d5, fixed = TRUE))
+})
+
 testthat::test_that("T02.5 tem links relativos e entrada no catalogo", {
   lines <- readLines(file.path("scripts", "STUDY_E08_E09_MATRIX_T02_5.md"),
                      warn = FALSE, encoding = "UTF-8")
