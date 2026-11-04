@@ -34,7 +34,7 @@ O [inventário por pasta](STUDY_TAXONOMY_T02_1.md) classifica os 33 tópicos com
 
 ## Contrato mínimo de metadados (T02.2)
 
-O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define pergunta, objeto, dados, método, estado, resultados, limites e responsável, com marcadores para informações ainda não verificadas. É uma proposta documental sujeita a QA próprio; **não** significa preenchimento ou validação retrospectiva das 33 pastas. A incorporação normativa ao `CONTRIBUTING.md` e o piloto pertencem à T02.7.
+O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define pergunta, objeto, dados, método, estado, resultados, limites e responsável, com marcadores para informações ainda não verificadas. O contrato documental teve QA técnico no ciclo T02.2; **não** significa preenchimento ou validação retrospectiva das 33 pastas. A incorporação normativa ao `CONTRIBUTING.md` e o piloto pertencem à T02.7.
 
 ## Modelo de planejamento E00 (T02.3)
 
@@ -51,6 +51,10 @@ A [matriz editável de rastreabilidade entre evidências E08 e afirmações E09]
 ## Estados por etapa E00–E10 (T02.6)
 
 O [contrato documental de cinco estados por etapa](STUDY_STAGE_STATUS_T02_6.md) define `APROVADO`, `RESSALVA`, `PENDENTE`, `NAO_APLICAVEL` e `INDISPONIVEL_NO_HISTORICO`, com evidência mínima, transições e modelo vazio E00–E10. **Nenhum estudo foi avaliado ou aprovado por esse formulário**; adoção normativa e piloto ficam em T02.7. Estados locais de matrizes e caixas Exec./QA do Plano não são convertidos automaticamente.
+
+## Aplicação normativa e piloto (T02.7)
+
+O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos contratos T02.1–T02.6 às novas contribuições, com rastreabilidade, QA por etapa e tratamento honesto do histórico. O [piloto editorial de mortalidade SP 0–74](STUDY_PILOT_T02_7_MORTALIDADE_SP.md) aplica os oito campos e demonstra E00, E06→E07, E08→E09 e onze estados **sem reestimar, homologar dados ou concluir QA científico**. A aprovação formal da T02.7 depende de revisão própria deste PR.
 
 ## Exemplos disponíveis
 
