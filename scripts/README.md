@@ -48,6 +48,10 @@ A [matriz editável de rastreabilidade matemática–código](STUDY_E06_E07_MATR
 
 A [matriz editável de rastreabilidade entre evidências E08 e afirmações E09](STUDY_E08_E09_MATRIX_T02_5.md) exige fonte, diagnóstico, sensibilidade, limite de validade, hipótese e localizador por afirmação. É **um contrato vazio**, não auditoria de resultados científicos nem autorização de dados; a aplicação ao piloto e a formalização normativa permanecem T02.7.
 
+## Estados por etapa E00–E10 (T02.6)
+
+O [contrato documental de cinco estados por etapa](STUDY_STAGE_STATUS_T02_6.md) define `APROVADO`, `RESSALVA`, `PENDENTE`, `NAO_APLICAVEL` e `INDISPONIVEL_NO_HISTORICO`, com evidência mínima, transições e modelo vazio E00–E10. **Nenhum estudo foi avaliado ou aprovado por esse formulário**; adoção normativa e piloto ficam em T02.7. Estados locais de matrizes e caixas Exec./QA do Plano não são convertidos automaticamente.
+
 ## Exemplos disponíveis
 
 ### 1) Therapeutic Touch
