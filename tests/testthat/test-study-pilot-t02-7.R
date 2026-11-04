@@ -84,5 +84,5 @@ testthat::test_that("T02.7 piloto identifica fontes por caminho e nao muda resul
     testthat::expect_true(grepl(p, pilot, fixed = TRUE), info = p)
   }
   testthat::expect_true(grepl("Rscript indisponível", pilot, fixed = TRUE))
-  testthat::expect_true(grepl("QA da T02.7 permanece pendente", pilot, fixed = TRUE))
+  testthat::expect_true(grepl("QA da T02.7 depende de parecer técnico separado", pilot, fixed = TRUE))
 })
