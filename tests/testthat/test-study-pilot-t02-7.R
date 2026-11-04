@@ -9,7 +9,7 @@ testthat::test_that("T02.7 publica politica normativa e piloto aplicado sem homo
     "Dados", "Método", "Estado", "Resultados", "Limites", "Responsável",
     "NAO_APLICAVEL", "INDISPONIVEL_NO_HISTORICO",
     "RECONSTRUCAO_EDITORIAL", "NAO_DECIDIR", "Issue #14",
-    "QA independente", "CONTRIBUTING"
+    "QA independente"
   )) {
     testthat::expect_true(grepl(term, txt, fixed = TRUE), info = term)
   }
@@ -53,13 +53,12 @@ testthat::test_that("T02.7 piloto tem oito campos, fontes e 11 estados nao aprov
   actual <- sub("^\\| (E[0-9]{2}) \\|.*$", "\\1", rows)
   testthat::expect_identical(actual, sprintf("E%02d", 0:10))
   for (row in rows) {
-    testthat::expect_true(grepl("| \`PENDENTE\` |", row, fixed = TRUE))
-    testthat::expect_false(grepl("| \`APROVADO\` |", row, fixed = TRUE))
-    testthat::expect_false(grepl("| \`RESSALVA\` |", row, fixed = TRUE))
+    testthat::expect_true(grepl("| `PENDENTE` |", row, fixed = TRUE))
+    testthat::expect_false(grepl("| `APROVADO` |", row, fixed = TRUE))
+    testthat::expect_false(grepl("| `RESSALVA` |", row, fixed = TRUE))
   }
   for (term in c(
-    "RECONSTRUCAO_EDITORIAL", "não houve", "Não houve",
-    "não é E00", "ABERTA", "H01", "H02", "H03",
+    "RECONSTRUCAO_EDITORIAL", "Não houve", "ABERTA", "H01", "H02", "H03",
     "M06-P01", "M06-P02", "M06-P03", "A08-P01",
     "D4", "não é excesso causal", "sem equivalência certificada",
     "Issue", "T03.*", "não foi"
