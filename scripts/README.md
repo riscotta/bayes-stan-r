@@ -54,7 +54,7 @@ O [contrato documental de cinco estados por etapa](STUDY_STAGE_STATUS_T02_6.md) 
 
 ## Aplicação normativa e piloto (T02.7)
 
-O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos contratos T02.1–T02.6 às novas contribuições, com rastreabilidade, QA por etapa e tratamento honesto do histórico. O [piloto editorial de mortalidade SP 0–74](STUDY_PILOT_T02_7_MORTALIDADE_SP.md) aplica os oito campos e demonstra E00, E06→E07, E08→E09 e onze estados **sem reestimar, homologar dados ou concluir QA científico**. A aprovação formal da T02.7 depende de revisão própria deste PR.
+O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos contratos T02.1–T02.6 às novas contribuições, com rastreabilidade, QA por etapa e tratamento honesto do histórico. O [piloto editorial de mortalidade SP 0–74](STUDY_PILOT_T02_7_MORTALIDADE_SP.md) aplica os oito campos e demonstra E00, E06→E07, E08→E09 e onze estados **sem reestimar, homologar dados ou concluir QA científico**. O estado do QA documental T02.7 deve ser conferido no parecer registrado no [PR #29](https://github.com/riscotta/bayes-stan-r/pull/29); isso não substitui o QA científico das etapas E00–E10.
 
 ## Exemplos disponíveis
 
