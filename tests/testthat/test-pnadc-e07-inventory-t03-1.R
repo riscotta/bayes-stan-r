@@ -15,7 +15,7 @@ testthat::test_that("T03.1: inventario E07 separa 13 marginais e 26 contrastes",
   testthat::expect_equal(length(unique(id)), 13L)
   testthat::expect_equal(unname(as.integer(table(factor(eixo, levels = LETTERS[1:5])))),
                          c(2L, 4L, 4L, 2L, 1L))
-  testthat::expect_equal(unname(as.integer(table(factor(tipo,
+  testthat::expect_equal(as.integer(table(factor(tipo,
                              levels = c("taxa", "contagem", "rendimento")))),
                          c(8L, 4L, 1L))
 
