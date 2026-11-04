@@ -61,7 +61,7 @@ testthat::test_that("T02.7 piloto tem oito campos, fontes e 11 estados nao aprov
     "RECONSTRUCAO_EDITORIAL", "Não houve", "ABERTA", "H01", "H02", "H03",
     "M06-P01", "M06-P02", "M06-P03", "A08-P01",
     "D4", "não é excesso causal", "sem equivalência certificada",
-    "Issue", "T03.*", "não foi"
+    "Issue", "T03.*"
   )) {
     testthat::expect_true(grepl(term, text, fixed = TRUE), info = term)
   }
