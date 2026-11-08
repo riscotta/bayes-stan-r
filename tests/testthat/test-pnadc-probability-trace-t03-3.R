@@ -112,5 +112,5 @@ testthat::test_that("T03.3: origem das probabilidades E08/E09 auditada sem draws
   testthat::expect_true(contem(md, "T03.4"))
   testthat::expect_true(contem(md, "Issue #14"))
   testthat::expect_true(contem(md, "independente"))
-  testthat::expect_true(contem(md, "não contém campos probabilísticos"))
+  testthat::expect_true(contem(md, "Não contém campos probabilísticos"))
 })
