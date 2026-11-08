@@ -22,6 +22,11 @@ O [inventário documental da E07](../../reports/pnadc_estudo_i/inventario_estima
 
 A [derivação gaussiana condicional de E08.2](../../reports/pnadc_estudo_i/derivacao_contrastes_gaussianos_T03_2.md) explicita a matriz de covariância **hipotética** de dois períodos, a identidade `Var(Delta | rho) = s_0² + s_1² - 2rho s_0 s_1`, a probabilidade de sinal e um exemplo sintético. O parâmetro `rho` não foi estimado, e esses cálculos não identificam posterior temporal conjunta nem probabilidades de melhoria simultânea. O documento não altera os resultados históricos; T03.3–T03.7 e a homologação dos dados permanecem pendentes.
 
+
+## Rastreabilidade das probabilidades E08/E09 (T03.3)
+
+A [matriz de origem dos campos probabilísticos](../../reports/pnadc_estudo_i/rastreabilidade_probabilidades_T03_3.md) distingue PPC e resumos de draws **marginais** E07/E08.1, cenários gaussianos condicionais E08.2, quadratura/propagação aproximada E08.3, limites de proxies E08.4 e consolidação E09. Nenhum cálculo temporal E08/E09 usa draws conjuntos de diferenças E07. Este inventário não reexecuta os arquivos históricos nem estima covariâncias; a QA independente da T03.3 e as tarefas T03.4–T03.7 continuam pendentes até verificação.
+
 ## Código e resultados aqui disponíveis
 
 - `auditar_e10.py` e [síntese histórica E09](../../data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv): auditoria de SHA-256, cardinalidade, períodos e identidades dos **26 contrastes** (projeção descritiva de 10 colunas da E09 original).
