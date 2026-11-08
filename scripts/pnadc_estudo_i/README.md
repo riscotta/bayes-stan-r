@@ -25,7 +25,11 @@ A [derivação gaussiana condicional de E08.2](../../reports/pnadc_estudo_i/deri
 
 ## Rastreabilidade das probabilidades E08/E09 (T03.3)
 
-A [matriz de origem dos campos probabilísticos](../../reports/pnadc_estudo_i/rastreabilidade_probabilidades_T03_3.md) distingue PPC e resumos de draws **marginais** E07/E08.1, cenários gaussianos condicionais E08.2, quadratura/propagação aproximada E08.3, limites de proxies E08.4 e consolidação E09. Nenhum cálculo temporal E08/E09 usa draws conjuntos de diferenças E07. Este inventário não reexecuta os arquivos históricos nem estima covariâncias; a QA independente da T03.3 e as tarefas T03.4–T03.7 continuam pendentes até verificação.
+A [matriz de origem dos campos probabilísticos](../../reports/pnadc_estudo_i/rastreabilidade_probabilidades_T03_3.md) distingue PPC e resumos de draws **marginais** E07/E08.1, cenários gaussianos condicionais E08.2, quadratura/propagação aproximada E08.3, limites de proxies E08.4 e consolidação E09. Nenhum cálculo temporal E08/E09 usa draws conjuntos de diferenças E07. A T03.3 foi integrada após revisão técnico-documental com ressalvas (ver histórico do plano); o inventário não reexecuta os arquivos históricos nem estima covariâncias. T03.4–T03.7 não devem ser presumidas cientificamente validadas.
+
+## Auditoria de suporte e dependência (T03.4)
+
+A [auditoria T03.4](../../reports/pnadc_estudo_i/auditoria_suporte_cv_arredondamento_T03_4.md) compara os suportes Stan de taxas, contagens e rendimento com a aproximação gaussiana não truncada de E08.2; examina a escala do CV, hipóteses de arredondamento de E08.3, janelas dos contrastes e falta de covariâncias de desenho. **Ambos os pares não compartilham meses de referência, mas o esquema amostral rotativo 1-2(5) impede deduzir independência dos estimadores.** Os valores de ρ permanecem cenários hipotéticos. Testes sintéticos verificam riscos e relações matemáticas, não massas de cauda reais nem validade das probabilidades E08/E09. T03.4 depende de QA independente no PR; T03.5–T03.7 e a governança P0 permanecem abertas.
 
 ## Código e resultados aqui disponíveis
 
