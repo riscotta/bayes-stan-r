@@ -100,3 +100,46 @@ testthat::test_that("T04.1 registra fonte e nao promete inferencia conjunta", {
     testthat::expect_true(grepl(risk, doc, fixed = TRUE), info = risk)
   }
 })
+
+testthat::test_that("T04.1 distingue disjuncao intracontraste do destino compartilhado", {
+  lines <- readLines(file.path("reports", "pnadc_estudo_i",
+                               "e00_consolidado_T04_1.md"),
+                     warn = FALSE, encoding = "UTF-8")
+  begin <- which(startsWith(lines, "## 2. População, unidade, alcance e janelas"))
+  end <- which(startsWith(lines, "## 3. Eixos, indicadores e estimandos"))
+  testthat::expect_length(begin, 1L)
+  testthat::expect_length(end, 1L)
+  testthat::expect_gt(end, begin)
+  section <- paste(lines[seq.int(begin + 1L, end - 1L)], collapse = "\n")
+
+  # Evita confundir disjuncao dentro dos pares com disjuncao entre contrastes.
+  testthat::expect_false(grepl(
+    "As duas comparações não compartilham meses de referência",
+    section, fixed = TRUE
+  ))
+  for (term in c(
+    "Dentro de cada contraste",
+    "origem e destino não compartilham meses de referência",
+    "`202509` e `202609` no anual",
+    "`202606` e `202609` no recente",
+    "Entre os dois contrastes",
+    "destino `202609` (julho–setembro de 2026) é compartilhado",
+    "não prova independência estatística",
+    "não se pode assumir `Cov(Delta_anual, Delta_recente)=0`"
+  )) {
+    testthat::expect_true(grepl(term, section, fixed = TRUE), info = term)
+  }
+  testthat::expect_identical(
+    intersect(c("202507", "202508", "202509"),
+              c("202607", "202608", "202609")), character(0)
+  )
+  testthat::expect_identical(
+    intersect(c("202604", "202605", "202606"),
+              c("202607", "202608", "202609")), character(0)
+  )
+  testthat::expect_identical(
+    intersect(c("202607", "202608", "202609"),
+              c("202607", "202608", "202609")),
+    c("202607", "202608", "202609")
+  )
+})
