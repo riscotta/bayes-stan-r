@@ -29,7 +29,7 @@ testthat::test_that("T04.4 confronta todas as declaracoes e operacoes dos 3 Stan
     x <- readLines(file.path(pasta, nome), warn = FALSE)
     testthat::expect_identical(
       trimws(x[grepl("^[[:space:]]*(data|parameters|model|generated quantities)[[:space:]]*\\{", x)]),
-      c("data {", "parameters {", "model {", "generated quantities {"))
+      c("data {", "parameters {", "model {", "generated quantities {")
     )
     testthat::expect_false(any(grepl(
       "^[[:space:]]*(vector|matrix|array|corr_matrix|cholesky_factor_corr)[[:space:]<\\[]", x
