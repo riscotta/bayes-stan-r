@@ -76,7 +76,7 @@ testthat::test_that("T04.4 confirma filtros, dados Stan, saidas e guardas diverg
   testthat::expect_true(has(p, "any(ref$Valor < 0)"))
   testthat::expect_true(has(a, "if (tipo == 'taxa' && (y < 0 || y > 100))"))
   testthat::expect_true(has(a, "if (!is.finite(P) || P <= 0 || y > P)"))
-  l1 <- which(grepl("if (tipo == 'contagem')", a, fixed = TRUE))
+  l1 <- which(trimws(a) == "if (tipo == 'contagem') {")
   l2 <- which(grepl("data_stan$populacao_14mais_mil <- P", a, fixed = TRUE))
   testthat::expect_length(l1, 1L)
   testthat::expect_length(l2, 1L)
