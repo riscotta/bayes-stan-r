@@ -9,7 +9,7 @@ testthat::test_that("T04.5: 26 chaves documentais espelham a E09 descritiva", {
   linhas <- grep("^\\| T45-[0-9]{2} \\|", doc, value = TRUE)
   testthat::expect_length(linhas, 26L)
   campos <- strsplit(linhas, "|", fixed = TRUE)
-  colunas <- lapply(campos, function(x) trimws(x[2:(length(x)-1L)]))
+  colunas <- lapply(campos, function(x) trimws(x[2:length(x)]))
   d <- do.call(rbind, colunas)
   testthat::expect_equal(ncol(d), 9L)
   testthat::expect_identical(d[, 1], sprintf("T45-%02d", 1:26))
