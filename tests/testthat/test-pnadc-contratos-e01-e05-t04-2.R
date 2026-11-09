@@ -83,7 +83,7 @@ testthat::test_that("T04.2 registra contratos existentes sem executar E04 ou E05
     "202509", "202606", "202609"
   )) testthat::expect_true(grepl(token, e05, fixed = TRUE), info = token)
   for (token in c(
-    "não foram executados", "não versionadas", "valores e CV",
+    "não foram executados", "não versionadas", "valor e CV",
     "0,051", "1 mil", "MANIFESTO_SHA256.csv", "descritiva",
     "não", "covariância", "não foram confrontados"
   )) testthat::expect_true(grepl(token, doc, fixed = TRUE), info = token)
