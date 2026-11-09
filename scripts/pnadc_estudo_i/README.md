@@ -41,6 +41,10 @@ A [matriz de rótulos T03.6](../../reports/pnadc_estudo_i/rotulos_inferenciais_T
 
 Na apresentação, associar cada número a **indicador, unidade, janela, direção favorável, rho postulado e método**. `rho=0` em E09 não é correlação empírica nem independência demonstrada. Ver a [nota científica atualizada](../../reports/pnadc_estudo_i/nota_cientifica.md). Esta mudança é **somente documental**, sem alteração dos 15 fontes históricos, dados ou resultados; exige QA independente e a CI no SHA do PR. T03.7 e T01.3–T01.7/Issue #14 continuam abertas.
 
+## Invariantes matemáticas e casos sintéticos (T03.7)
+
+O [relatório T03.7](../../reports/pnadc_estudo_i/invariantes_sinteticos_T03_7.md) descreve os ensaios executáveis em R de variância, sinal e limites dos contrastes gaussianos, suporte de `theta`, escala do CV, arredondamento por 16 vértices, limites de Fréchet para **cinco proxies** e integridade descritiva da projeção E09. A suíte `tests/testthat/test-pnadc-invariantes-sinteticos-t03-7.R` usa **casos sintéticos**, não reexecuta os scripts Python E08/E09 nem Stan, não inspeciona insumos institucionais e **não valida inferências históricas**. A T03.6 já foi integrada no PR #35 com QA documental e ressalvas; a T03.7 exige QA independente e CI no HEAD final antes de qualquer merge. A Etapa 01/P0 (Issue #14) continua aberta.
+
 ## Código e resultados aqui disponíveis
 
 - `auditar_e10.py` e [síntese histórica E09](../../data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv): auditoria de SHA-256, cardinalidade, períodos e identidades dos **26 contrastes** (projeção descritiva de 10 colunas da E09 original).
