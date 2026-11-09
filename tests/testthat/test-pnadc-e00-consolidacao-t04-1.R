@@ -36,9 +36,9 @@ testthat::test_that("T04.1 contem oito campos, janelas e seis decisoes abertas",
     testthat::expect_true(any(grepl(term, lines, fixed = TRUE)), info = term)
   }
 
-  hypothesis <- grep("^| H0[1-3] |", lines, value = TRUE, fixed = FALSE)
+  hypothesis <- grep("^\\| H0[1-3] \\|", lines, value = TRUE)
   testthat::expect_length(hypothesis, 3L)
-  decisions <- grep("^| D00-0[1-6] |", lines, value = TRUE)
+  decisions <- grep("^\\| D00-0[1-6] \\|", lines, value = TRUE)
   testthat::expect_length(decisions, 6L)
   testthat::expect_true(all(grepl("| `ABERTA` |", decisions, fixed = TRUE)))
   testthat::expect_true(any(grepl("não são modelos mutuamente exclusivos",
