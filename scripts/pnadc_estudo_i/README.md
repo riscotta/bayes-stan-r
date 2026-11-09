@@ -17,7 +17,11 @@ Brasil; PNAD Contínua **agregada**; contrastes 202509→202609 (anual) e 202606
 
 ## Consolidação de E00 — T04.1
 
-A [reconstrução editorial de E00](../../reports/pnadc_estudo_i/e00_consolidado_T04_1.md) registra a pergunta literal, o universo de agregados, duas janelas, os 13 indicadores, hipóteses concorrentes **propostas** e decisões ainda **ABERTAS**. Não constitui o E00 contemporâneo original, pré-registro, aprovação científica nem homologação de dados; sua revisão independente e a CI do PR devem ocorrer antes da integração. As tarefas T04.2–T04.7 permanecem fora desta mudança.
+A [reconstrução editorial de E00](../../reports/pnadc_estudo_i/e00_consolidado_T04_1.md) registra a pergunta literal, o universo de agregados, duas janelas, os 13 indicadores, hipóteses concorrentes **propostas** e decisões ainda **ABERTAS**. Não constitui o E00 contemporâneo original, pré-registro, aprovação científica nem homologação de dados; a revisão independente, a CI e a integração da T04.1 ocorreram no PR #37; isso não equivale a homologação científica ou dos dados. As tarefas T04.2–T04.7 requerem ciclos próprios.
+
+## Proveniência e contratos documentais E01–E05 (T04.2)
+
+O [inventário T04.2](../../reports/pnadc_estudo_i/contratos_e01_e05_T04_2.md) relaciona as lacunas E01–E03, o dicionário dos **13 indicadores principais + 1 apoio**, os IDs SIDRA e CV declarados, os universos/denominadores, as janelas e os contratos E04/E05. É **RECONSTRUCAO_EDITORIAL**, não documentação contemporânea recuperada. O snapshot SIDRA de 22.130 linhas, os metadados JSON locais, o manifesto histórico e as saídas E04/E05 **não estão disponíveis no clone**; os testes são estruturais e verificam apenas o código e a E09 pública. A T04.2 aguarda **QA independente**, CI do HEAD final e eventual integração; isso não autoriza reexecução, redistribuição nem aprovação institucional. T01.3–T01.7/Issue #14 permanecem pendentes.
 
 ## Rastreabilidade dos estimandos E07 (T03.1)
 
