@@ -31,6 +31,10 @@ A [matriz de origem dos campos probabilísticos](../../reports/pnadc_estudo_i/ra
 
 A [auditoria T03.4](../../reports/pnadc_estudo_i/auditoria_suporte_cv_arredondamento_T03_4.md) compara os suportes Stan de taxas, contagens e rendimento com a aproximação gaussiana não truncada de E08.2; examina a escala do CV, hipóteses de arredondamento de E08.3, janelas dos contrastes e falta de covariâncias de desenho. **Ambos os pares não compartilham meses de referência, mas o esquema amostral rotativo 1-2(5) impede deduzir independência dos estimadores.** Os valores de ρ permanecem cenários hipotéticos. Testes sintéticos verificam riscos e relações matemáticas, não massas de cauda reais nem validade das probabilidades E08/E09. T03.4 depende de QA independente no PR; T03.5–T03.7 e a governança P0 permanecem abertas.
 
+## Alternativas inferenciais e identificabilidade (T03.5)
+
+A [matriz de decisão T03.5](../../reports/pnadc_estudo_i/comparacao_alternativas_inferenciais_T03_5.md) compara manter os cenários gaussianos condicionais da E08/E09, desenvolver modelo temporal por indicador condicionado a covariâncias de desenho verificáveis, ou especificar um modelo multivariado dos cinco eixos. **Proposta sob revisão:** preservar os resultados históricos apenas como cenários exploratórios; dados marginais/CVs não identificam correlações temporais ou entre indicadores, nem melhoria simultânea. Não houve novo Stan/MCMC nem alteração de dados, scripts históricos ou resultados. A T03.5 requer QA independente antes do merge; T03.6–T03.7 e a governança P0 permanecem pendentes.
+
 ## Código e resultados aqui disponíveis
 
 - `auditar_e10.py` e [síntese histórica E09](../../data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv): auditoria de SHA-256, cardinalidade, períodos e identidades dos **26 contrastes** (projeção descritiva de 10 colunas da E09 original).
