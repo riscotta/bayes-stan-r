@@ -14,6 +14,11 @@ Brasil; PNAD Contínua **agregada**; contrastes 202509→202609 (anual) e 202606
 
 **13 indicadores**; população de 14 anos ou mais é apoio/denominador, não um indicador substantivo adicional.
 
+
+## Consolidação de E00 — T04.1
+
+A [reconstrução editorial de E00](../../reports/pnadc_estudo_i/e00_consolidado_T04_1.md) registra a pergunta literal, o universo de agregados, duas janelas, os 13 indicadores, hipóteses concorrentes **propostas** e decisões ainda **ABERTAS**. Não constitui o E00 contemporâneo original, pré-registro, aprovação científica nem homologação de dados; sua revisão independente e a CI do PR devem ocorrer antes da integração. As tarefas T04.2–T04.7 permanecem fora desta mudança.
+
 ## Rastreabilidade dos estimandos E07 (T03.1)
 
 O [inventário documental da E07](../../reports/pnadc_estudo_i/inventario_estimandos_e07_T03_1.md) relaciona os 13 estimandos `theta` **marginais de 202609**, os arquivos de saída previstos no R/Stan e as diferenças **descritivas** e **cenários condicionais** produzidos somente em E05/E08/E09. Os resumos MCMC E07 históricos não estão versionados neste repositório; a T03.1 não os reexecuta nem valida uma posterior temporal conjunta. T03.1–T03.5 passaram por revisão técnico-documental no escopo dos respectivos ciclos; isso não representa validação científica integral. T03.6 requer QA independente no PR e T03.7 permanece pendente.
