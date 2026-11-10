@@ -125,8 +125,8 @@ testthat::test_that("T04.5 B1: F01-F08 mantêm localizadores e oito Git blob SHA
     testthat::expect_true(file.exists(caminhos[i]), info = ids[i])
     obtido <- system2("git", c("hash-object", shQuote(caminhos[i])),
                       stdout = TRUE, stderr = TRUE)
-    testthat::expect_length(obtido, 1L, info = ids[i])
-    testthat::expect_identical(trimws(obtido), hashes[i], info = ids[i])
+    testthat::expect_length(obtido, 1L)
+    testthat::expect_identical(trimws(obtido), hashes[i])
   }
 })
 
