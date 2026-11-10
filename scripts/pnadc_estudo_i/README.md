@@ -33,7 +33,7 @@ O [inventário documental da E07](../../reports/pnadc_estudo_i/inventario_estima
 
 ## Derivação matemática dos contrastes (T03.2)
 
-A [derivação gaussiana condicional de E08.2](../../reports/pnadc_estudo_i/derivacao_contrastes_gaussianos_T03_2.md) explicita a matriz de covariância **hipotética** de dois períodos, a identidade `Var(Delta | rho) = s_0² + s_1² - 2rho s_0 s_1`, a probabilidade de sinal e um exemplo sintético. O parâmetro `rho` não foi estimado, e esses cálculos não identificam posterior temporal conjunta nem probabilidades de melhoria simultânea. O documento não altera os resultados históricos; T03.3–T03.7 tiveram revisões específicas em seus ciclos; a homologação dos dados ainda exige os gates da Etapa 01/P0.
+A [derivação gaussiana condicional de E08.2](../../reports/pnadc_estudo_i/derivacao_contrastes_gaussianos_T03_2.md) explicita a matriz de covariância **hipotética** de dois períodos, a identidade `Var(Delta | rho) = s_0² + s_1² - 2rho s_0 s_1`, a probabilidade de sinal, um exemplo descritivo verificável da PNAD e, como complemento, um oráculo sintético. O parâmetro `rho` não foi estimado, e esses cálculos não identificam posterior temporal conjunta nem probabilidades de melhoria simultânea. O documento não altera os resultados históricos; T03.3–T03.7 tiveram revisões específicas em seus ciclos; a homologação dos dados ainda exige os gates da Etapa 01/P0.
 
 
 ## Rastreabilidade das probabilidades E08/E09 (T03.3)
@@ -111,3 +111,10 @@ Os CSVs E08 e E09 probabilística, cadeias E07 e insumos E04 estão ausentes no 
 A [matriz E10 T04.6](../../reports/pnadc_estudo_i/e10_matriz_evidencias_reproducao_T04_6.md) rastreia E00–E09, fontes e hashes Git, ausências e condições de parada em **N1** evidência estrutural, **N2** reprodução descritiva, **N3** reprodução inferencial e **N4** reprodução integral. Inclui as 26 chaves com `Delta` e `SituacaoOficialIBGE` do CSV público: são **linhas descritivas, não probabilidades validadas**. O único comando executável do clone para N2 é `python scripts/pnadc_estudo_i/auditar_e10.py` (SHA-256 e aritmética); não baixa SIDRA, não calcula CV, não roda Stan/MCMC nem recompõe cenários E08/E09. Os testes [T04.6](../../tests/testthat/test-pnadc-e10-matriz-t04-6.R) verificam matriz, 26 deltas/estados, hashes de fontes e, se houver Python 3 no ambiente, executam a auditoria descritiva.
 
 **Estado temporal:** a observação de T04.5 pendente no bloco anterior descreve o ciclo executor anterior. Posteriormente, PR #41 foi aprovado com ressalvas em QA técnico-documental, integrado por squash na `main` `f2de3e8070cc6b097fcbbc394ee1845be663c753`, com CI push #42807044017 `completed/success`. T04.6 inicia um novo gate e **não está aprovada independentemente por esse fato**. T04.7 e Etapa 04 permanecem abertas. P0/T01.3–T01.7, Issues #14–#16, D00-01–D00-06 e ressalvas T04.4 R1–R4/T04.5 R1–R3 seguem pendentes. Nenhum dado, fonte científico ou resultado histórico foi alterado pela documentação E10.
+
+
+## Exemplos didáticos contextualizados na PNAD — T04.7
+
+O [inventário editorial T04.7](../../reports/pnadc_estudo_i/exemplos_didaticos_T04_7.md) distingue **valores publicados**, regras **condicionais** e oráculos **sintéticos** nos documentos T03.2/T03.4/T03.5/T03.6/T03.7. Prioriza a projeção pública E09 (`desocupacao_pct` 5,4→5,2, `desalentados_mil` 2.288→2.459 e `rendimento_real_habitual_rs` 3.753→3.790 no contraste recente), sem criar CV, correlação, significância ou posterior novos. Teste editorial: [T04.7](../../tests/testthat/test-pnadc-exemplos-t04-7.R).
+
+**Controle:** T04.7 é revisão editorial submetida a QA independente em PR próprio; nenhuma correção retrospectiva de valores históricos, modelos ou dados foi realizada. Permanecem `D00-01`–`D00-06` abertas, P0/T01.3–T01.7/Issue #14, Issues #15/#16 e ressalvas R1–R3 da T04.6. A mera inclusão deste índice não marca QA nem encerra a Etapa 04.

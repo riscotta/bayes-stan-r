@@ -53,9 +53,11 @@ Os nomes `IC95Inf` e `IC95Sup` são mantidos **como rótulos do código históri
 - Quando `k*d>0`, reduzir o desvio aumenta a probabilidade condicional de movimento favorável; quando `k*d<0`, reduz essa probabilidade; quando `d=0` e `SD>0`, resulta `0.5`. Assim **não** é correto afirmar que rho positivo aumenta sempre a probabilidade de melhoria.
 - Nem a matriz temporal de um único indicador, nem os seus limites em rho, definem uma distribuição conjunta para os 13 indicadores ou uma probabilidade de melhora simultânea nos cinco eixos.
 
-## 4. Exemplo sintético para verificar a identidade (não são dados da PNAD)
+## 4. Exemplo PNAD e conferência sintética complementar
 
-Se `y_0=10`, `y_1=13`, `s_0=2`, `s_1=1`, então `d=3` e `Var(Delta)=5-4rho`.
+**Primeiro, o dado publicado:** na projeção descritiva E09, `desocupacao_pct` no contraste **recente 202606→202609** passa de **5,4% para 5,2%**, logo `d=y_1-y_0=-0,2` ponto percentual e a direção favorável para desocupação é `k=-1`. Para esse par, a expressão pertinente é `Var(Delta | rho)=s_0²+s_1²-2rho*s_0*s_1` e, **apenas se fossem fornecidos e justificados** `s_0,s_1>0`, a probabilidade condicional seria `Phi(0,2/sqrt(s_0²+s_1²-2rho*s_0*s_1))`. Os CVs desse par e as covariâncias de desenho **não estão no CSV público**: não se calcula aqui `s_0`, `s_1`, desvio do contraste, probabilidade ou intervalo. O rótulo descritivo da projeção é `caiu`, não um resultado dessa fórmula.
+
+**Complemento exclusivamente sintético para verificar a álgebra (não são dados da PNAD):** se `y_0=10`, `y_1=13`, `s_0=2`, `s_1=1`, então `d=3` e `Var(Delta)=5-4rho`.
 
 | rho hipotético | Var(Delta) | SD(Delta) aprox. | P_cenario(Delta > 0) aprox. |
 | ---: | ---: | ---: | ---: |

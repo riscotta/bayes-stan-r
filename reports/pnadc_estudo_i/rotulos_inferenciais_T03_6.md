@@ -31,7 +31,9 @@
 5. Tratar `SituacaoOficialIBGE` separadamente de probabilidades de cenário; significância/estabilidade oficial e eventos gaussianos hipotéticos não são critérios intercambiáveis.
 6. Não inferir causalidade, melhoria simultânea, correlação temporal empírica nem posterior conjunta identificada. Suporte, erro de arredondamento, CV, desenho rotativo e ausência de covariâncias continuam limitações materiais.
 
-**Exemplo de legenda admissível (sem valor numérico fictício):** «Indicador [identificado], janela [identificada]: probabilidade de mudança no sentido favorável no cenário gaussiano condicional com `rho=0` postulado, usando CVs agregados; não é posterior temporal conjunta nem probabilidade oficial do IBGE». Os colchetes indicam informações que devem ser extraídas do registro apresentado, e não valores já verificados neste documento.
+**Exemplo prioritário com registro PNAD verificável:** «`desocupacao_pct`, Brasil, janela recente `202606→202609`: **5,4%→5,2%** (`Delta=-0,2` p.p.; `SituacaoOficialIBGE=caiu` no CSV descritivo E09). A subtração e a classificação são descritivas; o CSV público **não** contém `ProbSentido`, CVs nem covariâncias e não autoriza atribuir probabilidade de queda». Se uma probabilidade histórica de E08.2/E09 vier a ser apresentada em ambiente autorizado, a legenda **deve acrescentar** direção favorável `menor`, `rho` **postulado** (inclusive `rho=0`), método Normal condicional, fonte dos CVs e limites, **sem inventar valor numérico nem chamá-la de posterior temporal**.
+
+**Complemento: modelo genérico de legenda (não é registro observado):** «Indicador [identificado], janela [identificada]: probabilidade de mudança no sentido favorável em cenário gaussiano condicional com `rho` postulado, usando CVs agregados; não é posterior temporal conjunta nem probabilidade oficial do IBGE». Os colchetes são campos a preencher somente com evidência disponível.
 
 **Legenda inadmissível:** «Stan demonstrou com 95% de confiança que todos os eixos da PNAD melhoraram». O modelo E07 é marginal de 202609, E08.2/E09 não estimam covariâncias temporais, e o evento conjunto dos cinco eixos não foi identificado.
 
