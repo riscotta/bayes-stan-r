@@ -18,7 +18,7 @@ def main() -> int:
         return 2
 
     try:
-        runpy.run_path(str(Path(__file__).with_name("auditar_e10.py")), run_name="__main__")
+        runpy.run_path(str(Path(__file__).resolve().parents[2] / "scripts/pnadc_estudo_i/auditar_e10.py"), run_name="__main__")
     except Exception as exc:
         print(f"N2 FALHOU: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 1

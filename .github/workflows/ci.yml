@@ -46,7 +46,7 @@ jobs:
         run: python -m unittest discover -s tests/python -p 'test_pnad_n2.py' -v
 
       - name: Audit published PNAD E09 projection (N2 only)
-        run: python scripts/pnadc_estudo_i/executar_auditoria_n2.py
+        run: python .github/scripts/executar_auditoria_n2.py
 
   validate:
     name: R 4.5.1 — syntax and tests

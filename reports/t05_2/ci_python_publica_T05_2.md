@@ -18,9 +18,11 @@ A suíte testa: saída positiva do CSV público imutável, reprovação por adul
 ## Comandos e escopo
 
 - python3 -m unittest discover -s tests/python -p 'test_pnad_n2.py' -v
-- python3 scripts/pnadc_estudo_i/executar_auditoria_n2.py
+- python3 .github/scripts/executar_auditoria_n2.py
 - python3 -O scripts/pnadc_estudo_i/executar_auditoria_n2.py (esperado: exit 2)
 
 **N2, caso aprovado:** somente integridade SHA-256 da projeção pública E09 (8bd38ce75917d981431f4c2a9c09ba73648ff1151fd6ac717068637b682fe120), 13 indicadores, cinco eixos, 26 contrastes, períodos e deltas descritivos. **Não comprova:** extração SIDRA, E04–E08, 52 cadeias Stan/MCMC, PPC, valores CV, 104 probabilidades E08.2, posterior temporal conjunta, inferência, N3/N4, licenças, privacidade ou autorização de publicação. CSV e rótulos oficiais são os mesmos; nenhum estimando ou resultado científico é recalculado.
 
 **Gates pendentes:** T05.2 QA não realizado até parecer independente no HEAD final; T05.3–T05.7 pendentes. T01.3–T01.7/Issue #14, Issues #15/#16, D00-01–D00-06 e ressalvas T04.4 R1–R4, T04.5 R1–R3, T04.6 R1–R3, T04.7 e T05.1 R1–R4 permanecem com seus estados anteriores.
+
+**Correção de CI no PR:** o primeiro run no HEAD 029dd796 falhou no teste de inventário T05.1 porque o wrapper somava uma 80ª fonte em scripts/ sem integrar o inventário histórico fixado. Por isso o wrapper técnico foi deslocado exclusivamente para .github/scripts/, sem alterar relatórios T05.1 ou código científico; o HEAD novo exige novo CI e QA. A primeira execução Python N2 havia passado; o check R tinha falhado por deriva de universo, não por resultado científico.

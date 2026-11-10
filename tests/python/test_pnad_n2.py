@@ -12,8 +12,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SCRIPT = ROOT / "scripts/pnadc_estudo_i/executar_auditoria_n2.py"
-LEGADO = SCRIPT.with_name("auditar_e10.py")
+SCRIPT = ROOT / ".github/scripts/executar_auditoria_n2.py"
+LEGADO = ROOT / "scripts/pnadc_estudo_i/auditar_e10.py"
 CSV_PUBLICO = ROOT / "data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv"
 
 
@@ -28,14 +28,16 @@ class AuditoriaN2CI(unittest.TestCase):
         )
 
     def replica_temporaria(self, pasta: Path) -> tuple[Path, Path, Path]:
-        base = pasta / "scripts/pnadc_estudo_i"
+        base = pasta / ".github/scripts"
+        origem = pasta / "scripts/pnadc_estudo_i"
         entrada = pasta / "data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv"
         base.mkdir(parents=True)
+        origem.mkdir(parents=True)
         entrada.parent.mkdir(parents=True)
         shutil.copyfile(SCRIPT, base / SCRIPT.name)
-        shutil.copyfile(LEGADO, base / LEGADO.name)
+        shutil.copyfile(LEGADO, origem / LEGADO.name)
         shutil.copyfile(CSV_PUBLICO, entrada)
-        return base / SCRIPT.name, base / LEGADO.name, entrada
+        return base / SCRIPT.name, origem / LEGADO.name, entrada
 
     def test_csv_publico_aprovado_com_mensagem_de_escopo(self):
         resultado = self.executar()
