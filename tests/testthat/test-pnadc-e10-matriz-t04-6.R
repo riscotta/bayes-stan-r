@@ -15,7 +15,7 @@ testthat::test_that("T04.6: rastreabilidade E00–E09 explicita estagios e limit
   linhas <- grep("^\\| (E0[0-9]|E08\\.[1-4]) \\|", doc, value = TRUE)
   ids <- vapply(linhas, function(s) trimws(strsplit(s, "|", fixed = TRUE)[[1]][2]),
                 character(1))
-  testthat::expect_identical(ids,
+  testthat::expect_identical(unname(ids),
     c(sprintf("E%02d", 0:7), paste0("E08.", 1:4), "E09"))
   texto <- texto_t46(documento_t46)
   for (nivel in c("N1 — evidência estrutural",
