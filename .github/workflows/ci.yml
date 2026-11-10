@@ -48,9 +48,40 @@ jobs:
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
+  stan_syntax:
+    name: Stan 2.40.0 — representative syntax
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up fixed Python for gate tests
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12.8'
+
+      - name: Download pinned stanc3 and verify SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 2 \
+            https://github.com/stan-dev/stanc3/releases/download/v2.40.0/linux-stanc \
+            -o "$RUNNER_TEMP/stanc"
+          echo "29306a35092c7f6c1aa20df903ddb9dcd83af5995ba37630324a2e019d05e6f4  $RUNNER_TEMP/stanc" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/stanc"
+          "$RUNNER_TEMP/stanc" --version
+
+      - name: Test structural gate and adversarial scenarios
+        run: python -m unittest discover -s tests/python -p 'test_stan_t05_3.py' -v
+
+      - name: Compile representative Stan source to C++ (no native build or sampling)
+        run: python .github/scripts/validar_stan_t05_3.py --stanc "$RUNNER_TEMP/stanc"
+
   validate:
     name: R 4.5.1 — syntax and tests
-    needs: pnad_n2
+    needs: [pnad_n2, stan_syntax]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -68,6 +99,13 @@ jobs:
         shell: bash
         run: |
           echo "::error::PNAD N2 Python não passou: check R obrigatório também deve falhar."
+          exit 1
+
+      - name: Enforce Stan source validation before mandatory R check
+        if: ${{ needs.stan_syntax.result != 'success' }}
+        shell: bash
+        run: |
+          echo "::error::Gate T05.3 Stan não passou: check R obrigatório também deve falhar."
           exit 1
 
       - name: Install runner requirements
