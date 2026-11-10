@@ -45,7 +45,7 @@ P_cenario(movimento favoravel | rho) =
   Phi(0,2 / sqrt(s_0^2+s_1^2-2*rho*s_0*s_1))
 ```
 
-Isso **não** calcula a probabilidade de melhora para a PNAD: o CSV público não oferece CVs `202606`/`202609`, covariância temporal, likelihood conjunta nem posterior de `Delta`. `rho=0` selecionado por E09 representa **hipótese**, não independência empírica. Os contrastes anual e recente compartilham destino `202609` e não são independentes por construção. O E07 ajusta os níveis marginais apenas em `202609`; `y_rep` é preditiva marginal, não diferença.
+Isso não calcula a probabilidade de melhora para a PNAD: o CSV público não oferece CVs `202606`/`202609`, covariância temporal, likelihood conjunta nem posterior de `Delta`. `rho=0` selecionado por E09 representa **hipótese**, não independência empírica. Os contrastes anual e recente compartilham destino `202609` e não são independentes por construção. O E07 ajusta os níveis marginais apenas em `202609`; `y_rep` é preditiva marginal, não diferença.
 
 O mesmo cuidado vale para cinco proxies de E08.4: `desocupacao_pct`, `nivel_ocupacao_pct`, `subutilizacao_pct`, `informalidade_pct`, `rendimento_real_habitual_rs`. Os limites `max(0,sum(p)-4)` e `min(p)` só se aplicam a **cinco probabilidades condicionais fornecidas**, não observadas no CSV de 26 linhas; sem dependência interindicadores identificada, não existe probabilidade conjunta pontual. `p_i=0,9` é exemplo sintético, não probabilidade PNAD.
 
