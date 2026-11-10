@@ -14,8 +14,44 @@ permissions:
 
 
 jobs:
+  pnad_n2:
+    name: Python 3.12.8 — PNAD E10 public N2
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up fixed Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12.8'
+
+      - name: Verify exact interpreter and dependency scope
+        shell: bash
+        run: |
+          python - <<'PY'
+          import sys
+          if sys.version_info[:3] != (3, 12, 8):
+              raise SystemExit(f"Python N2 inesperado: {sys.version}")
+          print("N2: Python 3.12.8 fixado; somente biblioteca padrão.")
+          print("requirements-historicos.txt NÃO instalado: pacotes destinados a E04–E09/N3.")
+          PY
+
+      - name: Test public N2 and adversarial failures
+        run: python -m unittest discover -s tests/python -p 'test_pnad_n2.py' -v
+
+      - name: Audit published PNAD E09 projection (N2 only)
+        run: python .github/scripts/executar_auditoria_n2.py
+
   validate:
     name: R 4.5.1 — syntax and tests
+    needs: pnad_n2
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -27,6 +63,13 @@ jobs:
       RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
 
     steps:
+      - name: Enforce Python public N2 before mandatory R check
+        if: ${{ needs.pnad_n2.result != 'success' }}
+        shell: bash
+        run: |
+          echo "::error::PNAD N2 Python não passou: check R obrigatório também deve falhar."
+          exit 1
+
       - name: Install runner requirements
         shell: bash
         run: |
