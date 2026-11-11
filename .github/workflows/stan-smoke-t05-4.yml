@@ -1,14 +1,13 @@
 name: Stan T05.4 — synthetic native smoke (optional)
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - '.github/workflows/stan-smoke-t05-4.yml'
-      - '.github/scripts/smoke_stan_t05_4.py'
-      - 'tests/python/test_stan_t05_4.py'
-      - 'reports/t05_4/**'
   workflow_dispatch:
+
+# T05.6: smoke nativo histórico sob demanda. Testes de protocolo T05.4
+# passam na CI rápida; T05.5 continua o gate científico seletivo nos PRs.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: read

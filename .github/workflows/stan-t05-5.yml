@@ -13,6 +13,12 @@ on:
       - 'reports/t05_5/**'
   workflow_dispatch:
 
+# T05.6: cancela somente execuções antigas do mesmo PR.
+# Execuções manuais são serializadas, não interrompidas.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 

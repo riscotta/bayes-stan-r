@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 
@@ -45,6 +49,9 @@ jobs:
       - name: Test public N2 and adversarial failures
         run: python -m unittest discover -s tests/python -p 'test_pnad_n2.py' -v
 
+      - name: Verify T05.6 CI routing, dependencies and cost controls
+        run: python -m unittest discover -s tests/python -p 'test_ci_t05_6.py' -v
+
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
@@ -75,6 +82,11 @@ jobs:
 
       - name: Test structural gate and adversarial scenarios
         run: python -m unittest discover -s tests/python -p 'test_stan_t05_3.py' -v
+
+      - name: Validate T05.4 and T05.5 scientific protocols without native sampling
+        run: |
+          python -m unittest discover -s tests/python -p 'test_stan_t05_4.py' -v
+          python -m unittest discover -s tests/python -p 'test_stan_t05_5.py' -v
 
       - name: Compile representative Stan source to C++ (no native build or sampling)
         run: python .github/scripts/validar_stan_t05_3.py --stanc "$RUNNER_TEMP/stanc"
