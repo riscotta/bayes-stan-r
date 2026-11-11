@@ -1,0 +1,74 @@
+name: Stan T05.4 — synthetic native smoke (optional)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/stan-smoke-t05-4.yml'
+      - '.github/scripts/smoke_stan_t05_4.py'
+      - 'tests/python/test_stan_t05_4.py'
+      - 'reports/t05_4/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native_synthetic_smoke:
+    name: CmdStan 2.40.0 — native sampling (T05.4)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Checkout source (no institutional datasets read)
+        uses: actions/checkout@v7
+
+      - name: Python pinned for the standard-library smoke runner
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12.8'
+
+      - name: Check deterministic fixtures and adversarial protocol (not sampling)
+        run: python -m unittest discover -s tests/python -p 'test_stan_t05_4.py' -v
+
+      - name: Download exact CmdStan release and verify official SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/cmdstan-2.40.0.tar.gz"
+          curl -fL --retry 3 --retry-delay 3 \
+            https://github.com/stan-dev/cmdstan/releases/download/v2.40.0/cmdstan-2.40.0.tar.gz \
+            -o "$archive"
+          echo "26d21c9737b35728e926f9b7a5d7362b38dc23e2e7d5e166c890e1fa74dac90c  $archive" | sha256sum --check
+          tar -xzf "$archive" -C "$RUNNER_TEMP"
+          test -f "$RUNNER_TEMP/cmdstan-2.40.0/makefile"
+          g++ --version | head -1
+          make --version | head -1
+
+      - name: Build native CmdStan utilities
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C "$RUNNER_TEMP/cmdstan-2.40.0" -j2 build
+          "$RUNNER_TEMP/cmdstan-2.40.0/bin/stanc" --version
+          test -x "$RUNNER_TEMP/cmdstan-2.40.0/bin/stansummary"
+          test -x "$RUNNER_TEMP/cmdstan-2.40.0/bin/diagnose"
+
+      - name: Compile two original Stan programs and sample only synthetic fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python .github/scripts/smoke_stan_t05_4.py \
+            --cmdstan "$RUNNER_TEMP/cmdstan-2.40.0" \
+            --output-dir "$RUNNER_TEMP/t05_4"
+
+      - name: Preserve synthetic fixtures, native logs, CSV draws and diagnostic summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: t05-4-synthetic-cmdstan-logs
+          path: ${{ runner.temp }}/t05_4/
+          if-no-files-found: warn
+          retention-days: 14
