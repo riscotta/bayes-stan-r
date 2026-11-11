@@ -132,7 +132,7 @@ jobs:
 
       - name: Install CI dependencies
         run: |
-          Rscript -e 'install.packages("testthat", Ncpus = 2L)'
+          Rscript -e 'install.packages("testthat", repos = Sys.getenv("RSPM", unset = "https://cloud.r-project.org"), Ncpus = 2L)'
 
       - name: Parse repository R files
         shell: Rscript {0}
