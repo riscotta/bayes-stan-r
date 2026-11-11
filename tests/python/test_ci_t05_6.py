@@ -33,7 +33,7 @@ def check_concurrency(source, pr_cancellable):
     assert "github.workflow" in block and "github.ref" in block
     if pr_cancellable:
         assert "github.event.pull_request.number || github.ref" in block
-        assert "cancel-in-progress: \${{ github.event_name == 'pull_request' }}" in block
+        assert "cancel-in-progress: ${{ github.event_name == 'pull_request' }}" in block
     else:
         assert "cancel-in-progress: false" in block
 
@@ -55,7 +55,7 @@ def check_fast(source):
     required = section(jobs, "validate", 2)
     assert "name: R 4.5.1 — syntax and tests" in required
     assert "needs: [pnad_n2, stan_syntax]" in required
-    assert "if: \${{ always() }}" in required
+    assert "if: ${{ always() }}" in required
     assert "needs.pnad_n2.result != 'success'" in required
     assert "needs.stan_syntax.result != 'success'" in required
     assert required.count("exit 1") >= 2
@@ -118,7 +118,7 @@ class CIContractT056(unittest.TestCase):
         check_smoke(self.smoke)
 
     def test_reject_skipped_mandatory_job(self):
-        broken = self.fast.replace("if: \${{ always() }}", "if: \${{ success() }}")
+        broken = self.fast.replace("if: ${{ always() }}", "if: ${{ success() }}")
         self.assertNotEqual(broken, self.fast)
         with self.assertRaises(AssertionError):
             check_fast(broken)
@@ -163,7 +163,7 @@ class CIContractT056(unittest.TestCase):
 
     def test_reject_loss_of_pr_cancellation(self):
         broken = self.fast.replace(
-            "cancel-in-progress: \${{ github.event_name == 'pull_request' }}",
+            "cancel-in-progress: ${{ github.event_name == 'pull_request' }}",
             "cancel-in-progress: false")
         with self.assertRaises(AssertionError):
             check_fast(broken)
