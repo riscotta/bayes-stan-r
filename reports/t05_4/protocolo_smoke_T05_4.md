@@ -33,3 +33,7 @@ Dependencia de escopo: Issue #15; T05.3 R-QA1–R-QA4 e T05.2 R1/R2 permanecem r
 Comparar o diff completo e os dois arquivos Stan originais; confirmar identificabilidade apenas no contexto destas fixtures; reproduzir os seeds e validar dimensionalidade/invariantes, versao + checksum, compilacao, sample real, status de CI no SHA exato, resultados e logs de diagnose/stansummary. Investigar falso PASS (poucos draws, amostra excessivamente facil, tolerancias permissivas e representatividade restrita). Nao interpretar smoke PASS como calibracao, estabilidade geral ou autorizacao de dados. Executor nao faz merge nem registra sua propria revisao como QA.
 
 Pendencias intocadas: R-QA1–R-QA4, T05.2 R1/R2, T01.3–T01.7 / Issue #14, Issues #15/#16, decisoes D00-01–D00-06; T05.5–T05.7 e Etapa 05 abertas.
+
+## Ajuste de interoperabilidade CSV (run nativo inicial)
+
+A primeira CI nativa PR #43001426733 compilou os dois modelos e concluiu sampling (500 draws/modelo), mas o validador rejeitou nomes de campos de CmdStan: o CSV 2.40.0 efetivamente usa p.1, alpha.1, y_rep_multinomial.1.1, log_lik.1 (notação com pontos), e não p[1], alpha[1] etc. O protocolo matemático, seeds e tolerâncias predefinidos permaneceram idênticos; corrigido somente o mapeamento dos nomes das colunas e seus testes, sem ajuste pós-hoc de limites. Primeira execução é FAIL e permanece auditável em https://github.com/riscotta/bayes-stan-r/actions/runs/43001426733; artefato #13847290060. O run após correção deve ser verificado separadamente.

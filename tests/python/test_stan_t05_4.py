@@ -43,12 +43,12 @@ class SmokeProtocolTests(unittest.TestCase):
         result = {"lp__": "-1"}
         p = smoke.TRUTH_MULTINOMIAL
         for k in range(1, 5):
-            result[f"p[{k}]"] = str(p[k - 1])
-            result[f"alpha[{k}]"] = "0"
+            result[f"p.{k}"] = str(p[k - 1])
+            result[f"alpha.{k}"] = "0"
         for i, counts in enumerate(([135, 173, 202, 240], [162, 207, 243, 288]), 1):
-            result[f"log_lik[{i}]"] = "-10"
+            result[f"log_lik.{i}"] = "-10"
             for k, y in enumerate(counts, 1):
-                result[f"y_rep_multinomial[{i},{k}]"] = str(y)
+                result[f"y_rep_multinomial.{i}.{k}"] = str(y)
         return result
 
     def test_multinomial_accepts_shapes_simplex_recovery_and_replicates(self):
@@ -59,14 +59,14 @@ class SmokeProtocolTests(unittest.TestCase):
     def test_multinomial_rejects_missing_dimension(self):
         data = smoke.synthetic_cases()["multinomial"]["data"]
         row = self.multi_row()
-        del row["p[4]"]
+        del row["p.4"]
         with self.assertRaisesRegex(ValueError, "Dimensao"):
             smoke.check_multinomial([row], data)
 
     def test_multinomial_rejects_wrong_replicate_total(self):
         data = smoke.synthetic_cases()["multinomial"]["data"]
         row = self.multi_row()
-        row["y_rep_multinomial[1,1]"] = "1"
+        row["y_rep_multinomial.1.1"] = "1"
         with self.assertRaisesRegex(ValueError, "y_rep"):
             smoke.check_multinomial([row], data)
 
@@ -74,7 +74,7 @@ class SmokeProtocolTests(unittest.TestCase):
         data = smoke.synthetic_cases()["multinomial"]["data"]
         row = self.multi_row()
         for k, v in enumerate([0.7, 0.1, 0.1, 0.1], 1):
-            row[f"p[{k}]"] = str(v)
+            row[f"p.{k}"] = str(v)
         with self.assertRaisesRegex(ValueError, "Recuperacao"):
             smoke.check_multinomial([row], data)
 

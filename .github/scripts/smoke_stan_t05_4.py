@@ -112,7 +112,7 @@ def value(row, field):
 
 def check_rate(rows, truth=TRUTH_TAXA, tolerance=TOL_TAXA):
     require(bool(rows), "Sem draws para taxa")
-    require(field_set(rows, "p[") == set(), "Dimensao inesperada para p escalar")
+    require(field_set(rows, "p.") == set(), "Dimensao inesperada para p escalar")
     for col in ("lp__", "p", "theta", "y_rep"):
         require(col in rows[0], f"Taxa: coluna faltante {col}")
     draws = []
@@ -136,11 +136,11 @@ def check_multinomial(rows, data, truth=TRUTH_MULTINOMIAL, tolerance=TOL_MULTINO
     require(len(data["y"]) == g and all(len(row) == d for row in data["y"]), "Dimensoes de dados y incorretas")
     require(len(data["n_slots"]) == g, "Dimensoes de n_slots incorretas")
     require(all(sum(row) == total for row, total in zip(data["y"], data["n_slots"])), "Contagens incompatíveis com n_slots")
-    p_cols = {f"p[{k}]" for k in range(1, d + 1)}
-    alpha_cols = {f"alpha[{k}]" for k in range(1, d + 1)}
-    rep_cols = {f"y_rep_multinomial[{i},{k}]" for i in range(1, g + 1) for k in range(1, d + 1)}
-    ll_cols = {f"log_lik[{i}]" for i in range(1, g + 1)}
-    for prefix, expected in (("p[", p_cols), ("alpha[", alpha_cols), ("y_rep_multinomial[", rep_cols), ("log_lik[", ll_cols)):
+    p_cols = {f"p.{k}" for k in range(1, d + 1)}
+    alpha_cols = {f"alpha.{k}" for k in range(1, d + 1)}
+    rep_cols = {f"y_rep_multinomial.{i}.{k}" for i in range(1, g + 1) for k in range(1, d + 1)}
+    ll_cols = {f"log_lik.{i}" for i in range(1, g + 1)}
+    for prefix, expected in (("p.", p_cols), ("alpha.", alpha_cols), ("y_rep_multinomial.", rep_cols), ("log_lik.", ll_cols)):
         require(field_set(rows, prefix) == expected, f"Dimensao/campos invalidos de {prefix}")
     require("lp__" in rows[0], "lp__ ausente")
     totals = [0.0] * d
@@ -148,13 +148,13 @@ def check_multinomial(rows, data, truth=TRUTH_MULTINOMIAL, tolerance=TOL_MULTINO
         value(row, "lp__")
         for c in alpha_cols | ll_cols:
             value(row, c)
-        probs = [value(row, f"p[{k}]") for k in range(1, d + 1)]
+        probs = [value(row, f"p.{k}") for k in range(1, d + 1)]
         require(all(0 <= p <= 1 for p in probs), "Probabilidade fora de [0,1]")
         require(abs(sum(probs) - 1.0) <= 0.00002, "Simplex nao soma 1")
         for k, p in enumerate(probs):
             totals[k] += p
         for i, n in enumerate(data["n_slots"], 1):
-            rep = [value(row, f"y_rep_multinomial[{i},{k}]") for k in range(1, d + 1)]
+            rep = [value(row, f"y_rep_multinomial.{i}.{k}") for k in range(1, d + 1)]
             require(all(v >= 0 and v.is_integer() for v in rep), "y_rep nao inteiro/negativo")
             require(sum(rep) == n, f"Dimensao/invariante de y_rep no grupo {i}")
     means = [s / len(rows) for s in totals]
