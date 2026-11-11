@@ -95,11 +95,8 @@ jobs:
     name: R 4.5.1 — syntax and tests
     needs: [pnad_n2, stan_syntax]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
-
-    container:
-      image: rocker/r-ver:4.5.1
 
     env:
       R_PROFILE_USER: /dev/null
@@ -120,15 +117,14 @@ jobs:
           echo "::error::Gate T05.3 Stan não passou: check R obrigatório também deve falhar."
           exit 1
 
-      - name: Install runner requirements
-        shell: bash
-        run: |
-          apt-get update
-          apt-get install -y --no-install-recommends ca-certificates git libuv1-dev
-          rm -rf /var/lib/apt/lists/*
-
       - name: Checkout repository
         uses: actions/checkout@v7
+
+      - name: Set up fixed R 4.5.1
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.1'
+          use-public-rspm: true
 
       - name: Verify R version
         run: |
@@ -136,7 +132,7 @@ jobs:
 
       - name: Install CI dependencies
         run: |
-          Rscript -e 'install.packages("testthat", repos = "https://cloud.r-project.org", Ncpus = 2L)'
+          Rscript -e 'install.packages("testthat", Ncpus = 2L)'
 
       - name: Parse repository R files
         shell: Rscript {0}
