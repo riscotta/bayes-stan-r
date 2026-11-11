@@ -1,0 +1,80 @@
+name: Stan T05.5 — prior predictive and native MCMC diagnostics
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/stan-t05-5.yml'
+      - '.github/scripts/check_stan_t05_5.py'
+      - '.github/scripts/smoke_stan_t05_4.py'
+      - 'scripts/pnadc_estudo_i/estudo_I/e07/stan/taxa_marginal.stan'
+      - 'scripts/mega_sena_dezenas/modelo_multinomial_global.stan'
+      - 'tests/python/test_stan_t05_5.py'
+      - 'reports/t05_5/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prior_predictive_and_hmc:
+    name: CmdStan 2.40.0 — T05.5 prior/PPC/HMC synthetic
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+
+    steps:
+      - name: Checkout repository (only original Stan source and synthetic data used)
+        uses: actions/checkout@v7
+
+      - name: Python stdlib fixed to 3.12.8
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12.8'
+
+      - name: Test negative controls and independent prior draws
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests/python -p 'test_stan_t05_5.py' -v
+          python .github/scripts/check_stan_t05_5.py --prior-only --output-dir "$RUNNER_TEMP/t05_5_preflight"
+
+      - name: Download pinned CmdStan and verify release digest
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/cmdstan-2.40.0.tar.gz"
+          curl -fL --retry 3 --retry-delay 3 \
+            https://github.com/stan-dev/cmdstan/releases/download/v2.40.0/cmdstan-2.40.0.tar.gz \
+            -o "$archive"
+          echo "26d21c9737b35728e926f9b7a5d7362b38dc23e2e7d5e166c890e1fa74dac90c  $archive" | sha256sum --check
+          tar -xzf "$archive" -C "$RUNNER_TEMP"
+
+      - name: Build original CmdStan 2.40.0 utilities
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C "$RUNNER_TEMP/cmdstan-2.40.0" -j2 build
+          "$RUNNER_TEMP/cmdstan-2.40.0/bin/stanc" --version
+          test -x "$RUNNER_TEMP/cmdstan-2.40.0/bin/stansummary"
+          test -x "$RUNNER_TEMP/cmdstan-2.40.0/bin/diagnose"
+
+      - name: Native Stan sampling, posterior predictive and numerical diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python .github/scripts/check_stan_t05_5.py \
+            --cmdstan "$RUNNER_TEMP/cmdstan-2.40.0" \
+            --output-dir "$RUNNER_TEMP/t05_5_native"
+
+      - name: Archive evidence including failures (synthetic only)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: t05-5-synthetic-prior-ppc-mcmc
+          path: |
+            ${{ runner.temp }}/t05_5_preflight/
+            ${{ runner.temp }}/t05_5_native/
+          if-no-files-found: warn
+          retention-days: 14
