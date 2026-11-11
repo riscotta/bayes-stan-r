@@ -161,7 +161,7 @@ def posterior_predictive(rows, model, data):
         error = abs(statistics.fmean(rep) - 100 * p)
         require(error <= RATE_PPC_TOL, f"PPC taxa: media condicional desajustada {error}")
         y = data["y"]
-        pvalue = sum(abs(a - y) >= abs(b - y) for a, b in zip(rep, theta)) / len(rows)
+        pvalue = sum(abs(a - b) >= abs(y - b) for a, b in zip(rep, theta)) / len(rows)
         return {"conditional_mean_error": error, "tolerance": RATE_PPC_TOL,
                 "descriptive_discrepancy_tail_fraction": pvalue,
                 "observed_y_synthetic": y, "not_a_calibration_test": True}

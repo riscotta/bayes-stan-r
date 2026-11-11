@@ -6,6 +6,9 @@ on:
     paths:
       - '.github/workflows/stan-t05-5.yml'
       - '.github/scripts/check_stan_t05_5.py'
+      - '.github/scripts/smoke_stan_t05_4.py'
+      - 'scripts/pnadc_estudo_i/estudo_I/e07/stan/taxa_marginal.stan'
+      - 'scripts/mega_sena_dezenas/modelo_multinomial_global.stan'
       - 'tests/python/test_stan_t05_5.py'
       - 'reports/t05_5/**'
   workflow_dispatch:

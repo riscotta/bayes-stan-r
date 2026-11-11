@@ -103,6 +103,22 @@ class T055Protocol(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Parametro ausente"):
                 t.summary_diagnostics(p, "multinomial")
 
+    def test_rate_discrepancy_centers_both_on_theta(self):
+        rows = [{"p": "0.02", "theta": "2", "y_rep": "2.1"}]
+        out = t.posterior_predictive(rows, "taxa", {"y": 0, "s": 0.55})
+        self.assertAlmostEqual(out["conditional_mean_error"], 0.1)
+        self.assertEqual(out["descriptive_discrepancy_tail_fraction"], 0.0)
+        self.assertTrue(out["not_a_calibration_test"])
+
+    def test_rate_discrepancy_zero_when_replicate_matches_each_theta(self):
+        rows = [
+            {"p": "0.68", "theta": "67", "y_rep": "67"},
+            {"p": "0.68", "theta": "69", "y_rep": "69"},
+        ]
+        out = t.posterior_predictive(rows, "taxa", {"y": 68, "s": 0.55})
+        self.assertEqual(out["conditional_mean_error"], 0.0)
+        self.assertEqual(out["descriptive_discrepancy_tail_fraction"], 0.0)
+
     def test_rate_ppc_accepts_and_rejects_adulteration(self):
         data = {"y": 68, "s": 0.55}
         rows = [{"p": "0.68", "theta": "68", "y_rep": "68.03"}] * 50
