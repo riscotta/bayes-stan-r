@@ -2,7 +2,7 @@
 
 **Tarefa literal:** “Registrar cinco estados independentes: integridade, síntese, pipeline, inferência, validação científica.”
 
-**Data do snapshot:** 12/11/2026. **Base \`main\`:** \`3cfa372ab260eec21c8474844d46e98d3a4d78e5\`, squash T06.1 do PR [#51](https://github.com/riscotta/bayes-stan-r/pull/51). Esta tarefa é um registro conservador, não uma reexecução de estudos.
+**Data do snapshot:** 12/11/2026. **Base `main`:** `3cfa372ab260eec21c8474844d46e98d3a4d78e5`, squash T06.1 do PR [#51](https://github.com/riscotta/bayes-stan-r/pull/51). Esta tarefa é um registro conservador, não uma reexecução de estudos.
 
 ## Artefato e interpretação
 
@@ -20,8 +20,8 @@
 
 ## Evidências positivas limitadas
 
-- **PNAD Contínua, Estudo I:** [matriz de evidências E10](../pnadc_estudo_i/e10_matriz_evidencias_reproducao_T04_6.md) e [CI \`push/main\` após T06.1](https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388), passo \`Audit published PNAD E09 projection (N2 only)\`. Testes sobre a projeção pública congelada; não reconstrói SIDRA, E04–E08, MCMC ou 104 probabilidades.
-- **Mortalidade de São Paulo (0–74):** [modo público de auditoria](../../scripts/mortalidade_sp_0_74/reproduzir_E10.R) e a mesma CI, passo \`Verify published Sao Paulo mortality indicators\`. Não significa reprocessamento integral das fontes territoriais ou reestimativa de modelo.
+- **PNAD Contínua, Estudo I:** [matriz de evidências E10](../pnadc_estudo_i/e10_matriz_evidencias_reproducao_T04_6.md) e [CI `push/main` após T06.1](https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388), passo `Audit published PNAD E09 projection (N2 only)`. Testes sobre a projeção pública congelada; não reconstrói SIDRA, E04–E08, MCMC ou 104 probabilidades.
+- **Mortalidade de São Paulo (0–74):** [modo público de auditoria](../../scripts/mortalidade_sp_0_74/reproduzir_E10.R) e a mesma CI, passo `Verify published Sao Paulo mortality indicators`. Não significa reprocessamento integral das fontes territoriais ou reestimativa de modelo.
 
 Essas referências são **evidências históricas já existentes**, não comandos executados pela T06.2. O teste desta tarefa verifica a integridade das declarações, fontes versionadas, cobertura e o veto à promoção automática; não executa pipelines nem acessa conteúdos de insumos institucionais.
 
@@ -33,8 +33,8 @@ Os cinco estados **não são um ranking ordinal de qualidade** e não devem ser 
 
 ## Teste de contratos e mutações
 
-\`\`\`bash
+```bash
 python -m unittest discover -s tests/python -p 'test_estados_t06_2.py' -v
-\`\`\`
+```
 
-\`tests/python/test_estados_t06_2.py\` utiliza somente manifesto/README/árvore de caminhos do Git públicos, confere 33 IDs e cinco estados e rejeita estudos/eixos omitidos, licença falsa, promoção indevida de pipeline ou validade científica, síntese inventada e referências adulteradas. Não valida materialmente a execução remota histórica: o resultado dos jobs é evidenciado pelo GitHub, não por estes contratos locais.
+`tests/python/test_estados_t06_2.py` utiliza somente manifesto/README/árvore de caminhos do Git públicos, confere 33 IDs e cinco estados e rejeita estudos/eixos omitidos, licença falsa, promoção indevida de pipeline ou validade científica, síntese inventada e referências adulteradas. Não valida materialmente a execução remota histórica: o resultado dos jobs é evidenciado pelo GitHub, não por estes contratos locais.
