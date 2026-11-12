@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "tarefa": "T06.4",
+  "objetivo_literal": "Definir políticas para resultados históricos: preservação, reconciliação e tolerância a variação numérica.",
+  "base_main_sha": "34f34e83c4918cbb885d51647d5d0b2b785796bb",
+  "natureza": "POLITICA_E_VERIFICADOR_TECNICO_SEM_REEXECUCAO_OU_VALIDACAO_CIENTIFICA",
+  "fontes": [
+    "reports/t06_1/manifesto_estudos_T06_1.json",
+    "reports/t06_2/estados_reprodutibilidade_T06_2.json",
+    "reports/t06_3/modos_operacionais_T06_3.json"
+  ],
+  "cobertura": {"estudos": 33, "fonte_ids": "reports/t06_1/manifesto_estudos_T06_1.json", "aplicacao": "POLITICA_GERAL_SEM_CERTIFICACAO_INDIVIDUAL"},
+  "preservacao": {
+    "referencia": "CONGELADA_NAO_SOBRESCREVER",
+    "candidato_prefixo": "outputs/_reexecucoes_t06_4/<estudo>/<execucao_id>/",
+    "imutabilidade": "SEM_EDICAO_DE_FONTE_RESULTADO_OU_MODELO_HISTORICO",
+    "retencao": "MANTER_REFERENCIAS_E_REGISTROS; DESCARTE_SOMENTE_POR_POLITICA_INSTITUCIONAL_APROVADA",
+    "hash": "SHA256_BYTES_REAIS_PARA_CADA_ARTEFATO",
+    "manifesto_original": "HASH_GIT_SNAPSHOT_N1_NAO_EQUIVALE_SHA256_NEM_PROVA_CIENTIFICA",
+    "faltante": "BLOQUEADO_NAO_SUBSTITUIR_REFERENCIA"
+  },
+  "classes": {
+    "bytes_exatos": {"comparacao": "SHA256_IDENTICO", "limiar_padrao": "ZERO", "resultado_maximo": "CONFERENCIA_TECNICA"},
+    "csv_deterministico": {"comparacao": "CHAVES_E_COLUNAS_IDENTICAS_DECIMAL_FINITO", "limiar_padrao": "ABS_ZERO_REL_ZERO", "resultado_maximo": "CONFERENCIA_TECNICA"},
+    "csv_estocastico_resumo": {"comparacao": "ESTIMANDOS_PREDEFINIDOS_E_DIAGNOSTICOS", "limiar_padrao": "NAO_DEFINIDO_SEM_CALIBRACAO", "resultado_maximo": "PENDENTE_QA"}
+  },
+  "tolerancias": {
+    "deterministicas": "PADRAO_EXATO_SEM_LIMIAR_IMPLICITO",
+    "nao_zero": "APENAS_COM_PROTOCOLO_PREAPROVADO_JUSTIFICATIVA_MATEMATICA_CALIBRACAO_QA",
+    "mcse_mcmc": "CONSIDERAR_ERRO_MONTE_CARLO_ESS_RHAT_DIVERGENCIAS_SEEDS_VERSOES_E_ESTIMANDO; SEM_LIMIAR_EMPIRICO_HOMOLOGADO",
+    "bootstrap": "RECONCILIAR_METODO_DE_REAMOSTRAGEM_UNIDADE_AMOSTRAL_PAREAMENTO_SEED_QUANTIS_E_INCERTEZA_MONTE_CARLO",
+    "proibido": ["TOLERANCIA_UNIVERSAL_INVENTADA", "COMPARAR_CADEIAS_POR_IDENTIDADE_PONTO_A_PONTO", "PROMOVER_N3_N4_POR_PROXIMIDADE_NUMERICA"]
+  },
+  "seguranca": {
+    "issue_14_p0": "ABERTA_SEM_HOMOLOGACAO_DE_DIREITOS",
+    "issues_15_16": "ABERTAS",
+    "n3_n4_exigem_direitos": true,
+    "execucao_mcmc_nesta_tarefa": false,
+    "modifica_dados_ou_resultados": false,
+    "qa_independente_requerido": true,
+    "etapa_06_encerrada": false
+  },
+  "estudos_exemplo": {
+    "pnadc_estudo_i": "N2_SOMENTE_AGREGADOS_CONGELADOS; SEM_CADEIAS_E07_E08_E09_COMPLETAS_OU_API_SIDRA",
+    "mortalidade_sp_0_74": "N2_AGREGADOS_CONGELADOS; BOOTSTRAP_R_VS_NUMPY_PODE_VARIAR; BASE_E04_LOCAL_NAO_HOMOLOGADA",
+    "caes_raca_f5": "COMANDOS_DOCUMENTADOS_NAO_CERTIFICAM_N2_N3; CMDSTAN_2_37_VS_2_40; FOLDS_PAREADOS"
+  },
+  "estados_de_saida": ["CONFERENCIA_TECNICA", "PENDENTE_QA", "DIVERGENCIA", "BLOQUEADO"],
+  "nao_implica": ["N1/N2 não certificam N3/N4", "CI verde não valida os estimandos", "Proximidade numérica não é validação científica", "Permissão do código não licencia datasets"]
+}
