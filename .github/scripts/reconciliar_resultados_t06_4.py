@@ -4,6 +4,7 @@ Usa somente stdlib e caminhos locais autorizados. Não executa modelo nem grava 
 """
 import argparse
 import csv
+from fractions import Fraction
 from decimal import Decimal, InvalidOperation
 import hashlib
 import json
@@ -16,6 +17,9 @@ NAME = re.compile(r"[a-z0-9_]+\Z")
 RUN = re.compile(r"[a-zA-Z0-9_-]+\Z")
 MODOS = {"auditoria_rapida", "reexecucao_modelo", "reproducao_desde_dados"}
 TIPOS = {"bytes_exatos", "csv_deterministico", "csv_estocastico_resumo"}
+MAX_CASAS_COEFICIENTE = 512
+MAX_EXPOENTE_ABS = 1000
+MAX_SEED = 2**64 - 1
 
 
 class Bloqueio(ValueError):
@@ -112,7 +116,32 @@ def decimal_estrito(valor):
     except (InvalidOperation, ValueError, TypeError):
         raise Bloqueio("valor ou tolerância não numérico") from None
     exigir(d.is_finite(), "valor ou tolerância não finito")
+    tupla = d.as_tuple()
+    exigir(len(tupla.digits) <= MAX_CASAS_COEFICIENTE and
+           abs(tupla.exponent) <= MAX_EXPOENTE_ABS,
+           "valor/tolerância excede limites de precisão ou expoente")
     return d
+
+
+def seed_valida(seed):
+    """Aceita seed inteira de 64 bits ou declaração textual inequívoca de NA."""
+    if isinstance(seed, bool):
+        return False
+    if isinstance(seed, int):
+        return 0 <= seed <= MAX_SEED
+    if isinstance(seed, str):
+        return seed == "NAO_APLICAVEL" or (
+            re.fullmatch(r"[0-9]{1,20}", seed) is not None and
+            int(seed) <= MAX_SEED
+        )
+    return False
+
+
+def excede_tolerancia(original, novo, absoluto, relativo):
+    """Compara decimais finitos como racionais exatos; nunca arredonda o limiar."""
+    ref = Fraction(original)
+    cand = Fraction(novo)
+    return abs(cand - ref) > Fraction(absoluto) + Fraction(relativo) * abs(ref)
 
 
 def tabela(path, chaves, colunas):
@@ -169,18 +198,20 @@ def conferir(registro, raiz, *, catalogo=None, catalogo_sha256_confiavel=None):
     exigir(isinstance(estudo, str) and NAME.fullmatch(estudo) and
            isinstance(identificador, str) and RUN.fullmatch(identificador), "IDs inválidos")
     modo, tipo = registro.get("modo"), registro.get("tipo")
-    exigir(modo in MODOS and tipo in TIPOS, "modo/tipo inválido")
+    exigir(isinstance(modo, str) and modo in MODOS and
+           isinstance(tipo, str) and tipo in TIPOS, "modo/tipo inválido")
     exigir(isinstance(registro.get("codigo_sha"), str) and
            SHA_GIT.fullmatch(registro["codigo_sha"]), "commit de código não rastreável")
     exigir(isinstance(registro.get("ambiente"), str) and registro["ambiente"].strip(),
            "ambiente ausente")
     exigir(isinstance(registro.get("comando"), str) and registro["comando"].strip(),
            "comando ausente")
-    exigir("seed" in registro and registro["seed"] is not None,
-           "seed ou declaração explícita de não aplicabilidade ausente")
+    exigir(seed_valida(registro.get("seed")),
+           "seed inválida: use inteiro 0..2^64-1 ou NAO_APLICAVEL")
     exigir(isinstance(registro.get("entrada_sha256"), str) and
            SHA256.fullmatch(registro["entrada_sha256"]), "hash da entrada ausente")
-    exigir(registro.get("direitos") in {"NAO_HOMOLOGADOS", "HOMOLOGADOS"},
+    exigir(isinstance(registro.get("direitos"), str) and
+           registro["direitos"] in {"NAO_HOMOLOGADOS", "HOMOLOGADOS"},
            "estado de direitos não declarado")
     if modo != "auditoria_rapida":
         # Issue #14 P0 aberta: o campo do registro não é prova de homologação.
@@ -219,7 +250,8 @@ def conferir(registro, raiz, *, catalogo=None, catalogo_sha256_confiavel=None):
     exigir(isinstance(config, dict), "configuração CSV ausente")
     chaves = config.get("chaves")
     exigir(isinstance(chaves, list) and bool(chaves) and
-           len(chaves) == len(set(chaves)) and all(isinstance(c, str) and c for c in chaves),
+           all(isinstance(c, str) and bool(c) for c in chaves) and
+           len(chaves) == len(set(chaves)),
            "chaves de alinhamento inválidas")
     tol = tolerancias(config, tipo)
     exigir(not set(chaves) & set(tol), "chaves usadas como métricas")
@@ -231,7 +263,7 @@ def conferir(registro, raiz, *, catalogo=None, catalogo_sha256_confiavel=None):
         for coluna, (a, r) in tol.items():
             original = decimal_estrito(valores[coluna])
             novo = decimal_estrito(tabela_nova[chave][coluna])
-            if abs(novo - original) > a + r * abs(original):
+            if excede_tolerancia(original, novo, a, r):
                 raise Divergencia(f"diferença excede limite em {coluna} / {chave}")
     if tipo == "csv_estocastico_resumo":
         exigir(bool(registro.get("oraculo_estimandos")) and
