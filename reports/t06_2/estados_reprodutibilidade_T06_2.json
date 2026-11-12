@@ -1,0 +1,1689 @@
+{
+  "schema_version": "1.0.0",
+  "tarefa": "T06.2",
+  "objetivo_literal": "Registrar cinco estados independentes: integridade, síntese, pipeline, inferência, validação científica.",
+  "data_corte": "2026-11-12",
+  "repositorio": "riscotta/bayes-stan-r",
+  "main_base_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5",
+  "base_manifesto_t06_1_sha": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+  "qa_t06_1_head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e",
+  "semantica": {
+    "eixos": [
+      "integridade",
+      "sintese",
+      "pipeline",
+      "inferencia",
+      "validacao_cientifica"
+    ],
+    "regra": "Cada eixo é uma afirmação separada vinculada à sua evidência; nenhum estado positivo de um eixo promove outro eixo por transitividade.",
+    "nao_aferido": "NAO_AFERIDO_NESTA_TAREFA significa ausência de verificação no escopo deste ciclo, não prova de impossibilidade.",
+    "integridade": "N1 documental e integridade dos objetos Git do snapshot; sem homologar fontes externas ou resultado científico.",
+    "sintese": "Auditoria limitada de produtos descritivos congelados: resultado positivo somente em dois estudos com fontes e execução CI explicitadas.",
+    "pipeline": "Reprodução integral de coleta, processamento, versões, inputs e saídas.",
+    "inferencia": "Reexecução do modelo sobre dados elegíveis, ajuste posterior e verificação dos diagnósticos e estimandos.",
+    "validacao_cientifica": "Avaliação científica independente de hipóteses, calibração, identificação e generalização.",
+    "status_positivo_integridade": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+    "status_positivo_sintese": "AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA",
+    "status_nao_aferido": "NAO_AFERIDO_NESTA_TAREFA"
+  },
+  "cobertura": {
+    "estudos": 33,
+    "integridade_n1_documental": 33,
+    "sintese_auditoria_limitada": 2,
+    "pipeline_reatestado": 0,
+    "inferencia_reproduzida": 0,
+    "validacao_cientifica_homologada": 0
+  },
+  "gates_abertos": [
+    "issue #14 P0: licenças, dados institucionais e redistribuição",
+    "issue #15: testes funcionais e reprodução inferencial não universal",
+    "issue #16: release e controles operacionais",
+    "T06.3 a T06.7 da Etapa 06 não concluídas"
+  ],
+  "fonte_ci_historica": {
+    "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+    "sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5",
+    "escopo": "Execução CI anterior incorporada ao registro, não repetida por este JSON. Testes T06.2 verificam consistência de declarações, não a validade dos outputs científicos."
+  },
+  "estudos": [
+    {
+      "id": "caes_raca_f5",
+      "fonte_estudo": "scripts/caes_raca_f5/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "censo_escolar_tempo_integral",
+      "fonte_estudo": "scripts/censo_escolar_tempo_integral/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "consumer_shopping_trends_beta",
+      "fonte_estudo": "scripts/consumer_shopping_trends_beta/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "coortes_aposentadoria",
+      "fonte_estudo": "scripts/coortes_aposentadoria/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "deck_15wins",
+      "fonte_estudo": "scripts/deck_15wins/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "deter_mensal_bioma_uf",
+      "fonte_estudo": "scripts/deter_mensal_bioma_uf/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "exercises_dataset",
+      "fonte_estudo": "scripts/exercises_dataset/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "fruitflies_aft",
+      "fonte_estudo": "scripts/fruitflies_aft/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "hidrometro_degradacao",
+      "fonte_estudo": "scripts/hidrometro_degradacao/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "hierarchical",
+      "fonte_estudo": "scripts/hierarchical/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "importacoes_world_bank",
+      "fonte_estudo": "scripts/importacoes_world_bank/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "inhaler_ordinal",
+      "fonte_estudo": "scripts/inhaler_ordinal/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "ipca_sidra_1419",
+      "fonte_estudo": "scripts/ipca_sidra_1419/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "isus_sia",
+      "fonte_estudo": "scripts/isus_sia/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "kidney_survival",
+      "fonte_estudo": "scripts/kidney_survival/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "media_ruido_mu",
+      "fonte_estudo": "scripts/media_ruido_mu/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "mega_sena_dezenas",
+      "fonte_estudo": "scripts/mega_sena_dezenas/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "missing_migrants",
+      "fonte_estudo": "scripts/missing_migrants/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "mortalidade_sp_0_74",
+      "fonte_estudo": "scripts/mortalidade_sp_0_74/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA",
+          "evidencia": [
+            {
+              "tipo": "arquivo_versionado",
+              "caminho": "scripts/mortalidade_sp_0_74/reproduzir_E10.R"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5",
+              "passo": "Verify published Sao Paulo mortality indicators"
+            }
+          ],
+          "escopo": "Reconstituição/auditoria pública de indicadores agregados no job R, sem reconstruir integração de dados primários nem ajustar novamente os modelos históricos.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "mortality",
+      "fonte_estudo": "scripts/mortality/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "pms_servicos",
+      "fonte_estudo": "scripts/pms_servicos/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "pnadc_desocupacao",
+      "fonte_estudo": "scripts/pnadc_desocupacao/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "pnadc_estudo_i",
+      "fonte_estudo": "scripts/pnadc_estudo_i/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA",
+          "evidencia": [
+            {
+              "tipo": "arquivo_versionado",
+              "caminho": "reports/pnadc_estudo_i/e10_matriz_evidencias_reproducao_T04_6.md"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5",
+              "passo": "Audit published PNAD E09 projection (N2 only)"
+            }
+          ],
+          "escopo": "Auditoria Python N2 de projeção descritiva pública E09 e teste de contratos; não reconstrói SIDRA, E04–E08, cadeias MCMC ou probabilidades conjuntas.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "prisons_prisoners_unodc",
+      "fonte_estudo": "scripts/prisons_prisoners_unodc/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "retractions_reason_composition",
+      "fonte_estudo": "scripts/retractions_reason_composition/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "retractions_time_to_retraction",
+      "fonte_estudo": "scripts/retractions_time_to_retraction/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "retractions_trend",
+      "fonte_estudo": "scripts/retractions_trend/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "rs_seguro",
+      "fonte_estudo": "scripts/rs_seguro/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "saheart",
+      "fonte_estudo": "scripts/saheart/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "sat_model_selection",
+      "fonte_estudo": "scripts/sat_model_selection/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "sherlock_holmes_terms",
+      "fonte_estudo": "scripts/sherlock_holmes_terms/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "sobrevivencia_cadastral_poa",
+      "fonte_estudo": "scripts/sobrevivencia_cadastral_poa/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    },
+    {
+      "id": "therapeutic_touch",
+      "fonte_estudo": "scripts/therapeutic_touch/README.md",
+      "fonte_manifesto": "reports/t06_1/manifesto_estudos_T06_1.json",
+      "status_permissoes": "PENDENTE_DE_HOMOLOGACAO_P0",
+      "estados": {
+        "integridade": {
+          "estado": "N1_INVENTARIO_E_HASH_GIT_AUDITADOS",
+          "evidencia": [
+            {
+              "tipo": "revisao_independente_documental",
+              "url": "https://github.com/riscotta/bayes-stan-r/pull/51#pullrequestreview-5875850144",
+              "head_sha": "8c4a73d6ddd05fca7eae17feba52330b6242f54e"
+            },
+            {
+              "tipo": "ci_pos_squash",
+              "url": "https://github.com/riscotta/bayes-stan-r/actions/runs/43234521388",
+              "main_sha": "3cfa372ab260eec21c8474844d46e98d3a4d78e5"
+            }
+          ],
+          "escopo": "Registro de arquivos do estudo no manifesto T06.1 e invariantes documentais/estruturais aprovados com ressalvas no snapshot de 12/11/2026.",
+          "limite": "Verifica correspondência estrutural documental e objetos Git, não conteúdo dos dados externos, legitimidade jurídica ou exatidão científica."
+        },
+        "sintese": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Nenhuma auditoria de síntese individualizada é afirmada por esta T06.2.",
+          "limite": "Uma síntese ou auditoria descritiva delimitada não recupera automaticamente o pipeline desde dados originais nem estima novamente os modelos."
+        },
+        "pipeline": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Execução ponta a ponta desde fontes primárias, versões, transformação e dependências não verificada nesta tarefa.",
+          "limite": "Ausência de ateste integral não equivale a prova de que o pipeline seja inexequível."
+        },
+        "inferencia": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Reamostragem, estimandos, posterior, diagnósticos e equivalência inferencial não verificados nesta tarefa.",
+          "limite": "Testes de estrutura, sintaxe Stan ou modelos sintéticos não demonstram reprodução de estimativas inferenciais históricas."
+        },
+        "validacao_cientifica": {
+          "estado": "NAO_AFERIDO_NESTA_TAREFA",
+          "evidencia": [],
+          "escopo": "Calibração, identificabilidade, generalização e interpretação causal não homologadas por esta tarefa.",
+          "limite": "Reprodução computacional, ainda que comprovada, não implica identificação, calibração, predição ou validade científica geral."
+        }
+      }
+    }
+  ]
+}
