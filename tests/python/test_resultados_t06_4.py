@@ -148,9 +148,21 @@ class TestComparadorT064(unittest.TestCase):
             "candidato": {"path": self.candidate, "sha256": digest(self.cand_path.read_bytes())},
             "comparacao": {"chaves": ["id"], "colunas": {"estimando": {"abs": "0", "rel": "0"}}}
         }
+        # Catálogo sintético fixado ANTES de qualquer mutação de teste.
+        self.catalogo_path = self.root / "catalogo_congelado.json"
+        self.catalogo_path.write_text(json.dumps({
+            "schema": "t06_4_catalogo_v1", "git_commit": "a" * 40,
+            "referencias": [{
+                "path": self.reference, "sha256": digest(self.ref_path.read_bytes()),
+                "git_blob_sha": mod.git_blob_sha(self.ref_path)
+            }]
+        }), encoding="utf-8")
+        self.catalogo_sha256 = digest(self.catalogo_path.read_bytes())
 
     def check(self, record=None):
-        return mod.conferir(self.record if record is None else record, self.root)
+        return mod.conferir(self.record if record is None else record, self.root,
+                           catalogo=self.catalogo_path,
+                           catalogo_sha256_confiavel=self.catalogo_sha256)
 
     def update_candidate(self, text):
         self.cand_path.write_text(text, encoding="utf-8")
@@ -259,6 +271,101 @@ class TestComparadorT064(unittest.TestCase):
         self.record["tipo"] = "bytes_exatos"
         self.update_candidate("id,estimando\na,1.50\nb,0.00\n")
         with self.assertRaises(mod.Divergencia):
+            self.check()
+
+
+    def test_b1_rejeita_symlink_candidato_fora_do_isolamento(self):
+        outro = self.root / "referencias/outro_historico.csv"
+        outro.write_bytes(self.ref_path.read_bytes())
+        self.cand_path.unlink()
+        self.cand_path.symlink_to(outro)
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_b1_rejeita_symlink_em_ancestral(self):
+        origem = self.cand_path.parent
+        destino = self.root / "run1_movido"
+        origem.rename(destino)
+        origem.symlink_to(destino)
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_b2_rejeita_symlink_referencia_para_temporario(self):
+        outro = self.root / "outputs/_reexecucoes_t06_4/piloto/run2/falso.csv"
+        outro.parent.mkdir(parents=True)
+        outro.write_bytes(self.ref_path.read_bytes())
+        self.ref_path.unlink()
+        self.ref_path.symlink_to(outro)
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_b2_rejeita_referencia_temporaria_direta(self):
+        self.record["referencia"]["path"] = self.candidate
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_b3_rejeita_ancora_ausente(self):
+        with self.assertRaises(mod.Bloqueio):
+            mod.conferir(self.record, self.root)
+
+    def test_b3_rejeita_catalogo_editado_sem_novo_pin(self):
+        catalogo = json.loads(self.catalogo_path.read_text(encoding="utf-8"))
+        catalogo["git_commit"] = "b" * 40
+        self.catalogo_path.write_text(json.dumps(catalogo), encoding="utf-8")
+        with self.assertRaises(mod.Divergencia):
+            self.check()
+
+    def test_b3_rejeita_troca_conjunta_da_referencia_e_hash(self):
+        novo = "id,estimando\na,9999\nb,0\n"
+        self.ref_path.write_text(novo, encoding="utf-8")
+        self.update_candidate(novo)
+        self.record["referencia"]["sha256"] = digest(self.ref_path.read_bytes())
+        with self.assertRaises(mod.Divergencia):
+            self.check()
+
+    def test_b3_rejeita_catalogo_com_git_blob_incorreto(self):
+        catalogo = json.loads(self.catalogo_path.read_text(encoding="utf-8"))
+        catalogo["referencias"][0]["git_blob_sha"] = "0" * 40
+        self.catalogo_path.write_text(json.dumps(catalogo), encoding="utf-8")
+        self.catalogo_sha256 = digest(self.catalogo_path.read_bytes())
+        with self.assertRaises(mod.Divergencia):
+            self.check()
+
+    def test_g1_tolerancia_textual_nao_autentica_retorna_pendente(self):
+        self.update_candidate("id,estimando\na,9999\nb,0\n")
+        self.record["comparacao"]["colunas"]["estimando"]["abs"] = "10000"
+        self.record["comparacao"]["preaprovacao"] = {
+            "id_protocolo": "inventado",
+            "justificativa_matematica": "X" * 40,
+            "responsavel_qa": "pessoa_sem_credencial",
+            "evidencia_calibracao": "inexistente"
+        }
+        self.assertEqual(self.check()["estado"], "PENDENTE_QA")
+
+    def test_g1_rejeita_preaprovacao_tipo_invalido(self):
+        self.record["comparacao"]["colunas"]["estimando"]["abs"] = "0.1"
+        self.record["comparacao"]["preaprovacao"] = {
+            "id_protocolo": 123, "justificativa_matematica": "X" * 40,
+            "responsavel_qa": "responsavel", "evidencia_calibracao": "ficticia"
+        }
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_g1_rejeita_tolerancia_booleano(self):
+        self.record["comparacao"]["colunas"]["estimando"]["abs"] = True
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_g2_nao_aceita_direitos_autodeclarados(self):
+        self.record["modo"] = "reexecucao_modelo"
+        self.record["direitos"] = "HOMOLOGADOS"
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_rejeita_hardlink_entre_referencia_e_candidato(self):
+        self.cand_path.unlink()
+        self.cand_path.hardlink_to(self.ref_path)
+        with self.assertRaises(mod.Bloqueio):
             self.check()
 
 
