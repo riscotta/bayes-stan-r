@@ -10,7 +10,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 POLICY = ROOT / "reports/t06_4/politica_resultados_T06_4.json"
 README = ROOT / "reports/t06_4/README.md"
-SCRIPT = ROOT / "scripts/_setup/reconciliar_resultados_t06_4.py"
+SCRIPT = ROOT / ".github/scripts/reconciliar_resultados_t06_4.py"
 MANIFEST = ROOT / "reports/t06_1/manifesto_estudos_T06_1.json"
 STATES = ROOT / "reports/t06_2/estados_reprodutibilidade_T06_2.json"
 MODES = ROOT / "reports/t06_3/modos_operacionais_T06_3.json"
