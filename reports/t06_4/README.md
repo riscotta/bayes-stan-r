@@ -42,18 +42,6 @@ O script [reconciliar_resultados_t06_4.py](../../.github/scripts/reconciliar_res
 
 O registro externo JSON exige: "schema":"t06_4_execucao_v1", "estudo", "execucao_id", "modo", "tipo" ("bytes_exatos", "csv_deterministico", "csv_estocastico_resumo"), "codigo_sha" (40 hex), "ambiente", "comando", "seed" (inteiro não negativo de 0 a 2^64−1, string de dígitos correspondente ou texto literal "NAO_APLICAVEL" quando realmente inaplicável; listas, booleanos, objetos e strings vazias são bloqueados), "entrada_sha256", "direitos" ("NAO_HOMOLOGADOS"/"HOMOLOGADOS"), "referencia" e "candidato" (ambos com "path" e "sha256"). Para CSV acrescentar "comparacao" = {"chaves":["id"],"colunas":{"valor":{"abs":"0","rel":"0"}}}. Limiar não zero ou resumo estocástico exigem em "comparacao.preaprovacao": "id_protocolo", "justificativa_matematica", "responsavel_qa" e "evidencia_calibracao"; o estocástico também demanda "oraculo_estimandos" e "diagnosticos_mcse_ess_rhat". **Esses campos não verificam autenticidade de assinatura ou qualidade de calibração**: revisão independente precisa confrontar as evidências citadas. Na implementação corrigida, limiares `abs` ou `rel` **não zero** permanecem necessariamente `PENDENTE_QA`, mesmo se a diferença estiver dentro do limite e a preaprovação textual estiver completa. Divergências fora do limite ainda produzem `DIVERGENCIA`.
 
-### 5.2 Precisão aritmética, validação de metadados e limites explícitos
-
-A comparação de decimais finitos usa razões exatas (`fractions.Fraction` a partir de \ `Decimal`), não a precisão global de 28 dígitos do contexto Decimal. **Toda diferença que excede estritamente** \ `abs + rel × |referência|` retorna \ `DIVERGENCIA` antes de avaliar o gate de QA. Igualdade exata no limiar permanece dentro da tolerância, mas limiar não zero retorna **PENDENTE_QA**, nunca aprovação inferencial.
-
-Para limitar custo e expoentes patológicos, cada número de entrada ou tolerância admite **até 512 algarismos no coeficiente** e **expoente decimal com módulo até 1000**. Acima desses limites, a execução retorna \ `BLOQUEADO`, não aproxima o número. A seed aceita somente inteiro não negativo de até 64 bits, a forma decimal em string ou \ `NAO_APLICAVEL`; o último requer justificativa externa de não aplicabilidade. Entradas JSON fora do contrato são rejeitadas de modo controlado, sem traceback. Esses limites operacionais não foram calibrados como critérios científicos.
-
-### 5.3 Evidência externa de custódia: pendência B3
-
-**Situação em 12/11/2026:** nenhum catálogo histórico real preexistente, registro independente de pin ou vínculo commit/path/blob, custodiados e auditados, foi apresentado neste ciclo. O catálogo e os commits nos testes são sintéticos; os hashes são válidos apenas como autoconsistência de fixture. Portanto, este PR **não comprova autenticidade histórica real**. Até existir a evidência, bloqueia-se o uso do comparador para reivindicar integridade histórica, N2/N3/N4 ou homologação de resultados reais, ainda que a saída técnica isolada diga \ `CONFERENCIA_TECNICA`.
-
-Para uso real autorizado, um auditor independente deverá obter, de fonte preexistente confiável, (i) identidade e versão do catálogo, com data e custodiador; (ii) pin SHA-256 publicado ou registrado **antes** da execução, independente do responsável pela comparação; (iii) commit Git existente com origem rastreável; (iv) correspondência do caminho e Git blob do artefato no commit; (v) permissão de uso e eventual triagem de privacidade. Registrar as evidências externas no parecer e confrontá-las com os bytes locais. **Recalcular o pin do catálogo fornecido pelo executor não atende B3.** O script, por projeto, não autentica nem atesta essa cadeia.
-
 ### 5.1 Âncora de referência independente e caminhos canônicos
 
 O comparador exige dois argumentos **fora do JSON da execução**: `--catalogo` (snapshot JSON previamente auditado) e `--catalogo-sha256-confiavel` (SHA-256 desse snapshot obtido e fixado antes da comparação, em versão controlada ou canal de custódia independente). O catálogo usa `schema=t06_4_catalogo_v1`, `git_commit` (40 hexadecimais) e `referencias` (lista de registros com `path`, `sha256` de bytes e `git_blob_sha` de objeto Git SHA-1). O comparador confirma digest do próprio catálogo, entrada única por caminho, SHA-256 da referência e Git blob do arquivo. **O SHA-1 do blob não substitui o SHA-256 dos bytes.**
@@ -64,6 +52,19 @@ Para ambos os artefatos, são rejeitados links simbólicos no arquivo ou ancestr
 
     python .github/scripts/reconciliar_resultados_t06_4.py --raiz . --registro "$REGISTRO" --catalogo "$CATALOGO_AUDITADO" --catalogo-sha256-confiavel "$CATALOGO_SHA256_CONFIAVEL"
     python -m unittest discover -s tests/python -p 'test_resultados_t06_4.py' -v
+
+
+### 5.2 Precisão aritmética, validação de metadados e limites explícitos
+
+A comparação de decimais finitos usa razões exatas (`fractions.Fraction` a partir de `Decimal`), não a precisão global de 28 dígitos do contexto Decimal. **Toda diferença que excede estritamente** `abs + rel × |referência|` retorna `DIVERGENCIA` antes de avaliar o gate de QA. Igualdade exata no limiar permanece dentro da tolerância, mas limiar não zero retorna **PENDENTE_QA**, nunca aprovação inferencial.
+
+Para limitar custo e expoentes patológicos, cada número de entrada ou tolerância admite **até 512 algarismos no coeficiente** e **expoente decimal com módulo até 1000**. Acima desses limites, a execução retorna `BLOQUEADO`, não aproxima o número. A seed aceita somente inteiro não negativo de até 64 bits, a forma decimal em string ou `NAO_APLICAVEL`; o último requer justificativa externa de não aplicabilidade. Entradas JSON fora do contrato são rejeitadas de modo controlado, sem traceback. Esses limites operacionais não foram calibrados como critérios científicos.
+
+### 5.3 Evidência externa de custódia: pendência B3
+
+**Situação em 12/11/2026:** nenhum catálogo histórico real preexistente, registro independente de pin ou vínculo commit/path/blob, custodiados e auditados, foi apresentado neste ciclo. O catálogo e os commits nos testes são sintéticos; os hashes são válidos apenas como autoconsistência de fixture. Portanto, este PR **não comprova autenticidade histórica real**. Até existir a evidência, bloqueia-se o uso do comparador para reivindicar integridade histórica, N2/N3/N4 ou homologação de resultados reais, ainda que a saída técnica isolada diga `CONFERENCIA_TECNICA`.
+
+Para uso real autorizado, um auditor independente deverá obter, de fonte preexistente confiável, (i) identidade e versão do catálogo, com data e custodiador; (ii) pin SHA-256 publicado ou registrado **antes** da execução, independente do responsável pela comparação; (iii) commit Git existente com origem rastreável; (iv) correspondência do caminho e Git blob do artefato no commit; (v) permissão de uso e eventual triagem de privacidade. Registrar as evidências externas no parecer e confrontá-las com os bytes locais. **Recalcular o pin do catálogo fornecido pelo executor não atende B3.** O script, por projeto, não autentica nem atesta essa cadeia.
 
 **Gate P0 #14:** enquanto não houver homologação institucional externa verificável, os modos `reexecucao_modelo` e `reproducao_desde_dados` continuam **BLOQUEADOS**, inclusive quando `direitos=HOMOLOGADOS` aparece no registro. O valor textual não equivale a licença. A liberação futura requer mudança controlada com evidências específicas e novo QA.
 
