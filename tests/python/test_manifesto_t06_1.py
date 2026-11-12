@@ -228,6 +228,17 @@ def validate(manifest, tree, provenance):
     for study in studies:
         ident = study["id"]
         readme = _readme(ident)
+        # Uma fonte existente não prova que o comando informado nela existe.
+        for cmd in study["comandos_documentados"]:
+            source = cmd["fonte"]
+            if source == study["documentacao_de_estudo"]:
+                source_text = readme
+            elif source == ".github/workflows/ci.yml":
+                source_text = (ROOT / source).read_text(encoding="utf-8")
+            else:
+                raise ValueError("fonte do comando fora do escopo documental: " + ident)
+            if cmd["comando"] not in source_text:
+                raise ValueError("comando literal não encontrado na fonte: " + ident)
         if ident in README_DATASET_ANCHORS and README_DATASET_ANCHORS[ident] not in readme:
             raise ValueError("fonte documental da entrada não encontrada: " + ident)
         documented = {int(a or b) for a, b in SEED_IN_README.findall(readme)}
@@ -255,8 +266,15 @@ def validate(manifest, tree, provenance):
                 raise ValueError("licença externa falsamente homologada: " + ident)
             if gap["documentacao_de_estudo"] != study["documentacao_de_estudo"]:
                 raise ValueError("fonte de lacuna incorreta: " + ident)
-        if required and not study["entradas"] and study["estado_entrada"] != "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA":
-            raise ValueError("estado da lacuna externa incorreto: " + ident)
+        # O vínculo catalogado prevalece na classificação; lacunas externas
+        # permanecem explicitamente rastreadas no campo próprio.
+        expected_entry_state = (
+            "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES" if study["entradas"]
+            else "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA" if required
+            else "SEM_VINCULO_INVENTARIO_VERIFICADO"
+        )
+        if study.get("estado_entrada") != expected_entry_state:
+            raise ValueError("estado de entrada incoerente: " + ident)
         files = study["arquivos"]
         if any(e["caminho"].endswith("/.gitkeep") for e in files["outputs_versionados"]):
             raise ValueError("placeholder tratado como output científico: " + ident)
@@ -270,6 +288,26 @@ def validate(manifest, tree, provenance):
                 raise ValueError("placeholder fora do estudo: " + ident)
             if tree.get(path) != item["git_blob_sha"] or item["bytes"] != 0:
                 raise ValueError("placeholder não rastreável: " + path)
+        # Cobertura não autorreferente: todos os arquivos versionados nas
+        # pastas do estudo devem figurar no manifesto, inclusive placeholders.
+        expected_categories = {
+            "relatorios_versionados": {
+                p for p in tree if p.startswith(f"reports/{ident}/")
+            },
+            "outputs_versionados": {
+                p for p in tree
+                if p.startswith(f"outputs/{ident}/") and not p.endswith("/.gitkeep")
+            },
+            "placeholders_diretorio_versionados": {
+                p for p in tree
+                if p.startswith(f"outputs/{ident}/") and p.endswith("/.gitkeep")
+            },
+        }
+        for category, expected_paths in expected_categories.items():
+            declared_paths = [item["caminho"] for item in files[category]]
+            if (len(declared_paths) != len(set(declared_paths))
+                    or set(declared_paths) != expected_paths):
+                raise ValueError("cobertura de arquivos incompleta: " + ident + "/" + category)
     if n_placeholders != manifest["escopo"].get("total_placeholders_de_saida"):
         raise ValueError("contagem de placeholders divergente")
 
@@ -353,6 +391,53 @@ class ManifestTest(unittest.TestCase):
         study["entradas"][0]["dataset_id"] = "retractions_trend"
         with self.assertRaisesRegex(ValueError, "proveniência não corresponde|vínculo obrigatório"):
             validate(bad, self.tree, self.prov)
+
+
+    def test_estado_entrada_coerente_com_vinculos_e_lacunas(self):
+        for study_id in ("censo_escolar_tempo_integral", "retractions_reason_composition",
+                         "retractions_trend"):
+            bad = copy.deepcopy(self.data)
+            study = next(s for s in bad["estudos"] if s["id"] == study_id)
+            study["estado_entrada"] = "SEM_VINCULO_INVENTARIO_VERIFICADO"
+            with self.subTest(study=study_id), self.assertRaisesRegex(
+                    ValueError, "estado de entrada incoerente"):
+                validate(bad, self.tree, self.prov)
+        for study_id, state in (
+                ("coortes_aposentadoria", "SEM_VINCULO_INVENTARIO_VERIFICADO"),
+                ("deck_15wins", "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES")):
+            bad = copy.deepcopy(self.data)
+            next(s for s in bad["estudos"] if s["id"] == study_id)["estado_entrada"] = state
+            with self.subTest(study=study_id), self.assertRaisesRegex(
+                    ValueError, "estado de entrada incoerente"):
+                validate(bad, self.tree, self.prov)
+
+    def test_relatorios_omitidos_detectados_pela_arvore_git(self):
+        for study_id in ("mortalidade_sp_0_74", "pnadc_estudo_i"):
+            bad = copy.deepcopy(self.data)
+            study = next(s for s in bad["estudos"] if s["id"] == study_id)
+            study["arquivos"]["relatorios_versionados"].pop()
+            with self.subTest(study=study_id), self.assertRaisesRegex(
+                    ValueError, "cobertura de arquivos incompleta"):
+                validate(bad, self.tree, self.prov)
+
+    def test_placeholders_omitidos_com_contagem_adulterada(self):
+        for study_id in ("censo_escolar_tempo_integral", "mortalidade_sp_0_74"):
+            bad = copy.deepcopy(self.data)
+            study = next(s for s in bad["estudos"] if s["id"] == study_id)
+            study["arquivos"]["placeholders_diretorio_versionados"].pop()
+            bad["escopo"]["total_placeholders_de_saida"] -= 1
+            with self.subTest(study=study_id), self.assertRaisesRegex(
+                    ValueError, "cobertura de arquivos incompleta"):
+                validate(bad, self.tree, self.prov)
+
+    def test_comandos_inventados_rejeitados_por_fonte_literal(self):
+        for study_id in ("caes_raca_f5", "mortalidade_sp_0_74"):
+            bad = copy.deepcopy(self.data)
+            study = next(s for s in bad["estudos"] if s["id"] == study_id)
+            study["comandos_documentados"][0]["comando"] = "echo comando_inventado_T06_1"
+            with self.subTest(study=study_id), self.assertRaisesRegex(
+                    ValueError, "comando literal não encontrado"):
+                validate(bad, self.tree, self.prov)
 
 
 if __name__ == "__main__":

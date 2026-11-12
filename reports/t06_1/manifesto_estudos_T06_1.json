@@ -234,7 +234,7 @@
           "observacao": "Microdados oficiais do INEP com ZIP remoto e cache data/raw/censo_escolar/ ignorado pelo Git; sem leitura do ZIP nem homologação de licença nesta T06.1."
         }
       ],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
@@ -2689,7 +2689,7 @@
           "observacao": "A entrada é compartilhada com retractions_time_to_retraction; o vínculo não implica posse dos dados nem disponibilidade local do CSV bruto."
         }
       ],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
@@ -2873,7 +2873,7 @@
           "observacao": "A entrada é compartilhada com retractions_time_to_retraction; o vínculo não implica posse dos dados nem disponibilidade local do CSV bruto."
         }
       ],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
