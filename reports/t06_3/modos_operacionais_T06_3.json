@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0.0",
+  "tarefa": "T06.3",
+  "objetivo_literal": "Documentar modo auditoria rápida separado de modo reexecução de modelo e modo reprodução desde dados.",
+  "base_main_sha": "f80343fdbb2d65ca7b726aefd919c611013c93df",
+  "natureza": "CONTRATO_DOCUMENTAL_NAO_EXECUTA_AMOSTRAGEM_OU_DADOS_ORIGINAIS",
+  "fontes": [
+    "reports/t06_1/manifesto_estudos_T06_1.json",
+    "reports/t06_2/estados_reprodutibilidade_T06_2.json",
+    "scripts/pnadc_estudo_i/README.md",
+    "scripts/mortalidade_sp_0_74/README.md",
+    "scripts/caes_raca_f5/README.md",
+    ".github/workflows/ci.yml"
+  ],
+  "modos": {
+    "auditoria_rapida": {
+      "alcance": "N1 inventario Git e N2 auditoria limitada de sintese congelada quando houver evidencia especifica",
+      "condicao": "Inspeção não invasiva; fontes públicas versionadas; resultado histórico confrontado com artefato de referência",
+      "parada": "Falha de hash, caminho, aritmética, invariantes ou dependência: não aprovar nem promover para N3/N4",
+      "nivel_possivel": "N1_N2_LIMITADOS",
+      "execucao_n3_n4_na_t06_3": false
+    },
+    "reexecucao_modelo": {
+      "alcance": "Reestimar modelo a partir da base analítica definida e comparar estimandos e diagnósticos com referências; não reconstruir a base desde a fonte",
+      "condicao": "Base analítica íntegra e autorizada; dependências e versões conferidas; seed, configurações e oráculos definidos; aprovação de custo e acesso",
+      "parada": "Se faltar base, autorização, ambiente, referência ou diagnósticos: bloqueado; código ou Stan compilado não é PASS",
+      "nivel_possivel": "N3_SOMENTE_COM_EVIDENCIA_INDEPENDENTE",
+      "execucao_n3_n4_na_t06_3": false
+    },
+    "reproducao_desde_dados": {
+      "alcance": "Refazer coleta/importação, limpeza/E04, ajuste e síntese desde fontes primárias rastreáveis e autorizadas",
+      "condicao": "Proveniência, direitos, versões, hashes de entradas, cadeia de scripts e saídas, ambiente completo e revisão independente",
+      "parada": "Sem permissão institucional, insumos originais e pipeline contínuo verificado, não declarar reprodução integral",
+      "nivel_possivel": "N4_SOMENTE_COM_EVIDENCIA_INDEPENDENTE",
+      "execucao_n3_n4_na_t06_3": false
+    }
+  },
+  "rotas_documentadas": {
+    "pnadc_estudo_i": {
+      "auditoria_rapida": {
+        "comando": "python scripts/pnadc_estudo_i/auditar_e10.py",
+        "evidencia": "CI histórica Python PNAD E09 N2; 13 indicadores, 26 contrastes, SHA-256 da projeção pública",
+        "situacao": "AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA"
+      },
+      "reexecucao_modelo": {
+        "comando": null,
+        "situacao": "INSUMOS_E07_E08_HISTORICOS_NAO_PRESENTES",
+        "restricao": "runner PowerShell E07 preservado, mas snapshots E04–E08/cadeias e ambiente não foram reconstituídos; não prometer execução em clone"
+      },
+      "reproducao_desde_dados": {
+        "comando": null,
+        "situacao": "NAO_DEMONSTRADO",
+        "restricao": "coleta SIDRA original, E04–E09 e insumos/cadeias históricas não disponíveis em clone; direitos e vintage não homologados"
+      }
+    },
+    "mortalidade_sp_0_74": {
+      "auditoria_rapida": {
+        "comando": "Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=auditar",
+        "evidencia": "CI histórica R / agregados E09 congelados; não executa E04/E07",
+        "situacao": "AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA"
+      },
+      "reexecucao_modelo": {
+        "comando": "Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=completo",
+        "situacao": "CODIGO_IDENTIFICADO_NAO_EXECUTADO_T06_3",
+        "restricao": "requer base_analitica_celular_PROVISORIA.csv local autorizada, MASS e referências; reajusta oito modelos R E07 a partir de base E04, não reconstrói fontes primárias"
+      },
+      "reproducao_desde_dados": {
+        "comando": null,
+        "situacao": "NAO_DEMONSTRADO",
+        "restricao": "faltam insumos APVP/SEADE e correspondência territorial histórica homologada; nenhum comando ponta a ponta N4 verificado"
+      }
+    },
+    "caes_raca_f5": {
+      "auditoria_rapida": {
+        "comando": "Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R",
+        "situacao": "CODIGO_PUBLICO_DOCUMENTADO_SEM_NOVA_CI_ESPECIFICA_T06_3",
+        "restricao": "lê agregados congelados e compara métricas; a T06.3 não o reexecuta nem o promove a N2 atestado"
+      },
+      "reexecucao_modelo": {
+        "comando": "Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R --run_stan=1",
+        "situacao": "CODIGO_IDENTIFICADO_NAO_EXECUTADO_T06_3",
+        "restricao": "exige E04 original com SHA-256 documentado, CmdStan, bibliotecas, controle de saídas e revisão; CmdStan histórico 2.37.0 difere do 2.40.0 global"
+      },
+      "reproducao_desde_dados": {
+        "comando": null,
+        "situacao": "NAO_DEMONSTRADO",
+        "restricao": "wrapper de amostragem parte de E04 derivada, não de dados primários; direitos e permissões continuam em análise"
+      }
+    }
+  },
+  "estudos": [
+    {
+      "id": "caes_raca_f5",
+      "fonte_estudo": "scripts/caes_raca_f5/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "censo_escolar_tempo_integral",
+      "fonte_estudo": "scripts/censo_escolar_tempo_integral/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "consumer_shopping_trends_beta",
+      "fonte_estudo": "scripts/consumer_shopping_trends_beta/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "coortes_aposentadoria",
+      "fonte_estudo": "scripts/coortes_aposentadoria/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "deck_15wins",
+      "fonte_estudo": "scripts/deck_15wins/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "deter_mensal_bioma_uf",
+      "fonte_estudo": "scripts/deter_mensal_bioma_uf/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "exercises_dataset",
+      "fonte_estudo": "scripts/exercises_dataset/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "fruitflies_aft",
+      "fonte_estudo": "scripts/fruitflies_aft/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "hidrometro_degradacao",
+      "fonte_estudo": "scripts/hidrometro_degradacao/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "hierarchical",
+      "fonte_estudo": "scripts/hierarchical/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "importacoes_world_bank",
+      "fonte_estudo": "scripts/importacoes_world_bank/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "inhaler_ordinal",
+      "fonte_estudo": "scripts/inhaler_ordinal/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "ipca_sidra_1419",
+      "fonte_estudo": "scripts/ipca_sidra_1419/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "isus_sia",
+      "fonte_estudo": "scripts/isus_sia/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "kidney_survival",
+      "fonte_estudo": "scripts/kidney_survival/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "media_ruido_mu",
+      "fonte_estudo": "scripts/media_ruido_mu/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "mega_sena_dezenas",
+      "fonte_estudo": "scripts/mega_sena_dezenas/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "missing_migrants",
+      "fonte_estudo": "scripts/missing_migrants/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "mortalidade_sp_0_74",
+      "fonte_estudo": "scripts/mortalidade_sp_0_74/README.md",
+      "auditoria_rapida": "AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "mortality",
+      "fonte_estudo": "scripts/mortality/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "pms_servicos",
+      "fonte_estudo": "scripts/pms_servicos/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "pnadc_desocupacao",
+      "fonte_estudo": "scripts/pnadc_desocupacao/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "pnadc_estudo_i",
+      "fonte_estudo": "scripts/pnadc_estudo_i/README.md",
+      "auditoria_rapida": "AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "prisons_prisoners_unodc",
+      "fonte_estudo": "scripts/prisons_prisoners_unodc/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "retractions_reason_composition",
+      "fonte_estudo": "scripts/retractions_reason_composition/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "retractions_time_to_retraction",
+      "fonte_estudo": "scripts/retractions_time_to_retraction/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "retractions_trend",
+      "fonte_estudo": "scripts/retractions_trend/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "rs_seguro",
+      "fonte_estudo": "scripts/rs_seguro/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "saheart",
+      "fonte_estudo": "scripts/saheart/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "sat_model_selection",
+      "fonte_estudo": "scripts/sat_model_selection/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "sherlock_holmes_terms",
+      "fonte_estudo": "scripts/sherlock_holmes_terms/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "sobrevivencia_cadastral_poa",
+      "fonte_estudo": "scripts/sobrevivencia_cadastral_poa/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    },
+    {
+      "id": "therapeutic_touch",
+      "fonte_estudo": "scripts/therapeutic_touch/README.md",
+      "auditoria_rapida": "NAO_AFERIDO_COM_EVIDENCIA_N2_NESTE_CONTRATO",
+      "reexecucao_modelo": "NAO_AFERIDA_NESTA_TAREFA",
+      "reproducao_desde_dados": "NAO_AFERIDA_NESTA_TAREFA",
+      "execucao_n3_n4_t06_3": false
+    }
+  ],
+  "gates_abertos": [
+    "issue #14 P0 — direitos/proveniencia/redistribuicao sem homologacao",
+    "issues #15 e #16 abertas",
+    "T06.3 exige QA independente no SHA exato",
+    "T06.4–T06.7 e Etapa 06 abertas"
+  ],
+  "nao_implica": [
+    "N1/N2 não certificam N3/N4",
+    "Comando documentado não é execução comprovada",
+    "N3 não implica N4 nem validade científica",
+    "Licença MIT do código não autoriza dados de terceiros"
+  ]
+}
