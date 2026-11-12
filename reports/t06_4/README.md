@@ -38,11 +38,11 @@ Quando pré-aprovado, o comparador usa: **|novo − referência| ≤ a + r × |r
 
 ## 5. Conferidor técnico: contrato e exemplos
 
-O script [reconciliar_resultados_t06_4.py](../../scripts/_setup/reconciliar_resultados_t06_4.py) usa somente Python padrão, lê uma referência e um candidato já existentes, verifica metadados mínimos, isolamento de caminho, SHA-256 de ambos, chaves e decimais de CSV, e pré-aprovação de tolerâncias. **Não roda modelos, não grava saídas e não certifica N2/N3/N4.**
+O script [reconciliar_resultados_t06_4.py](../../.github/scripts/reconciliar_resultados_t06_4.py) usa somente Python padrão, lê uma referência e um candidato já existentes, verifica metadados mínimos, isolamento de caminho, SHA-256 de ambos, chaves e decimais de CSV, e pré-aprovação de tolerâncias. **Não roda modelos, não grava saídas e não certifica N2/N3/N4.**
 
 O registro externo JSON exige: "schema":"t06_4_execucao_v1", "estudo", "execucao_id", "modo", "tipo" ("bytes_exatos", "csv_deterministico", "csv_estocastico_resumo"), "codigo_sha" (40 hex), "ambiente", "comando", "seed" (texto "NAO_APLICAVEL" se justificado), "entrada_sha256", "direitos" ("NAO_HOMOLOGADOS"/"HOMOLOGADOS"), "referencia" e "candidato" (ambos com "path" e "sha256"). Para CSV acrescentar "comparacao" = {"chaves":["id"],"colunas":{"valor":{"abs":"0","rel":"0"}}}. Limiar não zero ou resumo estocástico exigem em "comparacao.preaprovacao": "id_protocolo", "justificativa_matematica", "responsavel_qa" e "evidencia_calibracao"; o estocástico também demanda "oraculo_estimandos" e "diagnosticos_mcse_ess_rhat". **Esses campos não verificam autenticidade de assinatura ou qualidade de calibração**: revisão independente precisa confrontar as evidências citadas.
 
-    python scripts/_setup/reconciliar_resultados_t06_4.py --raiz . --registro /caminho/seguro/registro_execucao.json
+    python .github/scripts/reconciliar_resultados_t06_4.py --raiz . --registro /caminho/seguro/registro_execucao.json
     python -m unittest discover -s tests/python -p 'test_resultados_t06_4.py' -v
 
 Status: CONFERENCIA_TECNICA (exit 0, somente técnica), PENDENTE_QA (exit 3), DIVERGENCIA ou BLOQUEADO (exit 2). Não publicar PENDENTE_QA como PASS. Divergência exige preservar logs/hashes, classificar erro (entrada, ambiente, seed, modelo, serialização ou Monte Carlo), abrir registro, escalar ao responsável científico e obter nova autorização antes de reexecutar. Não alterar oráculo/limiar retroativamente para acomodar discrepância.
