@@ -34,11 +34,19 @@ def exigir(condicao, mensagem):
 def caminho(root, relativo):
     exigir(isinstance(relativo, str) and relativo and "\\" not in relativo,
            "caminho deve ser relativo POSIX")
+    partes = relativo.split("/")
+    exigir(all(x not in {".", "..", ""} for x in partes),
+           "caminho com componentes proibidos")
     p = PurePosixPath(relativo)
-    exigir(not p.is_absolute() and all(x not in {".", "..", ""} for x in p.parts),
-           "caminho absoluto ou com traversal")
+    exigir(not p.is_absolute(), "caminho absoluto proibido")
     base = Path(root).resolve(strict=True)
-    alvo = (base / relativo).resolve(strict=True)
+    alvo_bruto = base.joinpath(*partes)
+    # Symlinks no arquivo ou em qualquer ancestral relativo à raiz são proibidos.
+    atual = base
+    for parte in partes:
+        atual = atual / parte
+        exigir(not atual.is_symlink(), "link simbólico no caminho/ancestral")
+    alvo = alvo_bruto.resolve(strict=True)
     exigir(alvo.is_relative_to(base) and alvo.is_file(), "caminho fora da raiz ou não arquivo")
     return alvo
 
@@ -49,6 +57,53 @@ def sha256_arquivo(path):
         for bloco in iter(lambda: arquivo.read(1048576), b""):
             h.update(bloco)
     return h.hexdigest()
+
+
+def git_blob_sha(path):
+    """Identidade Git SHA-1 de blob, distinta do SHA-256 de bytes."""
+    h = hashlib.sha1()
+    h.update(f"blob {path.stat().st_size}\0".encode("ascii"))
+    with path.open("rb") as arquivo:
+        for bloco in iter(lambda: arquivo.read(1048576), b""):
+            h.update(bloco)
+    return h.hexdigest()
+
+
+def conferir_ancora(registro, ref, catalogo, catalogo_sha256_confiavel):
+    """Catálogo com digest fixado fora do registro; não autentica a fonte do pin."""
+    exigir(isinstance(catalogo_sha256_confiavel, str) and
+           SHA256.fullmatch(catalogo_sha256_confiavel),
+           "âncora externa de catálogo ausente ou inválida")
+    exigir(catalogo is not None, "catálogo de referência ausente")
+    arq = Path(catalogo).resolve(strict=True)
+    exigir(arq.is_file(), "catálogo não é arquivo")
+    if sha256_arquivo(arq) != catalogo_sha256_confiavel:
+        raise Divergencia("digest do catálogo diverge do pin externo confiável")
+    try:
+        dados = json.loads(arq.read_text(encoding="utf-8"))
+    except (UnicodeError, json.JSONDecodeError):
+        raise Bloqueio("catálogo malformado") from None
+    exigir(isinstance(dados, dict) and dados.get("schema") == "t06_4_catalogo_v1" and
+           isinstance(dados.get("git_commit"), str) and
+           SHA_GIT.fullmatch(dados["git_commit"]), "catálogo sem proveniência de commit")
+    itens = dados.get("referencias")
+    exigir(isinstance(itens, list) and bool(itens), "referências de catálogo ausentes")
+    for item in itens:
+        exigir(isinstance(item, dict) and set(item) == {"path", "sha256", "git_blob_sha"} and
+               isinstance(item["path"], str) and item["path"] and
+               isinstance(item["sha256"], str) and SHA256.fullmatch(item["sha256"]) and
+               isinstance(item["git_blob_sha"], str) and SHA_GIT.fullmatch(item["git_blob_sha"]),
+               "entrada de catálogo inválida")
+    correspondentes = [i for i in itens if i["path"] == registro["referencia"]["path"]]
+    exigir(len(correspondentes) == 1, "referência sem entrada única em catálogo confiável")
+    item = correspondentes[0]
+    if item["sha256"] != registro["referencia"]["sha256"]:
+        raise Divergencia("checksum do registro difere do catálogo fixado")
+    if sha256_arquivo(ref) != item["sha256"]:
+        raise Divergencia("bytes da referência diferem do catálogo fixado")
+    if git_blob_sha(ref) != item["git_blob_sha"]:
+        raise Divergencia("Git blob da referência difere do catálogo fixado")
+    return dados["git_commit"]
 
 
 def decimal_estrito(valor):
@@ -85,6 +140,9 @@ def tolerancias(configuracao, tipo):
         exigir(isinstance(nome, str) and nome, "métrica sem nome")
         exigir(isinstance(tolerancia, dict) and set(tolerancia) == {"abs", "rel"},
                "tolerância sem par abs/rel")
+        for v in tolerancia.values():
+            exigir(isinstance(v, (str, int, float, Decimal)) and not isinstance(v, bool),
+                   "tolerância deve ser número finito ou sua string decimal")
         a, r = decimal_estrito(tolerancia["abs"]), decimal_estrito(tolerancia["rel"])
         exigir(a >= 0 and r >= 0, "tolerância negativa")
         resultados[nome] = (a, r)
@@ -92,15 +150,15 @@ def tolerancias(configuracao, tipo):
     aprovacao = configuracao.get("preaprovacao")
     if nao_zero or tipo == "csv_estocastico_resumo":
         exigir(isinstance(aprovacao, dict), "sem pré-aprovação de limiar")
-        exigir(bool(aprovacao.get("id_protocolo")) and
-               len(aprovacao.get("justificativa_matematica", "")) >= 40 and
-               bool(aprovacao.get("responsavel_qa")) and
-               bool(aprovacao.get("evidencia_calibracao")),
+        exigir(all(isinstance(aprovacao.get(k), str) and aprovacao[k].strip()
+                   for k in ("id_protocolo", "justificativa_matematica",
+                             "responsavel_qa", "evidencia_calibracao")) and
+               len(aprovacao["justificativa_matematica"].strip()) >= 40,
                "limiar sem justificativa, calibração ou responsável")
     return resultados
 
 
-def conferir(registro, raiz):
+def conferir(registro, raiz, *, catalogo=None, catalogo_sha256_confiavel=None):
     """Retorna estado técnico, sem promover N1/N2 em N3/N4.
 
     Bloqueio => nenhuma comparação autorizável; Divergencia => comparação falhou.
@@ -125,7 +183,8 @@ def conferir(registro, raiz):
     exigir(registro.get("direitos") in {"NAO_HOMOLOGADOS", "HOMOLOGADOS"},
            "estado de direitos não declarado")
     if modo != "auditoria_rapida":
-        exigir(registro["direitos"] == "HOMOLOGADOS", "P0: direitos não homologados")
+        # Issue #14 P0 aberta: o campo do registro não é prova de homologação.
+        raise Bloqueio("P0: modos N3/N4 exigem homologação institucional externa verificada")
     referencia, candidato = registro.get("referencia"), registro.get("candidato")
     exigir(isinstance(referencia, dict) and isinstance(candidato, dict),
            "referência/candidato incompletos")
@@ -138,7 +197,16 @@ def conferir(registro, raiz):
     exigir(not str(referencia.get("path", "")).startswith("outputs/_reexecucoes_t06_4/"),
            "referência não pode ser uma saída temporária da execução")
     ref, cand = caminho(raiz, referencia.get("path")), caminho(raiz, candidato["path"])
-    exigir(ref != cand, "referência e candidato são mesmo arquivo")
+    base = Path(raiz).resolve(strict=True)
+    isolamento = base / "outputs" / "_reexecucoes_t06_4" / estudo / identificador
+    dominio_temporario = base / "outputs" / "_reexecucoes_t06_4"
+    exigir(cand.is_relative_to(isolamento) and cand != isolamento,
+           "candidato não está sob raiz canônica da execução")
+    exigir(not ref.is_relative_to(dominio_temporario),
+           "referência sob domínio temporário de reexecuções")
+    exigir(ref != cand and not ref.samefile(cand),
+           "referência e candidato são mesmo arquivo físico")
+    conferir_ancora(registro, ref, catalogo, catalogo_sha256_confiavel)
     if sha256_arquivo(ref) != referencia["sha256"]:
         raise Divergencia("checksum de referência diverge do congelado")
     if sha256_arquivo(cand) != candidato["sha256"]:
@@ -170,6 +238,9 @@ def conferir(registro, raiz):
                bool(registro.get("diagnosticos_mcse_ess_rhat")),
                "faltam oráculo pré-especificado e diagnósticos para amostragem")
         return {"estado": "PENDENTE_QA", "escopo": "RESUMO_ESTOCASTICO_SEM_VALIDACAO_INFERENCIAL"}
+    if any(a or r for a, r in tol.values()):
+        # Declarações textuais de preaprovação não são autenticação externa.
+        return {"estado": "PENDENTE_QA", "escopo": "TOLERANCIA_NAO_ZERO_SEM_APROVACAO_AUTENTICADA"}
     return {"estado": "CONFERENCIA_TECNICA", "escopo": "CSV_DESCRITIVO_NAO_N3_N4"}
 
 
@@ -177,10 +248,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--registro", required=True, type=Path)
     parser.add_argument("--raiz", required=True, type=Path)
+    parser.add_argument("--catalogo", required=True, type=Path,
+                        help="snapshot de referências versionado e previamente fixado")
+    parser.add_argument("--catalogo-sha256-confiavel", required=True,
+                        help="SHA-256 obtido fora do registro de execução, por canal confiável")
     args = parser.parse_args()
     try:
         registro = json.loads(args.registro.read_text(encoding="utf-8"))
-        resultado = conferir(registro, args.raiz)
+        resultado = conferir(registro, args.raiz, catalogo=args.catalogo,
+                            catalogo_sha256_confiavel=args.catalogo_sha256_confiavel)
     except (Bloqueio, Divergencia, FileNotFoundError, OSError, ValueError) as erro:
         status = "DIVERGENCIA" if isinstance(erro, Divergencia) else "BLOQUEADO"
         print(json.dumps({"estado": status, "causa": str(erro)}, ensure_ascii=False))
