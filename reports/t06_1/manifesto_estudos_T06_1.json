@@ -1,0 +1,3601 @@
+{
+  "schema_version": "1.0.0",
+  "tarefa": "T06.1",
+  "objetivo_literal": "Criar manifesto por estudo: arquivos, permissões, entrada, versão, SHA, seed, ambiente e comandos.",
+  "data_corte": "2026-11-12",
+  "repositorio": "riscotta/bayes-stan-r",
+  "base_git_commit": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+  "escopo": {
+    "total_estudos": 33,
+    "criterio": "scripts/STUDY_TAXONOMY_T02_1.md; scripts/_setup excluído",
+    "natureza": "inventário documental e hash Git de arquivos publicamente versionados; não certifica reprodutibilidade",
+    "total_registros_proveniencia": 25,
+    "total_vinculos_catalogo_por_estudo": 27,
+    "total_seeds_documentadas_em_readmes": 14,
+    "total_placeholders_de_saida": 23,
+    "nota_sobre_fontes_externas": "Referências não catalogadas identificadas em READMEs são lacunas documentais; não implicam que os dados estejam ausentes, disponíveis ou licenciados."
+  },
+  "ambiente_global_de_referencia": {
+    "arquivo": "config/environment.yml",
+    "lockfile": "renv.lock",
+    "R": "4.5.1",
+    "cmdstanr": "0.9.0",
+    "cmdstan": "2.40.0",
+    "rstan": "2.32.7",
+    "estado": "CONFIGURACAO_DECLARADA_NAO_EXECUTADA_POR_ESTUDO"
+  },
+  "evidencias": [
+    "scripts/STUDY_TAXONOMY_T02_1.md",
+    "scripts/STUDY_METADATA_CONTRACT_T02_2.md",
+    "data/DATA_PROVENANCE.csv",
+    "data/TRACKED_DATA_MANIFEST.csv",
+    "config/environment.yml",
+    "renv.lock",
+    "issues/14",
+    "issues/15",
+    "issues/16"
+  ],
+  "risco_transversal": "Issue #14 P0 aberta: integridade Git não comprova licença, LGPD, autorização institucional ou aptidão para redistribuição. Não publicar insumos adicionais.",
+  "estudos": [
+    {
+      "id": "caes_raca_f5",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/caes_raca_f5/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/caes_raca_f5/README.md",
+            "git_blob_sha": "7656e617336ff5928af83c556edf48bcd5c69462",
+            "bytes": 4917
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R",
+            "git_blob_sha": "92d419f3f78b5f2a4c191f2a530d9018605119c2",
+            "bytes": 5117
+          },
+          {
+            "caminho": "scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/EXECUTAR_E08_MP.ps1",
+            "git_blob_sha": "07513438dedac69e146a0fd95fcd9c18d7769d97",
+            "bytes": 3446
+          },
+          {
+            "caminho": "scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/executar_E08_MP.R",
+            "git_blob_sha": "ad986b8158b60da88f91d0013919ae2cce1fe085",
+            "bytes": 28015
+          },
+          {
+            "caminho": "scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/stan/M1_skew_normal_E08_MP.stan",
+            "git_blob_sha": "2aec9c41cad1f38c29e7a9fb3428e11eeaaa5b3b",
+            "bytes": 686
+          },
+          {
+            "caminho": "scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/stan/M2_skew_normal_E08_MP.stan",
+            "git_blob_sha": "de87079eb2cc170438e378abb5098a22764125e0",
+            "bytes": 845
+          },
+          {
+            "caminho": "scripts/caes_raca_f5/original/E08_MP_Entregaveis/03_referencias_congeladas/modelo_M1_E07.stan",
+            "git_blob_sha": "dc7932ce95cba172cd7d32f8938a0a96943b0bbf",
+            "bytes": 395
+          },
+          {
+            "caminho": "scripts/caes_raca_f5/original/E08_MP_Entregaveis/03_referencias_congeladas/modelo_M2_E07.stan",
+            "git_blob_sha": "4b470134f8d027a95d042c7bd990c9ea51f21134",
+            "bytes": 646
+          }
+        ],
+        "relatorios_versionados": [
+          {
+            "caminho": "reports/caes_raca_f5/relatorio_cientifico.md",
+            "git_blob_sha": "acfcd5afece447769b1c17ca75a13aa4ba1ace2b",
+            "bytes": 4191
+          }
+        ],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "caes_raca_f5",
+          "escopo_caminho": "data/raw/caes_raca_f5/",
+          "versioned_declarado": true,
+          "fonte_declarada": "Darwin's Ark F5 derived audit summaries",
+          "origem_url": "https://doi.org/10.5061/dryad.g4f4qrfr0",
+          "license_status_fonte": "source_terms_verified",
+          "redistribution_status_fonte": "aggregates_only",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/caes_raca_f5/README.md",
+              "git_blob_sha": "060c3e3852c216d893326c780455759f70738af9",
+              "bytes": 1876
+            },
+            {
+              "caminho": "data/raw/caes_raca_f5/resultados_auditados/auditoria_estratos_suporte.csv",
+              "git_blob_sha": "8f7e67ea5e12520e2e4c670ceb85f804a1028c5e",
+              "bytes": 1068
+            },
+            {
+              "caminho": "data/raw/caes_raca_f5/resultados_auditados/bootstrap_independente_2000.csv",
+              "git_blob_sha": "757d7a47482c493695677e156b836eac81cfe3a0",
+              "bytes": 1746
+            },
+            {
+              "caminho": "data/raw/caes_raca_f5/resultados_auditados/contrastes_por_fold_auditados.csv",
+              "git_blob_sha": "fcaf2791d34663c7a38134463a9c3108c153bb9f",
+              "bytes": 1153
+            },
+            {
+              "caminho": "data/raw/caes_raca_f5/resultados_auditados/metricas_full_E08_MP.csv",
+              "git_blob_sha": "2bf24f4ef3ff43a85bdb3149781581e20d377dbc",
+              "bytes": 1207
+            },
+            {
+              "caminho": "data/raw/caes_raca_f5/resultados_auditados/metricas_por_fold_auditadas.csv",
+              "git_blob_sha": "0d337c8ecf3b47fdfefe3b16735da48cf0a72016",
+              "bytes": 3409
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/caes_raca_f5/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": "README registra CmdStan histórico 2.37.0 distinto do canônico 2.40.0; não equiparar os ambientes."
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R",
+          "fonte": "scripts/caes_raca_f5/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        },
+        {
+          "comando": "Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R --run_stan=1",
+          "fonte": "scripts/caes_raca_f5/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "REESTIMACAO_OPCIONAL_CUSTOSA"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "censo_escolar_tempo_integral",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/censo_escolar_tempo_integral/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/censo_escolar_tempo_integral/README.md",
+            "git_blob_sha": "459f4a074ac87283110f8bebd3f4ab72b129168d",
+            "bytes": 3303
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R",
+            "git_blob_sha": "8f41a374322c40619a00f8af902e812b4e5fbed9",
+            "bytes": 39100
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/censo_escolar_tempo_integral/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "censo_escolar",
+          "escopo_caminho": "data/raw/censo_escolar/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Microdados do Censo Escolar",
+          "origem_url": "https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar",
+          "license_status_fonte": "public_source_no_explicit_dataset_license",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/censo_escolar/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Microdados oficiais do INEP com ZIP remoto e cache data/raw/censo_escolar/ ignorado pelo Git; sem leitura do ZIP nem homologação de licença nesta T06.1."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 42,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/censo_escolar_tempo_integral/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R",
+          "fonte": "scripts/censo_escolar_tempo_integral/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "consumer_shopping_trends_beta",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/consumer_shopping_trends_beta/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/consumer_shopping_trends_beta/README.md",
+            "git_blob_sha": "6627d311bbf5d9af4a11ddd30ad67330487c6bd0",
+            "bytes": 2952
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/consumer_shopping_trends_beta/consumer_shopping_trends_beta_rstan.R",
+            "git_blob_sha": "448d564a1d12b0faf9056ad0e98fec16289269e2",
+            "bytes": 30160
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/consumer_shopping_trends_beta/figures/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/consumer_shopping_trends_beta/models/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/consumer_shopping_trends_beta/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "consumer_shopping_trends",
+          "escopo_caminho": "data/raw/consumer_shopping_trends/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Consumer Shopping Trends Analysis",
+          "origem_url": "https://www.kaggle.com/datasets/minahilfatima12328/consumer-shopping-trends-analysis",
+          "license_status_fonte": "page_specific_unverified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/consumer_shopping_trends/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            },
+            {
+              "caminho": "data/raw/consumer_shopping_trends/README.md",
+              "git_blob_sha": "0065fdbcc7f54b1ffd0153a56bdef21dc7593cb4",
+              "bytes": 610
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260410,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/consumer_shopping_trends_beta/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/consumer_shopping_trends_beta/consumer_shopping_trends_beta_rstan.R",
+          "fonte": "scripts/consumer_shopping_trends_beta/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "coortes_aposentadoria",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/coortes_aposentadoria/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/coortes_aposentadoria/README.md",
+            "git_blob_sha": "97c14c49ceb7473b836576b65a8848270c7e83d6",
+            "bytes": 1288
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/coortes_aposentadoria/coortes_aposentadoria_console_only_v2.R",
+            "git_blob_sha": "d5bd92fc7fa047b6da4869fa0390734be0e14dea",
+            "bytes": 20082
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [],
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/coortes_aposentadoria/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/coortes_aposentadoria/coortes_aposentadoria_console_only_v2.R",
+          "fonte": "scripts/coortes_aposentadoria/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "Yahoo Finance",
+          "documentacao_de_estudo": "scripts/coortes_aposentadoria/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        },
+        {
+          "referencia_readme": "BCB/SGS **4390**",
+          "documentacao_de_estudo": "scripts/coortes_aposentadoria/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        },
+        {
+          "referencia_readme": "BCB/SGS **433**",
+          "documentacao_de_estudo": "scripts/coortes_aposentadoria/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
+    },
+    {
+      "id": "deck_15wins",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/deck_15wins/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/deck_15wins/README.md",
+            "git_blob_sha": "39631212e9123f3d10a9c24bf7f003cc26ee3f60",
+            "bytes": 1394
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/deck_15wins/deck_15wins_negbin_beta_cmdstanr.R",
+            "git_blob_sha": "19eb699d73ac884344c122351cd51b5657a81e48",
+            "bytes": 14466
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [],
+      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/deck_15wins/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/deck_15wins/deck_15wins_negbin_beta_cmdstanr.R",
+          "fonte": "scripts/deck_15wins/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "deter_mensal_bioma_uf",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/deter_mensal_bioma_uf/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/deter_mensal_bioma_uf/README.md",
+            "git_blob_sha": "9bbbf7c2e8d9c14089039bf1116af5c133869b79",
+            "bytes": 2303
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R",
+            "git_blob_sha": "1bd2bbb8bd9509f4fb6df01dd6b81027e6cddd28",
+            "bytes": 27459
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "deter_mensal_bioma_uf",
+          "escopo_caminho": "data/raw/deter_mensal_bioma_uf.csv",
+          "versioned_declarado": false,
+          "fonte_declarada": "DETER monthly biome/UF extract",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260316,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/deter_mensal_bioma_uf/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R",
+          "fonte": "scripts/deter_mensal_bioma_uf/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "exercises_dataset",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/exercises_dataset/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/exercises_dataset/README.md",
+            "git_blob_sha": "5e9ce43dd72f357e814f5116fb1b297adc37e319",
+            "bytes": 2371
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/exercises_dataset/exercises_dataset_cmdstanr.R",
+            "git_blob_sha": "317946b2e8f3846d8a31c948467fb8a40ff7071c",
+            "bytes": 19901
+          },
+          {
+            "caminho": "scripts/exercises_dataset/modelo_ordinal_dificuldade_com_equipamento_diagnostico.stan",
+            "git_blob_sha": "6f749ff95aca4ee82ca98e29aa4eacc28839dd79",
+            "bytes": 2148
+          },
+          {
+            "caminho": "scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento.stan",
+            "git_blob_sha": "b246bfc055c1d1d996694e594d45353319b7aba9",
+            "bytes": 1730
+          },
+          {
+            "caminho": "scripts/exercises_dataset/modelo_softmax_dificuldade_sensibilidade.stan",
+            "git_blob_sha": "8ac6942ad8cd3f320d5be3fdb1f71fdbc2e7c86d",
+            "bytes": 882
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/exercises_dataset/cmdstan_csv/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/exercises_dataset/figures/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/exercises_dataset/logs/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/exercises_dataset/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "exercises_dataset",
+          "escopo_caminho": "data/raw/exercises_dataset/final_exercise_dataset.csv",
+          "versioned_declarado": true,
+          "fonte_declarada": "Exercises Dataset",
+          "origem_url": null,
+          "license_status_fonte": "page_specific_unverified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/exercises_dataset/final_exercise_dataset.csv",
+              "git_blob_sha": "583fac2f8abc51d4972c4c69a922ebe65db10ecf",
+              "bytes": 579738
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/exercises_dataset/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/exercises_dataset/exercises_dataset_cmdstanr.R",
+          "fonte": "scripts/exercises_dataset/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "fruitflies_aft",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/fruitflies_aft/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/fruitflies_aft/README.md",
+            "git_blob_sha": "3dac347171dfc11a582f88810f03c4796900d130",
+            "bytes": 1963
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/fruitflies_aft/fruitflies_aft_lognormal_cmdstanr.R",
+            "git_blob_sha": "c41863def322c79cf4dfc8c50be2aee0a90bcd1d",
+            "bytes": 13390
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [],
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 42,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/fruitflies_aft/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/fruitflies_aft/fruitflies_aft_lognormal_cmdstanr.R",
+          "fonte": "scripts/fruitflies_aft/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "Stat2Data::FruitFlies",
+          "documentacao_de_estudo": "scripts/fruitflies_aft/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
+    },
+    {
+      "id": "hidrometro_degradacao",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/hidrometro_degradacao/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/hidrometro_degradacao/README.md",
+            "git_blob_sha": "c773cc4a753d3e16b81eb2420e65ec51ef767374",
+            "bytes": 1307
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/hidrometro_degradacao/hidrometro_degradacao_cmdstanr.R",
+            "git_blob_sha": "645ffe5b1e933156fef4f5b76799704575543c91",
+            "bytes": 22553
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [],
+      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/hidrometro_degradacao/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/hidrometro_degradacao/hidrometro_degradacao_cmdstanr.R",
+          "fonte": "scripts/hidrometro_degradacao/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "hierarchical",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/hierarchical/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/hierarchical/README.md",
+            "git_blob_sha": "48e03852fdb4c4a7b1a3539d0ee52a23dcfb1d4b",
+            "bytes": 3010
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R",
+            "git_blob_sha": "7aabaedf358cbf300ddc1916b6022d519fa33ca4",
+            "bytes": 12539
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "batting_average",
+          "escopo_caminho": "data/raw/BattingAverage.csv",
+          "versioned_declarado": true,
+          "fonte_declarada": "MLB 2012 batting data as used by Kruschke / ESPN",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/BattingAverage.csv",
+              "git_blob_sha": "76c33ba296139925d03e315167636212fb438ea9",
+              "bytes": 32964
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 123,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/hierarchical/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R",
+          "fonte": "scripts/hierarchical/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "importacoes_world_bank",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/importacoes_world_bank/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/importacoes_world_bank/README.md",
+            "git_blob_sha": "7d24ad2763ee505da3f5e08831f9b1b0c1bda088",
+            "bytes": 1841
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/importacoes_world_bank/Script.R",
+            "git_blob_sha": "20d17409ddcb58bc158fbcf47c6beeaa29b9ed0a",
+            "bytes": 51508
+          },
+          {
+            "caminho": "scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.stan",
+            "git_blob_sha": "b9545e515c6b8b7b3e0d8a3a34739d177926bafa",
+            "bytes": 2195
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/importacoes_world_bank/cmdstan_csv/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/importacoes_world_bank/figures/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/importacoes_world_bank/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "importacoes_world_bank",
+          "escopo_caminho": "data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv",
+          "versioned_declarado": true,
+          "fonte_declarada": "World Bank annual import data enriched in the project",
+          "origem_url": "https://datacatalog.worldbank.org/public-licenses",
+          "license_status_fonte": "partial_verified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv",
+              "git_blob_sha": "e5a58569e8ec7ec7cd70bc6061e53d72d9e4eb39",
+              "bytes": 1147059
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/importacoes_world_bank/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/importacoes_world_bank/Script.R",
+          "fonte": "scripts/importacoes_world_bank/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "inhaler_ordinal",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/inhaler_ordinal/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/inhaler_ordinal/README.md",
+            "git_blob_sha": "5b9cc172d38d9767bb31511e7be17a8a09e90372",
+            "bytes": 2199
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/inhaler_ordinal/inhaler_ordinal_softplus_cmdstanr.R",
+            "git_blob_sha": "aea6b6c6fd410b74cb35940fac1a9f7f199169ce",
+            "bytes": 22448
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [],
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260302,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/inhaler_ordinal/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/inhaler_ordinal/inhaler_ordinal_softplus_cmdstanr.R",
+          "fonte": "scripts/inhaler_ordinal/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "pacote **`brms`**",
+          "documentacao_de_estudo": "scripts/inhaler_ordinal/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
+    },
+    {
+      "id": "ipca_sidra_1419",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/ipca_sidra_1419/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/ipca_sidra_1419/README.md",
+            "git_blob_sha": "2ed6412c4f81ed957244a782a46d09407c9e1c63",
+            "bytes": 2018
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/ipca_sidra_1419/ipca_sidra_1419_cmdstanr.R",
+            "git_blob_sha": "d13efec25b7b1afdc3b5ad1abdf5fbe655049d2b",
+            "bytes": 36432
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/ipca_sidra_1419/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [],
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260318,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/ipca_sidra_1419/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/ipca_sidra_1419/ipca_sidra_1419_cmdstanr.R",
+          "fonte": "scripts/ipca_sidra_1419/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "tabela `1737`",
+          "documentacao_de_estudo": "scripts/ipca_sidra_1419/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        },
+        {
+          "referencia_readme": "tabela `7060`",
+          "documentacao_de_estudo": "scripts/ipca_sidra_1419/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
+    },
+    {
+      "id": "isus_sia",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/isus_sia/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/isus_sia/README.md",
+            "git_blob_sha": "db3741581024b14a8717b4a9f771ccb12437bba4",
+            "bytes": 1317
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/isus_sia/mc_isus_sia.R",
+            "git_blob_sha": "5dea3629202c020718ac3231cb37de8461348bad",
+            "bytes": 33030
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "isus_sia",
+          "escopo_caminho": "data/raw/isus_sia/ISUS_SIA_PARS.zip",
+          "versioned_declarado": true,
+          "fonte_declarada": "ISUS/SIA project extract",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/isus_sia/ISUS_SIA_PARS.zip",
+              "git_blob_sha": "d8181e2d58ecce3eed8c58f63ad7a39e7ae1a1cb",
+              "bytes": 6826450
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/isus_sia/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/isus_sia/mc_isus_sia.R",
+          "fonte": "scripts/isus_sia/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "kidney_survival",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/kidney_survival/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/kidney_survival/README.md",
+            "git_blob_sha": "76c147e6d7acd95623e22e4250d47f4d1849bba4",
+            "bytes": 1225
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/kidney_survival/kidney_lognormal_survival_cmdstanr.R",
+            "git_blob_sha": "bee1501c0298f236ac69d81868fd8efb6455a3f9",
+            "bytes": 14703
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [],
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/kidney_survival/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/kidney_survival/kidney_lognormal_survival_cmdstanr.R",
+          "fonte": "scripts/kidney_survival/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "pacote **`survival`**",
+          "documentacao_de_estudo": "scripts/kidney_survival/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
+    },
+    {
+      "id": "media_ruido_mu",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/media_ruido_mu/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/media_ruido_mu/README.md",
+            "git_blob_sha": "5b0d1c59a80d5a9417eb6bf395479bbb50d9fc52",
+            "bytes": 1278
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R",
+            "git_blob_sha": "cbeb7a15972b634a06afa99b8c05d999d3638650",
+            "bytes": 10642
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [],
+      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/media_ruido_mu/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R",
+          "fonte": "scripts/media_ruido_mu/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "mega_sena_dezenas",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/mega_sena_dezenas/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/mega_sena_dezenas/README.md",
+            "git_blob_sha": "d875f490f04f6d482f24c36264e116add878893f",
+            "bytes": 1984
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R",
+            "git_blob_sha": "6ad5edc7cc040248415feee82fcb375f29d50634",
+            "bytes": 13318
+          },
+          {
+            "caminho": "scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator.stan",
+            "git_blob_sha": "0f52a58c999af9560ab5a9affa934f8f905ca844",
+            "bytes": 1693
+          },
+          {
+            "caminho": "scripts/mega_sena_dezenas/modelo_multinomial_global.stan",
+            "git_blob_sha": "b1396d7675f4b05090b6c53c10073645296739dc",
+            "bytes": 516
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "mega_sena_dezenas",
+          "escopo_caminho": "data/raw/mega_sena_dezenas/",
+          "versioned_declarado": true,
+          "fonte_declarada": "Mega-Sena historical results prepared for the study",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/mega_sena_dezenas/README.md",
+              "git_blob_sha": "fee086e90dd3d3318e583f769b4ff8b06858d1f6",
+              "bytes": 908
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/base_analitica.csv",
+              "git_blob_sha": "e5d326fc740e9ab433d143c1d796dee9ea616e44",
+              "bytes": 4421192
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/concursos_analiticos.csv",
+              "git_blob_sha": "96b54114c789dc4f9f2557aa4cec2e37d938789e",
+              "bytes": 370062
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/diagnosticos_auditados/E08_checagem_preditiva_posterior_stan.csv",
+              "git_blob_sha": "8ed428e4110798ca29c0bc01a062bba7c2e839d0",
+              "bytes": 1511
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/diagnosticos_auditados/E08_comparacao_stan_dirichlet.csv",
+              "git_blob_sha": "6b5344d226b7b1c66ab10610fc87b4754602a75d",
+              "bytes": 1414
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/diagnosticos_auditados/E08_diagnosticos_mcmc_auditados.csv",
+              "git_blob_sha": "29eb6cfe0e3ea9f9afd5bdb39334de80c5f9edd8",
+              "bytes": 2819
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/diagnosticos_auditados/configuracao_amostragem.json",
+              "git_blob_sha": "6430a609c8898bf0505f4e963f63d59eeb384035",
+              "bytes": 777
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/diagnosticos_auditados/configuracao_amostragem_cmdstanr_planejada.json",
+              "git_blob_sha": "1fcf5ed77a684e3f31507880c54ce8882bb3126b",
+              "bytes": 132
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/diagnosticos_auditados/diagnosticos_mcmc_E07.csv",
+              "git_blob_sha": "4fe745cc09eaeb930aeedb4821fec1837f956981",
+              "bytes": 1272
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/diagnosticos_auditados/sampler_diagnostics_E07.csv",
+              "git_blob_sha": "d9f93a304f7afad1687fa2ab9474491ed1c0a1e8",
+              "bytes": 134
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/dicionario_base_analitica.csv",
+              "git_blob_sha": "466e3af6c34fa3adb1e1d3a621a3a077013e9f3a",
+              "bytes": 2147
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabela_resumo_dados.csv",
+              "git_blob_sha": "d161b36abaf988c7bef19a91aec0f27a2346ff4b",
+              "bytes": 160
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/E08_resumo_fatores_stan.csv",
+              "git_blob_sha": "cd4d9df2c72387987f6503d31708a67b06a393ce",
+              "bytes": 1968
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/E08_top_desvios_locais_stan_aprox.csv",
+              "git_blob_sha": "110453d79e45ee7d8ee4d7fb2852f5bb5d774939",
+              "bytes": 9375
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/E09_mensagens_chave.csv",
+              "git_blob_sha": "e81c824a4a8c8023da5a7a4c2fa49619049016ef",
+              "bytes": 1320
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/E09_recomendacoes.csv",
+              "git_blob_sha": "2436a1e5c0ebf041a229e14e07d5638026aa521a",
+              "bytes": 1032
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/E09_sintese_fatores_principais.csv",
+              "git_blob_sha": "c0ff88bce5751ddcef131af61562aac1e8b94147",
+              "bytes": 959
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/E09_sintese_sensibilidade.csv",
+              "git_blob_sha": "136f61402e87a381aa105c040063cc111afb518e",
+              "bytes": 857
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/posterior_baseline_dezenas.csv",
+              "git_blob_sha": "a000b857ac3a4df288f2e33a35a6ffca6fc3bfd6",
+              "bytes": 6557
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/resumo_posterior_stan_completo.csv",
+              "git_blob_sha": "1704aee3667ca4149a38fef60872dd1b95cdb901",
+              "bytes": 2202073
+            },
+            {
+              "caminho": "data/raw/mega_sena_dezenas/tabelas_auditadas/top_desvios_locais_por_fator.csv",
+              "git_blob_sha": "bd82ddbc11d0533333f73e89a20e52a1add36ee8",
+              "bytes": 27101
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/mega_sena_dezenas/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R",
+          "fonte": "scripts/mega_sena_dezenas/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        },
+        {
+          "comando": "Rscript scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R --run_stan=1",
+          "fonte": "scripts/mega_sena_dezenas/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "REESTIMACAO_OPCIONAL_CUSTOSA"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "missing_migrants",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/missing_migrants/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/missing_migrants/README.md",
+            "git_blob_sha": "17876280be00c2497604041f9f051553896ea2c1",
+            "bytes": 2401
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/missing_migrants/missing_migrants_cmdstanr.R",
+            "git_blob_sha": "d55681d09353e4582697a7a4fd89ffcf1a00f267",
+            "bytes": 18425
+          },
+          {
+            "caminho": "scripts/missing_migrants/modelo_nb_hierarquico_rota_mes_estavel.stan",
+            "git_blob_sha": "7c6f4330eb3c5a4976d8baa35707ed159ba42273",
+            "bytes": 2527
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/missing_migrants/cmdstan_csv/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/missing_migrants/data_stan/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/missing_migrants/figures/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/missing_migrants/logs/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/missing_migrants/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "missing_migrants",
+          "escopo_caminho": "data/raw/missing_migrants/",
+          "versioned_declarado": true,
+          "fonte_declarada": "Missing Migrants Project",
+          "origem_url": "https://missingmigrants.iom.int/downloads",
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv",
+              "git_blob_sha": "4072282a6acc40df42b98382562736ab7e90885c",
+              "bytes": 7656238
+            },
+            {
+              "caminho": "data/raw/missing_migrants/model_inputs/E06_dados_modelo_rota_mes.csv",
+              "git_blob_sha": "c85a7e719c02fa5c9fd002a844a325462313446e",
+              "bytes": 583610
+            },
+            {
+              "caminho": "data/raw/missing_migrants/model_inputs/E06_mapa_rotas.csv",
+              "git_blob_sha": "285232bf61aeffc41b48c43efaddb261cfa85129",
+              "bytes": 791
+            },
+            {
+              "caminho": "data/raw/missing_migrants/model_inputs/E06_stan_data_rota_mes.json",
+              "git_blob_sha": "6288f63b56f18eb3e00ac42734e06e1c4809f6a0",
+              "bytes": 234900
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E08_checagem_preditiva_cmdstan_rota.csv",
+              "git_blob_sha": "64979589017947723329392a0323454030431148",
+              "bytes": 824
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E08_resumo_diagnostico_mcmc.csv",
+              "git_blob_sha": "e023afb666757e8840d5e98e664739828dfe1ef9",
+              "bytes": 583
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E09_sintese_posterior_rotas_cmdstan.csv",
+              "git_blob_sha": "0d131237237bc8dc98e4995325d4bba044c2fd4c",
+              "bytes": 5765
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E09_sintese_sazonalidade_cmdstan.csv",
+              "git_blob_sha": "ebc74713e3a999171e14baf948ea3b5a0988eb82",
+              "bytes": 1109
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E09_sintese_tendencia_global_cmdstan.csv",
+              "git_blob_sha": "48cc535caa8ba364832451200fde5a742915be7c",
+              "bytes": 92
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E10_reprodutibilidade.csv",
+              "git_blob_sha": "0b31d9c342b8fab970f6f855a289bac3be740e81",
+              "bytes": 1188
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E10_resultados_chave.csv",
+              "git_blob_sha": "0cb6f4893566590435e5fda8b5c26a27c2f2d377",
+              "bytes": 1015
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/E10_top_rotas_posterior.csv",
+              "git_blob_sha": "7060bf60f602e104b541bf0c468e051161fae27c",
+              "bytes": 1292
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/configuracao_amostragem.json",
+              "git_blob_sha": "67d059e1c08e3e748af072c17f4e8e8acc83dfbf",
+              "bytes": 445
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/resumo_posterior_cmdstan.csv",
+              "git_blob_sha": "597a79014fbaf9ad18614a471a8a96f084c7c49a",
+              "bytes": 2021974
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/resumo_posterior_parametros_principais_cmdstan.csv",
+              "git_blob_sha": "18de94ff28ab46e8ef019f143533198c593c6f11",
+              "bytes": 13974
+            },
+            {
+              "caminho": "data/raw/missing_migrants/resultados_auditados/sampler_diagnostics_cmdstan.csv",
+              "git_blob_sha": "1f568a32688dc5f9903124f68c885e41deead912",
+              "bytes": 205105
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/missing_migrants/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/missing_migrants/missing_migrants_cmdstanr.R",
+          "fonte": "scripts/missing_migrants/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        },
+        {
+          "comando": "Rscript scripts/missing_migrants/missing_migrants_cmdstanr.R --run_stan=1",
+          "fonte": "scripts/missing_migrants/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "REESTIMACAO_OPCIONAL_CUSTOSA"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "mortalidade_sp_0_74",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/mortalidade_sp_0_74/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/mortalidade_sp_0_74/README.md",
+            "git_blob_sha": "7e2d093b17edd068940ee6069439b96b567eb31d",
+            "bytes": 5885
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/mortalidade_sp_0_74/01_E07_ajustar_modelos.R",
+            "git_blob_sha": "059636b4be7ced79c7f45ace938c016175307e49",
+            "bytes": 4721
+          },
+          {
+            "caminho": "scripts/mortalidade_sp_0_74/02_E08_diagnosticar.R",
+            "git_blob_sha": "99837509b097cca87528b362b7e1abd295bf3372",
+            "bytes": 4103
+          },
+          {
+            "caminho": "scripts/mortalidade_sp_0_74/E09_analise_completa.R",
+            "git_blob_sha": "35790b81c5fc63f71a03df91ad24031643a6da43",
+            "bytes": 10216
+          },
+          {
+            "caminho": "scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R",
+            "git_blob_sha": "86419b6343317bf6d4caec3dbf068a3d8cb03e9f",
+            "bytes": 5002
+          },
+          {
+            "caminho": "scripts/mortalidade_sp_0_74/reproduzir_E10.R",
+            "git_blob_sha": "098404bfa32d78a1d297a2f847889fab0dd52b65",
+            "bytes": 4689
+          }
+        ],
+        "relatorios_versionados": [
+          {
+            "caminho": "reports/mortalidade_sp_0_74/E10_comunicacao_e_preservacao.md",
+            "git_blob_sha": "b3937c021566ebf71143f2f7921aeb932bbd4c6a",
+            "bytes": 9793
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/MANIFESTO_E10_ORIGINAL_SHA256.csv",
+            "git_blob_sha": "b93335f3e73585dbe427cd10ff261f4f97883be1",
+            "bytes": 9219
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/ambiente_e_execucao.md",
+            "git_blob_sha": "6d5f90aba155dd60a54cd4ce2bc416c1ca4dd73d",
+            "bytes": 1370
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/caderno_E01_E10.md",
+            "git_blob_sha": "b82c6bd0b7942bf75eaae1491f62cb3393633c0d",
+            "bytes": 33156
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/figures/E09_01_taxa_bruta_vs_padronizada.svg",
+            "git_blob_sha": "bdabe6ddf4ce074d7b7eebb674c0c871d136cce6",
+            "bytes": 5615
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/figures/E09_02_contribuicao_por_idade_2019_2021.svg",
+            "git_blob_sha": "ab67e994c3d5b6adc2b2ffe519f97a02b843ee87",
+            "bytes": 6753
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/figures/E09_03_observado_vs_previsto_nb2.svg",
+            "git_blob_sha": "9ea3ef1cb17befd5982da9b7f358c5be96690eff",
+            "bytes": 4844
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/figures/E09_04_decomposicao_descritiva.svg",
+            "git_blob_sha": "7c67e377abe0dd86c18b7b1c73d582ff5826d0db",
+            "bytes": 5212
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/matriz_evidencias.md",
+            "git_blob_sha": "1ce905f669adedbb09b7415f50efa9aef3e8b4ed",
+            "bytes": 1419
+          },
+          {
+            "caminho": "reports/mortalidade_sp_0_74/relatorio_cientifico.md",
+            "git_blob_sha": "6768c4169703ef4f610a7a6238b24e3aae5695eb",
+            "bytes": 11606
+          }
+        ],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/mortalidade_sp_0_74/figures/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/mortalidade_sp_0_74/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "mortalidade_sp_0_74",
+          "escopo_caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/",
+          "versioned_declarado": true,
+          "fonte_declarada": "APVP/PRO-AIM mortality counts and SEADE population estimates",
+          "origem_url": null,
+          "license_status_fonte": "source_terms_unverified",
+          "redistribution_status_fonte": "aggregates_only",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E07_R_diagnosticos_ajuste.csv",
+              "git_blob_sha": "fec7d16e6c3b0c0df169e925d65c6bc79bcd8653",
+              "bytes": 448
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E07_R_validacao_anual.csv",
+              "git_blob_sha": "51ad19df1879c585bea71640e37cfb6df0320b67",
+              "bytes": 2357
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E07_R_validacao_modelos.csv",
+              "git_blob_sha": "d8e3f33f3d2385ffefd1f90c6f720a94c2eb3016",
+              "bytes": 1453
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E08_comparacao_modelos.csv",
+              "git_blob_sha": "bbb91cd4bfcfbed2c2972d1825439e2e4c4a2758",
+              "bytes": 510
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E08_incerteza_cobertura_bootstrap_distrito.csv",
+              "git_blob_sha": "ef7859bc7543e4a28c2cd768d4b3c63e951c721f",
+              "bytes": 547
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_contribuicoes_2019_2021_faixa_etaria.csv",
+              "git_blob_sha": "40d2aa8fd968072d54c3c52a2da1c691bac43d05",
+              "bytes": 447
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_contribuicoes_2019_2021_sexo_idade.csv",
+              "git_blob_sha": "935e31574949d9b19c501be2df8e4add02bebcb7",
+              "bytes": 3661
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_contribuicoes_2019_2023_sexo_idade.csv",
+              "git_blob_sha": "12d654ee9962e711be28c22c036b9d0ab5e3326e",
+              "bytes": 3680
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_decomposicao_descritiva_simetrica.csv",
+              "git_blob_sha": "19bc3a5ec0840ca37289a3cc42ed59f4935314c8",
+              "bytes": 520
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_pesos_2019_sexo_idade.csv",
+              "git_blob_sha": "cdebf70a059b396d7dacd733fd9be58f286073ec",
+              "bytes": 999
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_taxas_anuais_e_sensibilidade.csv",
+              "git_blob_sha": "0eb51064d43f042ff55d4f608ebf16e4e9ccbe90",
+              "bytes": 2060
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_taxas_por_sexo.csv",
+              "git_blob_sha": "a6b5e6bb74ccf884e7d867c814708821c6296e64",
+              "bytes": 2107
+            },
+            {
+              "caminho": "data/raw/mortalidade_sp_0_74/resultados_auditados/E09_validacao_NB2_e_cobertura.csv",
+              "git_blob_sha": "abb4f5767f36718240468e569b1a8188049cc866",
+              "bytes": 1096
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/mortalidade_sp_0_74/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=auditar",
+          "fonte": ".github/workflows/ci.yml",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "mortality",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/mortality/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/mortality/README.md",
+            "git_blob_sha": "b9a32d700a6296275279c6e2bd910144852df5fd",
+            "bytes": 2144
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R",
+            "git_blob_sha": "be0a1705ae923c6cd7ba8925d3e07d3ed587530c",
+            "bytes": 16203
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "mortality",
+          "escopo_caminho": "data/raw/mortality/Dados_Mortalidade.xlsx",
+          "versioned_declarado": true,
+          "fonte_declarada": "Source not documented",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/mortality/Dados_Mortalidade.xlsx",
+              "git_blob_sha": "2a9134bd9c87e87ccaa13f2c67b25c2a4eb20eaf",
+              "bytes": 18966
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/mortality/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R",
+          "fonte": "scripts/mortality/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "pms_servicos",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/pms_servicos/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/pms_servicos/README.md",
+            "git_blob_sha": "90fb414151788c508c1b80a5091eb6715c0d84e6",
+            "bytes": 1802
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/pms_servicos/pms_servicos_rstan.R",
+            "git_blob_sha": "8ad34413255fdc94558fe71a5560244aa736f4b4",
+            "bytes": 23399
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "pms_servicos",
+          "escopo_caminho": "data/raw/pms_servicos/",
+          "versioned_declarado": true,
+          "fonte_declarada": "PMS / SIDRA table 5906 analytical extract",
+          "origem_url": "https://sidra.ibge.gov.br/",
+          "license_status_fonte": "public_source_no_explicit_dataset_license",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/pms_servicos/README.md",
+              "git_blob_sha": "52bda33cdd3998a6464ea3c29eec0d922559cd78",
+              "bytes": 427
+            },
+            {
+              "caminho": "data/raw/pms_servicos/pms_base_analitica_stan.csv",
+              "git_blob_sha": "7dffb786f98525fd9fb73a3e643e41e51f7576f6",
+              "bytes": 4743725
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260403,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/pms_servicos/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/pms_servicos/pms_servicos_rstan.R",
+          "fonte": "scripts/pms_servicos/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "pnadc_desocupacao",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/pnadc_desocupacao/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/pnadc_desocupacao/README.md",
+            "git_blob_sha": "869d564737a51d9c97eb32fa5eb5999e6f23e1c4",
+            "bytes": 2288
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/pnadc_desocupacao/pnadc_desocupacao_rstan.R",
+            "git_blob_sha": "ef1d91dcbec2ff45db8508787637ac065ea26259",
+            "bytes": 23962
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "pnadc_desocupacao",
+          "escopo_caminho": "data/raw/pnadc_desocupacao/",
+          "versioned_declarado": true,
+          "fonte_declarada": "PNAD Contínua / SIDRA tables 6381 and 4093",
+          "origem_url": "https://sidra.ibge.gov.br/",
+          "license_status_fonte": "public_source_no_explicit_dataset_license",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/pnadc_desocupacao/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            },
+            {
+              "caminho": "data/raw/pnadc_desocupacao/README.md",
+              "git_blob_sha": "d68defd0d1acc6d00fbc199cc960b6ea15a8af5a",
+              "bytes": 603
+            },
+            {
+              "caminho": "data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_6381.csv",
+              "git_blob_sha": "dbf25a9fea5f7958fa8377ed165164442ff29bce",
+              "bytes": 21135
+            },
+            {
+              "caminho": "data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_jan_2026.csv",
+              "git_blob_sha": "1dd0f69f7da4da61e1f84fbbad385f9b0ab2f16f",
+              "bytes": 185
+            },
+            {
+              "caminho": "data/raw/pnadc_desocupacao/pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv",
+              "git_blob_sha": "20b4ddccc33b3c1777f21045a453dce6e4296e62",
+              "bytes": 23049
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260402,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/pnadc_desocupacao/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/pnadc_desocupacao/pnadc_desocupacao_rstan.R",
+          "fonte": "scripts/pnadc_desocupacao/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "pnadc_estudo_i",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/pnadc_estudo_i/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/pnadc_estudo_i/README.md",
+            "git_blob_sha": "f1fd01d06f2ec03092ab11cedac3a4e7e946dc8f",
+            "bytes": 18861
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/pnadc_estudo_i/auditar_e10.py",
+            "git_blob_sha": "a8aa628b0cad4321811acd283819203c69b493f7",
+            "bytes": 1938
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e04/construir_base_e04.py",
+            "git_blob_sha": "fe3bd7667a9bbb73fc6dd6f83ae8dffe7e162fcd",
+            "bytes": 17912
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e05/explorar_e05.py",
+            "git_blob_sha": "fbd9b8913a3e967db68c9330dad5dcb3bd589742",
+            "bytes": 12362
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/R/ajustar_marginais_e07.R",
+            "git_blob_sha": "25f13970abdd062bafa2e8488aa6376248f29c98",
+            "bytes": 5167
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/R/funcoes_e07.R",
+            "git_blob_sha": "c88d57f74a097353e6e10a713ed7a5306ed4ca50",
+            "bytes": 2169
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/R/preflight_e07.R",
+            "git_blob_sha": "82997ca1cae83599382b43930f7774b3ac20e819",
+            "bytes": 3380
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/R/reprocessar_resumos_e07.R",
+            "git_blob_sha": "c055746b0c35b33b3bd65db40d3f3280e9c54c1c",
+            "bytes": 1502
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/run.ps1",
+            "git_blob_sha": "8cede9b7478921a6499af34ec3f2e7e5fb3c863a",
+            "bytes": 2743
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/stan/contagem_marginal.stan",
+            "git_blob_sha": "54c90cb5f0ce2c56704a3ccec01dbe9f6caa902d",
+            "bytes": 293
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/stan/rendimento_marginal.stan",
+            "git_blob_sha": "e867b4c9f5cf7ea144c41b1a33a8c88acbab5672",
+            "bytes": 210
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e07/stan/taxa_marginal.stan",
+            "git_blob_sha": "1e323a6d037b9347c776def214db6586c49a3118",
+            "bytes": 221
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e08/avaliacao_e084.py",
+            "git_blob_sha": "8087ad94edf9afece517b7e60914cc436352cba7",
+            "bytes": 11243
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e08/diagnostico_e081.py",
+            "git_blob_sha": "f6f5f43c98cfc79ade9ab1809d21d00e89587c02",
+            "bytes": 2860
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e08/sensibilidade_e082.py",
+            "git_blob_sha": "a0a1051a6216d0d6e4e3cb5200e6d71584f9a088",
+            "bytes": 5923
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e08/sensibilidade_e083.py",
+            "git_blob_sha": "f24680029178b9d6f462167f179378a2355a79fe",
+            "bytes": 10601
+          },
+          {
+            "caminho": "scripts/pnadc_estudo_i/estudo_I/e09/consolidar_e09.py",
+            "git_blob_sha": "449870bc7e173577022c03589dc9c399e9af41dc",
+            "bytes": 2370
+          }
+        ],
+        "relatorios_versionados": [
+          {
+            "caminho": "reports/pnadc_estudo_i/auditoria_suporte_cv_arredondamento_T03_4.md",
+            "git_blob_sha": "e2f4d56b5879409934631964ae29a3f9fe210e23",
+            "bytes": 12122
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/comparacao_alternativas_inferenciais_T03_5.md",
+            "git_blob_sha": "4f071722cfaf0683fe2c71fc908a6dcb5a67a783",
+            "bytes": 12004
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/contratos_e01_e05_T04_2.md",
+            "git_blob_sha": "3e87c809d8e454f212d5f401a52ccdb2f64d9b62",
+            "bytes": 14857
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/derivacao_contrastes_gaussianos_T03_2.md",
+            "git_blob_sha": "58e0bfa6edae77e143a9adfffc7eecf3b9cdfc56",
+            "bytes": 8625
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/e00_consolidado_T04_1.md",
+            "git_blob_sha": "77141c81a2df955b57b8af5970fc75b2c8f4ba04",
+            "bytes": 17743
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/e06_especificacao_modelos_T04_3.md",
+            "git_blob_sha": "772b94db51d72d1c8412749c5339569f92a4233c",
+            "bytes": 17231
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/e10_matriz_evidencias_reproducao_T04_6.md",
+            "git_blob_sha": "80119b460c73e7b8dd232f3ad455a1507bec4b55",
+            "bytes": 18923
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/exemplos_didaticos_T04_7.md",
+            "git_blob_sha": "ab990775b7d2e13c2e48f2a2cfa4a4189eca8e34",
+            "bytes": 8509
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/invariantes_sinteticos_T03_7.md",
+            "git_blob_sha": "76552723069daba17ec7b478cf5a9e6d9b4907c6",
+            "bytes": 5319
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/inventario_estimandos_e07_T03_1.md",
+            "git_blob_sha": "b5bf15dbede351c355164b721985b37ce02304c7",
+            "bytes": 9454
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/nota_cientifica.md",
+            "git_blob_sha": "7f1dea32b2742d1f38b029bf2e92a9e7e060ef1f",
+            "bytes": 5167
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/ponte_e06_e07_T04_4.md",
+            "git_blob_sha": "59865b476b987d29d7dd0f746c275d9f27db0726",
+            "bytes": 14243
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/ponte_e08_e09_T04_5.md",
+            "git_blob_sha": "9c412d11551246412fc83fa09d52e0d5ef6eeea9",
+            "bytes": 21282
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/rastreabilidade_probabilidades_T03_3.md",
+            "git_blob_sha": "c43afbc754ffa5ed11f70ba7dedbfee271f4559d",
+            "bytes": 10926
+          },
+          {
+            "caminho": "reports/pnadc_estudo_i/rotulos_inferenciais_T03_6.md",
+            "git_blob_sha": "cc78a1b7d953bc30cc7a6d2531305e6ae51b0163",
+            "bytes": 8613
+          }
+        ],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "pnadc_estudo_i",
+          "escopo_caminho": "data/raw/pnadc_estudo_i/resultados_auditados/",
+          "versioned_declarado": true,
+          "fonte_declarada": "PNAD Continua SIDRA aggregated indicators and derived 26-row E09 descriptive summary",
+          "origem_url": "https://sidra.ibge.gov.br/",
+          "license_status_fonte": "public_source_no_explicit_dataset_license",
+          "redistribution_status_fonte": "aggregates_only",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv",
+              "git_blob_sha": "096b9e2d42c8fe1231ac675dc48cfc61dfa294d2",
+              "bytes": 2728
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/pnadc_estudo_i/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "python scripts/pnadc_estudo_i/auditar_e10.py",
+          "fonte": "scripts/pnadc_estudo_i/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "prisons_prisoners_unodc",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/prisons_prisoners_unodc/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/prisons_prisoners_unodc/README.md",
+            "git_blob_sha": "645842fb3ee0756dee711b0936ca3327285704b6",
+            "bytes": 2843
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5.stan",
+            "git_blob_sha": "298e4bacf7cbf06d199e012445769ca095506f89",
+            "bytes": 3002
+          },
+          {
+            "caminho": "scripts/prisons_prisoners_unodc/modelo_M2_unsentenced_total.stan",
+            "git_blob_sha": "9f6c3681b2065d66db1871d439bf7521e0a210a6",
+            "bytes": 3503
+          },
+          {
+            "caminho": "scripts/prisons_prisoners_unodc/modelo_M3_unsentenced_sex.stan",
+            "git_blob_sha": "a62eb954816c8c13a78d827b22538c699f4bd3ac",
+            "bytes": 3650
+          },
+          {
+            "caminho": "scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R",
+            "git_blob_sha": "52274e338ffda8ca36ff5f20c61a91b4a88c9191",
+            "bytes": 14325
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "prisons_prisoners_unodc",
+          "escopo_caminho": "data/raw/prisons_prisoners_unodc/",
+          "versioned_declarado": true,
+          "fonte_declarada": "UNODC Research Data Portal - Prisons and Prisoners",
+          "origem_url": "https://dataunodc.un.org/dp-prisons-persons-held-regional",
+          "license_status_fonte": "attribution_documented_license_unverified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/README.md",
+              "git_blob_sha": "cac2519870e5f95c192db82440297eca3f02b1c8",
+              "bytes": 1550
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/model_inputs/base_analitica_nucleo_nacional.csv",
+              "git_blob_sha": "7b20e6cd84fa2bcec6aef71877863d8e164a9014",
+              "bytes": 1858444
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M1.json",
+              "git_blob_sha": "f05bdef1871f173e3849e747faf0d5132886aee8",
+              "bytes": 78652
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M2.json",
+              "git_blob_sha": "8f7e9bb982bc2c1a9a8406b05688ddb87cfcf4b2",
+              "bytes": 51783
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M3.json",
+              "git_blob_sha": "2175a56ccabb596fbaf8355eaa8ce7b2c44de2bb",
+              "bytes": 30902
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/E09_quantidades_derivadas_M1.csv",
+              "git_blob_sha": "7d1e5b63af236504b9e6395948641cbf7849781f",
+              "bytes": 1041
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/E09_tabela_rastreabilidade.csv",
+              "git_blob_sha": "d0af0b9ab073e2ed52c5e145e12d1b425310948c",
+              "bytes": 2951
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/PPC_global_M2.csv",
+              "git_blob_sha": "48a86d8e3812ae8d342c3c8330e860d37f33e045",
+              "bytes": 1305
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/PPC_global_M3.csv",
+              "git_blob_sha": "546f32f97cda86618a2dc08bf455dc8ebefc1dd5",
+              "bytes": 1211
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/PSIS_LOO_resumo_M1_M2_M3.csv",
+              "git_blob_sha": "b38e232261b2f99246e8a657e4515f4ce2329fb2",
+              "bytes": 3084
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/auditoria_PPC_positivos_M1_REV5.csv",
+              "git_blob_sha": "39c09b911b2cbb562a6b06059b0e76ac5c9abc50",
+              "bytes": 768
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/auditoria_PPC_zeros_M1_REV5.csv",
+              "git_blob_sha": "b0ca254dad88e5e8024b0bf468837682bdd526c0",
+              "bytes": 267
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/auditoria_rhat_M1_REV5_por_categoria.csv",
+              "git_blob_sha": "552f9e4e8c40b63b5d7f5c9d5f92169a950bcdff",
+              "bytes": 773
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/diagnosticos_transicoes_M2_M3.csv",
+              "git_blob_sha": "191fb1fad867e55caa0d49ba25a6251a9eb2f4c6",
+              "bytes": 198
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/gate_recuperacao_parametros.csv",
+              "git_blob_sha": "5ab737033f13c910f67fde66ed48cbb3976ee94e",
+              "bytes": 59
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/matriz_validade_E08_FINAL.csv",
+              "git_blob_sha": "2e1716db2635d012062ed4cf1f6beff4969e66a9",
+              "bytes": 1392
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/prior_predictive_resumo_M2_M3_REV4.csv",
+              "git_blob_sha": "1d06bc2ebd4a7bee9167e5d643ab4f291a34dead",
+              "bytes": 329
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/sbc_status_M2.csv",
+              "git_blob_sha": "e219e9dbe244e7f92d763ac5b3d859af87f91290",
+              "bytes": 694
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/sbc_status_M3.csv",
+              "git_blob_sha": "46ed844813d543e89584170b960d07998eaf7a42",
+              "bytes": 696
+            },
+            {
+              "caminho": "data/raw/prisons_prisoners_unodc/resultados_auditados/sensibilidade_painel_completo_M3_sex_diff.csv",
+              "git_blob_sha": "ff8a94963f51967d5f839a028f12d27025197c55",
+              "bytes": 283
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/prisons_prisoners_unodc/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R",
+          "fonte": "scripts/prisons_prisoners_unodc/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        },
+        {
+          "comando": "Rscript scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R --run_stan=1",
+          "fonte": "scripts/prisons_prisoners_unodc/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "REESTIMACAO_OPCIONAL_CUSTOSA"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "retractions_reason_composition",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/retractions_reason_composition/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/retractions_reason_composition/README.md",
+            "git_blob_sha": "712695bc4404aa03b5617dcebad0ecaf94bddf50",
+            "bytes": 2831
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/retractions_reason_composition/retractions_reason_composition_rstan.R",
+            "git_blob_sha": "1372e05a852e6938f3e5947e695939acfbe58670",
+            "bytes": 37129
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "retractions_time_to_retraction",
+          "escopo_caminho": "data/raw/retractions_time_to_retraction/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Global Scientific Retractions 1927-2026",
+          "origem_url": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "license_status_fonte": "page_specific_unverified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            },
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/README.md",
+              "git_blob_sha": "7f1c6be7ab6ae5e298a94cb9224a32f5fe20e13b",
+              "bytes": 659
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "A entrada é compartilhada com retractions_time_to_retraction; o vínculo não implica posse dos dados nem disponibilidade local do CSV bruto."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260407,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/retractions_reason_composition/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/retractions_reason_composition/retractions_reason_composition_rstan.R",
+          "fonte": "scripts/retractions_reason_composition/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "retractions_time_to_retraction",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/retractions_time_to_retraction/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/retractions_time_to_retraction/README.md",
+            "git_blob_sha": "c878e2cb31c73f83caf179c1727b2455d0372555",
+            "bytes": 2998
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R",
+            "git_blob_sha": "d9460bf5f9bd30639f310dbe570c3561305c5ae9",
+            "bytes": 26835
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/retractions_time_to_retraction/figures/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/retractions_time_to_retraction/models/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          },
+          {
+            "caminho": "outputs/retractions_time_to_retraction/tables/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "retractions_time_to_retraction",
+          "escopo_caminho": "data/raw/retractions_time_to_retraction/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Global Scientific Retractions 1927-2026",
+          "origem_url": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "license_status_fonte": "page_specific_unverified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            },
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/README.md",
+              "git_blob_sha": "7f1c6be7ab6ae5e298a94cb9224a32f5fe20e13b",
+              "bytes": 659
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/retractions_time_to_retraction/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R",
+          "fonte": "scripts/retractions_time_to_retraction/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "retractions_trend",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/retractions_trend/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/retractions_trend/README.md",
+            "git_blob_sha": "820574b8c9b34f1d5c682d171f9eab452b436647",
+            "bytes": 2288
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/retractions_trend/retractions_trend_rstan.R",
+            "git_blob_sha": "55cee767b56a93b6339b6b9a8151f8a40bc32346",
+            "bytes": 20698
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "retractions_time_to_retraction",
+          "escopo_caminho": "data/raw/retractions_time_to_retraction/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Global Scientific Retractions 1927-2026",
+          "origem_url": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "license_status_fonte": "page_specific_unverified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            },
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/README.md",
+              "git_blob_sha": "7f1c6be7ab6ae5e298a94cb9224a32f5fe20e13b",
+              "bytes": 659
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "A entrada é compartilhada com retractions_time_to_retraction; o vínculo não implica posse dos dados nem disponibilidade local do CSV bruto."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260407,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/retractions_trend/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/retractions_trend/retractions_trend_rstan.R",
+          "fonte": "scripts/retractions_trend/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "rs_seguro",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/rs_seguro/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/rs_seguro/README.md",
+            "git_blob_sha": "2599c242b6d2e7243a5996608e3a9e34beafd0f6",
+            "bytes": 2018
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R",
+            "git_blob_sha": "e08af681fe20dad4127e7c828127befec3168927",
+            "bytes": 18124
+          },
+          {
+            "caminho": "scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R",
+            "git_blob_sha": "f52572d36e604e01b3163b406df30a72e0f6c88c",
+            "bytes": 26862
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "rs_seguro_macrocrime",
+          "escopo_caminho": "data/raw/rs_seguro/rs_month_macrocrime.csv",
+          "versioned_declarado": true,
+          "fonte_declarada": "RS Seguro operational dataset",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/rs_seguro/rs_month_macrocrime.csv",
+              "git_blob_sha": "be755ff73e6d67de552cfd5696330bc8ca2fc564",
+              "bytes": 22900
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        },
+        {
+          "dataset_id": "rs_seguro_macrocrime_profile",
+          "escopo_caminho": "data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv",
+          "versioned_declarado": true,
+          "fonte_declarada": "RS Seguro operational dataset",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv",
+              "git_blob_sha": "097dc6b7b211c2255a1d73935da3ccc94222fa84",
+              "bytes": 366446
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        },
+        {
+          "dataset_id": "rs_seguro_crime_optional",
+          "escopo_caminho": "data/raw/rs_seguro/rs_month_crime.csv",
+          "versioned_declarado": false,
+          "fonte_declarada": "RS Seguro optional crime-layer dataset",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/rs_seguro/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R",
+          "fonte": "scripts/rs_seguro/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        },
+        {
+          "comando": "Rscript scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R --targets=VULNERAVEIS_E_CUIDADO,ORDEM_PUBLICA_E_OUTROS",
+          "fonte": "scripts/rs_seguro/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "saheart",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/saheart/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/saheart/README.md",
+            "git_blob_sha": "ed08118b20675530d7074db9a68ae42ac51b451c",
+            "bytes": 2887
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/saheart/saheart_logistic_cmdstanr.R",
+            "git_blob_sha": "61ac944b2fe929919c86b24830f738e2861deaa7",
+            "bytes": 12425
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "saheart",
+          "escopo_caminho": "data/raw/SAheart.data",
+          "versioned_declarado": false,
+          "fonte_declarada": "Elements of Statistical Learning SAheart dataset",
+          "origem_url": "https://hastie.su.domains/ElemStatLearn/datasets/SAheart.data",
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 123,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/saheart/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/saheart/saheart_logistic_cmdstanr.R",
+          "fonte": "scripts/saheart/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "sat_model_selection",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/sat_model_selection/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/sat_model_selection/README.md",
+            "git_blob_sha": "05c8db1d877b896ab070ce8538dfd8299e37d19e",
+            "bytes": 2210
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/sat_model_selection/sat_stan_model_selection_rstan.R",
+            "git_blob_sha": "e76625fb7f56d3298a611c27f59b1fe9797f0596",
+            "bytes": 22169
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "sat",
+          "escopo_caminho": "data/raw/SAT.csv",
+          "versioned_declarado": false,
+          "fonte_declarada": "Rdatasets / mosaicData SAT dataset",
+          "origem_url": "https://vincentarelbundock.github.io/Rdatasets/csv/mosaicData/SAT.csv",
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 42,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/sat_model_selection/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/sat_model_selection/sat_stan_model_selection_rstan.R",
+          "fonte": "scripts/sat_model_selection/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "sherlock_holmes_terms",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/sherlock_holmes_terms/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/sherlock_holmes_terms/README.md",
+            "git_blob_sha": "ef7276644ed479076d6f1e780c9a9e6f87dc4fc4",
+            "bytes": 2255
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07.stan",
+            "git_blob_sha": "30eb457612078133056d6e6aca510dcbc9ea0142",
+            "bytes": 2805
+          },
+          {
+            "caminho": "scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R",
+            "git_blob_sha": "6caba5a9d2af033230987fa522b20fe005703c12",
+            "bytes": 12353
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
+          {
+            "caminho": "outputs/sherlock_holmes_terms/models/.gitkeep",
+            "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+            "bytes": 0
+          }
+        ]
+      },
+      "entradas": [
+        {
+          "dataset_id": "sherlock_holmes_terms",
+          "escopo_caminho": "data/raw/sherlock_holmes_terms/",
+          "versioned_declarado": true,
+          "fonte_declarada": "Sherlock Holmes full-text dataset / analytical package",
+          "origem_url": null,
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/12_Sherlock_Holmes_Texts.csv",
+              "git_blob_sha": "ad09c53669d7d936c4a66b7af8392812edeac0fe",
+              "bytes": 5296039
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/model_inputs/dados_modelo_obra_termo_e07.csv",
+              "git_blob_sha": "04a15af75b72206696f5862d0f1a0c5a3c0406d2",
+              "bytes": 84692
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/model_inputs/dados_stan_e07_entrada.json",
+              "git_blob_sha": "be64526b21982f687801ca31ca2508d02438462a",
+              "bytes": 20897
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/model_inputs/mapa_obras_e07.csv",
+              "git_blob_sha": "240193de53da60f34f32a04c80c8cfb7e6a41596",
+              "bytes": 4104
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/model_inputs/mapa_termos_e07.csv",
+              "git_blob_sha": "9a4b61f1c9ab72c6ddbdd82c0aef81b80ad40cff",
+              "bytes": 312
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_conclusoes_acionaveis.csv",
+              "git_blob_sha": "dcb61b34aaf9135fd178f126e6650ea29adf2059",
+              "bytes": 945
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_contrastes_prioritarios.csv",
+              "git_blob_sha": "9b39f484ed21f0165d7f1faa456b336a3e46ba01",
+              "bytes": 3711
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_diagnostico_validacao.csv",
+              "git_blob_sha": "20710dce6ae74cbc48db71187e9e00b8e9fe30d9",
+              "bytes": 1034
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_efeitos_tipo_temporal.csv",
+              "git_blob_sha": "722c1d2975ecbfd8e6887ca8eeb71a191c19f498",
+              "bytes": 4888
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_mensagens_chave.csv",
+              "git_blob_sha": "42a0ba825677b42c0e2531183909a22ded4c4233",
+              "bytes": 1464
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_ppc_global.csv",
+              "git_blob_sha": "cd65457a002d880aad103255fc8c123c8e6ed2e9",
+              "bytes": 480
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_recomendacoes.csv",
+              "git_blob_sha": "254eefbbef5ce304ddce172c91c888ca7ab07fac",
+              "bytes": 1398
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_resultados_nao_comunicar_isoladamente.csv",
+              "git_blob_sha": "6822440dcb69d456ad65151a32533b28dfab58e1",
+              "bytes": 1246
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_sampler_cmdstan.csv",
+              "git_blob_sha": "1cb1dafaaa955a07ffcf95bbd4c17c58121b99f3",
+              "bytes": 695
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_sintese_bayesiana_auditavel.csv",
+              "git_blob_sha": "4707e6be4cf6da5ed9687d0c40a7e04d415ef531",
+              "bytes": 1830
+            },
+            {
+              "caminho": "data/raw/sherlock_holmes_terms/tabelas_finais_auditadas/tabela_final_taxas_globais_termos.csv",
+              "git_blob_sha": "9cd807005d3d6bed29ad8f405789a19828e5b2d1",
+              "bytes": 1549
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/sherlock_holmes_terms/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R",
+          "fonte": "scripts/sherlock_holmes_terms/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        },
+        {
+          "comando": "Rscript scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R --run_stan=1",
+          "fonte": "scripts/sherlock_holmes_terms/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "REESTIMACAO_OPCIONAL_CUSTOSA"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "sobrevivencia_cadastral_poa",
+      "classificacao_editorial": "Estudo aplicado",
+      "documentacao_de_estudo": "scripts/sobrevivencia_cadastral_poa/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/sobrevivencia_cadastral_poa/README.md",
+            "git_blob_sha": "b9346f159ac123dadf46ffa954d4ff4ecd9e61f0",
+            "bytes": 2880
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr.stan",
+            "git_blob_sha": "8652b8b087cd8e46dea9dee87e7c3a0ac4adcc9d",
+            "bytes": 1722
+          },
+          {
+            "caminho": "scripts/sobrevivencia_cadastral_poa/modelo_M1_rw2_centrado_qr.stan",
+            "git_blob_sha": "a32fb95ac4a70a5806f0ddea8f18a899fc298c60",
+            "bytes": 1914
+          },
+          {
+            "caminho": "scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R",
+            "git_blob_sha": "4628f8c05b5c24968d5eb17286753e8b0bae805c",
+            "bytes": 7718
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "sobrevivencia_cadastral_poa",
+          "escopo_caminho": "data/raw/sobrevivencia_cadastral_poa/",
+          "versioned_declarado": true,
+          "fonte_declarada": "CNPJ + Porto Alegre permits aggregated for modeling",
+          "origem_url": null,
+          "license_status_fonte": "source_terms_unverified",
+          "redistribution_status_fonte": "aggregates_only",
+          "prioridade_revisao": "medium",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/README.md",
+              "git_blob_sha": "7dcb48fed07858d12af9286c2a0f0e96abb73202",
+              "bytes": 1394
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/metadados/configuracao_amostragem_E07B.json",
+              "git_blob_sha": "bc4189c2ca04ae21783f035f560e3a0d1923c1d8",
+              "bytes": 766
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/metadados/session_info_E07B.txt",
+              "git_blob_sha": "eb0da4c760fa9af99dbda8f7c7d674c1e3c99df5",
+              "bytes": 1145
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M0_agregado.json.gz",
+              "git_blob_sha": "b32066c67d930e5df69371d584347124bd483654",
+              "bytes": 8167
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/model_inputs/stan_data_M1_agregado.json.gz",
+              "git_blob_sha": "62f13defcd31fb6d8034f9e48c0b830ae2b072db",
+              "bytes": 14424
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/comparacao_modelos_loo_e07b.csv",
+              "git_blob_sha": "14509066e8ea84cc9e597dd9778aee26cb2753af",
+              "bytes": 427
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/conclusoes_principais.csv",
+              "git_blob_sha": "67c9e98600c91856bda459bd959d1328671af096",
+              "bytes": 2943
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/diagnosticos_mcmc_auditados.csv",
+              "git_blob_sha": "2920b45f011f3f4feee7c31e2d2b6c8c54c3324a",
+              "bytes": 623
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/estimandos_coorte_selecionados.csv",
+              "git_blob_sha": "adb47a1ba04a382de566a635d0e8254e2743a37d",
+              "bytes": 1775
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/matriz_validade.csv",
+              "git_blob_sha": "a1cbb564ce2987386f78dea57d54a066fe361940",
+              "bytes": 3412
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/ppc_discrepancias_globais.csv",
+              "git_blob_sha": "8374299c305cf6598acc051f491336024094b606",
+              "bytes": 546
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/recomendacoes_priorizadas.csv",
+              "git_blob_sha": "6926bc01955b4de25105c3d22e8a4e54f2dc3afd",
+              "bytes": 2173
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/resumo_executivo.csv",
+              "git_blob_sha": "94c46267ad01ad80c018c65f968ba58516593e01",
+              "bytes": 583
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/sensibilidade_definicao_amostra_descritiva.csv",
+              "git_blob_sha": "50663fc9c96b061856ae618cf382422f93745fca",
+              "bytes": 1333
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/sensibilidade_prior_sigma_rw2.csv",
+              "git_blob_sha": "c996c26bd6bbdf383b420addf89b2ea22ac5a6aa",
+              "bytes": 5603
+            },
+            {
+              "caminho": "data/raw/sobrevivencia_cadastral_poa/resultados_auditados/sobrevivencia_horizontes.csv",
+              "git_blob_sha": "500c94038d4424b1c26c3356a086a3f9d0cbe667",
+              "bytes": 811
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": 20260721,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
+        "fonte": "scripts/sobrevivencia_cadastral_poa/README.md",
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R",
+          "fonte": "scripts/sobrevivencia_cadastral_poa/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        },
+        {
+          "comando": "Rscript scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R --run_stan=1",
+          "fonte": "scripts/sobrevivencia_cadastral_poa/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "REESTIMACAO_OPCIONAL_CUSTOSA"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    },
+    {
+      "id": "therapeutic_touch",
+      "classificacao_editorial": "Laboratório de modelos",
+      "documentacao_de_estudo": "scripts/therapeutic_touch/README.md",
+      "arquivos": {
+        "documentacao": [
+          {
+            "caminho": "scripts/therapeutic_touch/README.md",
+            "git_blob_sha": "d41ed21eb282918f9b4d12eb65f3d7ea703de647",
+            "bytes": 2679
+          }
+        ],
+        "codigo": [
+          {
+            "caminho": "scripts/therapeutic_touch/therapeutic_touch.R",
+            "git_blob_sha": "1711b8cae063d4a0f07b6de71225cc62e709f4ba",
+            "bytes": 19902
+          }
+        ],
+        "relatorios_versionados": [],
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
+      },
+      "entradas": [
+        {
+          "dataset_id": "therapeutic_touch",
+          "escopo_caminho": "data/raw/TherapeuticTouchData.csv",
+          "versioned_declarado": true,
+          "fonte_declarada": "JAMA article / dataset reconstruction",
+          "origem_url": "https://doi.org/10.1001/jama.279.13.1005",
+          "license_status_fonte": "not_identified",
+          "redistribution_status_fonte": "review_required",
+          "prioridade_revisao": "high",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/TherapeuticTouchData.csv",
+              "git_blob_sha": "0bbdc61245118590736be350f8733f67ebb44e76",
+              "bytes": 2808
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Status histórico do inventário, não constitui autorização institucional ou jurídica."
+        }
+      ],
+      "estado_entrada": "REFERENCIAS_DOCUMENTADAS_COM_RESTRICOES",
+      "licenca_e_permissoes": {
+        "estado": "PENDENTE_DE_HOMOLOGACAO",
+        "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
+      },
+      "versao": {
+        "git_commit_de_referencia": "4ed45b81156dfced56b37e226980e1e7da17dcd8",
+        "identidade_por_arquivo": "git_blob_sha",
+        "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
+      },
+      "seed": {
+        "valor": null,
+        "estado": "PENDENTE_DE_VERIFICACAO",
+        "fonte": "scripts/therapeutic_touch/README.md",
+        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+      },
+      "ambiente": {
+        "arquivo_referencia": "config/environment.yml",
+        "arquivo_lock": "renv.lock",
+        "estado": "REFERENCIA_REPOSITORIO_NAO_VALIDADA_POR_ESTUDO",
+        "excecao": null
+      },
+      "comandos_documentados": [
+        {
+          "comando": "Rscript scripts/therapeutic_touch/therapeutic_touch.R",
+          "fonte": "scripts/therapeutic_touch/README.md",
+          "execucao_t06_1": "NAO_EXECUTADO_NESTA_TAREFA",
+          "classe": "DOCUMENTADO"
+        }
+      ],
+      "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
+    }
+  ]
+}
