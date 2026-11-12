@@ -369,5 +369,129 @@ class TestComparadorT064(unittest.TestCase):
             self.check()
 
 
+    def preparar_caso_numerico(self, referencia, candidato, abs_tol="0", rel_tol="0"):
+        """Fixture sintética: reancora catálogo apenas dentro do teste, nunca em dados reais."""
+        self.ref_path.write_text(f"id,estimando\na,{referencia}\nb,0\n", encoding="utf-8")
+        self.update_candidate(f"id,estimando\na,{candidato}\nb,0\n")
+        self.record["referencia"]["sha256"] = digest(self.ref_path.read_bytes())
+        catalogo = json.loads(self.catalogo_path.read_text(encoding="utf-8"))
+        catalogo["referencias"][0]["sha256"] = digest(self.ref_path.read_bytes())
+        catalogo["referencias"][0]["git_blob_sha"] = mod.git_blob_sha(self.ref_path)
+        self.catalogo_path.write_text(json.dumps(catalogo), encoding="utf-8")
+        self.catalogo_sha256 = digest(self.catalogo_path.read_bytes())
+        self.record["comparacao"]["colunas"]["estimando"] = {
+            "abs": abs_tol, "rel": rel_tol
+        }
+        if abs_tol != "0" or rel_tol != "0":
+            self.record["comparacao"]["preaprovacao"] = {
+                "id_protocolo": "SINTETICO-NAO-AUTENTICADO",
+                "justificativa_matematica":
+                    "Fixture sintética para verificar comparação racional exata, sem homologação.",
+                "responsavel_qa": "TESTE_SINTETICO",
+                "evidencia_calibracao": "APENAS_FIXTURE_SINTETICA"
+            }
+
+    def test_b4_29_casas_limite_absoluto_excedido(self):
+        self.preparar_caso_numerico("0", "1.0000000000000000000000000001", "1", "0")
+        with self.assertRaises(mod.Divergencia):
+            self.check()
+
+    def test_b4_29_casas_limite_relativo_excedido(self):
+        self.preparar_caso_numerico("1", "2.0000000000000000000000000001", "0", "1")
+        with self.assertRaises(mod.Divergencia):
+            self.check()
+
+    def test_b4_frenteira_exata_absoluta_pendente(self):
+        self.preparar_caso_numerico("0", "1", "1", "0")
+        self.assertEqual(self.check()["estado"], "PENDENTE_QA")
+
+    def test_b4_fronteira_exata_relativa_pendente(self):
+        self.preparar_caso_numerico("1", "2", "0", "1")
+        self.assertEqual(self.check()["estado"], "PENDENTE_QA")
+
+    def test_b4_valor_negativo_excede_limite_relativo(self):
+        self.preparar_caso_numerico("-1", "-2.0000000000000000000000000001", "0", "1")
+        with self.assertRaises(mod.Divergencia):
+            self.check()
+
+    def test_b4_tolerancias_combinadas_na_fronteira(self):
+        self.preparar_caso_numerico("1", "2", "0.5", "0.5")
+        self.assertEqual(self.check()["estado"], "PENDENTE_QA")
+
+    def test_b4_tolerancias_combinadas_acima_fronteira(self):
+        self.preparar_caso_numerico("1", "2.0000000000000000000000000001", "0.5", "0.5")
+        with self.assertRaises(mod.Divergencia):
+            self.check()
+
+    def test_b4_zero_tolerancia_decimais_longos_iguais(self):
+        numero = "1.0000000000000000000000000000000000000001"
+        self.preparar_caso_numerico(numero, numero)
+        self.assertEqual(self.check()["estado"], "CONFERENCIA_TECNICA")
+
+    def test_b4_expoente_excessivo_bloqueado(self):
+        self.preparar_caso_numerico("1", "1e1001")
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_b4_coeficiente_excessivo_bloqueado(self):
+        self.preparar_caso_numerico("1", "1" * 513)
+        with self.assertRaises(mod.Bloqueio):
+            self.check()
+
+    def test_b5_tipos_json_invalidos_bloqueados(self):
+        casos = [
+            ("modo", [], "modo"),
+            ("tipo", [], "tipo"),
+            ("direitos", [], "direitos"),
+            ("seed_lista", [], "seed"),
+            ("seed_objeto", {}, "seed"),
+            ("seed_booleano", True, "seed"),
+            ("seed_vazia", "", "seed"),
+            ("seed_float", 1.0, "seed"),
+            ("seed_negativa", -1, "seed"),
+            ("seed_excede_uint64", 2**64, "seed"),
+            ("chaves_lista_aninhada", [["id"]], "chaves"),
+            ("chaves_mistas", ["id", ["id"]], "chaves"),
+        ]
+        for caso, valor, campo in casos:
+            with self.subTest(caso=caso):
+                registro = copy.deepcopy(self.record)
+                if campo == "chaves":
+                    registro["comparacao"]["chaves"] = valor
+                else:
+                    registro[campo] = valor
+                with self.assertRaises(mod.Bloqueio):
+                    self.check(record=registro)
+
+    def test_b5_seed_inteira_zero_e_uint64_permitidas(self):
+        for valor in (0, "0", 2**64 - 1, str(2**64 - 1), "NAO_APLICAVEL"):
+            with self.subTest(valor=valor):
+                registro = copy.deepcopy(self.record)
+                registro["seed"] = valor
+                self.assertEqual(self.check(record=registro)["estado"], "CONFERENCIA_TECNICA")
+
+    def test_b5_cli_erro_controlado_sem_traceback(self):
+        import subprocess
+        import sys
+        for campo, valor in (("modo", []), ("seed", []), ("chaves", [["id"]])):
+            with self.subTest(campo=campo):
+                registro = copy.deepcopy(self.record)
+                if campo == "chaves":
+                    registro["comparacao"]["chaves"] = valor
+                else:
+                    registro[campo] = valor
+                arquivo_registro = self.root / "registro_sintetico.json"
+                arquivo_registro.write_text(json.dumps(registro), encoding="utf-8")
+                processo = subprocess.run(
+                    [sys.executable, str(SCRIPT), "--registro", str(arquivo_registro),
+                     "--raiz", str(self.root), "--catalogo", str(self.catalogo_path),
+                     "--catalogo-sha256-confiavel", self.catalogo_sha256],
+                    capture_output=True, text=True, check=False
+                )
+                self.assertEqual(processo.returncode, 2)
+                self.assertEqual(json.loads(processo.stdout)["estado"], "BLOQUEADO")
+                self.assertNotIn("Traceback", processo.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()
