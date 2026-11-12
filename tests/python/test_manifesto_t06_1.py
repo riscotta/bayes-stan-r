@@ -13,6 +13,135 @@ SHA = re.compile(r"^[0-9a-f]{40}$")
 SOURCE_EXT = (".R", ".r", ".py", ".stan", ".Rmd", ".qmd", ".sh", ".ps1")
 
 
+# Contratos de cobertura confrontados com data/DATA_PROVENANCE.csv e READMEs.
+# Revisões do catálogo exigem revisão explícita deste mapa (não é gerado do manifesto sob teste).
+EXPECTED_DATASET_LINKS = {
+    "caes_raca_f5": [
+        "caes_raca_f5"
+    ],
+    "censo_escolar_tempo_integral": [
+        "censo_escolar"
+    ],
+    "consumer_shopping_trends_beta": [
+        "consumer_shopping_trends"
+    ],
+    "deter_mensal_bioma_uf": [
+        "deter_mensal_bioma_uf"
+    ],
+    "exercises_dataset": [
+        "exercises_dataset"
+    ],
+    "hierarchical": [
+        "batting_average"
+    ],
+    "importacoes_world_bank": [
+        "importacoes_world_bank"
+    ],
+    "isus_sia": [
+        "isus_sia"
+    ],
+    "mega_sena_dezenas": [
+        "mega_sena_dezenas"
+    ],
+    "missing_migrants": [
+        "missing_migrants"
+    ],
+    "mortalidade_sp_0_74": [
+        "mortalidade_sp_0_74"
+    ],
+    "mortality": [
+        "mortality"
+    ],
+    "pms_servicos": [
+        "pms_servicos"
+    ],
+    "pnadc_desocupacao": [
+        "pnadc_desocupacao"
+    ],
+    "pnadc_estudo_i": [
+        "pnadc_estudo_i"
+    ],
+    "prisons_prisoners_unodc": [
+        "prisons_prisoners_unodc"
+    ],
+    "retractions_reason_composition": [
+        "retractions_time_to_retraction"
+    ],
+    "retractions_time_to_retraction": [
+        "retractions_time_to_retraction"
+    ],
+    "retractions_trend": [
+        "retractions_time_to_retraction"
+    ],
+    "rs_seguro": [
+        "rs_seguro_macrocrime",
+        "rs_seguro_macrocrime_profile",
+        "rs_seguro_crime_optional"
+    ],
+    "saheart": [
+        "saheart"
+    ],
+    "sat_model_selection": [
+        "sat"
+    ],
+    "sherlock_holmes_terms": [
+        "sherlock_holmes_terms"
+    ],
+    "sobrevivencia_cadastral_poa": [
+        "sobrevivencia_cadastral_poa"
+    ],
+    "therapeutic_touch": [
+        "therapeutic_touch"
+    ]
+}
+EXPECTED_README_SEEDS = {
+    "censo_escolar_tempo_integral": 42,
+    "consumer_shopping_trends_beta": 20260410,
+    "deter_mensal_bioma_uf": 20260316,
+    "fruitflies_aft": 42,
+    "hierarchical": 123,
+    "inhaler_ordinal": 20260302,
+    "ipca_sidra_1419": 20260318,
+    "pms_servicos": 20260403,
+    "pnadc_desocupacao": 20260402,
+    "retractions_reason_composition": 20260407,
+    "retractions_trend": 20260407,
+    "saheart": 123,
+    "sat_model_selection": 42,
+    "sobrevivencia_cadastral_poa": 20260721
+}
+EXPECTED_EXTERNAL_GAPS = {
+    "coortes_aposentadoria": [
+        "Yahoo Finance",
+        "BCB/SGS **4390**",
+        "BCB/SGS **433**"
+    ],
+    "fruitflies_aft": [
+        "Stat2Data::FruitFlies"
+    ],
+    "inhaler_ordinal": [
+        "pacote **`brms`**"
+    ],
+    "ipca_sidra_1419": [
+        "tabela `1737`",
+        "tabela `7060`"
+    ],
+    "kidney_survival": [
+        "pacote **`survival`**"
+    ]
+}
+README_DATASET_ANCHORS = {
+    "censo_escolar_tempo_integral": "data/raw/censo_escolar/",
+    "retractions_reason_composition": "data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv",
+    "retractions_trend": "data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv",
+}
+SEED_IN_README = re.compile(r"--seed(?:_model)?\s*=\s*(\d+)|\bseed\s+`(\d+)`", re.IGNORECASE)
+
+def _readme(ident):
+    """Somente README público versionado: não lê dados brutos ou fontes institucionais."""
+    return (ROOT / "scripts" / ident / "README.md").read_text(encoding="utf-8")
+
+
 def git_tree():
     output = subprocess.check_output(["git", "ls-tree", "-r", "HEAD"], cwd=ROOT, text=True)
     return {line.split("\t", 1)[1]: line.split()[2] for line in output.splitlines()}
@@ -80,6 +209,71 @@ def validate(manifest, tree, provenance):
                 raise ValueError("comando não rastreável")
 
 
+    # Confronto independente: contrato curado de vínculos, CSV e READMEs públicos.
+    actual_links = {s["id"]: [e["dataset_id"] for e in s["entradas"]]
+                    for s in studies if s["entradas"]}
+    if actual_links != EXPECTED_DATASET_LINKS:
+        raise ValueError("vínculo obrigatório ausente, duplicado ou atribuído ao estudo errado")
+    if set(provenance) != {dataset for links in EXPECTED_DATASET_LINKS.values()
+                          for dataset in links}:
+        raise ValueError("dataset do catálogo sem cobertura ou dataset não catalogado no contrato")
+    if manifest.get("escopo", {}).get("total_registros_proveniencia") != len(provenance):
+        raise ValueError("contagem de catálogo divergente")
+    if manifest["escopo"].get("total_vinculos_catalogo_por_estudo") != sum(
+            map(len, EXPECTED_DATASET_LINKS.values())):
+        raise ValueError("contagem de vínculos divergente")
+    if manifest["escopo"].get("total_seeds_documentadas_em_readmes") != len(EXPECTED_README_SEEDS):
+        raise ValueError("contagem de seeds divergente")
+    n_placeholders = 0
+    for study in studies:
+        ident = study["id"]
+        readme = _readme(ident)
+        if ident in README_DATASET_ANCHORS and README_DATASET_ANCHORS[ident] not in readme:
+            raise ValueError("fonte documental da entrada não encontrada: " + ident)
+        documented = {int(a or b) for a, b in SEED_IN_README.findall(readme)}
+        expected_seed = EXPECTED_README_SEEDS.get(ident)
+        if documented != ({expected_seed} if expected_seed is not None else set()):
+            raise ValueError("seed do README diverge do contrato independente: " + ident)
+        seed = study["seed"]
+        if expected_seed is not None:
+            if seed["valor"] != expected_seed or seed["estado"] != "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO":
+                raise ValueError("seed documentada omitida, errada ou com estado falso: " + ident)
+            if seed["fonte"] != study["documentacao_de_estudo"]:
+                raise ValueError("seed sem proveniência documental: " + ident)
+            if "históricas não verificada" not in seed["alcance"]:
+                raise ValueError("seed com garantia histórica indevida: " + ident)
+        elif seed["valor"] is not None or seed["estado"] != "PENDENTE_DE_VERIFICACAO":
+            raise ValueError("seed sem respaldo no README: " + ident)
+        gaps = study.get("lacunas_entradas_externas_nao_catalogadas")
+        required = EXPECTED_EXTERNAL_GAPS.get(ident, [])
+        if not isinstance(gaps, list) or [g["referencia_readme"] for g in gaps] != required:
+            raise ValueError("lacuna externa documentada ausente ou inventada: " + ident)
+        for gap in gaps:
+            if gap["referencia_readme"] not in readme:
+                raise ValueError("lacuna não comprovada no README: " + ident)
+            if gap["estado"] != "LACUNA_NAO_HOMOLOGADA":
+                raise ValueError("licença externa falsamente homologada: " + ident)
+            if gap["documentacao_de_estudo"] != study["documentacao_de_estudo"]:
+                raise ValueError("fonte de lacuna incorreta: " + ident)
+        if required and not study["entradas"] and study["estado_entrada"] != "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA":
+            raise ValueError("estado da lacuna externa incorreto: " + ident)
+        files = study["arquivos"]
+        if any(e["caminho"].endswith("/.gitkeep") for e in files["outputs_versionados"]):
+            raise ValueError("placeholder tratado como output científico: " + ident)
+        keeps = files.get("placeholders_diretorio_versionados")
+        if not isinstance(keeps, list):
+            raise ValueError("placeholders não classificados: " + ident)
+        n_placeholders += len(keeps)
+        for item in keeps:
+            path = item["caminho"]
+            if not path.startswith("outputs/" + ident + "/") or not path.endswith("/.gitkeep"):
+                raise ValueError("placeholder fora do estudo: " + ident)
+            if tree.get(path) != item["git_blob_sha"] or item["bytes"] != 0:
+                raise ValueError("placeholder não rastreável: " + path)
+    if n_placeholders != manifest["escopo"].get("total_placeholders_de_saida"):
+        raise ValueError("contagem de placeholders divergente")
+
+
 class ManifestTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -112,6 +306,52 @@ class ManifestTest(unittest.TestCase):
         bad = copy.deepcopy(self.data)
         bad["estudos"][0]["comandos_documentados"][0]["execucao_t06_1"] = "PASS"
         with self.assertRaisesRegex(ValueError, "execução não demonstrada"):
+            validate(bad, self.tree, self.prov)
+
+
+    def test_vinculos_obrigatorios_incluindo_compartilhamento(self):
+        for study_id in ("censo_escolar_tempo_integral", "retractions_reason_composition",
+                         "retractions_trend", "rs_seguro"):
+            bad = copy.deepcopy(self.data)
+            study = next(s for s in bad["estudos"] if s["id"] == study_id)
+            study["entradas"].pop()
+            with self.subTest(study=study_id), self.assertRaisesRegex(ValueError, "vínculo obrigatório"):
+                validate(bad, self.tree, self.prov)
+
+    def test_seeds_documentadas_omitidas_e_incorretas(self):
+        for study_id in ("ipca_sidra_1419", "pnadc_desocupacao", "sobrevivencia_cadastral_poa"):
+            for value in (None, 987654321):
+                bad = copy.deepcopy(self.data)
+                seed = next(s for s in bad["estudos"] if s["id"] == study_id)["seed"]
+                seed["valor"] = value
+                with self.subTest(study=study_id, value=value), self.assertRaisesRegex(ValueError, "seed documentada"):
+                    validate(bad, self.tree, self.prov)
+
+    def test_lacunas_remotas_documentadas_sem_licencas_inventadas(self):
+        bad = copy.deepcopy(self.data)
+        study = next(s for s in bad["estudos"] if s["id"] == "ipca_sidra_1419")
+        study["lacunas_entradas_externas_nao_catalogadas"] = []
+        with self.assertRaisesRegex(ValueError, "lacuna externa"):
+            validate(bad, self.tree, self.prov)
+        bad = copy.deepcopy(self.data)
+        study = next(s for s in bad["estudos"] if s["id"] == "coortes_aposentadoria")
+        study["lacunas_entradas_externas_nao_catalogadas"][0]["estado"] = "LICENCA_HOMOLOGADA"
+        with self.assertRaisesRegex(ValueError, "licença externa"):
+            validate(bad, self.tree, self.prov)
+
+    def test_placeholders_nao_sao_resultados(self):
+        bad = copy.deepcopy(self.data)
+        study = next(s for s in bad["estudos"] if s["id"] == "censo_escolar_tempo_integral")
+        study["arquivos"]["outputs_versionados"].extend(
+            study["arquivos"]["placeholders_diretorio_versionados"][:1])
+        with self.assertRaisesRegex(ValueError, "placeholder tratado"):
+            validate(bad, self.tree, self.prov)
+
+    def test_cobertura_do_catalogo_nao_e_autorreferente(self):
+        bad = copy.deepcopy(self.data)
+        study = next(s for s in bad["estudos"] if s["id"] == "retractions_reason_composition")
+        study["entradas"][0]["dataset_id"] = "retractions_trend"
+        with self.assertRaisesRegex(ValueError, "proveniência não corresponde|vínculo obrigatório"):
             validate(bad, self.tree, self.prov)
 
 

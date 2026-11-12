@@ -8,7 +8,12 @@
   "escopo": {
     "total_estudos": 33,
     "criterio": "scripts/STUDY_TAXONOMY_T02_1.md; scripts/_setup excluído",
-    "natureza": "inventário documental e hash Git de arquivos publicamente versionados; não certifica reprodutibilidade"
+    "natureza": "inventário documental e hash Git de arquivos publicamente versionados; não certifica reprodutibilidade",
+    "total_registros_proveniencia": 25,
+    "total_vinculos_catalogo_por_estudo": 27,
+    "total_seeds_documentadas_em_readmes": 14,
+    "total_placeholders_de_saida": 23,
+    "nota_sobre_fontes_externas": "Referências não catalogadas identificadas em READMEs são lacunas documentais; não implicam que os dados estejam ausentes, disponíveis ou licenciados."
   },
   "ambiente_global_de_referencia": {
     "arquivo": "config/environment.yml",
@@ -88,7 +93,8 @@
             "bytes": 4191
           }
         ],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -174,7 +180,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "censo_escolar_tempo_integral",
@@ -196,7 +203,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/censo_escolar_tempo_integral/tables/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -204,7 +212,28 @@
           }
         ]
       },
-      "entradas": [],
+      "entradas": [
+        {
+          "dataset_id": "censo_escolar",
+          "escopo_caminho": "data/raw/censo_escolar/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Microdados do Censo Escolar",
+          "origem_url": "https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar",
+          "license_status_fonte": "public_source_no_explicit_dataset_license",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/censo_escolar/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "Microdados oficiais do INEP com ZIP remoto e cache data/raw/censo_escolar/ ignorado pelo Git; sem leitura do ZIP nem homologação de licença nesta T06.1."
+        }
+      ],
       "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
@@ -219,7 +248,7 @@
         "valor": 42,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/censo_escolar_tempo_integral/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -236,7 +265,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "consumer_shopping_trends_beta",
@@ -258,7 +288,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/consumer_shopping_trends_beta/figures/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -317,7 +348,7 @@
         "valor": 20260410,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/consumer_shopping_trends_beta/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -334,7 +365,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "coortes_aposentadoria",
@@ -356,10 +388,11 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
@@ -390,7 +423,30 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "Yahoo Finance",
+          "documentacao_de_estudo": "scripts/coortes_aposentadoria/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        },
+        {
+          "referencia_readme": "BCB/SGS **4390**",
+          "documentacao_de_estudo": "scripts/coortes_aposentadoria/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        },
+        {
+          "referencia_readme": "BCB/SGS **433**",
+          "documentacao_de_estudo": "scripts/coortes_aposentadoria/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
     },
     {
       "id": "deck_15wins",
@@ -412,7 +468,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [],
       "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
@@ -446,7 +503,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "deter_mensal_bioma_uf",
@@ -468,7 +526,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -500,7 +559,7 @@
         "valor": 20260316,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/deter_mensal_bioma_uf/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -517,7 +576,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "exercises_dataset",
@@ -554,7 +614,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/exercises_dataset/cmdstan_csv/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -630,7 +691,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "fruitflies_aft",
@@ -652,10 +714,11 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
@@ -669,7 +732,7 @@
         "valor": 42,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/fruitflies_aft/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -686,7 +749,16 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "Stat2Data::FruitFlies",
+          "documentacao_de_estudo": "scripts/fruitflies_aft/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
     },
     {
       "id": "hidrometro_degradacao",
@@ -708,7 +780,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [],
       "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
@@ -742,7 +815,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "hierarchical",
@@ -764,7 +838,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -802,7 +877,7 @@
         "valor": 123,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/hierarchical/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -819,7 +894,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "importacoes_world_bank",
@@ -846,7 +922,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/importacoes_world_bank/cmdstan_csv/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -917,7 +994,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "inhaler_ordinal",
@@ -939,10 +1017,11 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
@@ -956,7 +1035,7 @@
         "valor": 20260302,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/inhaler_ordinal/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -973,7 +1052,16 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "pacote **`brms`**",
+          "documentacao_de_estudo": "scripts/inhaler_ordinal/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
     },
     {
       "id": "ipca_sidra_1419",
@@ -995,7 +1083,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/ipca_sidra_1419/tables/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -1004,7 +1093,7 @@
         ]
       },
       "entradas": [],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
@@ -1015,10 +1104,10 @@
         "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
       },
       "seed": {
-        "valor": null,
-        "estado": "PENDENTE_DE_VERIFICACAO",
+        "valor": 20260318,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/ipca_sidra_1419/README.md",
-        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -1035,7 +1124,23 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "tabela `1737`",
+          "documentacao_de_estudo": "scripts/ipca_sidra_1419/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        },
+        {
+          "referencia_readme": "tabela `7060`",
+          "documentacao_de_estudo": "scripts/ipca_sidra_1419/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
     },
     {
       "id": "isus_sia",
@@ -1057,7 +1162,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -1112,7 +1218,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "kidney_survival",
@@ -1134,10 +1241,11 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [],
-      "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
+      "estado_entrada": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_PROVENIENCIA",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
         "justificativa": "Licenças, permissões específicas, versões e eventual presença de dados pessoais dependem da governança P0 / issue #14. Status fonte acima não substitui decisão formal."
@@ -1168,7 +1276,16 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": [
+        {
+          "referencia_readme": "pacote **`survival`**",
+          "documentacao_de_estudo": "scripts/kidney_survival/README.md",
+          "tipo": "FONTE_EXTERNA_DECLARADA_SEM_REGISTRO_DE_DATASET_NO_CATALOGO",
+          "estado": "LACUNA_NAO_HOMOLOGADA",
+          "observacao": "Referência documental; disponibilidade, versão, licença, permissão e execução não verificadas nesta tarefa."
+        }
+      ]
     },
     {
       "id": "media_ruido_mu",
@@ -1190,7 +1307,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [],
       "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
@@ -1224,7 +1342,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "mega_sena_dezenas",
@@ -1256,7 +1375,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -1417,7 +1537,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "missing_migrants",
@@ -1444,7 +1565,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/missing_migrants/cmdstan_csv/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -1606,7 +1728,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "mortalidade_sp_0_74",
@@ -1699,7 +1822,8 @@
             "bytes": 11606
           }
         ],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/mortalidade_sp_0_74/figures/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -1825,7 +1949,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "mortality",
@@ -1847,7 +1972,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -1902,7 +2028,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "pms_servicos",
@@ -1924,7 +2051,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -1967,7 +2095,7 @@
         "valor": 20260403,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/pms_servicos/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -1984,7 +2112,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "pnadc_desocupacao",
@@ -2006,7 +2135,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -2061,10 +2191,10 @@
         "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
       },
       "seed": {
-        "valor": null,
-        "estado": "PENDENTE_DE_VERIFICACAO",
+        "valor": 20260402,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/pnadc_desocupacao/README.md",
-        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -2081,7 +2211,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "pnadc_estudo_i",
@@ -2254,7 +2385,8 @@
             "bytes": 8613
           }
         ],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -2309,7 +2441,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "prisons_prisoners_unodc",
@@ -2346,7 +2479,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -2502,7 +2636,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "retractions_reason_composition",
@@ -2524,9 +2659,36 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
-      "entradas": [],
+      "entradas": [
+        {
+          "dataset_id": "retractions_time_to_retraction",
+          "escopo_caminho": "data/raw/retractions_time_to_retraction/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Global Scientific Retractions 1927-2026",
+          "origem_url": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "license_status_fonte": "page_specific_unverified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            },
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/README.md",
+              "git_blob_sha": "7f1c6be7ab6ae5e298a94cb9224a32f5fe20e13b",
+              "bytes": 659
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "A entrada é compartilhada com retractions_time_to_retraction; o vínculo não implica posse dos dados nem disponibilidade local do CSV bruto."
+        }
+      ],
       "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
@@ -2541,7 +2703,7 @@
         "valor": 20260407,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/retractions_reason_composition/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -2558,7 +2720,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "retractions_time_to_retraction",
@@ -2580,7 +2743,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/retractions_time_to_retraction/figures/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -2656,7 +2820,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "retractions_trend",
@@ -2678,9 +2843,36 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
-      "entradas": [],
+      "entradas": [
+        {
+          "dataset_id": "retractions_time_to_retraction",
+          "escopo_caminho": "data/raw/retractions_time_to_retraction/",
+          "versioned_declarado": false,
+          "fonte_declarada": "Global Scientific Retractions 1927-2026",
+          "origem_url": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "license_status_fonte": "page_specific_unverified",
+          "redistribution_status_fonte": "not_versioned",
+          "prioridade_revisao": "low",
+          "arquivos_git": [
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/.gitkeep",
+              "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+              "bytes": 0
+            },
+            {
+              "caminho": "data/raw/retractions_time_to_retraction/README.md",
+              "git_blob_sha": "7f1c6be7ab6ae5e298a94cb9224a32f5fe20e13b",
+              "bytes": 659
+            }
+          ],
+          "estado_permissao": "PENDENTE_DE_HOMOLOGACAO",
+          "documento": "data/DATA_PROVENANCE.csv",
+          "observacao": "A entrada é compartilhada com retractions_time_to_retraction; o vínculo não implica posse dos dados nem disponibilidade local do CSV bruto."
+        }
+      ],
       "estado_entrada": "SEM_VINCULO_INVENTARIO_VERIFICADO",
       "licenca_e_permissoes": {
         "estado": "PENDENTE_DE_HOMOLOGACAO",
@@ -2695,7 +2887,7 @@
         "valor": 20260407,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/retractions_trend/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -2712,7 +2904,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "rs_seguro",
@@ -2739,7 +2932,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -2834,7 +3028,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "saheart",
@@ -2856,7 +3051,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -2888,7 +3084,7 @@
         "valor": 123,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/saheart/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -2905,7 +3101,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "sat_model_selection",
@@ -2927,7 +3124,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -2959,7 +3157,7 @@
         "valor": 42,
         "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/sat_model_selection/README.md",
-        "alcance": "Não afirmar que esta seed governa todo o pipeline."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -2976,7 +3174,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "sherlock_holmes_terms",
@@ -3003,7 +3202,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": [
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": [
           {
             "caminho": "outputs/sherlock_holmes_terms/models/.gitkeep",
             "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -3145,7 +3345,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "sobrevivencia_cadastral_poa",
@@ -3177,7 +3378,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -3287,10 +3489,10 @@
         "versao_especifica_do_estudo": "NAO_AFERIDA_NESTE_CICLO"
       },
       "seed": {
-        "valor": null,
-        "estado": "PENDENTE_DE_VERIFICACAO",
+        "valor": 20260721,
+        "estado": "DOCUMENTADA_NO_README_NAO_AFERIDA_EM_EXECUCAO",
         "fonte": "scripts/sobrevivencia_cadastral_poa/README.md",
-        "alcance": "Nenhuma seed afirmada por esta T06.1; verificar o código/ambiente de execução."
+        "alcance": "Valor documentado no README; aplicação às execuções históricas não verificada. Não assegura determinismo ou reprodução do pipeline."
       },
       "ambiente": {
         "arquivo_referencia": "config/environment.yml",
@@ -3313,7 +3515,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     },
     {
       "id": "therapeutic_touch",
@@ -3335,7 +3538,8 @@
           }
         ],
         "relatorios_versionados": [],
-        "outputs_versionados": []
+        "outputs_versionados": [],
+        "placeholders_diretorio_versionados": []
       },
       "entradas": [
         {
@@ -3390,7 +3594,8 @@
         }
       ],
       "estado_reproducao": "NAO_CERTIFICADO_PELA_T06_1",
-      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa."
+      "limites": "Manifesto estrutural; não houve execução de modelos, leitura de datasets, reamostragem ou verificação N3/N4 nesta tarefa.",
+      "lacunas_entradas_externas_nao_catalogadas": []
     }
   ]
 }
