@@ -67,6 +67,9 @@ jobs:
       - name: Verify T06.4 historical-output policy and adversarial cases
         run: python -m unittest discover -s tests/python -p 'test_resultados_t06_4.py' -v
 
+      - name: Verify T06.5 external dependencies and historical paths
+        run: python -m unittest discover -s tests/python -p 'test_dependencias_t06_5.py' -v
+
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
