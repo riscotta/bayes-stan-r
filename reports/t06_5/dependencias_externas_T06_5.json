@@ -1,0 +1,1216 @@
+{
+  "schema_version": "1.0.0",
+  "tarefa": "T06.5",
+  "objetivo_literal": "Registrar dependências ausentes dos estudos com dados externos, incluindo os caminhos históricos.",
+  "data_corte": "2026-11-13",
+  "base_main_git_sha": "f5f782d19bebc0a09ef08831982d601569e33d95",
+  "manifesto_t06_1_git_blob_sha": "ff17b84baeccac3833bef5520b18aba2515fb67b",
+  "natureza": "INVENTARIO_DOCUMENTAL_DE_LACUNAS_SEM_LEITURA_DE_DADOS_EXTERNOS",
+  "fontes": [
+    "reports/t06_1/manifesto_estudos_T06_1.json",
+    "data/DATA_PROVENANCE.csv",
+    "scripts/*/README.md",
+    "reports/t06_3/README.md",
+    "reports/t06_4/README.md",
+    "issues/14",
+    "issues/11",
+    "issues/19"
+  ],
+  "semantica_estados": {
+    "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT": "Caminho existe no snapshot Git; não prova versão original, licença, origem ou integridade fora do Git.",
+    "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT": "Há objetos sob o prefixo; podem ser README, agregados ou placeholders, sem comprovar o bruto.",
+    "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT": "Ausência restrita à árvore Git do SHA; não é atestado de inexistência histórica.",
+    "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT": "Nome/diretório legado relativo, não resolvido em um arquivo versionado pela auditoria.",
+    "URL_EXTERNA_NAO_TESTADA": "URL declarada; download, licença, conteúdo e disponibilidade não aferidos."
+  },
+  "resumo": {
+    "total_estudos": 33,
+    "estudos_com_dependencias": 30,
+    "vinculos_catalogados": 27,
+    "lacunas_sem_catalogo": 8,
+    "estudos_sem_vinculo_identificado": [
+      "deck_15wins",
+      "hidrometro_degradacao",
+      "media_ruido_mu"
+    ],
+    "caminhos_documentados": 36
+  },
+  "gates": [
+    "issue #14 P0 aberta — licença, proveniência, privacidade e autorização institucional não homologadas",
+    "T06.5 não recupera bytes externos nem executa modelos",
+    "Ausência de arquivo em Git não implica ausência em arquivo histórico, pacote local ou provedor",
+    "T06.5 não permite promoção para N2/N3/N4 ou fechamento da Etapa 06",
+    "QA independente ainda obrigatório antes de squash"
+  ],
+  "estudos": [
+    {
+      "id": "caes_raca_f5",
+      "readme": "scripts/caes_raca_f5/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:caes_raca_f5",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "caes_raca_f5",
+          "fonte_documentada": "Darwin's Ark F5 derived audit summaries",
+          "url_origem_declarada": "https://doi.org/10.5061/dryad.g4f4qrfr0",
+          "caminho_catalogado": "data/raw/caes_raca_f5/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 6,
+          "licenca_status_historico": "source_terms_verified",
+          "redistribuicao_status_historico": "aggregates_only",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/caes_raca_f5/base_F5_principal_E04.csv",
+          "tipo": "BASE_E04_LOCAL_NAO_VERSIONADA",
+          "evidencia_documental": "scripts/caes_raca_f5/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "censo_escolar_tempo_integral",
+      "readme": "scripts/censo_escolar_tempo_integral/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:censo_escolar",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "censo_escolar",
+          "fonte_documentada": "Microdados do Censo Escolar",
+          "url_origem_declarada": "https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar",
+          "caminho_catalogado": "data/raw/censo_escolar/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "public_source_no_explicit_dataset_license",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/censo_escolar/",
+          "tipo": "CACHE_LOCAL_ZIPS_INEP",
+          "evidencia_documental": "scripts/censo_escolar_tempo_integral/README.md",
+          "estado_no_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "consumer_shopping_trends_beta",
+      "readme": "scripts/consumer_shopping_trends_beta/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:consumer_shopping_trends",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "consumer_shopping_trends",
+          "fonte_documentada": "Consumer Shopping Trends Analysis",
+          "url_origem_declarada": "https://www.kaggle.com/datasets/minahilfatima12328/consumer-shopping-trends-analysis",
+          "caminho_catalogado": "data/raw/consumer_shopping_trends/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 2,
+          "licenca_status_historico": "page_specific_unverified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/consumer_shopping_trends/Consumer_Shopping_Trends_2026 (6).csv",
+          "tipo": "CSV_BRUTO_LOCAL_KAGGLE",
+          "evidencia_documental": "scripts/consumer_shopping_trends_beta/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "coortes_aposentadoria",
+      "readme": "scripts/coortes_aposentadoria/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "LACUNA_README:1",
+          "classe": "FONTE_EXTERNA_SEM_REGISTRO_CATALOGADO",
+          "dataset_id": null,
+          "fonte_documentada": "Yahoo Finance",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/coortes_aposentadoria/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        },
+        {
+          "identificador": "LACUNA_README:2",
+          "classe": "FONTE_EXTERNA_SEM_REGISTRO_CATALOGADO",
+          "dataset_id": null,
+          "fonte_documentada": "BCB/SGS **4390**",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/coortes_aposentadoria/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        },
+        {
+          "identificador": "LACUNA_README:3",
+          "classe": "FONTE_EXTERNA_SEM_REGISTRO_CATALOGADO",
+          "dataset_id": null,
+          "fonte_documentada": "BCB/SGS **433**",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/coortes_aposentadoria/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "deck_15wins",
+      "readme": "scripts/deck_15wins/README.md",
+      "estado_cobertura": "SEM_DEPENDENCIA_EXTERNA_IDENTIFICADA_NO_RECORTE",
+      "dependencias": [],
+      "caminhos_ou_referencias_historicas_documentadas": [],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "deter_mensal_bioma_uf",
+      "readme": "scripts/deter_mensal_bioma_uf/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:deter_mensal_bioma_uf",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "deter_mensal_bioma_uf",
+          "fonte_documentada": "DETER monthly biome/UF extract",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/deter_mensal_bioma_uf.csv",
+          "estado_caminho_catalogado_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/deter_mensal_bioma_uf.csv",
+          "tipo": "CSV_EXTERNO_LOCAL",
+          "evidencia_documental": "scripts/deter_mensal_bioma_uf/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "exercises_dataset",
+      "readme": "scripts/exercises_dataset/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:exercises_dataset",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "exercises_dataset",
+          "fonte_documentada": "Exercises Dataset",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/exercises_dataset/final_exercise_dataset.csv",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "page_specific_unverified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/exercises_dataset/final_exercise_dataset.csv",
+          "tipo": "CSV_EXTERNO_VERSIONADO",
+          "evidencia_documental": "scripts/exercises_dataset/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "fruitflies_aft",
+      "readme": "scripts/fruitflies_aft/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "LACUNA_README:1",
+          "classe": "PACOTE_R_OU_DATASET_DE_PACOTE_SEM_ENTRADA_CATALOGADA",
+          "dataset_id": null,
+          "fonte_documentada": "Stat2Data::FruitFlies",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/fruitflies_aft/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "hidrometro_degradacao",
+      "readme": "scripts/hidrometro_degradacao/README.md",
+      "estado_cobertura": "SEM_DEPENDENCIA_EXTERNA_IDENTIFICADA_NO_RECORTE",
+      "dependencias": [],
+      "caminhos_ou_referencias_historicas_documentadas": [],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "hierarchical",
+      "readme": "scripts/hierarchical/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:batting_average",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "batting_average",
+          "fonte_documentada": "MLB 2012 batting data as used by Kruschke / ESPN",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/BattingAverage.csv",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/BattingAverage.csv",
+          "tipo": "CSV_EXTERNO_VERSIONADO",
+          "evidencia_documental": "scripts/hierarchical/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "importacoes_world_bank",
+      "readme": "scripts/importacoes_world_bank/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:importacoes_world_bank",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "importacoes_world_bank",
+          "fonte_documentada": "World Bank annual import data enriched in the project",
+          "url_origem_declarada": "https://datacatalog.worldbank.org/public-licenses",
+          "caminho_catalogado": "data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "partial_verified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv",
+          "tipo": "CSV_ENRIQUECIDO_VERSIONADO",
+          "evidencia_documental": "scripts/importacoes_world_bank/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "inhaler_ordinal",
+      "readme": "scripts/inhaler_ordinal/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "LACUNA_README:1",
+          "classe": "PACOTE_R_OU_DATASET_DE_PACOTE_SEM_ENTRADA_CATALOGADA",
+          "dataset_id": null,
+          "fonte_documentada": "pacote **`brms`**",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/inhaler_ordinal/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/inhaler.csv",
+          "tipo": "CSV_ALTERNATIVO_NAO_CATALOGADO",
+          "evidencia_documental": "scripts/inhaler_ordinal/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "ipca_sidra_1419",
+      "readme": "scripts/ipca_sidra_1419/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "LACUNA_README:1",
+          "classe": "FONTE_EXTERNA_SEM_REGISTRO_CATALOGADO",
+          "dataset_id": null,
+          "fonte_documentada": "tabela `1737`",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/ipca_sidra_1419/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        },
+        {
+          "identificador": "LACUNA_README:2",
+          "classe": "FONTE_EXTERNA_SEM_REGISTRO_CATALOGADO",
+          "dataset_id": null,
+          "fonte_documentada": "tabela `7060`",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/ipca_sidra_1419/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "isus_sia",
+      "readme": "scripts/isus_sia/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:isus_sia",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "isus_sia",
+          "fonte_documentada": "ISUS/SIA project extract",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/isus_sia/ISUS_SIA_PARS.zip",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/isus_sia/ISUS_SIA_PARS.zip",
+          "tipo": "ZIP_INSTITUCIONAL_VERSIONADO_NAO_HOMOLOGADO",
+          "evidencia_documental": "scripts/isus_sia/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "kidney_survival",
+      "readme": "scripts/kidney_survival/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "LACUNA_README:1",
+          "classe": "PACOTE_R_OU_DATASET_DE_PACOTE_SEM_ENTRADA_CATALOGADA",
+          "dataset_id": null,
+          "fonte_documentada": "pacote **`survival`**",
+          "url_origem_declarada": null,
+          "caminho_catalogado": null,
+          "estado_caminho_catalogado_git": "NAO_APLICAVEL_SEM_CAMINHO_CATALOGADO",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "NAO_AFERIDO",
+          "redistribuicao_status_historico": "NAO_AFERIDO",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "scripts/kidney_survival/README.md + reports/t06_1/manifesto_estudos_T06_1.json",
+          "lacuna_documental": "Referência externa sem registro de dataset no catálogo T06.1: identificar versionamento, origem e forma de aquisição. Pacote R não deve ser tratado automaticamente como dataset redistribuível; direitos e requisitos de execução não homologados."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "media_ruido_mu",
+      "readme": "scripts/media_ruido_mu/README.md",
+      "estado_cobertura": "SEM_DEPENDENCIA_EXTERNA_IDENTIFICADA_NO_RECORTE",
+      "dependencias": [],
+      "caminhos_ou_referencias_historicas_documentadas": [],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "mega_sena_dezenas",
+      "readme": "scripts/mega_sena_dezenas/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:mega_sena_dezenas",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "mega_sena_dezenas",
+          "fonte_documentada": "Mega-Sena historical results prepared for the study",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/mega_sena_dezenas/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 21,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/mega_sena_dezenas/",
+          "tipo": "ARTEFATOS_DE_DADOS_E_RESULTADOS",
+          "evidencia_documental": "scripts/mega_sena_dezenas/README.md",
+          "estado_no_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "missing_migrants",
+      "readme": "scripts/missing_migrants/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:missing_migrants",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "missing_migrants",
+          "fonte_documentada": "Missing Migrants Project",
+          "url_origem_declarada": "https://missingmigrants.iom.int/downloads",
+          "caminho_catalogado": "data/raw/missing_migrants/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 16,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/missing_migrants/Missing_Migrants_Global_Figures_allData.csv",
+          "tipo": "CSV_ORIGEM_VERSIONADO",
+          "evidencia_documental": "scripts/missing_migrants/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "mortalidade_sp_0_74",
+      "readme": "scripts/mortalidade_sp_0_74/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:mortalidade_sp_0_74",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "mortalidade_sp_0_74",
+          "fonte_documentada": "APVP/PRO-AIM mortality counts and SEADE population estimates",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/mortalidade_sp_0_74/resultados_auditados/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 13,
+          "licenca_status_historico": "source_terms_unverified",
+          "redistribuicao_status_historico": "aggregates_only",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "base_analitica_celular_PROVISORIA.csv",
+          "tipo": "NOME_BASE_E04_LOCAL_CONTEXTUALIZADO_EM_DATA_RAW",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome explícito em README; localização histórica e bytes externos não verificados."
+        },
+        {
+          "referencia_literal": "obitos_APVP_2006_2023_0a74.csv",
+          "tipo": "NOME_FONTE_PRIMARIA_APVP_NAO_VERSIONADA",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome explícito em README; localização histórica e bytes externos não verificados."
+        },
+        {
+          "referencia_literal": "populacao_SEADE_2006_2023_0a74_LONG.csv",
+          "tipo": "NOME_FONTE_PRIMARIA_SEADE_NAO_VERSIONADA",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome explícito em README; localização histórica e bytes externos não verificados."
+        },
+        {
+          "referencia_literal": "crosswalk_distritos_PROVISORIO.csv",
+          "tipo": "NOME_CROSSWALK_HISTORICO_NAO_VERSIONADO",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome explícito em README; localização histórica e bytes externos não verificados."
+        },
+        {
+          "referencia_literal": "E07_R_calibracao_distrito_ano.csv",
+          "tipo": "NOME_INTERMEDIARIO_E07_LOCAL_NAO_VERSIONADO",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome explícito em README; localização histórica e bytes externos não verificados."
+        },
+        {
+          "referencia_literal": "E07_R_calibracao_idade_sexo_ano.csv",
+          "tipo": "NOME_INTERMEDIARIO_E07_LOCAL_NAO_VERSIONADO",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome explícito em README; localização histórica e bytes externos não verificados."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "mortality",
+      "readme": "scripts/mortality/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:mortality",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "mortality",
+          "fonte_documentada": "Source not documented",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/mortality/Dados_Mortalidade.xlsx",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/mortality/Dados_Mortalidade.xlsx",
+          "tipo": "PLANILHA_VERSIONADA_ORIGEM_NAO_IDENTIFICADA",
+          "evidencia_documental": "scripts/mortality/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "pms_servicos",
+      "readme": "scripts/pms_servicos/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:pms_servicos",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "pms_servicos",
+          "fonte_documentada": "PMS / SIDRA table 5906 analytical extract",
+          "url_origem_declarada": "https://sidra.ibge.gov.br/",
+          "caminho_catalogado": "data/raw/pms_servicos/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 2,
+          "licenca_status_historico": "public_source_no_explicit_dataset_license",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/pms_servicos/pms_base_analitica_stan.csv",
+          "tipo": "BASE_ANALITICA_DERIVADA_VERSIONADA",
+          "evidencia_documental": "scripts/pms_servicos/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "pnadc_desocupacao",
+      "readme": "scripts/pnadc_desocupacao/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:pnadc_desocupacao",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "pnadc_desocupacao",
+          "fonte_documentada": "PNAD Contínua / SIDRA tables 6381 and 4093",
+          "url_origem_declarada": "https://sidra.ibge.gov.br/",
+          "caminho_catalogado": "data/raw/pnadc_desocupacao/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 5,
+          "licenca_status_historico": "public_source_no_explicit_dataset_license",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_6381.csv",
+          "tipo": "EXTRATO_SIDRA_VERSIONADO",
+          "evidencia_documental": "scripts/pnadc_desocupacao/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        },
+        {
+          "referencia_literal": "data/raw/pnadc_desocupacao/pnadc_trimestral_taxa_desocupacao_por_sexo_4093.csv",
+          "tipo": "EXTRATO_SIDRA_VERSIONADO",
+          "evidencia_documental": "scripts/pnadc_desocupacao/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "pnadc_estudo_i",
+      "readme": "scripts/pnadc_estudo_i/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:pnadc_estudo_i",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "pnadc_estudo_i",
+          "fonte_documentada": "PNAD Continua SIDRA aggregated indicators and derived 26-row E09 descriptive summary",
+          "url_origem_declarada": "https://sidra.ibge.gov.br/",
+          "caminho_catalogado": "data/raw/pnadc_estudo_i/resultados_auditados/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "public_source_no_explicit_dataset_license",
+          "redistribuicao_status_historico": "aggregates_only",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "estudo_I/e04/saida",
+          "tipo": "SAIDA_LEGADA_RELATIVA_A_SCRIPTS_PNADC",
+          "evidencia_documental": "scripts/pnadc_estudo_i/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Diretório legado de saída, não insumo primário; relativo a scripts/pnadc_estudo_i/."
+        },
+        {
+          "referencia_literal": "estudo_I/e05/saida",
+          "tipo": "SAIDA_LEGADA_RELATIVA_A_SCRIPTS_PNADC",
+          "evidencia_documental": "scripts/pnadc_estudo_i/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Diretório legado de saída, não insumo primário; relativo a scripts/pnadc_estudo_i/."
+        },
+        {
+          "referencia_literal": "estudo_I/e08/",
+          "tipo": "SAIDA_LEGADA_RELATIVA_A_SCRIPTS_PNADC",
+          "evidencia_documental": "scripts/pnadc_estudo_i/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Diretório legado de saída, não insumo primário; relativo a scripts/pnadc_estudo_i/."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "prisons_prisoners_unodc",
+      "readme": "scripts/prisons_prisoners_unodc/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:prisons_prisoners_unodc",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "prisons_prisoners_unodc",
+          "fonte_documentada": "UNODC Research Data Portal - Prisons and Prisoners",
+          "url_origem_declarada": "https://dataunodc.un.org/dp-prisons-persons-held-regional",
+          "caminho_catalogado": "data/raw/prisons_prisoners_unodc/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 20,
+          "licenca_status_historico": "attribution_documented_license_unverified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/prisons_prisoners_unodc/model_inputs/",
+          "tipo": "BASE_E_INSUMENTOS_STAN_DERIVADOS",
+          "evidencia_documental": "scripts/prisons_prisoners_unodc/README.md",
+          "estado_no_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "retractions_reason_composition",
+      "readme": "scripts/retractions_reason_composition/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:retractions_time_to_retraction",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "retractions_time_to_retraction",
+          "fonte_documentada": "Global Scientific Retractions 1927-2026",
+          "url_origem_declarada": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "caminho_catalogado": "data/raw/retractions_time_to_retraction/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 2,
+          "licenca_status_historico": "page_specific_unverified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv",
+          "tipo": "CSV_BRUTO_KAGGLE_NAO_VERSIONADO",
+          "evidencia_documental": "scripts/retractions_reason_composition/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "retractions_time_to_retraction",
+      "readme": "scripts/retractions_time_to_retraction/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:retractions_time_to_retraction",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "retractions_time_to_retraction",
+          "fonte_documentada": "Global Scientific Retractions 1927-2026",
+          "url_origem_declarada": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "caminho_catalogado": "data/raw/retractions_time_to_retraction/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 2,
+          "licenca_status_historico": "page_specific_unverified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv",
+          "tipo": "CSV_BRUTO_KAGGLE_NAO_VERSIONADO",
+          "evidencia_documental": "scripts/retractions_time_to_retraction/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "retractions_trend",
+      "readme": "scripts/retractions_trend/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:retractions_time_to_retraction",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "retractions_time_to_retraction",
+          "fonte_documentada": "Global Scientific Retractions 1927-2026",
+          "url_origem_declarada": "https://www.kaggle.com/datasets/kanchana1990/global-scientific-retractions-19272026",
+          "caminho_catalogado": "data/raw/retractions_time_to_retraction/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 2,
+          "licenca_status_historico": "page_specific_unverified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv",
+          "tipo": "CSV_BRUTO_KAGGLE_NAO_VERSIONADO",
+          "evidencia_documental": "scripts/retractions_trend/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "rs_seguro",
+      "readme": "scripts/rs_seguro/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:rs_seguro_macrocrime",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "rs_seguro_macrocrime",
+          "fonte_documentada": "RS Seguro operational dataset",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/rs_seguro/rs_month_macrocrime.csv",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        },
+        {
+          "identificador": "CATALOGO:rs_seguro_macrocrime_profile",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "rs_seguro_macrocrime_profile",
+          "fonte_documentada": "RS Seguro operational dataset",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        },
+        {
+          "identificador": "CATALOGO:rs_seguro_crime_optional",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "rs_seguro_crime_optional",
+          "fonte_documentada": "RS Seguro optional crime-layer dataset",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/rs_seguro/rs_month_crime.csv",
+          "estado_caminho_catalogado_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/rs_seguro/rs_month_macrocrime.csv",
+          "tipo": "CSV_INSTITUCIONAL_VERSIONADO",
+          "evidencia_documental": "scripts/rs_seguro/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        },
+        {
+          "referencia_literal": "data/raw/rs_seguro/rs_month_macrocrime_profile_v1_1vict.csv",
+          "tipo": "CSV_INSTITUCIONAL_VERSIONADO",
+          "evidencia_documental": "scripts/rs_seguro/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        },
+        {
+          "referencia_literal": "data/raw/rs_seguro/rs_month_crime.csv",
+          "tipo": "CSV_OPCIONAL_NAO_VERSIONADO",
+          "evidencia_documental": "scripts/rs_seguro/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "saheart",
+      "readme": "scripts/saheart/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:saheart",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "saheart",
+          "fonte_documentada": "Elements of Statistical Learning SAheart dataset",
+          "url_origem_declarada": "https://hastie.su.domains/ElemStatLearn/datasets/SAheart.data",
+          "caminho_catalogado": "data/raw/SAheart.data",
+          "estado_caminho_catalogado_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/SAheart.data",
+          "tipo": "ARQUIVO_EXTERNO_LOCAL_OPCIONAL",
+          "evidencia_documental": "scripts/saheart/README.md",
+          "estado_no_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "sat_model_selection",
+      "readme": "scripts/sat_model_selection/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:sat",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "sat",
+          "fonte_documentada": "Rdatasets / mosaicData SAT dataset",
+          "url_origem_declarada": "https://vincentarelbundock.github.io/Rdatasets/csv/mosaicData/SAT.csv",
+          "caminho_catalogado": "data/raw/SAT.csv",
+          "estado_caminho_catalogado_git": "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 0,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "not_versioned",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "https://vincentarelbundock.github.io/Rdatasets/csv/mosaicData/SAT.csv",
+          "tipo": "URL_LEITURA_ONLINE",
+          "evidencia_documental": "scripts/sat_model_selection/README.md",
+          "estado_no_git": "URL_EXTERNA_NAO_TESTADA",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "sherlock_holmes_terms",
+      "readme": "scripts/sherlock_holmes_terms/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:sherlock_holmes_terms",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "sherlock_holmes_terms",
+          "fonte_documentada": "Sherlock Holmes full-text dataset / analytical package",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/sherlock_holmes_terms/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 16,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/sherlock_holmes_terms/12_Sherlock_Holmes_Texts.csv",
+          "tipo": "COMPILACAO_CORPUS_VERSIONADA",
+          "evidencia_documental": "scripts/sherlock_holmes_terms/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "sobrevivencia_cadastral_poa",
+      "readme": "scripts/sobrevivencia_cadastral_poa/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:sobrevivencia_cadastral_poa",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "sobrevivencia_cadastral_poa",
+          "fonte_documentada": "CNPJ + Porto Alegre permits aggregated for modeling",
+          "url_origem_declarada": null,
+          "caminho_catalogado": "data/raw/sobrevivencia_cadastral_poa/",
+          "estado_caminho_catalogado_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 16,
+          "licenca_status_historico": "source_terms_unverified",
+          "redistribuicao_status_historico": "aggregates_only",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/sobrevivencia_cadastral_poa/model_inputs/",
+          "tipo": "INSUMOS_AGREGADOS_VERSIONADOS",
+          "evidencia_documental": "scripts/sobrevivencia_cadastral_poa/README.md",
+          "estado_no_git": "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    },
+    {
+      "id": "therapeutic_touch",
+      "readme": "scripts/therapeutic_touch/README.md",
+      "estado_cobertura": "DEPENDENCIA_EXTERNA_DOCUMENTADA",
+      "dependencias": [
+        {
+          "identificador": "CATALOGO:therapeutic_touch",
+          "classe": "INSUMO_OU_FONTE_EXTERNA_CATALOGADA",
+          "dataset_id": "therapeutic_touch",
+          "fonte_documentada": "JAMA article / dataset reconstruction",
+          "url_origem_declarada": "https://doi.org/10.1001/jama.279.13.1005",
+          "caminho_catalogado": "data/raw/TherapeuticTouchData.csv",
+          "estado_caminho_catalogado_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "quantidade_referencias_git_manifesto": 1,
+          "licenca_status_historico": "not_identified",
+          "redistribuicao_status_historico": "review_required",
+          "permissao_homologada_t065": false,
+          "fonte_evidencia": "reports/t06_1/manifesto_estudos_T06_1.json + data/DATA_PROVENANCE.csv",
+          "lacuna_documental": "Confrontar origem/vintage, transformação e SHA-256 de transporte/custódia; validar direitos, classificação de dados e permissão na issue #14. Arquivos derivados ou agregados não comprovam presença de fonte primária."
+        }
+      ],
+      "caminhos_ou_referencias_historicas_documentadas": [
+        {
+          "referencia_literal": "data/raw/TherapeuticTouchData.csv",
+          "tipo": "CSV_VERSIONADO_FONTE_DIREITOS_PENDENTES",
+          "evidencia_documental": "scripts/therapeutic_touch/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        }
+      ],
+      "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
+    }
+  ]
+}
