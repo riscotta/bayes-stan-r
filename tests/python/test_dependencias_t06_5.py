@@ -135,7 +135,8 @@ class TestDependenciasExternasT065(unittest.TestCase):
     def setUpClass(cls):
         cls.inventory = load(T065)
         cls.manifest = load(T061)
-        cls.tracked = git_paths(cls.inventory["base_main_git_sha"])
+        # CI usa checkout raso; o PR nao altera a superficie de dados.
+        cls.tracked = git_paths("HEAD")
 
     def test_identidade_base_e_contrato(self):
         self.assertEqual(self.inventory["tarefa"], "T06.5")
