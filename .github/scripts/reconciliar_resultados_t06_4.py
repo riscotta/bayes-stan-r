@@ -291,7 +291,8 @@ def main():
                               parse_float=Decimal)
         resultado = conferir(registro, args.raiz, catalogo=args.catalogo,
                             catalogo_sha256_confiavel=args.catalogo_sha256_confiavel)
-    except (Bloqueio, Divergencia, FileNotFoundError, OSError, ValueError) as erro:
+    except (Bloqueio, Divergencia, FileNotFoundError, OSError,
+            ValueError, InvalidOperation) as erro:
         status = "DIVERGENCIA" if isinstance(erro, Divergencia) else "BLOQUEADO"
         print(json.dumps({"estado": status, "causa": str(erro)}, ensure_ascii=False))
         return 2
