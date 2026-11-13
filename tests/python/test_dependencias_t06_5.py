@@ -98,8 +98,10 @@ def errors(inventory: dict, manifest: dict, tracked: set[str]) -> list[str]:
         historical = row.get("caminhos_ou_referencias_historicas_documentadas", [])
         historical_count += len(historical)
         for h in historical:
-            if h.get("evidencia_documental") != row["readme"]:
-                bad.append(f"{sid}: evidência de caminho não é README")
+            if h.get("evidencia_documental") not in {row["readme"], "data/DATA_PROVENANCE.csv"}:
+                bad.append(f"{sid}: fonte da referência histórica inválida")
+            if h.get("evidencia_documental") == "data/DATA_PROVENANCE.csv" and sid != "mortality":
+                bad.append(f"{sid}: fonte de catálogo atribuída indevidamente")
             if h.get("estado_no_git") != expected_git_state(h["referencia_literal"], tracked):
                 bad.append(f"{sid}: status Git de caminho divergente")
             if h.get("presenca_no_ambiente_do_usuario") != "NAO_VERIFICADA":
