@@ -60,6 +60,8 @@ A comparação de decimais finitos usa razões exatas (`fractions.Fraction` a pa
 
 Para limitar custo e expoentes patológicos, cada número de entrada ou tolerância admite **até 512 algarismos no coeficiente** e **expoente decimal com módulo até 1000**. Acima desses limites, a execução retorna `BLOQUEADO`, não aproxima o número. A seed aceita somente inteiro não negativo de até 64 bits, a forma decimal em string ou `NAO_APLICAVEL`; o último requer justificativa externa de não aplicabilidade. Entradas JSON fora do contrato são rejeitadas de modo controlado, sem traceback. Esses limites operacionais não foram calibrados como critérios científicos.
 
+Na entrada pela CLI, literais decimais JSON **sem aspas** são desserializados com `parse_float=Decimal`, antes de qualquer comparação. Isso preserva dígitos significativos e expoentes pequenos (por exemplo, `1e-400` não vira zero), sem permitir falsos negativos ou contorno do gate `PENDENTE_QA` por conversão binária intermediária. Valores acima dos limites explícitos continuam `BLOQUEADO`; a correção é técnica e não constitui validação científica.
+
 ### 5.3 Evidência externa de custódia: pendência B3
 
 **Situação em 12/11/2026:** nenhum catálogo histórico real preexistente, registro independente de pin ou vínculo commit/path/blob, custodiados e auditados, foi apresentado neste ciclo. O catálogo e os commits nos testes são sintéticos; os hashes são válidos apenas como autoconsistência de fixture. Portanto, este PR **não comprova autenticidade histórica real**. Até existir a evidência, bloqueia-se o uso do comparador para reivindicar integridade histórica, N2/N3/N4 ou homologação de resultados reais, ainda que a saída técnica isolada diga `CONFERENCIA_TECNICA`.
