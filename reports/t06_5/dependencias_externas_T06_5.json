@@ -686,11 +686,11 @@
         {
           "referencia_literal": "data/raw/mortality/Dados_Mortalidade.xlsx",
           "tipo": "PLANILHA_VERSIONADA_ORIGEM_NAO_IDENTIFICADA",
-          "evidencia_documental": "scripts/mortality/README.md",
+          "evidencia_documental": "data/DATA_PROVENANCE.csv",
           "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
           "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
           "integridade_e_direitos": "NAO_HOMOLOGADOS",
-          "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+          "observacao": "Caminho catalogado em DATA_PROVENANCE.csv; o README não traz o nome do Excel, e a fonte original é desconhecida."
         }
       ],
       "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
