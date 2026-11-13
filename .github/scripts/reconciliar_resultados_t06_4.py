@@ -286,7 +286,9 @@ def main():
                         help="SHA-256 obtido fora do registro de execução, por canal confiável")
     args = parser.parse_args()
     try:
-        registro = json.loads(args.registro.read_text(encoding="utf-8"))
+        # Preservar decimais JSON sem passar por float binário antes de Fraction.
+        registro = json.loads(args.registro.read_text(encoding="utf-8"),
+                              parse_float=Decimal)
         resultado = conferir(registro, args.raiz, catalogo=args.catalogo,
                             catalogo_sha256_confiavel=args.catalogo_sha256_confiavel)
     except (Bloqueio, Divergencia, FileNotFoundError, OSError, ValueError) as erro:
