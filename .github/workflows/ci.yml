@@ -67,6 +67,17 @@ jobs:
       - name: Verify T06.4 historical-output policy and adversarial cases
         run: python -m unittest discover -s tests/python -p 'test_resultados_t06_4.py' -v
 
+      - name: Fetch fixed T06.5 historical base (minimal shallow object)
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE_SHA=f5f782d19bebc0a09ef08831982d601569e33d95
+          git fetch --no-tags --depth=1 origin "$BASE_SHA"
+          test "$(git rev-parse --verify "${BASE_SHA}^{commit}")" = "$BASE_SHA"
+
+      - name: Verify T06.5 external dependencies and historical paths
+        run: python -m unittest discover -s tests/python -p 'test_dependencias_t06_5.py' -v
+
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
