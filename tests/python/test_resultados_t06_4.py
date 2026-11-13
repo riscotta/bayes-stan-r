@@ -493,5 +493,50 @@ class TestComparadorT064(unittest.TestCase):
                 self.assertNotIn("Traceback", processo.stderr)
 
 
+    def cli_tolerancia_json_numerica(self, campo, literal, referencia, candidato,
+                                    estado, saida):
+        """Usa literal JSON sem aspas, preservando a precisão do token original."""
+        import subprocess
+        import sys
+        self.preparar_caso_numerico(
+            referencia, candidato,
+            abs_tol="0.5" if campo == "abs" else "0",
+            rel_tol="0.5" if campo == "rel" else "0")
+        texto = json.dumps(self.record, ensure_ascii=False)
+        token = f'"{campo}": "0.5"'
+        self.assertIn(token, texto)
+        texto = texto.replace(token, f'"{campo}": {literal}', 1)
+        arquivo_registro = self.root / "registro_literal_decimal.json"
+        arquivo_registro.write_text(texto, encoding="utf-8")
+        processo = subprocess.run(
+            [sys.executable, str(SCRIPT), "--registro", str(arquivo_registro),
+             "--raiz", str(self.root), "--catalogo", str(self.catalogo_path),
+             "--catalogo-sha256-confiavel", self.catalogo_sha256],
+            capture_output=True, text=True, check=False, timeout=15)
+        self.assertEqual(processo.returncode, saida, processo.stdout + processo.stderr)
+        self.assertEqual(json.loads(processo.stdout)["estado"], estado)
+        self.assertNotIn("Traceback", processo.stderr)
+
+    def test_b6_cli_abs_alta_precisao_json(self):
+        self.cli_tolerancia_json_numerica(
+            "abs", "0.9999999999999999999999999999", "0", "1", "DIVERGENCIA", 2)
+
+    def test_b6_cli_rel_alta_precisao_json(self):
+        self.cli_tolerancia_json_numerica(
+            "rel", "0.9999999999999999999999999999", "1", "2", "DIVERGENCIA", 2)
+
+    def test_b6_cli_abs_expoente_pequeno_nao_vira_zero(self):
+        self.cli_tolerancia_json_numerica(
+            "abs", "1e-400", "0", "0", "PENDENTE_QA", 3)
+
+    def test_b6_cli_rel_expoente_pequeno_nao_vira_zero(self):
+        self.cli_tolerancia_json_numerica(
+            "rel", "1e-400", "1", "1", "PENDENTE_QA", 3)
+
+    def test_b6_cli_expoente_json_fora_limite_bloqueado(self):
+        self.cli_tolerancia_json_numerica(
+            "abs", "1e-1001", "0", "0", "BLOQUEADO", 2)
+
+
 if __name__ == "__main__":
     unittest.main()
