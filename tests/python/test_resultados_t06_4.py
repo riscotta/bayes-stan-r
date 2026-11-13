@@ -563,5 +563,25 @@ class TestComparadorT064(unittest.TestCase):
         self.assertNotIn("Traceback", processo.stderr)
 
 
+    def test_b9_cli_json_aninhado_bloqueado(self):
+        import subprocess
+        import sys
+        registro_json = json.dumps(self.record)
+        token = '"chaves": ["id"]'
+        self.assertIn(token, registro_json)
+        registro_json = registro_json.replace(
+            token, '"chaves": ' + '[' * 10000 + '"id"' + ']' * 10000, 1)
+        registro_path = self.root / "registro_json_aninhado.json"
+        registro_path.write_text(registro_json, encoding="utf-8")
+        processo = subprocess.run(
+            [sys.executable, str(SCRIPT), "--registro", str(registro_path),
+             "--raiz", str(self.root), "--catalogo", str(self.catalogo_path),
+             "--catalogo-sha256-confiavel", self.catalogo_sha256],
+            capture_output=True, text=True, check=False, timeout=15)
+        self.assertEqual(processo.returncode, 2, processo.stdout + processo.stderr)
+        self.assertEqual(json.loads(processo.stdout)["estado"], "BLOQUEADO")
+        self.assertNotIn("Traceback", processo.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()
