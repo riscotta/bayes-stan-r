@@ -537,6 +537,14 @@ class TestComparadorT064(unittest.TestCase):
         self.cli_tolerancia_json_numerica(
             "abs", "1e-1001", "0", "0", "BLOQUEADO", 2)
 
+    def test_b7_cli_expoente_extremo_positivo_bloqueado_sem_traceback(self):
+        self.cli_tolerancia_json_numerica(
+            "abs", "1e10000000000000000000", "0", "0", "BLOQUEADO", 2)
+
+    def test_b7_cli_expoente_extremo_negativo_bloqueado_sem_traceback(self):
+        self.cli_tolerancia_json_numerica(
+            "rel", "1e-10000000000000000000", "1", "1", "BLOQUEADO", 2)
+
 
 if __name__ == "__main__":
     unittest.main()
