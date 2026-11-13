@@ -11,6 +11,34 @@ ROOT = Path(__file__).resolve().parents[2]
 T065 = ROOT / "reports/t06_5/dependencias_externas_T06_5.json"
 T061 = ROOT / "reports/t06_1/manifesto_estudos_T06_1.json"
 EXPECTED_OBJECTIVE = "Registrar dependências ausentes dos estudos com dados externos, incluindo os caminhos históricos."
+BASE_GIT_SHA = "f5f782d19bebc0a09ef08831982d601569e33d95"
+
+# Fonte independente: pares (trecho literal do README, referência completa inventariada).
+# Não derivar estes pares da contagem nem do próprio JSON que está sendo validado.
+DOCUMENTED_REQUIREMENTS = {
+    "mortalidade_sp_0_74": (
+        ("E07_R_validacao_anual.csv", "E07_R_validacao_anual.csv"),
+        ("E07_R_diagnosticos_ajuste.csv", "E07_R_diagnosticos_ajuste.csv"),
+        ("E08_incerteza_cobertura_bootstrap_distrito.csv", "E08_incerteza_cobertura_bootstrap_distrito.csv"),
+    ),
+    "pnadc_estudo_i": (
+        ("e08/diagnosticos_e081.csv", "e08/diagnosticos_e081.csv"),
+    ),
+    "censo_escolar_tempo_integral": tuple(
+        (f"https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_{year}{'_' if year == 2025 else ''}.zip",
+         f"https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_{year}{'_' if year == 2025 else ''}.zip")
+        for year in range(2021, 2026)
+    ),
+    "pnadc_desocupacao": (
+        ("pnadc_mensal_taxa_desocupacao_jan_2026.csv", "data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_jan_2026.csv"),
+    ),
+    "prisons_prisoners_unodc": (
+        ("model_inputs/base_analitica_nucleo_nacional.csv", "data/raw/prisons_prisoners_unodc/model_inputs/base_analitica_nucleo_nacional.csv"),
+        ("stan_data_M1.json", "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M1.json"),
+        ("stan_data_M2.json", "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M2.json"),
+        ("stan_data_M3.json", "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M3.json"),
+    ),
+}
 
 
 def load(path: Path) -> dict:
@@ -33,7 +61,7 @@ def expected_git_state(path: str, tracked: set[str]) -> str:
     prefix = path if path.endswith("/") else path + "/"
     if any(p.startswith(prefix) for p in tracked):
         return "DIRETORIO_COM_ENTRADAS_VERSIONADAS_NESTE_SNAPSHOT"
-    if "/" not in path or path.startswith("estudo_I/"):
+    if "/" not in path or path.startswith(("estudo_I/", "e08/")):
         return "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT"
     return "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT"
 
@@ -52,6 +80,8 @@ def errors(inventory: dict, manifest: dict, tracked: set[str]) -> list[str]:
         bad.append("objetivo diferente")
     if not str(inventory.get("base_main_git_sha", "")).isalnum():
         bad.append("SHA base ausente")
+    if inventory.get("base_main_git_sha") != BASE_GIT_SHA:
+        bad.append("snapshot base não corresponde ao SHA auditado")
     total_cat, total_gap, historical_count = 0, 0, 0
     for row in studies:
         sid = row.get("id")
@@ -97,6 +127,21 @@ def errors(inventory: dict, manifest: dict, tracked: set[str]) -> list[str]:
                 bad.append(f"{sid}: documentação de lacuna insuficiente")
         historical = row.get("caminhos_ou_referencias_historicas_documentadas", [])
         historical_count += len(historical)
+        historical_names = [h.get("referencia_literal") for h in historical]
+        if len(historical_names) != len(set(historical_names)):
+            bad.append(f"{sid}: referências históricas duplicadas")
+        requirements = DOCUMENTED_REQUIREMENTS.get(sid, ())
+        readme_path = ROOT / row["readme"]
+        try:
+            documentary_source = readme_path.read_text(encoding="utf-8")
+        except OSError as exc:
+            bad.append(f"{sid}: README inacessível: {exc}")
+            documentary_source = ""
+        for source_literal, inventory_literal in requirements:
+            if source_literal not in documentary_source:
+                bad.append(f"{sid}: fonte README não contém {source_literal}")
+            if inventory_literal not in historical_names:
+                bad.append(f"{sid}: referência da fonte documental ausente: {inventory_literal}")
         for h in historical:
             if h.get("evidencia_documental") not in {row["readme"], "data/DATA_PROVENANCE.csv"}:
                 bad.append(f"{sid}: fonte da referência histórica inválida")
@@ -135,12 +180,17 @@ class TestDependenciasExternasT065(unittest.TestCase):
     def setUpClass(cls):
         cls.inventory = load(T065)
         cls.manifest = load(T061)
-        # CI usa checkout raso; o PR nao altera a superficie de dados.
-        cls.tracked = git_paths("HEAD")
+        # Snapshot N1 imutável: HEAD do PR/merge e pushes futuros não alteram a base.
+        cls.tracked = git_paths(BASE_GIT_SHA)
 
     def test_identidade_base_e_contrato(self):
         self.assertEqual(self.inventory["tarefa"], "T06.5")
-        self.assertEqual(self.inventory["base_main_git_sha"], "f5f782d19bebc0a09ef08831982d601569e33d95")
+        self.assertEqual(self.inventory["base_main_git_sha"], BASE_GIT_SHA)
+        resolved = subprocess.check_output(
+            ["git", "rev-parse", "--verify", f"{BASE_GIT_SHA}^{{commit}}"],
+            cwd=ROOT, text=True
+        ).strip()
+        self.assertEqual(resolved, BASE_GIT_SHA)
         self.assertEqual(self.inventory["natureza"], "INVENTARIO_DOCUMENTAL_DE_LACUNAS_SEM_LEITURA_DE_DADOS_EXTERNOS")
         self.assertTrue((ROOT / "reports/t06_5/README.md").is_file())
 
@@ -182,6 +232,61 @@ class TestDependenciasExternasT065(unittest.TestCase):
         self.assertIn("NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT", {x["estado_no_git"] for x in hints})
         for s in self.inventory["estudos"]:
             self.assertIn("não significa inexistente", s["observacao"].lower())
+
+    def test_cobertura_literais_readmes_independente_do_json(self):
+        self.assertEqual(errors(self.inventory, self.manifest, self.tracked), [])
+        for sid, requirements in DOCUMENTED_REQUIREMENTS.items():
+            doc = (ROOT / next(s["readme"] for s in self.inventory["estudos"] if s["id"] == sid)).read_text(encoding="utf-8")
+            refs = {h["referencia_literal"] for s in self.inventory["estudos"] if s["id"] == sid
+                    for h in s["caminhos_ou_referencias_historicas_documentadas"]}
+            for in_readme, in_inventory in requirements:
+                with self.subTest(study=sid, reference=in_inventory):
+                    self.assertIn(in_readme, doc)
+                    self.assertIn(in_inventory, refs)
+
+    def test_mutacoes_retirada_e_renomeacao_referencias_reprovadas(self):
+        for sid, requirements in DOCUMENTED_REQUIREMENTS.items():
+            for _, literal in requirements:
+                with self.subTest(study=sid, reference=literal):
+                    damaged = copy.deepcopy(self.inventory)
+                    row = next(s for s in damaged["estudos"] if s["id"] == sid)
+                    row["caminhos_ou_referencias_historicas_documentadas"] = [
+                        h for h in row["caminhos_ou_referencias_historicas_documentadas"]
+                        if h["referencia_literal"] != literal
+                    ]
+                    damaged["resumo"]["caminhos_documentados"] -= 1
+                    failures = errors(damaged, self.manifest, self.tracked)
+                    self.assertTrue(any("fonte documental ausente" in f for f in failures), failures)
+                    changed = copy.deepcopy(self.inventory)
+                    renamed = next(s for s in changed["estudos"] if s["id"] == sid)
+                    target = next(h for h in renamed["caminhos_ou_referencias_historicas_documentadas"]
+                                  if h["referencia_literal"] == literal)
+                    target["referencia_literal"] = "referencia_inventada_N1.csv"
+                    failures = errors(changed, self.manifest, self.tracked)
+                    self.assertTrue(any("fonte documental ausente" in f for f in failures), failures)
+
+    def test_git_snapshot_imutavel_com_hipotetica_adicao_futura_em_head(self):
+        # Simula HEAD futura com novo arquivo sem alterar a árvore historicamente ancorada.
+        future_path = "data/raw/SAheart.data"
+        self.assertNotIn(future_path, self.tracked)
+        self.assertEqual(expected_git_state(future_path, self.tracked),
+                         "NAO_LOCALIZADO_NA_ARVORE_GIT_DO_SNAPSHOT")
+        future_head = self.tracked | {future_path}
+        self.assertEqual(expected_git_state(future_path, future_head),
+                         "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT")
+        self.assertEqual(errors(self.inventory, self.manifest, self.tracked), [])
+        self.assertTrue(any("saheart: status Git" in msg
+                            for msg in errors(self.inventory, self.manifest, future_head)))
+        self.assertEqual(git_paths(BASE_GIT_SHA), self.tracked)
+
+    def test_urls_inep_documentadas_sem_homologacao(self):
+        s = next(s for s in self.inventory["estudos"] if s["id"] == "censo_escolar_tempo_integral")
+        by_name = {h["referencia_literal"]: h for h in s["caminhos_ou_referencias_historicas_documentadas"]}
+        for year in range(2021, 2026):
+            url = f"https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_{year}{'_' if year == 2025 else ''}.zip"
+            with self.subTest(ano=year):
+                self.assertEqual(by_name[url]["estado_no_git"], "URL_EXTERNA_NAO_TESTADA")
+                self.assertEqual(by_name[url]["integridade_e_direitos"], "NAO_HOMOLOGADOS")
 
     def test_sem_inferencia_ou_niveis_elevados(self):
         self.assertNotIn("HOMOLOGADO", str(self.inventory["resumo"]))

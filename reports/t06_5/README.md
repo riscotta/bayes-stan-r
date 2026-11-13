@@ -10,9 +10,18 @@ O arquivo [dependencias_externas_T06_5.json](dependencias_externas_T06_5.json) c
 
 - **30/33 estudos** com ao menos uma dependência externa catalogada ou citada sem catálogo; os demais 3 (**deck_15wins**, **hidrometro_degradacao**, **media_ruido_mu**) não apresentam vínculo externo *nesse recorte documental*. Isso **não prova inexistência** de outras dependências de execução ou de histórico.
 - **27 vínculos estudo–dataset** catalogados (25 estudos com catálogo) e **8 referências externas não catalogadas** distribuídas por 5 estudos (coortes de aposentadoria, FruitFlies, inhaler, IPCA e kidney).
-- **36 referências de caminho, nome local, diretório legado ou URL** registradas por estudo. Não são 36 arquivos ausentes: algumas referências já estão no Git, outras são diretórios e outras dizem respeito a saídas históricas ou serviços online.
+- **50 referências de caminho, nome local, diretório legado ou URL** registradas por estudo. Não são 36 arquivos ausentes: algumas referências já estão no Git, outras são diretórios e outras dizem respeito a saídas históricas ou serviços online.
 
 A mesma fonte pode abastecer **vários estudos**; por exemplo, `retractions_time_to_retraction` é compartilhada entre três estudos de retratações. Contar 27 vínculos não equivale a contar 27 datasets distintos. Fontes externas de pacotes R (por exemplo `brms`, `survival`, `Stat2Data`) não são automaticamente arquivos CSV ausentes ou passíveis de redistribuição.
+
+
+## 2.1 Cobertura adversarial das referências de origem (correção de QA)
+
+Confrontados os **33 READMEs** com o catálogo T06.1 e as referências literais do inventário. A correção incorporou 14 referências documentais explícitas adicionais: nove exigidas pelo QA independente (três CSVs E07/E08 de mortalidade SP, um diagnóstico E08.2 relativo da PNAD Estudo I e cinco URLs ZIP INEP 2021–2025), mais o CSV opcional de jan/2026 da PNAD Desocupação e os quatro arquivos de entrada Stan congelados do UNODC. **36 + 14 = 50 referências**, incluindo arquivos já versionados, URLs, nomes locais e diretórios; não são 50 arquivos ausentes. Links gerais de proveniência já catalogados, exemplos CLI genéricos e saídas opcionais regeneráveis não foram duplicados como insumos históricos.
+
+Na mortalidade SP, a presença de cópias em `data/raw/mortalidade_sp_0_74/resultados_auditados/` não prova que correspondam, byte a byte, aos CSVs locais originais exigidos por E07/E08/E09. O caminho `e08/diagnosticos_e081.csv` é mantido **relativo**, sem raiz absoluta presumida. As cinco URLs INEP são **apenas documentadas no README**, não testadas. No UNODC, os arquivos `model_inputs/` são versionados, mas não equivalem aos microdados brutos externos.
+
+Os testes confrontam referências exigidas com **literais independentes do JSON**, verificam que os literais também aparecem nos respectivos READMEs e executam mutações adversariais de retirada de cada referência com total recalculado. A verificação de estado Git é feita na árvore imutável do commit-base, não na `HEAD` corrente. A CI faz fetch raso do SHA-base para esse propósito; não consulta nem baixa insumos externos.
 
 ## 2. Como ler o estado
 
@@ -31,10 +40,10 @@ Os caminhos catalogados vêm da T06.1. Referências históricas foram cotejadas 
 | Estudo | Dependência / referência histórica | Falta comprovar |
 |---|---|---|
 | PNAD Contínua Estudo I | Snapshot SIDRA de 22.130 linhas, metadados, E04–E08 e 52 cadeias; saídas legadas `estudo_I/e04/saida`, `estudo_I/e05/saida`, `estudo_I/e08/` | Origem/vintage, manifesto de transporte, coletor original, disponibilização legítima, reconciliação de intermediários e cadeias |
-| Mortalidade SP 0–74 | `base_analitica_celular_PROVISORIA.csv`, `obitos_APVP_2006_2023_0a74.csv`, `populacao_SEADE_2006_2023_0a74_LONG.csv`, `crosswalk_distritos_PROVISORIO.csv` e intermediários E07 | Fontes APVP/SEADE, correspondência territorial histórica, permissões, E04 e E07 sem reexecutar automaticamente |
+| Mortalidade SP 0–74 | `base_analitica_celular_PROVISORIA.csv`, `obitos_APVP_2006_2023_0a74.csv`, `populacao_SEADE_2006_2023_0a74_LONG.csv`, `crosswalk_distritos_PROVISORIO.csv` e insumos E07/E08 locais (distintos de cópias agregadas em `resultados_auditados/`) | Fontes APVP/SEADE, correspondência territorial histórica, permissões, E04 e E07 sem reexecutar automaticamente |
 | Cães F5 | `data/raw/caes_raca_f5/base_F5_principal_E04.csv` não versionada; referência do README a SHA-256 histórico | Custódia de E04, origem derivada, integridade e correspondência do ambiente CmdStan 2.37.0 |
 | RS Seguro | Dois extratos versionados; camada opcional `data/raw/rs_seguro/rs_month_crime.csv` sem objeto no snapshot | Permissão institucional e vínculo comprovável entre extratos locais e fonte oficial |
-| Censo Escolar | Cache `data/raw/censo_escolar/` com ZIPs INEP, não versionados | Versão efetivamente baixada, datas, hashes, termos e transformações |
+| Censo Escolar | Cache `data/raw/censo_escolar/` e cinco URLs diretas INEP 2021–2025 declaradas (não testadas), com ZIPs não versionados | Versão efetivamente baixada, datas, hashes, termos e transformações |
 | Retratações e Consumer Shopping | CSVs Kaggle locais referenciados nos READMEs | Versão exata da base, licença específica e integridade da cópia |
 | ISUS/SIA, mortalidade (Excel), IOM, Sherlock e demais bases versionadas | Caminhos no catálogo/README | Custódia, permissões e classificações pertinentes; não presumir que o Git permita redistribuição irrestrita |
 

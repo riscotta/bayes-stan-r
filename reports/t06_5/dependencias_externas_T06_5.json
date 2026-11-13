@@ -33,7 +33,7 @@
       "hidrometro_degradacao",
       "media_ruido_mu"
     ],
-    "caminhos_documentados": 36
+    "caminhos_documentados": 50
   },
   "gates": [
     "issue #14 P0 aberta — licença, proveniência, privacidade e autorização institucional não homologadas",
@@ -107,6 +107,51 @@
           "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
           "integridade_e_direitos": "NAO_HOMOLOGADOS",
           "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        },
+        {
+          "referencia_literal": "https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_2021.zip",
+          "tipo": "URL_ZIP_INEP_ANO_DECLARADO_NAO_TESTADO",
+          "evidencia_documental": "scripts/censo_escolar_tempo_integral/README.md",
+          "estado_no_git": "URL_EXTERNA_NAO_TESTADA",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "URL do ZIP INEP 2021 transcrita do README; sem download, teste de acesso, verificação de vintage/bytes ou licença."
+        },
+        {
+          "referencia_literal": "https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_2022.zip",
+          "tipo": "URL_ZIP_INEP_ANO_DECLARADO_NAO_TESTADO",
+          "evidencia_documental": "scripts/censo_escolar_tempo_integral/README.md",
+          "estado_no_git": "URL_EXTERNA_NAO_TESTADA",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "URL do ZIP INEP 2022 transcrita do README; sem download, teste de acesso, verificação de vintage/bytes ou licença."
+        },
+        {
+          "referencia_literal": "https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_2023.zip",
+          "tipo": "URL_ZIP_INEP_ANO_DECLARADO_NAO_TESTADO",
+          "evidencia_documental": "scripts/censo_escolar_tempo_integral/README.md",
+          "estado_no_git": "URL_EXTERNA_NAO_TESTADA",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "URL do ZIP INEP 2023 transcrita do README; sem download, teste de acesso, verificação de vintage/bytes ou licença."
+        },
+        {
+          "referencia_literal": "https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_2024.zip",
+          "tipo": "URL_ZIP_INEP_ANO_DECLARADO_NAO_TESTADO",
+          "evidencia_documental": "scripts/censo_escolar_tempo_integral/README.md",
+          "estado_no_git": "URL_EXTERNA_NAO_TESTADA",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "URL do ZIP INEP 2024 transcrita do README; sem download, teste de acesso, verificação de vintage/bytes ou licença."
+        },
+        {
+          "referencia_literal": "https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_2025_.zip",
+          "tipo": "URL_ZIP_INEP_ANO_DECLARADO_NAO_TESTADO",
+          "evidencia_documental": "scripts/censo_escolar_tempo_integral/README.md",
+          "estado_no_git": "URL_EXTERNA_NAO_TESTADA",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "URL do ZIP INEP 2025 transcrita do README; sem download, teste de acesso, verificação de vintage/bytes ou licença."
         }
       ],
       "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
@@ -657,6 +702,33 @@
           "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
           "integridade_e_direitos": "NAO_HOMOLOGADOS",
           "observacao": "Nome explícito em README; localização histórica e bytes externos não verificados."
+        },
+        {
+          "referencia_literal": "E07_R_validacao_anual.csv",
+          "tipo": "INSUMO_HISTORICO_E07_VALIDACAO_LOCAL_NAO_HOMOLOGADO",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome do insumo local para E09/conferir; há cópia agregada em resultados_auditados/ versionada, mas ela não prova identidade com o original local."
+        },
+        {
+          "referencia_literal": "E07_R_diagnosticos_ajuste.csv",
+          "tipo": "INSUMO_HISTORICO_E07_DIAGNOSTICOS_LOCAL_NAO_HOMOLOGADO",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "CSV E07 exigido pelo modo conferir; cópia em resultados_auditados/ não comprova identidade com original histórico local."
+        },
+        {
+          "referencia_literal": "E08_incerteza_cobertura_bootstrap_distrito.csv",
+          "tipo": "INSUMO_HISTORICO_E08_BOOTSTRAP_LOCAL_NAO_HOMOLOGADO",
+          "evidencia_documental": "scripts/mortalidade_sp_0_74/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "CSV E08 exigido para E09; cópia agregada congelada em resultados_auditados/ é distinta da custódia do insumo local."
         }
       ],
       "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
@@ -768,6 +840,15 @@
           "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
           "integridade_e_direitos": "NAO_HOMOLOGADOS",
           "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        },
+        {
+          "referencia_literal": "data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_jan_2026.csv",
+          "tipo": "EXTRATO_SIDRA_VERSIONADO_OPCIONAL_DE_CONSISTENCIA",
+          "evidencia_documental": "scripts/pnadc_desocupacao/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "CSV opcional de conferência jan/2026, explícito no README; existência versionada não homologa a fonte externa."
         }
       ],
       "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
@@ -820,6 +901,15 @@
           "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
           "integridade_e_direitos": "NAO_HOMOLOGADOS",
           "observacao": "Diretório legado de saída, não insumo primário; relativo a scripts/pnadc_estudo_i/."
+        },
+        {
+          "referencia_literal": "e08/diagnosticos_e081.csv",
+          "tipo": "INSUMO_HISTORICO_E08_2_RELATIVO",
+          "evidencia_documental": "scripts/pnadc_estudo_i/README.md",
+          "estado_no_git": "REFERENCIA_RELATIVA_OU_NOME_NAO_VERIFICADO_NO_GIT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Caminho relativo documentado no README como entrada de E08.2; raiz/ambiente histórico não demonstrados."
         }
       ],
       "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
@@ -854,6 +944,42 @@
           "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
           "integridade_e_direitos": "NAO_HOMOLOGADOS",
           "observacao": "Referência do README; presença Git não prova ser o insumo original usado na inferência."
+        },
+        {
+          "referencia_literal": "data/raw/prisons_prisoners_unodc/model_inputs/base_analitica_nucleo_nacional.csv",
+          "tipo": "BASE_DERIVADA_UNODC_VERSIONADA",
+          "evidencia_documental": "scripts/prisons_prisoners_unodc/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome sob model_inputs/ e prefixo data/raw/prisons_prisoners_unodc/ documentados no README; objeto Git não autentica base externa bruta."
+        },
+        {
+          "referencia_literal": "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M1.json",
+          "tipo": "INSUMO_STAN_M1_CONGELADO_VERSIONADO",
+          "evidencia_documental": "scripts/prisons_prisoners_unodc/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome sob model_inputs/ e prefixo data/raw/prisons_prisoners_unodc/ documentados no README; objeto Git não autentica base externa bruta."
+        },
+        {
+          "referencia_literal": "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M2.json",
+          "tipo": "INSUMO_STAN_M2_CONGELADO_VERSIONADO",
+          "evidencia_documental": "scripts/prisons_prisoners_unodc/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome sob model_inputs/ e prefixo data/raw/prisons_prisoners_unodc/ documentados no README; objeto Git não autentica base externa bruta."
+        },
+        {
+          "referencia_literal": "data/raw/prisons_prisoners_unodc/model_inputs/stan_data_M3.json",
+          "tipo": "INSUMO_STAN_M3_CONGELADO_VERSIONADO",
+          "evidencia_documental": "scripts/prisons_prisoners_unodc/README.md",
+          "estado_no_git": "ARQUIVO_VERSIONADO_NESTE_SNAPSHOT",
+          "presenca_no_ambiente_do_usuario": "NAO_VERIFICADA",
+          "integridade_e_direitos": "NAO_HOMOLOGADOS",
+          "observacao": "Nome sob model_inputs/ e prefixo data/raw/prisons_prisoners_unodc/ documentados no README; objeto Git não autentica base externa bruta."
         }
       ],
       "observacao": "'Não localizado no Git' não significa inexistente no arquivo histórico ou no ambiente do pesquisador."
