@@ -546,5 +546,22 @@ class TestComparadorT064(unittest.TestCase):
             "rel", "1e-10000000000000000000", "1", "1", "BLOQUEADO", 2)
 
 
+    def test_b8_cli_csv_campo_excessivo_bloqueado(self):
+        import subprocess
+        import sys
+        # CSV maior que field_size_limit padrão; deve bloquear sem traceback.
+        self.update_candidate("id,estimando\na," + "1" * 131073 + "\nb,0\n")
+        registro_path = self.root / "registro_csv_campo_excessivo.json"
+        registro_path.write_text(json.dumps(self.record), encoding="utf-8")
+        processo = subprocess.run(
+            [sys.executable, str(SCRIPT), "--registro", str(registro_path),
+             "--raiz", str(self.root), "--catalogo", str(self.catalogo_path),
+             "--catalogo-sha256-confiavel", self.catalogo_sha256],
+            capture_output=True, text=True, check=False, timeout=15)
+        self.assertEqual(processo.returncode, 2, processo.stdout + processo.stderr)
+        self.assertEqual(json.loads(processo.stdout)["estado"], "BLOQUEADO")
+        self.assertNotIn("Traceback", processo.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()
