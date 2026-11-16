@@ -8,7 +8,7 @@
 
 Foram inspecionados os **33 READMEs dos estudos** (identidades do [manifesto T06.1](../t06_1/manifesto_estudos_T06_1.json)), o README principal, catálogo de scripts, índice de relatórios, README do estudo Cães F5, [matriz dos cinco estados T06.2](../t06_2/README.md), [modos T06.3](../t06_3/README.md), [dependências T06.5](../t06_5/README.md) e [piloto T06.6](../t06_6/README.md).
 
-**Mudança intencional restrita:** README raiz; `scripts/README.md`; `reports/README.md`; `scripts/caes_raca_f5/README.md`; `reports/t06_6/README.md`; este relatório; teste Python de contratos documentais; etapa nova no workflow para executá-lo. Não há alteração de READMEs locais sem inconsistência concreta identificada, modelos, dados, outputs históricos, scripts científicos, priors, likelihood, estimandos, nem downloads externos.
+**Mudança intencional restrita:** README raiz; `scripts/README.md`; `reports/README.md`; `reports/t06_6/README.md`; este relatório; teste Python de contratos documentais; etapa nova no workflow para executá-lo. Os 33 READMEs locais (inclusive Cães F5) não são alterados: o manifesto T06.1 fixa os SHA históricos; um anexo posterior no README raiz documenta o piloto novo sem reescrever o snapshot. Não há alteração de modelos, dados, outputs históricos, scripts científicos, priors, likelihood, estimandos, nem downloads externos.
 
 ## Matriz de afirmações verificáveis
 
