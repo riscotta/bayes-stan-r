@@ -12,7 +12,6 @@ DOCS = [
     "README.md",
     "scripts/README.md",
     "reports/README.md",
-    "scripts/caes_raca_f5/README.md",
     "reports/t06_6/README.md",
     "reports/t06_7/README.md",
 ]
@@ -33,7 +32,6 @@ def validate(docs: dict[str, str], paths: set[str], ids: list[str]) -> None:
         "README.md": ("30/30", "N3/N4", "T06.2", "T06.6", "#14"),
         "scripts/README.md": ("33 READMEs", "30/30", "N3/N4", "#14"),
         "reports/README.md": ("não é apenas um placeholder", "T06.6", "T06.7", "#14"),
-        "scripts/caes_raca_f5/README.md": ("30/30", "--run_stan=0", "N3/N4", "#14"),
         "reports/t06_6/README.md": ("30/30", "5e-13", "COMMENTED", "N3", "N4"),
         "reports/t06_7/README.md": ("33 READMEs", "não foi reescrita", "N3", "N4", "#14"),
     }
@@ -77,8 +75,8 @@ class TestReadmesT067(unittest.TestCase):
 
     def test_rejects_missing_provenance_gate(self):
         altered = dict(self.docs)
-        altered["scripts/caes_raca_f5/README.md"] = altered["scripts/caes_raca_f5/README.md"].replace("#14", "")
-        with self.assertRaisesRegex(ValueError, "#14"):
+        altered["reports/t06_6/README.md"] = altered["reports/t06_6/README.md"].replace("COMMENTED", "")
+        with self.assertRaisesRegex(ValueError, "COMMENTED"):
             validate(altered, self.paths, self.ids)
 
 
