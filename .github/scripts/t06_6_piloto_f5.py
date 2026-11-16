@@ -160,6 +160,22 @@ def gate_inputs():
     return hashes
 
 
+def capture_generated(path, evidence, record):
+    """Preserva bytes e hash mesmo se o cotejo R/Python falhar depois."""
+    if not path.is_file():
+        return False
+    content = path.read_bytes()
+    evidence.mkdir(parents=True, exist_ok=True)
+    (evidence / path.name).write_bytes(content)
+    record["output"] = {
+        "path": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else path.name,
+        "sha256": hashlib.sha256(content).hexdigest(),
+        "bytes": len(content),
+        "captured_before_numeric_gate": True,
+    }
+    return True
+
+
 def execute():
     run_id = os.environ.get("GITHUB_RUN_ID", datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
     attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "local")
@@ -193,15 +209,16 @@ def execute():
         (evidence / "r_stdout.txt").write_text(completed.stdout, encoding="utf-8")
         (evidence / "r_stderr.txt").write_text(completed.stderr, encoding="utf-8")
         record["r_return_code"] = completed.returncode
+        # A tabela (mesmo parcial) é evidência indispensável quando o cotejo reprova.
+        captured = capture_generated(GENERATED, evidence, record)
         if completed.returncode != 0:
-            raise RuntimeError("Wrapper R retornou erro; confira r_stderr.txt")
+            raise RuntimeError("Wrapper R retornou erro; confira r_stderr.txt e a tabela capturada")
+        if not captured:
+            raise RuntimeError("Wrapper R saiu com 0 mas não produziu a tabela esperada")
         count = compare_generated(expected, GENERATED)
         record["comparison_count"] = count
         record["r_version"] = subprocess.check_output(
             ["Rscript", "--version"], cwd=ROOT, stderr=subprocess.STDOUT, text=True).strip()
-        record["output"] = {"path": str(GENERATED.relative_to(ROOT)),
-                            "sha256": sha256(GENERATED)}
-        (evidence / GENERATED.name).write_bytes(GENERATED.read_bytes())
         record["status"] = "COMPARACAO_N2_CONFORME_PENDENTE_QA"
         print(f"T06.6: {count} verificações numéricas; tolerância {ATOL}; saída {record['output']['sha256']}")
     except Exception as exc:
