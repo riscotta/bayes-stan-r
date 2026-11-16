@@ -389,3 +389,10 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 - **1 pasta = 1 tema/exemplo** (com `README.md` curto)
 - preferir nomes descritivos (e, se houver pipeline, prefixos `01_`, `02_`...)
 - artefatos regeneráveis vão em `outputs/`
+
+## Escopo da evidência disponível — T06.7 (16/11/2026)
+
+Os **33 READMEs de estudo** são pontos de entrada para comandos e resultados históricos, não atestados de execução de cada script na presente revisão. Consulte os [cinco estados independentes T06.2](../reports/t06_2/README.md), os [modos T06.3](../reports/t06_3/README.md) e as [dependências externas T06.5](../reports/t06_5/README.md). Existência de código, arquivo, sintaxe ou comando `--run_stan=1` não é execução de Stan/MCMC.
+
+A CI pública verifica contratos, sintaxe e auditorias delimitadas; **não executa os modelos de todos os 33 estudos**. A exceção adicional observada após a matriz T06.2 é o piloto [T06.6 Cães F5](../reports/t06_6/README.md): 30/30 comparações de quatro agregados por R sem Stan, em CI; apenas N2. PNAD E09 e mortalidade SP já tinham auditorias N2 específicas. Nenhuma das três evidências demonstra N3/N4, validação científica geral ou direitos dos dados. As issues [#14](https://github.com/riscotta/bayes-stan-r/issues/14), [#15](https://github.com/riscotta/bayes-stan-r/issues/15) e [#16](https://github.com/riscotta/bayes-stan-r/issues/16) seguem abertas.
+

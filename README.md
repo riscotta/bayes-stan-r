@@ -65,6 +65,22 @@ Resultados históricos auditados publicados dentro de §data/raw/<estudo>/result
 
 **IOM Missing Migrants Project.** A modelagem trata a carga **registrada** de mortos e desaparecidos, não a mortalidade real total. Há ressalvas de §R-hat§ e checagens preditivas dos zeros e da dispersão. [Escopo do estudo](scripts/missing_migrants/README.md).
 
+## Evidências da Etapa 06 — corte de 16/11/2026 (T06.7)
+
+A [matriz T06.2](reports/t06_2/README.md) registra **cinco estados independentes** por estudo: integridade de arquivos, síntese histórica, execução de pipeline, reexecução inferencial e validação científica. A [T06.3](reports/t06_3/README.md) separa auditoria rápida, reexecução de modelo e reprodução desde dados. N1/N2 não implicam N3/N4, e nenhum desses níveis certifica automaticamente validade científica.
+
+**Evidências públicas delimitadas (não generalizar para 33 estudos):**
+
+| Estudo | Evidência efetivamente registrada | O que não foi demonstrado |
+| --- | --- | --- |
+| PNAD Contínua — Estudo I | Auditoria pública N2 da síntese E09 congelada; [matriz E10](reports/pnadc_estudo_i/e10_matriz_evidencias_reproducao_T04_6.md) | Refazer E04–E08, posterior conjunta, nova amostragem ou validade externa |
+| Mortalidade SP 0–74 | Reconstituição N2 de agregados E09 na CI; [modo auditar](scripts/mortalidade_sp_0_74/README.md) | Reconstituir a E04 territorial desde fontes ou reestimar modelos em `--modo=completo` |
+| Cães F5 | Piloto T06.6: **30/30 cotejos N2** de quatro CSVs agregados, `atol=5e-13`, `rtol=0`, sem Stan, [CI pós-merge #43881903884](https://github.com/riscotta/bayes-stan-r/actions/runs/43881903884) | Cadeia Dryad → E04, novos fits MCMC, N3/N4, homologação de derivados ou generalização |
+
+O inventário T06.1 cobre 33 READMEs, mas **não certifica N2 para os outros 30**. As matrizes anteriores são fotografias de seus próprios cortes: a T06.2 enumerou somente dois exemplos N2, antes da T06.6; o piloto posterior **não reclassifica retroativamente a matriz T06.2**. Histórico de sínteses e ajustes não deve ser confundido com computação realizada nesta revisão documental T06.7.
+
+O [PR #56](https://github.com/riscotta/bayes-stan-r/pull/56) foi integrado após parecer técnico independente **APROVADO COM RESSALVAS**, registrado como review `COMMENTED` (não aprovação formal humana). As issues [#14 (P0)](https://github.com/riscotta/bayes-stan-r/issues/14), [#15](https://github.com/riscotta/bayes-stan-r/issues/15) e [#16](https://github.com/riscotta/bayes-stan-r/issues/16) continuam abertas. Dados institucionais/E04 externos, direitos e autorizações, ambiente de computação e versões de software demandam conferência específica por estudo. A [matriz de dependências T06.5](reports/t06_5/README.md) registra lacunas sem presumir disponibilidade ou licença.
+
 ## O que é validado automaticamente?
 
 O [workflow R CI](.github/workflows/ci.yml) verifica a sintaxe dos scripts R, executa a suíte §testthat§ e uma reconstituição pública dos resultados agregados de mortalidade de São Paulo. Há também uma verificação local de caminhos Markdown e uma rotina separada para URLs externos.

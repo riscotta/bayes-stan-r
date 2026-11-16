@@ -1,12 +1,19 @@
-# Reports
+# Relatórios, matrizes e evidências
 
-Pasta opcional para relatórios (Quarto/R Markdown).
+Esta pasta **não é apenas um placeholder**. Contém relatórios científicos por estudo, matrizes de evidências e registros técnicos de execução, QA e CI. A presença de um relatório ou de um resultado histórico congelado não indica que seu pipeline ou inferência tenham sido reexecutados na revisão atual.
 
-**Status atual:** este repo é focado em scripts (`scripts/`). A pasta `reports/` fica como *placeholder* para quando fizer sentido transformar algum exemplo em relatório reproduzível.
+## Guias de leitura do estado comprovado
 
-Sugestão de convenção:
+- [T06.1 — manifesto e integridade documental](t06_1/README.md): inventário N1 dos 33 estudos, sem certificar licenças ou resultados.
+- [T06.2 — cinco estados independentes](t06_2/README.md): integridade, síntese, pipeline, inferência e validação científica; o corte original documentou duas auditorias N2.
+- [T06.3 — modos operacionais](t06_3/README.md): auditoria rápida, reexecução do modelo e reprodução desde fontes são processos distintos.
+- [T06.4 — custódia de resultados](t06_4/README.md): preservar produtos históricos e separar novas saídas.
+- [T06.5 — dependências externas](t06_5/README.md): caminhos, licenças e acessos não homologados.
+- [T06.6 — piloto Cães F5](t06_6/README.md): 30/30 cotejos N2 sobre quatro CSVs agregados em CI, sem Stan/MCMC, sem validação N3/N4.
+- [T06.7 — revisão dos READMEs](t06_7/README.md): escopo editorial e verificações de não promoção de evidências, sem execução inferencial.
 
-- fontes do relatório: `reports/<nome-do-exemplo>/` (ou usar `reports/template/` como base)
-- artefatos gerados (HTML/PDF): não versionar; salvar em `reports/_site/...` (ignorado via `.gitignore`)
+Os relatórios [Cães F5](caes_raca_f5/relatorio_cientifico.md), [mortalidade SP](mortalidade_sp_0_74/relatorio_cientifico.md) e [PNAD Estudo I](pnadc_estudo_i/nota_cientifica.md) devem ser interpretados com suas ressalvas locais; nenhuma evidência pode ser transferida de um estudo a outro.
 
-Se você não usa relatórios aqui, pode simplesmente ignorar esta pasta.
+**Governança:** [issue #14 P0](https://github.com/riscotta/bayes-stan-r/issues/14) (proveniência, privacidade e redistribuição), [#15](https://github.com/riscotta/bayes-stan-r/issues/15) (Stan e diagnóstico científico) e [#16](https://github.com/riscotta/bayes-stan-r/issues/16) seguem abertas. Código MIT não licencia automaticamente dados de terceiros. Não foram realizados nesta atualização de README novos ajustes, downloads institucionais ou verificações de permissões.
+
+Fontes de novos relatórios podem usar [reports/template](template/); saídas HTML/PDF regeneráveis devem ir a caminhos ignorados pelo Git, sem substituir documentos históricos.
