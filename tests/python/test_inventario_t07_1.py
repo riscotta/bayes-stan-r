@@ -177,7 +177,7 @@ class TestInventarioT071(unittest.TestCase):
         errors = validate(changed, self.paths)
         self.assertTrue(any("Risco de sobrescrita" in x and path in x for x in errors), errors)
         changed = deepcopy(self.rows)
-        path = "scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R"
+        path = "scripts/_setup/init_renv.R"
         row = next(r for r in changed if r["caminho"] == path)
         lines = (ROOT / path).read_text(encoding="utf-8-sig").splitlines()
         blank_index = next(i for i, x in enumerate(lines, 1) if not x.strip())
