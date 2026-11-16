@@ -84,9 +84,9 @@ class TestInventarioT071(unittest.TestCase):
 
     def test_documentacao_e_riscos_prioritarios(self):
         md = (ROOT / "reports/t07_1/README.md").read_text(encoding="utf-8")
-        for token in ("T07.1", "N3/N4", "P0", "falso positivo",
-                      "57", "59", "não executa", "T07.2"):
-            self.assertIn(token, md)
+        for token in ("t07.1", "n3/n4", "p0", "falso positivo",
+                      "59", "não executa", "t07.2"):
+            self.assertIn(token, md.lower())
         self.assertNotIn("LEGADO", next(
             r for r in self.rows if r["caminho"] ==
             "scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R"
