@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "task": "T06.6",
+  "literal": "Executar piloto em estudo com insumos públicos e comparar resultados com registro verificável.",
+  "protocol_committed_before_execution": true,
+  "study": "caes_raca_f5",
+  "mode": "auditoria_rapida_N2",
+  "base_main": "77ec0e1cf4ef4bf3feb9721ede8221846c6b0bf6",
+  "source": {
+    "title": "Morrill et al. 2022 Darwin's Ark",
+    "doi": "10.5061/dryad.g4f4qrfr0",
+    "url": "https://datadryad.org/dataset/doi%3A10.5061/dryad.g4f4qrfr0",
+    "published": "2022-05-05",
+    "source_license": "CC0 1.0 (Dryad data only)",
+    "license_url": "https://datadryad.org/terms",
+    "source_downloaded": false,
+    "primary_to_E04_chain_verified": false
+  },
+  "inputs": [
+    {
+      "path": "data/raw/caes_raca_f5/resultados_auditados/metricas_full_E08_MP.csv",
+      "git_blob_sha": "2bf24f4ef3ff43a85bdb3149781581e20d377dbc"
+    },
+    {
+      "path": "data/raw/caes_raca_f5/resultados_auditados/metricas_por_fold_auditadas.csv",
+      "git_blob_sha": "0d337c8ecf3b47fdfefe3b16735da48cf0a72016"
+    },
+    {
+      "path": "data/raw/caes_raca_f5/resultados_auditados/contrastes_por_fold_auditados.csv",
+      "git_blob_sha": "fcaf2791d34663c7a38134463a9c3108c153bb9f"
+    },
+    {
+      "path": "data/raw/caes_raca_f5/resultados_auditados/bootstrap_independente_2000.csv",
+      "git_blob_sha": "757d7a47482c493695677e156b836eac81cfe3a0"
+    }
+  ],
+  "command": [
+    "python .github/scripts/t06_6_piloto_f5.py",
+    "Rscript --vanilla scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R --run_stan=0"
+  ],
+  "environment": {
+    "os": "ubuntu-24.04",
+    "R": "4.5.1",
+    "python_ci": "3.12.8",
+    "cmdstan": "not_used",
+    "seed": "not_applicable"
+  },
+  "comparison": {
+    "rows": 3,
+    "numeric_fields_per_row": 10,
+    "total_numeric_comparisons": 30,
+    "absolute_tolerance": "5e-13",
+    "relative_tolerance": "0",
+    "families": [
+      "t5",
+      "normal",
+      "skew"
+    ],
+    "oracle": "Python Decimal from four public aggregate CSVs, independent of R wrapper output",
+    "failure_rules": [
+      "wrong git blob",
+      "missing source/output",
+      "nonzero R exit",
+      "wrong schema/key/row count",
+      "nonfinite values",
+      "RMSE numeric error > abs tolerance",
+      "wrong fold directions or bootstrap limits"
+    ]
+  },
+  "governance": {
+    "issues_open": [
+      14,
+      15,
+      16
+    ],
+    "t06_7_not_started": true,
+    "qa_independent_required": true,
+    "merge_only_after_favorable_qa": true,
+    "N3": false,
+    "N4": false,
+    "external_validity": false,
+    "dataset_redistribution_authorized": false
+  },
+  "execution": {
+    "status": "NOT_RUN_AT_PROTOCOL_CREATION",
+    "ci_run_id": null,
+    "qa_review_id": null
+  }
+}
