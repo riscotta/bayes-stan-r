@@ -19,7 +19,7 @@ IMPORTANT = {
     "scripts/mortalidade_sp_0_74/reproduzir_E10.R": "SHELL",
     "scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R": "SHELL",
 }
-SHELL_RX = re.compile(r"\\b(?:system2?|subprocess\\.\\w+|os\\.system)\\s*\\(|\\bStart-Process\\b|^\\s*&\\s*\\$Rscript\\b", re.I | re.M)
+SHELL_RX = re.compile(r"\b(?:system2?|subprocess\.\w+|os\.system)\s*\(|\bStart-Process\b|^\s*&\s*\$Rscript\b", re.I | re.M)
 
 
 def load_rows(text=None):
