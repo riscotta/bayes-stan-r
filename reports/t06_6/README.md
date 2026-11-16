@@ -44,3 +44,11 @@ Testes adversariais: mutação RMSE, não finito, família repetida, falta de co
 Após run real: conferir check obrigatório, logs, SHA da execução PR, 30 comparações, valores e hashes, e obter parecer independente em outro chat sobre o HEAD exato. Sem QA favorável, não fazer squash e não marcar T06.6 QA. O executor não revisa sua própria implementação.
 
 Este piloto verifica coerência de agregados históricos; não reexecuta Stan, não estima posteriores, não prova capacidade preditiva fora da amostra histórica, não demonstra origem/reconstrução completa dos dados e não resolve issue #14 P0. Issues #15 e #16 e a Etapa 06 continuam abertas. T06.7 é tarefa posterior.
+
+## 5. Resultado observado e fechamento posterior (16/11/2026)
+
+As seções anteriores documentam o protocolo **antes** da execução e, por isso, conservam as condições e expressões prospectivas originais. O resultado efetivo posterior foi: [PR #56](https://github.com/riscotta/bayes-stan-r/pull/56) fechado/integrado por squash; HEAD revisado `07e4718e299fde3ed48318d800752133507f3f06`; [CI de PR #43857159571](https://github.com/riscotta/bayes-stan-r/actions/runs/43857159571) concluída com sucesso, Python **11/11 testes específicos**, R **30/30 cotejos N2** com `atol=5e-13`, `rtol=0`, Stan apenas sintaxe de modelos representativos (sem sampling). [Artifact #14220664818](https://github.com/riscotta/bayes-stan-r/actions/runs/43857159571/artifacts/14220664818) registra a execução e tem retenção efêmera.
+
+Parecer técnico-científico independente: **APROVADO COM RESSALVAS**, [review #5921256040](https://github.com/riscotta/bayes-stan-r/pull/56#pullrequestreview-5921256040) no SHA revisado, evento GitHub `COMMENTED` por credencial autora; **não é aprovação formal humana**. Squash em `main` `3e9ee72500779da978363766a2657b4455545284`; [CI push/main #43881903884](https://github.com/riscotta/bayes-stan-r/actions/runs/43881903884) `completed/success`, três jobs verdes.
+
+A conclusão fica **limitada à auditoria N2 de agregados do estudo F5**. Permanecem sem comprovação a cadeia Dryad → E04, os direitos sobre derivados, a reestimação MCMC (N3), a reprodução desde fontes (N4) e a validade científica externa. Issues #14 P0, #15 e #16 abertas. O presente registro não descreve execução nova realizada pela revisão documental T06.7.
