@@ -36,6 +36,9 @@ Executar a partir da raiz, após obter Rscript e Git:
 
 Testes adversariais: mutação RMSE, não finito, família repetida, falta de coluna, linha duplicada, fold retirado, IC invertido, tolerância mínima válida. Logs e JSON incluem input SHA-256, Git SHA, comando, saída, R version, métricas e status. COMPARACAO_N2_CONFORME_PENDENTE_QA é apenas resultado operacional, não parecer científico ou QA independente.
 
+
+**Evidência em falhas:** após o subprocesso R, o executor copia a tabela gerada (se existir) e calcula seu SHA-256 **antes** de validar as 30 métricas; mesmo em divergência numérica ou código de saída R não zero, o CSV original de tentativa acompanha registro de erro e logs no artifact. Falha de produção não é tratada como ausência de divergência. Esta salvaguarda corrige o achado automatizado do PR #56 no SHA anterior sem alterar tolerâncias, fontes ou estimandos.
+
 ## 4. Critérios de encerramento e limites
 
 Após run real: conferir check obrigatório, logs, SHA da execução PR, 30 comparações, valores e hashes, e obter parecer independente em outro chat sobre o HEAD exato. Sem QA favorável, não fazer squash e não marcar T06.6 QA. O executor não revisa sua própria implementação.
