@@ -78,6 +78,9 @@ jobs:
       - name: Verify T06.5 external dependencies and historical paths
         run: python -m unittest discover -s tests/python -p 'test_dependencias_t06_5.py' -v
 
+      - name: Verify T06.6 pilot contract and adversarial cases
+        run: python -m unittest discover -s tests/python -p 'test_piloto_t06_6.py' -v
+
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
@@ -204,6 +207,20 @@ jobs:
 
       - name: Verify published Sao Paulo mortality indicators
         run: Rscript --vanilla scripts/mortalidade_sp_0_74/reproduzir_E10.R --modo=auditar
+
+      - name: Execute T06.6 F5 public N2 pilot and independent numeric comparison
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python scripts/t06_6_piloto_f5.py
+
+      - name: Upload T06.6 audit evidence (public aggregate metrics only)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: t06-6-caes-f5-n2
+          path: outputs/_reexecucoes_t06_4/caes_raca_f5/t06_6_*/
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Summarize published scientific validity limits
         run: Rscript --vanilla scripts/_setup/report_scientific_gates.R
