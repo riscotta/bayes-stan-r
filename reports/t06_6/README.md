@@ -20,7 +20,7 @@ Referência Git fixa: main 77ec0e1cf4ef4bf3feb9721ede8221846c6b0bf6. Antes da op
 Comando R efetivo, sem reamostragem:
     Rscript --vanilla scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R --run_stan=0
 
-O orquestrador scripts/t06_6_piloto_f5.py executa o R como subprocesso e, independentemente, recalcula por Python Decimal os resultados derivados a partir das quatro fontes. Comparação pré-definida: três famílias t5, normal e skew; dez métricas numéricas por família (30 cotejos), colunas e ordem exatas; tolerância absoluta 5e-13 e relativa zero, somente para serialização numérica. É proibido aumentar a tolerância após observar os dados.
+O orquestrador .github/scripts/t06_6_piloto_f5.py executa o R como subprocesso e, independentemente, recalcula por Python Decimal os resultados derivados a partir das quatro fontes. Comparação pré-definida: três famílias t5, normal e skew; dez métricas numéricas por família (30 cotejos), colunas e ordem exatas; tolerância absoluta 5e-13 e relativa zero, somente para serialização numérica. É proibido aumentar a tolerância após observar os dados.
 
 Invariantes adicionais: 7 linhas métricas, 30 linhas modelos/folds, 15 contrastes por fold; 2.084 cães; um fold desfavorável (fold 1) e quatro favoráveis por família; cobertura+caudas=1 (tolerância 1e-12); intervalo bootstrap positivo. Falhas em integridade, dados, R ou comparação => FALHOU, nunca PASS presumido.
 
@@ -32,7 +32,7 @@ CI: Ubuntu 24.04; Python 3.12.8 para testes; R 4.5.1 no check obrigatório, Rscr
 
 Executar a partir da raiz, após obter Rscript e Git:
     python -m unittest discover -s tests/python -p 'test_piloto_t06_6.py' -v
-    python scripts/t06_6_piloto_f5.py
+    python .github/scripts/t06_6_piloto_f5.py
 
 Testes adversariais: mutação RMSE, não finito, família repetida, falta de coluna, linha duplicada, fold retirado, IC invertido, tolerância mínima válida. Logs e JSON incluem input SHA-256, Git SHA, comando, saída, R version, métricas e status. COMPARACAO_N2_CONFORME_PENDENTE_QA é apenas resultado operacional, não parecer científico ou QA independente.
 
