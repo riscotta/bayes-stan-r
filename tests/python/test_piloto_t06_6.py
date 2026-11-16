@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / "scripts" / "t06_6_piloto_f5.py"
+SRC = ROOT / ".github" / "scripts" / "t06_6_piloto_f5.py"
 spec = importlib.util.spec_from_file_location("piloto_t066", SRC)
 pilot = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pilot)
