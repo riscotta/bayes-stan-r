@@ -35,7 +35,7 @@
     }
   ],
   "command": [
-    "python scripts/t06_6_piloto_f5.py",
+    "python .github/scripts/t06_6_piloto_f5.py",
     "Rscript --vanilla scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R --run_stan=0"
   ],
   "environment": {
