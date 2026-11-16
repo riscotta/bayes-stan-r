@@ -69,6 +69,27 @@ class TestPilotoT066(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Famílias"):
             pilot.compare_generated(self.expected, self.out)
 
+    def test_tabela_divergente_preservada_antes_do_gate(self):
+        self.rows[0]["rmse_M1"] = "999"
+        write_rows(self.out, self.rows, pilot.FIELDS)
+        record = {}
+        evidence = Path(self.temp.name) / "evidence"
+        self.assertTrue(pilot.capture_generated(self.out, evidence, record))
+        self.assertEqual((evidence / self.out.name).read_bytes(), self.out.read_bytes())
+        self.assertEqual(record["output"]["sha256"], pilot.sha256(self.out))
+        self.assertTrue(record["output"]["captured_before_numeric_gate"])
+        with self.assertRaisesRegex(ValueError, "Divergência"):
+            pilot.compare_generated(self.expected, self.out)
+        self.assertEqual((evidence / self.out.name).read_bytes(), self.out.read_bytes())
+
+    def test_ausencia_de_saida_nao_produz_evidencia_falsa(self):
+        self.out.unlink()
+        record = {}
+        evidence = Path(self.temp.name) / "evidence"
+        self.assertFalse(pilot.capture_generated(self.out, evidence, record))
+        self.assertFalse(evidence.exists())
+        self.assertNotIn("output", record)
+
     def test_mutacao_fonte_sem_fold_falha(self):
         folder = Path(self.temp.name) / "inputs"
         folder.mkdir()
