@@ -22,12 +22,6 @@ Rscript scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R --run_stan=1
 
 Exige que a base analítica E04 **original e íntegra** esteja em `data/raw/caes_raca_f5/base_F5_principal_E04.csv` e corresponda ao SHA-256 abaixo; exige R/cmdstanr, digest, jsonlite, posterior, pbivnorm e CmdStan instalado. O wrapper chama o **executor R v1.5 preservado** em `original/E08_MP_Entregaveis/02_codigo/` com `--stage=full`, criando `outputs/caes_raca_f5/full_local/` e recusando reutilizar uma pasta preenchida. Não modifica a MP1. Não confundir a versão canônica CmdStan 2.40.0 do repositório com o ambiente **histórico CmdStan 2.37.0** da E08_MP; uma reexecução em 2.40.0 deve ser auditada separadamente. A validação independente e o gate não são aprovados automaticamente.
 
-## Evidência verificada depois do histórico (T06.6, 16/11/2026)
-
-O [piloto público T06.6](../../reports/t06_6/README.md), integrado pelo [PR #56](https://github.com/riscotta/bayes-stan-r/pull/56), **executou em CI** o wrapper R com `--run_stan=0` e o cotejo independente Python sobre **quatro CSVs de agregados já versionados**: 30/30 comparações conformes (`atol=5e-13`, `rtol=0`). A [CI pós-squash #43881903884](https://github.com/riscotta/bayes-stan-r/actions/runs/43881903884) foi concluída com sucesso na `main` `3e9ee72500779da978363766a2657b4455545284`. O parecer técnico independente foi **APROVADO COM RESSALVAS**, review `COMMENTED`, sem aprovação formal humana.
-
-O alcance é estritamente **N2 — consistência de produtos agregados congelados**. O piloto não baixou nem validou a fonte Dryad byte a byte, não refez a E04 dos cães, não executou CmdStan nem novo sampling, não certificou N3/N4, calibração, validade externa ou autorização/licença dos derivados. A [issue #14 P0](https://github.com/riscotta/bayes-stan-r/issues/14) permanece aberta. Estas constatações não retroagem para transformar execução histórica em execução da T06.7.
-
 ## Modelos e resultados
 
 | Família | RMSE M1 | RMSE M2 | Ganho relativo |
