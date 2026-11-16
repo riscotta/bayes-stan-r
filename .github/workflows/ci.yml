@@ -211,7 +211,7 @@ jobs:
       - name: Execute T06.6 F5 public N2 pilot and independent numeric comparison
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: python scripts/t06_6_piloto_f5.py
+        run: python .github/scripts/t06_6_piloto_f5.py
 
       - name: Upload T06.6 audit evidence (public aggregate metrics only)
         if: always()
