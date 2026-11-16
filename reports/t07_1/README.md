@@ -10,16 +10,17 @@ O [inventário CSV](inventario_scripts_T07_1.csv) enumera **59/59 scripts execut
 
 | Categoria | Scripts | O que efetivamente indica |
 |---|---:|---|
-| `LEITURA` | 49 | Chamada ou passagem de caminho de leitura, fonte, importação ou teste de existência; não necessariamente arquivo ausente |
-| `ESCRITA` | 41 | Diretório, arquivo, saída de modelo ou exportação potencialmente gravável; não implica sobrescrita comprovada |
-| `SHELL` | 4 | Chamada de processo externo ou PowerShell para Rscript; observar ambiente, dependências e efeitos |
+| `LEITURA` | 50 | Chamada ou passagem de caminho de leitura, fonte, importação ou teste de existência; não necessariamente arquivo ausente |
+| `ESCRITA` | 50 | Diretório, arquivo, saída de modelo ou exportação potencialmente gravável; não implica sobrescrita comprovada |
+| `SHELL` | 5 | Chamada explícita `system2()`/`Start-Process`/PowerShell para Rscript; não conta processos internos de bibliotecas |
+| `AMBIENTE` | 13 | Instalação condicional de pacotes, inicialização `renv` ou CmdStan/toolchain; pode baixar/gravar fora de `outputs/` |
 | `LEGADO` | 9 | Caminhos de entrada/saída históricos que merecem migração/isolamento; não implicam falha atual |
 | `ABSOLUTO` | 1 | Uso literal de um caminho absoluto dependente do ambiente |
-| `SEM_SINAL_REGEX` | 5 | Não houve correspondência relevante na triagem lexical; **não significa ausência de efeitos** |
+| `SEM_SINAL_REGEX` | 2 | Não houve correspondência relevante na triagem lexical; **não significa ausência de efeitos** |
 
 As categorias se sobrepõem e não podem ser somadas para inferir o número de scripts afetados. Os números são **triagem estática com falso positivo e falso negativo possíveis**, e não resultados de execução. A coluna `linha_exemplo` localiza um trecho concreto; quando há várias categorias, não necessariamente comprova todas elas na mesma linha. O CSV apresenta um registro por script, inclusive os sem correspondência lexical.
 
-**Escopo excluído da contagem:** código Stan `.stan` (não controla os caminhos de sistema da mesma forma), testes fora de `scripts/`, arquivos de configuração, workflows e arquivos de dados/documentação. Isso não afirma inexistência de riscos nesses arquivos. Em particular, o instalador `scripts/_setup/install_cmdstan.R` está marcado `SEM_SINAL_REGEX`, mas invoca `cmdstanr::install_cmdstan` na linha 39; **a ausência de correspondência não torna esse script sem efeito**.
+**Escopo excluído da contagem:** código Stan `.stan` (não controla os caminhos de sistema da mesma forma), testes fora de `scripts/`, arquivos de configuração, workflows e arquivos de dados/documentação. Isso não afirma inexistência de riscos nesses arquivos. Em particular, `scripts/_setup/install_cmdstan.R` agora tem `ESCRITA,AMBIENTE` pela chamada a `cmdstanr::install_cmdstan` (linha 39), e `init_renv.R`/`install_deps.R` podem alterar a biblioteca e o lockfile. Os dois registros `SEM_SINAL_REGEX` restantes são `dependencies.R` (declarações de pacotes) e `coortes_aposentadoria_console_only_v2.R` (cálculos/console), sem garantia de ausência de efeitos indiretos.
 
 ## Casos prioritários com evidência de código
 
@@ -34,13 +35,21 @@ As categorias se sobrepõem e não podem ser somadas para inferir o número de s
 | `scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/executar_E08_MP.R:16–18` | Usa `07_retornos` e `04_dados_imutaveis` relativos à estrutura original; cria diretório de saída | **Alta**, custódia e pré-condições |
 | `scripts/pnadc_estudo_i/estudo_I/e07/run.ps1:9,56` | Descobre Rscript.exe no Windows, respeita `RSCRIPT_EXE` e executa `& $Rscript` com modos preflight/smoke/completo/resumo | **Média/alta**, dependência de PowerShell/R |
 | `scripts/mortalidade_sp_0_74/reproduzir_E10.R:18` | Emprega `system2` ao delegar a Rscript; modo `completo` depende de entrada E04 local e não é auditoria N2 | **Média/alta**, executar somente após gate |
-| `scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R:241–302,347` | Gerencia cache/ZIP, pode apagar o destino com `force_download` e invoca `system2`; URLs/termos e hash externos não homologados | **Alta**, acesso remoto e substituição de cache |
+| `scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R:138,241–302,347` | `install.packages` condicional, cache/download, `unlink(destfile)` sob `force_download` e `system2`; fonte externa ainda não homologada | **Alta**, rede, instalação e substituição de cache |
+
+| `scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R:75` | `system2(file.path(R.home("bin"),"Rscript"), ...)` executa subprocesso sob `--run_stan=1`, anteriormente não marcado como `SHELL` | **Alta**, subprocesso condicional |
+| `scripts/_setup/init_renv.R:49,67,93` | `install.packages`, `renv::scaffold` e `renv::lockfile_write` podem alterar biblioteca, estrutura local e `renv.lock` | **Alta**, ambiente e lockfile |
+| `scripts/_setup/install_deps.R:34–36,61` | `pak::pkg_install` ou `install.packages` usam repositórios externos e alteram biblioteca de pacotes | **Alta**, instalação e rede |
+| `scripts/_setup/install_cmdstan.R:37–39` | `check_cmdstan_toolchain(fix=TRUE)` e `install_cmdstan` podem alterar toolchain e instalar/compilar CmdStan | **Alta**, ambiente de compilação |
+| `scripts/_setup/check_external_links.py:82–84` | `open(GITHUB_STEP_SUMMARY, "a")` anexa relatório quando a variável estiver definida; HTTP GET/HEAD | **Média**, saída fora de `outputs/` |
+| `scripts/deck_15wins/deck_15wins_negbin_beta_cmdstanr.R:275`, `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R:255` e `scripts/saheart/saheart_logistic_cmdstanr.R:269` | `write_stan_file` grava arquivos Stan, inclusive temporários, sem `write.csv` ou `dir.create` | **Média**, escrita implícita |
+| `scripts/missing_migrants/missing_migrants_cmdstanr.R:168`, `scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R:41`, `scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R:159`, `scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R:66` | `file.copy(..., overwrite=TRUE)` pode substituir um destino **se essa rota for executada**; nenhuma substituição foi observada | **Alta**, risco condicional de sobrescrita |
 
 **Contraponto:** vários scripts direcionam suas saídas a `outputs/<estudo>/<tipo>/` (por exemplo, wrapper Cães F5, importações e relatórios), mas essa convenção no código **não certifica isolamento de todas as escritas internas**. `LEGADO` é um marcador de migração, não um diagnóstico de defeito inferencial.
 
 ## Falso positivo, falso negativo e prioridade
 
-A string `"saida"` usada como **valor de dado** no script Sherlock não é um caminho legado; não recebe a classificação `LEGADO`. Documentação inicial, comentários e textos de ajuda podem conter palavras como `source`, `output` e `Rscript` sem que sejam ações executáveis. A leitura estática não resolve funções indiretas, `do.call`, funções auxiliares, parametrização, `here::here`, aliases, callbacks, caminhos construídos dinamicamente, escritas internas de bibliotecas nem condições de execução. Por isso `SEM_SINAL_REGEX` **não é sinônimo de seguro**, e `ESCRITA` **não é sinônimo de sobrescrita existente**.
+A string `"saida"` usada como **valor de dado** no script Sherlock não é um caminho legado; não recebe a classificação `LEGADO`. Documentação inicial, comentários e textos de ajuda podem conter palavras como `source`, `output` e `Rscript` sem que sejam ações executáveis. A leitura estática não resolve funções indiretas, `do.call`, funções auxiliares, parametrização, `here::here`, aliases, callbacks, caminhos construídos dinamicamente, escritas internas de bibliotecas nem condições de execução. Por isso `SEM_SINAL_REGEX` **não é sinônimo de seguro**, e `ESCRITA` **não é sinônimo de sobrescrita existente**. `AMBIENTE` identifica instalações presentes em condições de código, não instalações realizadas. Há também instalações condicionais em Censo Escolar, Consumer Shopping, DETER, IPCA, Média/Ruído, PMS, PNADC Desocupação, RS Seguro M1/M2 e Therapeutic Touch. Chamadas `cmdstan_model` e `$sample` podem originar processos internos fora da categoria `SHELL`, reservada a invocações explícitas nos scripts. Limpezas com `unlink` e alterações de cache são potenciais e não foram acionadas nesta triagem.
 
 Antes de reexecutar qualquer script histórico, identificar explicitamente caminho de **entrada**, origem/licença/vintage/hash dos insumos quando exigidos, ambiente, permissões, diretório e consequências de **escrita**, preservação de arquivos originais, modo operacional T06.3 e critério de comparação T06.4. Respeitar `outputs/README.md`. A próxima tarefa **T07.2** deverá formalizar a imutabilidade dos originais com manifesto de hash; T07.3 tratará wrappers em diretório separado.
 
@@ -52,7 +61,7 @@ Da raiz do checkout da branch:
 python -m unittest discover -s tests/python -p 'test_inventario_t07_1.py' -v
 ```
 
-O teste garante (i) cobertura exata dos 59 scripts dentro do escopo, (ii) caminhos sem duplicações e categorias válidas, (iii) linhas existentes e casos adversariais prioritários, (iv) marcadores reais de shell e caminho absoluto, (v) não classificação de um falso positivo de `saida`, e (vi) mutações adversariais de integridade do CSV. **Não executa nenhum dos scripts de pesquisa**, não baixa dados, não testa equivalência numérica, não produz N3/N4 e não certifica validade estatística. A CI no SHA final e a revisão por outro chat são gates posteriores.
+O teste garante (i) cobertura exata dos 59 scripts dentro do escopo, (ii) caminhos únicos e categorias válidas, (iii) referência a linhas existentes e não vazias/não comentadas sob `strict_lines=True`, (iv) varredura inversa de **todos** os arquivos para `SHELL`, chamadas de instalação `AMBIENTE`, `write_stan_file`, caminho `/mnt/data` e aviso de `overwrite=TRUE`, inclusive quando a tag faltar, (v) falso positivo de `saida` e (vi) mutações adversariais de omissão. Essa verificação de linhas é lexical mínima, não comprova o significado semântico da operação, e o reconhecimento por regex não é exaustivo. **Não executa nenhum dos scripts de pesquisa**, não baixa dados, não testa equivalência numérica, não produz N3/N4 e não certifica validade estatística. A CI no SHA final e a revisão por outro chat são gates posteriores.
 
 ## Dependências e travas
 
