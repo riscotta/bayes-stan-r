@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -19,6 +20,7 @@ from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "reports/t07_2/manifesto_codigos_originais_sha256.csv"
+MANIFEST_REL = "reports/t07_2/manifesto_codigos_originais_sha256.csv"
 RUN_ID = re.compile(r"[a-z0-9][a-z0-9_-]{0,63}\Z")
 # Categorias de outputs/README.md; diretórios de execução são sempre exclusivos.
 OUTPUT_KINDS = frozenset({"figures", "tables", "models", "logs", "cmdstan_csv", "data_stan"})
@@ -78,13 +80,22 @@ def hash_checked_input(root: Path, rel: str) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def checked_source(root: Path, rel: str) -> Path:
-    """Exige bytes históricos iguais ao manifesto T07.2 e ausência de symlinks."""
+def checked_source_with_manifest(root: Path, rel: str) -> tuple[Path, str, tuple[int, int, int, int]]:
+    """Valida o código com bytes de manifesto capturados em uma única leitura.
+
+    Devolve o hash dos mesmos bytes do manifesto usados na autorização.
+    Isso detecta alterações persistentes; não constitui isolamento anti-TOCTOU.
+    """
     source = checked_regular(root, rel, "Código histórico")
-    manifest = checked_regular(root, "reports/t07_2/manifesto_codigos_originais_sha256.csv", "Manifesto T07.2")
-    with manifest.open(
-        encoding="utf-8", newline=""
-    ) as handle:
+    manifest = checked_regular(root, MANIFEST_REL, "Manifesto T07.2")
+    before = manifest.stat()
+    manifest_bytes = manifest.read_bytes()
+    after = checked_regular(root, MANIFEST_REL, "Manifesto T07.2").stat()
+    identity = lambda stat: (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns)
+    if identity(before) != identity(after):
+        raise GateError("Manifesto T07.2 mudou durante a validação")
+    manifest_sha256 = hashlib.sha256(manifest_bytes).hexdigest()
+    with io.StringIO(manifest_bytes.decode("utf-8"), newline="") as handle:
         rows = list(csv.DictReader(handle))
     matches = [r for r in rows if r.get("path") == rel]
     if len(matches) != 1:
@@ -94,7 +105,12 @@ def checked_source(root: Path, rel: str) -> Path:
         raise GateError("Hash SHA-256 do manifesto inválido")
     if hashlib.sha256(source.read_bytes()).hexdigest() != expected:
         raise GateError("Código original divergiu do manifesto T07.2")
-    return source
+    return source, manifest_sha256, identity(after)
+
+
+def checked_source(root: Path, rel: str) -> Path:
+    """Mantém o contrato da T07.3 para validação da fonte isoladamente."""
+    return checked_source_with_manifest(root, rel)[0]
 
 
 def canonical_output(root: Path, study: str, kind: str, run_id: str) -> Path:
@@ -162,15 +178,17 @@ def execute(study: str, run_id: str, root: Path = ROOT) -> dict:
     if not spec["allowed"]:
         raise GateError(spec["reason"])
     descriptor = plan(study, run_id, root)
-    script = checked_source(root, spec["script"])
-    inp = checked_regular(root, spec["input"], "Entrada pública")
+    script, manifest_sha256, manifest_identity = checked_source_with_manifest(root, spec["script"])
+    checked_regular(root, spec["input"], "Entrada pública")
     # Somente subprocesso Python read-only revisado; nada de R, shell ou Stan.
     command = [sys.executable, "-I", str(script)]
     target = reserve_output(root, study, "logs", run_id)
     # Inicializar o registro antes de qualquer operação pós-mkdir que possa falhar.
     record = {**descriptor, "timestamp_utc": datetime.now(timezone.utc).isoformat(),
               "command": ["python", "-I", spec["script"]],
-              "state": "ERROR", "returncode": None}
+              "state": "ERROR", "returncode": None,
+              "manifest_sha256": manifest_sha256}
+    postcheck = False
     try:
         record["source_sha256"] = hashlib.sha256(script.read_bytes()).hexdigest()
         record["input_sha256"] = hash_checked_input(root, spec["input"])
@@ -181,14 +199,29 @@ def execute(study: str, run_id: str, root: Path = ROOT) -> dict:
         record["returncode"] = result.returncode
         write_new_artifact(target, "stdout.txt", result.stdout)
         write_new_artifact(target, "stderr.txt", result.stderr)
-        record["state"] = "EXECUTED_N2_CHECK" if result.returncode == 0 else "FAILED"
-        # Detecção pós-execução: nunca alegar prevenção absoluta de subprocessos.
-        if (hash_checked_input(root, spec["input"]) != record["input_sha256"]
-                or hashlib.sha256(checked_regular(root, spec["script"], "Código histórico").read_bytes()).hexdigest()
-                != record["source_sha256"]):
+        # Não declarar sucesso antes de concluir TODAS as verificações.
+        postcheck = True
+        final_input_sha256 = hash_checked_input(root, spec["input"])
+        final_source_sha256 = hashlib.sha256(
+            checked_regular(root, spec["script"], "Código histórico").read_bytes()
+        ).hexdigest()
+        manifest_after = checked_regular(root, MANIFEST_REL, "Manifesto T07.2")
+        final_manifest_sha256 = hashlib.sha256(manifest_after.read_bytes()).hexdigest()
+        final_stat = manifest_after.stat()
+        final_identity = (final_stat.st_dev, final_stat.st_ino,
+                          final_stat.st_size, final_stat.st_mtime_ns)
+        if (final_manifest_sha256 != record["manifest_sha256"]
+                or final_identity != manifest_identity):
+            record["state"] = "FAILED_INTEGRITY"
+            record["error"] = "MANIFEST_T07_2_CHANGED"
+        elif (final_input_sha256 != record["input_sha256"]
+              or final_source_sha256 != record["source_sha256"]):
             record["state"] = "FAILED_INTEGRITY"
             record["error"] = "INPUT_OR_SOURCE_CHANGED"
+        else:
+            record["state"] = "EXECUTED_N2_CHECK" if result.returncode == 0 else "FAILED"
     except (OSError, subprocess.TimeoutExpired, GateError) as exc:
+        record["state"] = "FAILED_INTEGRITY" if postcheck else "ERROR"
         record["error"] = type(exc).__name__
     finally:
         try:

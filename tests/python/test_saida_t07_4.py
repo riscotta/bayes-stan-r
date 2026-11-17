@@ -1,4 +1,5 @@
 """T07.4: testes adversariais sintéticos de caminhos, inputs e não sobrescrita."""
+import concurrent.futures
 import contextlib
 import csv
 import hashlib
@@ -160,6 +161,120 @@ class OutputPolicy(unittest.TestCase):
         (self.root/'outputs').symlink_to(self.root/'data',target_is_directory=True)
         self.assertEqual(self.call()[0],2)
         self.assertEqual(list((self.root/'data').glob('pnadc_estudo_i/logs/*')),[])
+
+    def _run_mutation_and_report(self, mutate):
+        def simulated_run(*args, **kwargs):
+            mutate()
+            return subprocess.CompletedProcess(args=args[0], returncode=0,
+                                               stdout='fixture\n', stderr='')
+        with patch.object(runner.subprocess, 'run', side_effect=simulated_run):
+            code, _ = self.call()
+        path = self.root / 'outputs/pnadc_estudo_i/logs/unit1/report.json'
+        return code, json.loads(path.read_text(encoding='utf-8'))
+
+    def test_postcheck_deleted_input_fails_with_report(self):
+        code, report = self._run_mutation_and_report(self.inp.unlink)
+        self.assertEqual(code, 2)
+        self.assertEqual(report['state'], 'FAILED_INTEGRITY')
+        self.assertEqual(report['error'], 'GateError')
+        self.assertEqual(report['returncode'], 0)
+
+    def test_postcheck_source_changed_to_symlink_fails(self):
+        outside = self.root / 'source_outside.py'
+        outside.write_text('nao executar', encoding='utf-8')
+        def mutate():
+            self.script.unlink()
+            self.script.symlink_to(outside)
+        code, report = self._run_mutation_and_report(mutate)
+        self.assertEqual(code, 2)
+        self.assertEqual(report['state'], 'FAILED_INTEGRITY')
+        self.assertEqual(report['error'], 'GateError')
+        self.assertEqual(outside.read_text(), 'nao executar')
+
+    def test_postcheck_manifest_changed_fails(self):
+        code, report = self._run_mutation_and_report(
+            lambda: self.manifest.write_text('manifesto alterado\n', encoding='utf-8'))
+        self.assertEqual(code, 2)
+        self.assertEqual(report['state'], 'FAILED_INTEGRITY')
+        self.assertEqual(report['error'], 'MANIFEST_T07_2_CHANGED')
+
+    def test_postcheck_manifest_deleted_fails(self):
+        code, report = self._run_mutation_and_report(self.manifest.unlink)
+        self.assertEqual(code, 2)
+        self.assertEqual(report['state'], 'FAILED_INTEGRITY')
+        self.assertEqual(report['error'], 'GateError')
+
+    def test_postcheck_manifest_symlink_fails(self):
+        outside = self.root / 'manifest_outside.csv'
+        outside.write_bytes(self.manifest.read_bytes())
+        def mutate():
+            self.manifest.unlink()
+            self.manifest.symlink_to(outside)
+        code, report = self._run_mutation_and_report(mutate)
+        self.assertEqual(code, 2)
+        self.assertEqual(report['state'], 'FAILED_INTEGRITY')
+        self.assertEqual(report['error'], 'GateError')
+        self.assertTrue(outside.is_file())
+
+    def test_postcheck_manifest_replaced_with_same_bytes_fails(self):
+        replacement = self.root / 'replacement_manifest.csv'
+        replacement.write_bytes(self.manifest.read_bytes())
+        def mutate():
+            replacement.replace(self.manifest)
+        code, report = self._run_mutation_and_report(mutate)
+        self.assertEqual(code, 2)
+        self.assertEqual(report['state'], 'FAILED_INTEGRITY')
+        self.assertEqual(report['error'], 'MANIFEST_T07_2_CHANGED')
+
+    def test_postcheck_io_exception_fails_with_report(self):
+        original_read = Path.read_bytes
+        state = {'postprocess': False}
+        def injected_read(path):
+            if state['postprocess'] and path == self.inp:
+                raise OSError('falha simulada na verificação posterior')
+            return original_read(path)
+        def simulated_run(*args, **kwargs):
+            state['postprocess'] = True
+            return subprocess.CompletedProcess(args=args[0], returncode=0,
+                                               stdout='', stderr='')
+        with patch.object(Path, 'read_bytes', injected_read), \
+                patch.object(runner.subprocess, 'run', side_effect=simulated_run):
+            code, _ = self.call()
+        report = json.loads((self.root / 'outputs/pnadc_estudo_i/logs/unit1/report.json').read_text())
+        self.assertEqual(code, 2)
+        self.assertEqual(report['state'], 'FAILED_INTEGRITY')
+        self.assertEqual(report['error'], 'OSError')
+
+    def test_postcheck_storage_failure_is_explicit(self):
+        original_writer = runner.write_new_artifact
+        def injected_write(target, filename, content):
+            if filename == 'report.json':
+                raise OSError('simulacao de disco')
+            return original_writer(target, filename, content)
+        with patch.object(runner, 'write_new_artifact', side_effect=injected_write):
+            code, stderr = self.call()
+        self.assertEqual(code, 2)
+        self.assertIn('Não foi possível preservar report.json', stderr)
+
+    def test_same_id_concurrent_execution_has_single_winner(self):
+        def run(_):
+            try:
+                runner.execute('pnadc_estudo_i', 'unit1', self.root)
+                return 0
+            except (runner.GateError, FileExistsError):
+                return 2
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+            codes = list(pool.map(run, range(2)))
+        self.assertCountEqual(codes, [0, 2])
+
+    def test_hardlink_stdout_collision_preserves_external_content(self):
+        target = runner.reserve_output(self.root, 'pnadc_estudo_i', 'logs', 'unit1')
+        sentinel = self.root / 'sentinel'
+        sentinel.write_text('preservado')
+        os.link(sentinel, target / 'stdout.txt')
+        with self.assertRaises(FileExistsError):
+            runner.write_new_artifact(target, 'stdout.txt', 'alterado')
+        self.assertEqual(sentinel.read_text(), 'preservado')
 
 
 if __name__=='__main__':
