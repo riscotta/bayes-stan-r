@@ -20,6 +20,8 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "reports/t07_2/manifesto_codigos_originais_sha256.csv"
 RUN_ID = re.compile(r"[a-z0-9][a-z0-9_-]{0,63}\Z")
+# Categorias de outputs/README.md; diretórios de execução são sempre exclusivos.
+OUTPUT_KINDS = frozenset({"figures", "tables", "models", "logs", "cmdstan_csv", "data_stan"})
 STUDIES = {
     "pnadc_estudo_i": {
         "script": "scripts/pnadc_estudo_i/auditar_e10.py",
@@ -53,14 +55,34 @@ def _is_regular_file(path: Path) -> bool:
     return path.is_file() and not path.is_symlink()
 
 
+def checked_regular(root: Path, rel: str, label: str) -> Path:
+    """Aceita arquivo regular sob a raiz sem links simbólicos nos ancestrais.
+
+    A verificação é prévia à abertura, não constitui sandbox nem elimina TOCTOU.
+    """
+    target = root / rel
+    if not _is_regular_file(target) or root.is_symlink():
+        raise GateError(f"{label} ausente ou symlink: {rel}")
+    parent = target.parent
+    while parent != root:
+        if parent == parent.parent:
+            raise GateError(f"{label} fora da raiz: {rel}")
+        if parent.is_symlink() or not parent.is_dir():
+            raise GateError(f"{label} com ancestral inválido: {rel}")
+        parent = parent.parent
+    return target
+
+
+def hash_checked_input(root: Path, rel: str) -> str:
+    path = checked_regular(root, rel, "Entrada")
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def checked_source(root: Path, rel: str) -> Path:
     """Exige bytes históricos iguais ao manifesto T07.2 e ausência de symlinks."""
-    source = root / rel
-    if not _is_regular_file(source) or any(p.is_symlink() for p in source.parents if p != root.parent):
-        raise GateError(f"Código histórico ausente ou symlink: {rel}")
-    if not _is_regular_file(root / "reports/t07_2/manifesto_codigos_originais_sha256.csv"):
-        raise GateError("Manifesto T07.2 ausente ou symlink")
-    with (root / "reports/t07_2/manifesto_codigos_originais_sha256.csv").open(
+    source = checked_regular(root, rel, "Código histórico")
+    manifest = checked_regular(root, "reports/t07_2/manifesto_codigos_originais_sha256.csv", "Manifesto T07.2")
+    with manifest.open(
         encoding="utf-8", newline=""
     ) as handle:
         rows = list(csv.DictReader(handle))
@@ -75,17 +97,51 @@ def checked_source(root: Path, rel: str) -> Path:
     return source
 
 
-def safe_output(root: Path, study: str, run_id: str) -> Path:
+def canonical_output(root: Path, study: str, kind: str, run_id: str) -> Path:
+    """Normaliza saídas do adaptador para outputs/<estudo>/<tipo>/<id>."""
+    if study not in STUDIES:
+        raise GateError(f"Estudo não admitido: {study}")
+    if kind not in OUTPUT_KINDS:
+        raise GateError(f"Tipo de saída não canônico: {kind}")
     if not RUN_ID.fullmatch(run_id):
         raise GateError("--id deve conter apenas minúsculas, números, _ ou - (1–64)")
-    dest_parent = root / "outputs" / study / "logs"
-    # Não aceitar redirecionamento de diretórios de outputs por links simbólicos.
-    for folder in (root, root / "outputs", root / "outputs" / study, dest_parent):
+    root = Path(root)
+    parent = root / "outputs" / study / kind
+    for folder in (root, root / "outputs", root / "outputs" / study, parent):
         if folder.is_symlink():
             raise GateError(f"Diretório de saída é symlink: {folder}")
         if folder.exists() and not folder.is_dir():
             raise GateError(f"Componente da saída não é diretório: {folder}")
-    return dest_parent / run_id
+    return parent / run_id
+
+
+def safe_output(root: Path, study: str, run_id: str) -> Path:
+    """Compatibilidade T07.3: toda execução permitida usa logs/ por ID."""
+    return canonical_output(root, study, "logs", run_id)
+
+
+def reserve_output(root: Path, study: str, kind: str, run_id: str) -> Path:
+    """Reserva novo diretório: nunca reutiliza uma execução existente."""
+    target = canonical_output(root, study, kind, run_id)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    # Verificar novamente após criação dos ancestrais (mitiga, não elimina TOCTOU).
+    canonical_output(root, study, kind, run_id)
+    target.mkdir(exist_ok=False)
+    return target
+
+
+def write_new_artifact(target: Path, filename: str, content: str) -> None:
+    """Cria arquivo exclusivo, inclusive contra arquivo/link já existente."""
+    if filename not in {"stdout.txt", "stderr.txt", "report.json"}:
+        raise GateError(f"Artefato inesperado: {filename}")
+    if target.is_symlink() or not target.is_dir():
+        raise GateError(f"Diretório de execução inválido: {target}")
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    fd = os.open(target / filename, flags, 0o600)
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        f.write(content)
 
 
 def plan(study: str, run_id: str, root: Path = ROOT) -> dict:
@@ -107,39 +163,38 @@ def execute(study: str, run_id: str, root: Path = ROOT) -> dict:
         raise GateError(spec["reason"])
     descriptor = plan(study, run_id, root)
     script = checked_source(root, spec["script"])
-    inp = root / spec["input"]
-    if not _is_regular_file(inp) or any(
-        p.is_symlink() for p in (inp, *inp.parents) if p != root.parent
-    ):
-        raise GateError(f"Entrada pública ausente ou symlink: {spec['input']}")
+    inp = checked_regular(root, spec["input"], "Entrada pública")
     # Somente subprocesso Python read-only revisado; nada de R, shell ou Stan.
     command = [sys.executable, "-I", str(script)]
-    target = safe_output(root, study, run_id)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    # Sem exist_ok: nunca sobrescrever execução anterior, inclusive falha parcial.
-    target.mkdir(exist_ok=False)
+    target = reserve_output(root, study, "logs", run_id)
     # Inicializar o registro antes de qualquer operação pós-mkdir que possa falhar.
     record = {**descriptor, "timestamp_utc": datetime.now(timezone.utc).isoformat(),
               "command": ["python", "-I", spec["script"]],
               "state": "ERROR", "returncode": None}
     try:
         record["source_sha256"] = hashlib.sha256(script.read_bytes()).hexdigest()
-        record["input_sha256"] = hashlib.sha256(inp.read_bytes()).hexdigest()
+        record["input_sha256"] = hash_checked_input(root, spec["input"])
         env = {"PATH": os.environ.get("PATH", ""), "PYTHONDONTWRITEBYTECODE": "1",
                "PYTHONHASHSEED": "0"}
         result = subprocess.run(command, cwd=root, env=env, text=True,
                                 capture_output=True, timeout=30, check=False)
         record["returncode"] = result.returncode
-        (target / "stdout.txt").write_text(result.stdout, encoding="utf-8")
-        (target / "stderr.txt").write_text(result.stderr, encoding="utf-8")
+        write_new_artifact(target, "stdout.txt", result.stdout)
+        write_new_artifact(target, "stderr.txt", result.stderr)
         record["state"] = "EXECUTED_N2_CHECK" if result.returncode == 0 else "FAILED"
-    except (OSError, subprocess.TimeoutExpired) as exc:
+        # Detecção pós-execução: nunca alegar prevenção absoluta de subprocessos.
+        if (hash_checked_input(root, spec["input"]) != record["input_sha256"]
+                or hashlib.sha256(checked_regular(root, spec["script"], "Código histórico").read_bytes()).hexdigest()
+                != record["source_sha256"]):
+            record["state"] = "FAILED_INTEGRITY"
+            record["error"] = "INPUT_OR_SOURCE_CHANGED"
+    except (OSError, subprocess.TimeoutExpired, GateError) as exc:
         record["error"] = type(exc).__name__
     finally:
         try:
-            (target / "report.json").write_text(
-                json.dumps(record, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-                encoding="utf-8")
+            write_new_artifact(
+                target, "report.json",
+                json.dumps(record, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
         except OSError as exc:
             raise GateError(
                 f"Não foi possível preservar report.json em {target}: {type(exc).__name__}"
@@ -160,7 +215,7 @@ def main(argv: list[str] | None = None, root: Path = ROOT) -> int:
         result = (plan(ns.estudo, ns.id, root) if ns.acao == "planejar" else
                   execute(ns.estudo, ns.id, root))
     except (GateError, FileExistsError, OSError, ValueError) as exc:
-        print(f"BLOQUEADO T07.3: {exc}", file=sys.stderr)
+        print(f"BLOQUEADO T07.4/T07.3: {exc}", file=sys.stderr)
         return 2
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
