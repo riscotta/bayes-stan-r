@@ -97,6 +97,17 @@ jobs:
           python -m unittest discover -s tests/python -p 'test_originais_t07_2.py' -v
           python tools/verificar_originais_t07_2.py --check-baseline
 
+      - name: Verify T07.3 canonical adapters and hostile inputs
+        run: python -m unittest discover -s tests/python -p 'test_adaptadores_t07_3.py' -v
+
+      - name: Execute permitted T07.3 public PNAD adapter (N2 only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python adapters/t07_3/runner.py \
+            --estudo pnadc_estudo_i --modo auditoria_rapida_N2 \
+            --acao executar --id "ci-${GITHUB_RUN_ID}"
+
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
