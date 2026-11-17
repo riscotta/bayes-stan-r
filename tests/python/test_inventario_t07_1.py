@@ -24,6 +24,7 @@ IMPORTANT = {
     "scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/EXECUTAR_E08_MP.ps1": "SHELL",
     "scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/executar_E08_MP.R": "LEGADO",
     "scripts/pnadc_estudo_i/estudo_I/e07/run.ps1": "SHELL",
+    "scripts/pnadc_estudo_i/estudo_I/e07/R/reprocessar_resumos_e07.R": "ESCRITA",
     "scripts/mortalidade_sp_0_74/reproduzir_E10.R": "SHELL",
     "scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R": "SHELL",
 }
@@ -37,6 +38,13 @@ IMPLICIT_WRITE_RX = re.compile(r"\bwrite_stan_file\s*\(")
 OVERWRITE_RX = re.compile(r"\boverwrite\s*=\s*TRUE\b", re.I)
 ABSOLUTE_RX = re.compile(r"/mnt/data/(?:[A-Za-z0-9_.-]+)")
 
+
+# Contrato de dependencia indireta conhecido, sem executar R nem seguir um grafo geral.
+E07_REPROCESS = "scripts/pnadc_estudo_i/estudo_I/e07/R/reprocessar_resumos_e07.R"
+E07_HELPER = "scripts/pnadc_estudo_i/estudo_I/e07/R/funcoes_e07.R"
+E07_SOURCE_RX = re.compile(r"""\bsource\s*\(\s*file\.path\s*\([^\n]*['"]funcoes_e07\.R['"]""")
+E07_CALL_RX = re.compile(r"\bgravar_csv\s*\(")
+E07_WRITER_RX = re.compile(r"(?m)^\s*gravar_csv\s*<-\s*function\s*\([^)]*\)\s*\{\s*write\.table\s*\(")
 
 def load_rows(text=None):
     if text is None:
@@ -87,6 +95,26 @@ def validate(rows, script_paths, strict_lines=True):
             errors.append("Risco de sobrescrita nao documentado: " + path)
         if bool(ABSOLUTE_RX.search(content)) != ("ABSOLUTO" in tags):
             errors.append("Caminho absoluto omitido ou sem lastro: " + path)
+        if path == E07_REPROCESS:
+            # Seguir apenas o helper concreto carregado por este script; regex nao
+            # prova alcance semantico de outras chamadas nem execucao condicional.
+            helper = (ROOT / E07_HELPER).read_text(encoding="utf-8-sig")
+            chain_ok = (
+                bool(E07_SOURCE_RX.search(content))
+                and len(E07_CALL_RX.findall(content)) >= 2
+                and bool(E07_WRITER_RX.search(helper))
+                and "resumo_theta.csv" in content
+                and "resumo_marginais.csv" in content
+            )
+            if not chain_ok:
+                errors.append("Contrato estatico E07 alterado; revisar helper: " + path)
+            elif "ESCRITA" not in tags:
+                errors.append("Gravacao indireta E07 omitida: " + path)
+            note = row.get("nota_de_triagem", "")
+            if not all(s in note for s in (
+                "write.table", "resumo_theta.csv", "resumo_marginais.csv", "substituir"
+            )):
+                errors.append("Destinos e risco E07 nao documentados: " + path)
         if not row.get("nota_de_triagem", "").strip() and tags != {"SEM_SINAL_REGEX"}:
             errors.append("Nota de triagem ausente: " + path)
     for path, tag in IMPORTANT.items():
@@ -115,7 +143,8 @@ class TestInventarioT071(unittest.TestCase):
         md = (ROOT / "reports/t07_1/README.md").read_text(encoding="utf-8")
         for token in ("t07.1", "n3/n4", "p0", "falso positivo",
                       "59", "não executa", "t07.2", "write_stan_file",
-                      "overwrite=true", "renv.lock", "system2"):
+                      "overwrite=true", "renv.lock", "system2",
+                      "gravar_csv", "resumo_theta.csv", "resumo_marginais.csv"):
             self.assertIn(token, md.lower())
         self.assertNotIn("LEGADO", next(
             r for r in self.rows if r["caminho"] ==
@@ -167,6 +196,29 @@ class TestInventarioT071(unittest.TestCase):
             self.assertTrue(any(snippet in msg and path in msg for msg in errors), errors)
         self.assertEqual(sum("SHELL" in r["indicios_lexicais"].split(",") for r in self.rows), 5)
         self.assertEqual(sum("AMBIENTE" in r["indicios_lexicais"].split(",") for r in self.rows), 13)
+
+    def test_reprocessador_e07_writer_indireto_e_mutacao_adversarial(self):
+        from copy import deepcopy
+        content = (ROOT / E07_REPROCESS).read_text(encoding="utf-8-sig")
+        helper = (ROOT / E07_HELPER).read_text(encoding="utf-8-sig")
+        self.assertRegex(content, E07_SOURCE_RX)
+        self.assertGreaterEqual(len(E07_CALL_RX.findall(content)), 2)
+        self.assertRegex(helper, E07_WRITER_RX)
+        self.assertIn("resumo_theta.csv", content)
+        self.assertIn("resumo_marginais.csv", content)
+        changed = deepcopy(self.rows)
+        row = next(r for r in changed if r["caminho"] == E07_REPROCESS)
+        row["indicios_lexicais"] = ",".join(
+            t for t in row["indicios_lexicais"].split(",") if t != "ESCRITA"
+        )
+        errors = validate(changed, self.paths)
+        self.assertTrue(any(
+            "Gravacao indireta E07 omitida" in err and E07_REPROCESS in err
+            for err in errors
+        ), errors)
+        self.assertEqual(sum(
+            "ESCRITA" in r["indicios_lexicais"].split(",") for r in self.rows
+        ), 51)
 
     def test_strict_lines_e_risco_de_sobrescrita(self):
         from copy import deepcopy
