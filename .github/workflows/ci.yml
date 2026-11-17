@@ -87,6 +87,16 @@ jobs:
       - name: Verify T07.1 historical paths inventory and adversarial cases
         run: python -m unittest discover -s tests/python -p 'test_inventario_t07_1.py' -v
 
+      - name: Verify T07.2 original-code manifest, hostile changes and pinned Git baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE_SHA=c0fab905ed1bd3ca61926885ca1eed32f8470269
+          git fetch --no-tags --depth=1 origin "$BASE_SHA"
+          test "$(git rev-parse --verify "${BASE_SHA}^{commit}")" = "$BASE_SHA"
+          python -m unittest discover -s tests/python -p 'test_originais_t07_2.py' -v
+          python tools/verificar_originais_t07_2.py --check-baseline
+
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
