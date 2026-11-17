@@ -8,6 +8,9 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
+import subprocess
+import shutil
 
 MODULE = Path(__file__).resolve().parents[2] / "adapters/t07_3/runner.py"
 spec = importlib.util.spec_from_file_location("t07_3_runner", MODULE)
@@ -88,6 +91,60 @@ class AdapterContract(unittest.TestCase):
             self.assertEqual(self.call(study=study), 0)
             self.assertEqual(self.call(study=study, action="executar"), 2)
         self.assertFalse((self.root / "outputs").exists())
+
+    def test_io_failure_after_output_creation_preserves_report(self):
+        """Leitura do insumo falha após mkdir, antes de montar os SHA-256."""
+        original_read = Path.read_bytes
+        def injected_read(path):
+            if path == self.inp:
+                raise OSError("falha de I/O sintética após mkdir")
+            return original_read(path)
+
+        with patch.object(Path, "read_bytes", injected_read):
+            self.assertEqual(self.call(action="executar"), 2)
+        dest = self.root / "outputs/pnadc_estudo_i/logs/unit1"
+        self.assertTrue(dest.is_dir())
+        report = json.loads((dest / "report.json").read_text(encoding="utf-8"))
+        self.assertEqual(report["state"], "ERROR")
+        self.assertEqual(report["error"], "OSError")
+        self.assertIsNone(report["returncode"])
+        self.assertEqual(self.call(action="executar"), 2)  # ID consumido
+
+    def test_timeout_after_output_creation_preserves_report(self):
+        with patch.object(runner.subprocess, "run", side_effect=subprocess.TimeoutExpired("python", 30)):
+            self.assertEqual(self.call(action="executar"), 2)
+        report_path = self.root / "outputs/pnadc_estudo_i/logs/unit1/report.json"
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        self.assertEqual(report["state"], "ERROR")
+        self.assertEqual(report["error"], "TimeoutExpired")
+
+    def test_reject_symlink_on_input_ancestor(self):
+        external = self.root / "external"
+        destination = external / "raw/pnadc_estudo_i/resultados_auditados"
+        destination.mkdir(parents=True)
+        (destination / self.inp.name).write_bytes(self.inp.read_bytes())
+        shutil.rmtree(self.root / "data")
+        (self.root / "data").symlink_to(external, target_is_directory=True)
+        self.assertEqual(self.call(action="executar"), 2)
+        self.assertFalse((self.root / "outputs").exists())
+
+    def test_report_storage_failure_is_explicit(self):
+        """Nenhum software garante o registro quando o próprio disco falha."""
+        original_write = Path.write_text
+        def injected_write(path, *args, **kwargs):
+            if path.name == "report.json":
+                raise OSError("armazenamento indisponível")
+            return original_write(path, *args, **kwargs)
+        with patch.object(Path, "write_text", injected_write):
+            stderr = io.StringIO()
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(stderr):
+                rc = runner.main(["--estudo", "pnadc_estudo_i", "--modo", "auditoria_rapida_N2",
+                                  "--acao", "executar", "--id", "unit1"], root=self.root)
+        self.assertEqual(rc, 2)
+        self.assertIn("Não foi possível preservar report.json", stderr.getvalue())
+        dest = self.root / "outputs/pnadc_estudo_i/logs/unit1"
+        self.assertTrue(dest.is_dir())
+        self.assertFalse((dest / "report.json").exists())
 
     def test_failed_subprocess_preserves_diagnostic(self):
         self.script.write_text("raise SystemExit(17)\n", encoding="utf-8")

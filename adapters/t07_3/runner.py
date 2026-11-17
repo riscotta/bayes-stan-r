@@ -108,7 +108,9 @@ def execute(study: str, run_id: str, root: Path = ROOT) -> dict:
     descriptor = plan(study, run_id, root)
     script = checked_source(root, spec["script"])
     inp = root / spec["input"]
-    if not _is_regular_file(inp) or inp.parent.is_symlink():
+    if not _is_regular_file(inp) or any(
+        p.is_symlink() for p in (inp, *inp.parents) if p != root.parent
+    ):
         raise GateError(f"Entrada pública ausente ou symlink: {spec['input']}")
     # Somente subprocesso Python read-only revisado; nada de R, shell ou Stan.
     command = [sys.executable, "-I", str(script)]
@@ -116,12 +118,13 @@ def execute(study: str, run_id: str, root: Path = ROOT) -> dict:
     target.parent.mkdir(parents=True, exist_ok=True)
     # Sem exist_ok: nunca sobrescrever execução anterior, inclusive falha parcial.
     target.mkdir(exist_ok=False)
+    # Inicializar o registro antes de qualquer operação pós-mkdir que possa falhar.
     record = {**descriptor, "timestamp_utc": datetime.now(timezone.utc).isoformat(),
               "command": ["python", "-I", spec["script"]],
-              "source_sha256": hashlib.sha256(script.read_bytes()).hexdigest(),
-              "input_sha256": hashlib.sha256(inp.read_bytes()).hexdigest(),
               "state": "ERROR", "returncode": None}
     try:
+        record["source_sha256"] = hashlib.sha256(script.read_bytes()).hexdigest()
+        record["input_sha256"] = hashlib.sha256(inp.read_bytes()).hexdigest()
         env = {"PATH": os.environ.get("PATH", ""), "PYTHONDONTWRITEBYTECODE": "1",
                "PYTHONHASHSEED": "0"}
         result = subprocess.run(command, cwd=root, env=env, text=True,
@@ -133,9 +136,14 @@ def execute(study: str, run_id: str, root: Path = ROOT) -> dict:
     except (OSError, subprocess.TimeoutExpired) as exc:
         record["error"] = type(exc).__name__
     finally:
-        (target / "report.json").write_text(
-            json.dumps(record, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-            encoding="utf-8")
+        try:
+            (target / "report.json").write_text(
+                json.dumps(record, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8")
+        except OSError as exc:
+            raise GateError(
+                f"Não foi possível preservar report.json em {target}: {type(exc).__name__}"
+            ) from exc
     if record["state"] != "EXECUTED_N2_CHECK":
         raise GateError(f"Execução falhou; evidências preservadas em {target}")
     return record
