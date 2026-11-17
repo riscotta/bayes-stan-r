@@ -103,6 +103,9 @@ jobs:
       - name: Verify T07.4 canonical outputs, no-overwrite gates and hostile paths
         run: python -m unittest discover -s tests/python -p 'test_saida_t07_4.py' -v
 
+      - name: Verify T07.5 CLI contracts and synthetic smoke tests
+        run: python -m unittest discover -s tests/python -p 'test_contratos_t07_5.py' -v
+
       - name: Execute permitted T07.3 public PNAD adapter (N2 only)
         shell: bash
         run: |
