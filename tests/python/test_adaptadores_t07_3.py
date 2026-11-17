@@ -130,12 +130,12 @@ class AdapterContract(unittest.TestCase):
 
     def test_report_storage_failure_is_explicit(self):
         """Nenhum software garante o registro quando o próprio disco falha."""
-        original_write = Path.write_text
-        def injected_write(path, *args, **kwargs):
-            if path.name == "report.json":
+        original_write = runner.write_new_artifact
+        def injected_write(target, filename, content):
+            if filename == "report.json":
                 raise OSError("armazenamento indisponível")
-            return original_write(path, *args, **kwargs)
-        with patch.object(Path, "write_text", injected_write):
+            return original_write(target, filename, content)
+        with patch.object(runner, "write_new_artifact", injected_write):
             stderr = io.StringIO()
             with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(stderr):
                 rc = runner.main(["--estudo", "pnadc_estudo_i", "--modo", "auditoria_rapida_N2",
