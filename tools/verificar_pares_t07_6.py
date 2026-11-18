@@ -73,6 +73,16 @@ def verificar(dados: dict, estudos_runner: dict) -> dict:
             {"absoluta": "0", "relativa": "0",
              "excecao": "somente protocolo preaprovado e QA; ver T06.4"}):
         raise ValueError("Política de comparação modificada sem revisão")
+    controle = dados.get("controle_operacional_pnad")
+    if (not isinstance(controle, dict)
+            or controle.get("ferramenta") != "tools/comparar_operacional_pnad_t07_6.py"
+            or controle.get("execucao") != "CI_PYTHON_APOS_ADAPTADOR"
+            or controle.get("stdout_comparacao") != "BYTES_EXATOS"
+            or controle.get("stderr_comparacao") != "BYTES_EXATOS"
+            or controle.get("referencia_historica_independente") is not False
+            or controle.get("equivalencia_historica_comprovada") is not False
+            or controle.get("complemento_nao_substitui_referencia_historica") is not True):
+        raise ValueError("Controle operacional indevidamente promovido a baseline histórica")
     return {"status": "PARCIAL_NAO_COMPARAVEL",
             "estudos": len(estudos), "saidas_previstas": total,
             "pares_historicos_autenticados": 0,
