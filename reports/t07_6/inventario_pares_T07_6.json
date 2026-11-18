@@ -86,5 +86,17 @@
       "sem_N3_N4",
       "issue_14_P0_aberta"
     ]
+  },
+  "controle_operacional_pnad": {
+    "escopo": "MESMO_CODIGO_HISTORICO_MESMA_ENTRADA_MESMO_PYTHON_N2",
+    "execucao": "CI_PYTHON_APOS_ADAPTADOR",
+    "ferramenta": "tools/comparar_operacional_pnad_t07_6.py",
+    "stdout_comparacao": "BYTES_EXATOS",
+    "stderr_comparacao": "BYTES_EXATOS",
+    "report_json": "VALIDACAO_DE_SCHEMA_IDENTIDADE_E_STATUS; NAO_PAR_HISTORICO",
+    "referencia_historica_independente": false,
+    "equivalencia_historica_comprovada": false,
+    "estado_probatório": "RESULTADO_SOMENTE_SE_LOG_CI_DO_HEAD_REGISTRAR_SUCESSO",
+    "complemento_nao_substitui_referencia_historica": true
   }
 }
