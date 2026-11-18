@@ -39,13 +39,12 @@ def carregar_runner(root: Path):
     return mod
 
 
-def comparar(root: Path, run_id: str, python: str = sys.executable) -> dict:
+def _comparar_validado(root: Path, run_id: str, python: str, runner) -> dict:
     # Sem criação de arquivos pela ferramenta; o adaptador executado antes
     # é a única origem dos artefatos canônicos.
     root = Path(root).absolute()
     if not root.is_dir() or root.is_symlink():
         raise ComparacaoBloqueada("Raiz ausente ou symlink")
-    runner = carregar_runner(root)
     source_rel = runner.STUDIES[STUDY]["script"]
     input_rel = runner.STUDIES[STUDY]["input"]
     source, manifest_sha, _ = runner.checked_source_with_manifest(root, source_rel)
@@ -115,6 +114,15 @@ def comparar(root: Path, run_id: str, python: str = sys.executable) -> dict:
         "mcmc_reexecutado": False,
         "n3_n4_certificados": False,
     }
+
+
+
+def comparar(root: Path, run_id: str, python: str = sys.executable) -> dict:
+    runner = carregar_runner(Path(root).absolute())
+    try:
+        return _comparar_validado(root, run_id, python, runner)
+    except runner.GateError as exc:
+        raise ComparacaoBloqueada(f"Contrato T07.3 recusou entrada: {exc}") from exc
 
 
 def main() -> int:
