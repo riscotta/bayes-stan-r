@@ -119,6 +119,13 @@ jobs:
             --estudo pnadc_estudo_i --modo auditoria_rapida_N2 \
             --acao executar --id "ci-${GITHUB_RUN_ID}"
 
+      - name: Compare PNAD N2 wrapper with direct same-source execution (not historical baseline)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests/python -p 'test_comparacao_operacional_t07_6.py' -v
+          python tools/comparar_operacional_pnad_t07_6.py --id "ci-${GITHUB_RUN_ID}"
+
       - name: Audit published PNAD E09 projection (N2 only)
         run: python .github/scripts/executar_auditoria_n2.py
 
