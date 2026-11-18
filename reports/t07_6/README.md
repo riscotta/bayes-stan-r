@@ -39,8 +39,25 @@ python -m unittest discover -s tests/python -p 'test_inventario_t07_6.py' -v
 python tools/verificar_pares_t07_6.py
 ```
 
+## 4. Controle operacional público PNAD — sem referência histórica independente
+
+A rota pública `scripts/pnadc_estudo_i/auditar_e10.py` é somente leitura e emite três linhas determinísticas. Há, portanto, um confronto adicional **executável e mais forte do que o inventário documental**: a CI primeiro executa o adaptador N2 com ID `ci-<GITHUB_RUN_ID>` e, em seguida, `tools/comparar_operacional_pnad_t07_6.py` executa diretamente **o mesmo script original** usando `python -I`, o mesmo CSV público congelado, o mesmo interpretador e ambiente mínimo. O comparador exige integridade do original conforme manifesto T07.2, SHA-256 de entrada/código/manifesto, `report.json` com contrato `T07.3/v1`, estado de sucesso e caminho canônico, e realiza cotejo **byte a byte** de `stdout.txt` e `stderr.txt`. Faz pós-checagem de hashes e preservação dos artefatos. Qualquer divergência ou ausência bloqueia; não aceita tolerância silenciosa.
+
+O teste `tests/python/test_comparacao_operacional_t07_6.py` contém **12 cenários sintéticos** com execução direta real de minisscript sentinela, incluindo adulteração de stdout/stderr, SHA, entrada, original, metadados e symlink. O inventário adiciona **3 mutações** vedando elevar esse confronto a baseline histórica. São, portanto, 29 testes T07.6 (17 de inventário, 12 operacionais) além dos gates já existentes. Não guardar `stdout.txt` ou um novo CSV no Git; saída dinâmica permanece em `outputs/` no checkout da CI.
+
+**Limite epistemológico:** o controle direto é feito com **o mesmo código e os mesmos dados** durante o mesmo workflow. Sua identidade de stdout/stderr demonstra apenas que o adaptador não mudou o texto produzido nessa execução controlada. Não demonstra que a saída seja igual a um resultado histórico **preexistente e independentemente custodiado**, nem valida a integridade da cadeia E04→E09, inferência, licenciamento, generalização, N3/N4 ou segurança como sandbox. `report.json` foi criado pelo adaptador e só permite conferência de contrato, sem par histórico. `stdout` direto e adaptado dependem da mesma lógica de auditoria e, portanto, não são oráculos científicos independentes.
+
+Comandos da verificação operacional, a executar **apenas após o adaptador autorizado no mesmo checkout efêmero**:
+
+```bash
+python -m unittest discover -s tests/python -p 'test_comparacao_operacional_t07_6.py' -v
+python tools/comparar_operacional_pnad_t07_6.py --id "ci-${GITHUB_RUN_ID}"
+```
+
+**Resultado:** a condição `IGUALDADE_OPERACIONAL_N2` só pode ser anotada após a CI passar **no SHA final**; permanece `NAO_COMPARAVEL` para a finalidade literal de equivalência histórica. A ausência de baseline externa não é contornada com execução repetida do mesmo código.
+
 ## 4. Limitações e próximos gates
 
-**Ainda não executado:** comparação de bytes/CSV, verificação de esquema de pares reais, confronto numérico, validação externa de pin, E04–E09, execução de R/Stan legado, sampling, N3/N4 ou homologação científica/institucional. Restrições: P0 [issue #14](https://github.com/riscotta/bayes-stan-r/issues/14) aberta, [#15](https://github.com/riscotta/bayes-stan-r/issues/15), [#16](https://github.com/riscotta/bayes-stan-r/issues/16); runner não é sandbox, TOCTOU residual e persistência de logs dependente do armazenamento.
+**Ainda não executado:** comparação de bytes contra baseline histórica independente, comparação de CSVs históricos pareados, verificação de esquema de pares reais, confronto numérico, validação externa de pin, E04–E09, execução de R/Stan legado, sampling, N3/N4 ou homologação científica/institucional. Restrições: P0 [issue #14](https://github.com/riscotta/bayes-stan-r/issues/14) aberta, [#15](https://github.com/riscotta/bayes-stan-r/issues/15), [#16](https://github.com/riscotta/bayes-stan-r/issues/16); runner não é sandbox, TOCTOU residual e persistência de logs dependente do armazenamento.
 
 **Para tornar T07.6 integralmente executada:** fornecer ou localizar, sob permissão e custódia independentes, pares históricos realmente homólogos (ou decidir formalmente que a comparação é não aplicável aos metadados exclusivos do wrapper). Pré-registrar o protocolo por par, executar comparação segura, registrar hashes/proveniência/diferenças e obter QA independente no HEAD. A ausência atual é um bloqueio da **comparação material**, não uma justificativa para fabricar uma referência. O próprio executor não aprova sua entrega, não faz squash e não inicia T07.7.
