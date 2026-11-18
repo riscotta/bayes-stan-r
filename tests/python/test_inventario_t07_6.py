@@ -100,6 +100,21 @@ class InventarioT076(unittest.TestCase):
         d.pop("criterios_globais")
         self.falha(d)
 
+    def test_15_controle_operacional_nao_e_referencia_historica(self):
+        d = self.dados()
+        d["controle_operacional_pnad"]["referencia_historica_independente"] = True
+        self.falha(d)
+
+    def test_16_controle_operacional_nao_e_equivalencia_historica(self):
+        d = self.dados()
+        d["controle_operacional_pnad"]["equivalencia_historica_comprovada"] = True
+        self.falha(d)
+
+    def test_17_controle_operacional_nao_substitui_referencia(self):
+        d = self.dados()
+        d["controle_operacional_pnad"]["complemento_nao_substitui_referencia_historica"] = False
+        self.falha(d)
+
 
 if __name__ == "__main__":
     unittest.main()
