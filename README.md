@@ -7,17 +7,21 @@ Ajustar um modelo é apenas parte de uma análise estatística. Este repositóri
 
 A unidade de organização é o **estudo**, não um pacote R. Cada pasta em §scripts/§ tem entrada e documentação próprias. Alguns estudos refazem o ajuste a partir dos dados disponíveis; outros reconstroem tabelas a partir de artefatos auditados, e alguns dependem de insumos que não podem ser redistribuídos. **Esses níveis de reprodução não são equivalentes.**
 
-## Por onde começar
+## Por onde começar: duas categorias e cinco estudos de referência
 
-| Interesse | Estudo | O que observar |
+O [inventário editorial T02.1](scripts/STUDY_TAXONOMY_T02_1.md) distingue **12 Laboratórios de modelos**, voltados principalmente à demonstração e comparação de métodos, e **21 Estudos aplicados**, organizados em torno de perguntas substantivas. A pasta `_setup/` é infraestrutura, não estudo. Essa classificação descreve a finalidade das pastas; **não certifica validade científica, licenças ou reprodutibilidade**.
+
+| Categoria | Estudo de referência | Ponto de entrada e limite de interpretação |
 | --- | --- | --- |
-| Inferência hierárquica | [Baseball em três níveis](scripts/hierarchical/README.md) | *Pooling* parcial e heterogeneidade por posição/jogador |
-| Modelagem e interpretação | [Mortalidade 0–74 em São Paulo](scripts/mortalidade_sp_0_74/README.md) | Padronização por idade e sexo, decomposição e limites territoriais; modelo ajustado em R, não em Stan |
-| Avaliação preditiva | [Raça declarada e escore F5 em cães](scripts/caes_raca_f5/README.md) | Ganho pequeno de RMSE e calibração condicional insuficiente |
-| Diagnóstico de modelo | [IOM Missing Migrants Project](scripts/missing_migrants/README.md) | Modelo NB2 hierárquico, limitações do registro e falhas de PPC |
-| Mercado de trabalho multidimensional | [PNAD Contínua — Estudo I](scripts/pnadc_estudo_i/README.md) | 13 indicadores, 5 eixos; auditoria de síntese E09 sem MCMC ou posterior conjunta identificada |
+| Laboratório de modelos | [Baseball em três níveis](scripts/hierarchical/README.md) | *Pooling* parcial entre liga, posição e jogador; exemplo metodológico em Stan, não validação externa do ajuste |
+| Estudo aplicado | [PNAD Contínua — Estudo I](scripts/pnadc_estudo_i/README.md) | 13 indicadores em cinco eixos do trabalho; auditoria pública N2 de síntese congelada, sem reexecutar E04–E09 nem identificar posterior temporal conjunta |
+| Estudo aplicado | [Mortalidade 0–74 em São Paulo](scripts/mortalidade_sp_0_74/README.md) | Taxas padronizadas por idade/sexo e decomposição; equivalência territorial histórica não homologada, ajustes originais em R |
+| Estudo aplicado | [Raça declarada e escore F5 em cães](scripts/caes_raca_f5/README.md) | Comparação preditiva M1/M2; ganho interno pequeno, sem causalidade genética ou validação externa |
+| Estudo aplicado | [IOM Missing Migrants Project](scripts/missing_migrants/README.md) | Contagens registradas de mortos/desaparecidos por rota-mês; não estima a mortalidade real total e mantém ressalvas de diagnóstico |
 
-**[Catálogo completo de scripts, dados e comandos](scripts/README.md)**. Inclui modelos ordinais, sobrevivência, Poisson/NB2, séries temporais, regressão logística, simulações e estudos de saúde, risco, economia e educação.
+**Para aprofundar:** o [catálogo completo dos 33 estudos](scripts/README.md) oferece entradas, dependências e comandos; a [matriz T06.2](reports/t06_2/README.md) separa integridade, síntese, pipeline, inferência e validação por estudo. O [mapa T07.7](reports/t07_7/README.md) distingue os caminhos adaptados dos originais históricos, sem encerrar a [comparação histórica pendente T07.6](reports/t07_6/README.md).
+
+**Leitura antes de executar:** verifique o README local, os dados necessários, os efeitos de escrita e os modos permitidos. Uma síntese auditada, um comando executável e uma amostragem Stan são evidências diferentes; a situação de [proveniência e direitos dos dados](data/DATA_PROVENANCE.md) deve ser verificada separadamente.
 
 ## Execução
 
