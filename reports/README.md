@@ -12,6 +12,8 @@ Esta pasta **não é apenas um placeholder**. Contém relatórios científicos p
 - [T06.6 — piloto Cães F5](t06_6/README.md): 30/30 cotejos N2 sobre quatro CSVs agregados em CI, sem Stan/MCMC, sem validação N3/N4.
 - [T06.7 — revisão dos READMEs](t06_7/README.md): escopo editorial e verificações de não promoção de evidências, sem execução inferencial.
 
+**Etapa 07 — migração controlada:** [T07.7 — mapa das rotas adaptadas e dos caminhos que continuam históricos](t07_7/README.md). A documentação distingue o único adaptador PNAD N2 executável das rotas R/Stan suspensas; a T07.6 e a Etapa 07 não são declaradas concluídas.
+
 Os relatórios [Cães F5](caes_raca_f5/relatorio_cientifico.md), [mortalidade SP](mortalidade_sp_0_74/relatorio_cientifico.md) e [PNAD Estudo I](pnadc_estudo_i/nota_cientifica.md) devem ser interpretados com suas ressalvas locais; nenhuma evidência pode ser transferida de um estudo a outro.
 
 **Governança:** [issue #14 P0](https://github.com/riscotta/bayes-stan-r/issues/14) (proveniência, privacidade e redistribuição), [#15](https://github.com/riscotta/bayes-stan-r/issues/15) (Stan e diagnóstico científico) e [#16](https://github.com/riscotta/bayes-stan-r/issues/16) seguem abertas. Código MIT não licencia automaticamente dados de terceiros. Não foram realizados nesta atualização de README novos ajustes, downloads institucionais ou verificações de permissões.
