@@ -1,0 +1,102 @@
+{
+  "schema": "t07_6_inventario_v1",
+  "tarefa": "T07.6",
+  "objetivo_literal": "Comparar cada saída adaptada com referência histórica, sem prometer igualdade numérica exata sem critério.",
+  "snapshot_main_sha": "77930248d5fdad81b999bc5741bbb930f4f97858",
+  "data_corte": "2026-11-18",
+  "fontes": [
+    "adapters/t07_3/runner.py",
+    "reports/t06_4/README.md",
+    "reports/t06_4/matriz_custodia_T06_4.csv",
+    "reports/t07_5/README.md",
+    "outputs/README.md"
+  ],
+  "custodia_independente_referencia": "NAO_COMPROVADA",
+  "equivalencia_historica_demonstrada": false,
+  "estudos": [
+    {
+      "estudo": "pnadc_estudo_i",
+      "script": "scripts/pnadc_estudo_i/auditar_e10.py",
+      "entrada": "data/raw/pnadc_estudo_i/resultados_auditados/contrastes_descritos_e09.csv",
+      "entrada_git_blob": "096b9e2d42c8fe1231ac675dc48cfc61dfa294d2",
+      "entrada_sha256_documentado": "8bd38ce75917d981431f4c2a9c09ba73648ff1151fd6ac717068637b682fe120",
+      "classificacao_entrada": "REFERENCIA_PUBLICA_DE_ENTRADA_NAO_OUTPUT_PAREADO",
+      "execucao_permitida": true,
+      "artefatos": [
+        {
+          "nome": "stdout.txt",
+          "candidato": "outputs/pnadc_estudo_i/logs/<id>/stdout.txt",
+          "tipo": "texto_deterministico",
+          "referencia_historica": null,
+          "criterio_previo": "bytes_exatos_com_referencia_autenticada; comparar semantica e codificacao antes",
+          "status": "NAO_COMPARAVEL"
+        },
+        {
+          "nome": "stderr.txt",
+          "candidato": "outputs/pnadc_estudo_i/logs/<id>/stderr.txt",
+          "tipo": "texto_diagnostico",
+          "referencia_historica": null,
+          "criterio_previo": "nao comparar bytes de mensagens entre ambientes sem protocolo preaprovado",
+          "status": "NAO_COMPARAVEL"
+        },
+        {
+          "nome": "report.json",
+          "candidato": "outputs/pnadc_estudo_i/logs/<id>/report.json",
+          "tipo": "metadados_do_adaptador",
+          "referencia_historica": null,
+          "criterio_previo": "comparacao de schema e semantica; timestamp e id variam por design",
+          "status": "NAO_COMPARAVEL"
+        }
+      ]
+    },
+    {
+      "estudo": "mortalidade_sp_0_74",
+      "script": "scripts/mortalidade_sp_0_74/reproduzir_E10.R",
+      "entrada": "data/raw/mortalidade_sp_0_74/resultados_auditados/",
+      "classificacao_entrada": "AGREGADOS_HISTORICOS_NAO_OUTPUT_PAREADO",
+      "execucao_permitida": false,
+      "artefatos": [],
+      "status": "BLOQUEADO_POR_CONTRATO"
+    },
+    {
+      "estudo": "caes_raca_f5",
+      "script": "scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R",
+      "entrada": "data/raw/caes_raca_f5/resultados_auditados/",
+      "classificacao_entrada": "AGREGADOS_HISTORICOS_NAO_OUTPUT_PAREADO",
+      "execucao_permitida": false,
+      "artefatos": [],
+      "status": "BLOQUEADO_POR_CONTRATO"
+    }
+  ],
+  "criterios_globais": {
+    "mesmo_estimando_populacao_unidade_periodo_e_transformacoes": "EXIGIR_ANTES_DE_COMPARAR",
+    "mesmo_schema_colunas_chaves_ordenacao_e_ausentes": "EXIGIR_ANTES_DE_COMPARAR",
+    "tolerancia_numerica_deterministica": {
+      "absoluta": "0",
+      "relativa": "0",
+      "excecao": "somente protocolo preaprovado e QA; ver T06.4"
+    },
+    "tolerancia_aleatoria": "NAO_FIXADA; requer MCSE/ESS/Rhat/seed/metodo e protocolo por estudo",
+    "comparacao_efetiva_neste_ciclo": "NENHUMA; sem saida historica pareada autenticada",
+    "status_quando_falta_referencia": "NAO_COMPARAVEL",
+    "bloqueios": [
+      "sem_execucao_R_Stan_legado",
+      "sem_sampling",
+      "sem_dados_institucionais",
+      "sem_N3_N4",
+      "issue_14_P0_aberta"
+    ]
+  },
+  "controle_operacional_pnad": {
+    "escopo": "MESMO_CODIGO_HISTORICO_MESMA_ENTRADA_MESMO_PYTHON_N2",
+    "execucao": "CI_PYTHON_APOS_ADAPTADOR",
+    "ferramenta": "tools/comparar_operacional_pnad_t07_6.py",
+    "stdout_comparacao": "BYTES_EXATOS",
+    "stderr_comparacao": "BYTES_EXATOS",
+    "report_json": "VALIDACAO_DE_SCHEMA_IDENTIDADE_E_STATUS; NAO_PAR_HISTORICO",
+    "referencia_historica_independente": false,
+    "equivalencia_historica_comprovada": false,
+    "estado_probatório": "RESULTADO_SOMENTE_SE_LOG_CI_DO_HEAD_REGISTRAR_SUCESSO",
+    "complemento_nao_substitui_referencia_historica": true
+  }
+}
