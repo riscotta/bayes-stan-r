@@ -1,6 +1,6 @@
 # T08.2 — Catálogo documental dos 33 estudos
 
-> **Estado:** reconstrução editorial a partir de fontes públicas, **não** certificação científica ou relatório de reexecução. **Corte desta leitura:** 23/11/2026, `main` em `9c5f026f0fb4d75517c0a7b11d52d34225b804cc`. **T02.1:** 12 laboratórios + 21 estudos aplicados; `_setup` excluído. D1 ratificada com R1–R6; publicação proposta no PR E1 sujeita a QA independente E2.
+> **Estado:** reconstrução editorial a partir de fontes públicas, **não** certificação científica ou relatório de reexecução. **Corte desta leitura:** 23/11/2026 (`2026-11-23`), `main` em `9c5f026f0fb4d75517c0a7b11d52d34225b804cc`. **T02.1:** 12 laboratórios + 21 estudos aplicados; `_setup` excluído. D1 ratificada com R1–R6; publicação proposta no PR E1 sujeita a QA independente E2.
 
 ## Escopo e como interpretar
 
