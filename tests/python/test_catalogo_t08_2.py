@@ -76,14 +76,19 @@ def validate(raw: str, taxonomy: str, manifest: dict, scientific: dict,
                 "âncora errada: " + study_id)
         require(re.search(r"(?m)^- \*\*id:\*\* \x60scripts/" + re.escape(study_id) + r"/\x60", section) is not None,
                 "caminho historico: " + study_id)
-        require("[README do estudo](" + study_id + "/README.md)" in section,
-                "README local omitido: " + study_id)
+        require(re.search(r"(?m)^- \*\*id:\*\* \x60scripts/" + re.escape(study_id) +
+                          r"/\x60 — \[README do estudo\]\(" + re.escape(study_id) +
+                          r"/README\.md\)\.", section) is not None,
+                "README de identificação errado: " + study_id)
         for field in FIELDS:
             count = len(re.findall(r"(?m)^- \*\*" + field + r":\*\*", section))
             require(count == 1, "campo " + field + " deve ocorrer uma vez: " + study_id)
         require("**classe:** " + classes[study_id] in section,
                 "classe incorreta: " + study_id)
-        require("2026-11-23" in section and MAIN_SHA in section and "2026-11-12" in section,
+        require("2026-11-23" in section and MAIN_SHA in section and
+                "manifesto T06.1 \x602026-11-12\x60" in section and
+                "snapshot T06.2 \x602026-11-12\x60" in section and
+                "contrato T06.3 \x602026-11-12\x60" in section,
                 "fonte/corte não declarado: " + study_id)
         require("PENDENTE_DE_VERIFICACAO" in section,
                 "lacunas omitidas: " + study_id)
