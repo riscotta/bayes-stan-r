@@ -7,15 +7,22 @@ Ajustar um modelo é apenas parte de uma análise estatística. Este repositóri
 
 A unidade de organização é o **estudo**, não um pacote R. Cada pasta em §scripts/§ tem entrada e documentação próprias. Alguns estudos refazem o ajuste a partir dos dados disponíveis; outros reconstroem tabelas a partir de artefatos auditados, e alguns dependem de insumos que não podem ser redistribuídos. **Esses níveis de reprodução não são equivalentes.**
 
-## Por onde começar
+## Por onde começar — categorias e cinco estudos
 
-| Interesse | Estudo | O que observar |
-| --- | --- | --- |
-| Inferência hierárquica | [Baseball em três níveis](scripts/hierarchical/README.md) | *Pooling* parcial e heterogeneidade por posição/jogador |
-| Modelagem e interpretação | [Mortalidade 0–74 em São Paulo](scripts/mortalidade_sp_0_74/README.md) | Padronização por idade e sexo, decomposição e limites territoriais; modelo ajustado em R, não em Stan |
-| Avaliação preditiva | [Raça declarada e escore F5 em cães](scripts/caes_raca_f5/README.md) | Ganho pequeno de RMSE e calibração condicional insuficiente |
-| Diagnóstico de modelo | [IOM Missing Migrants Project](scripts/missing_migrants/README.md) | Modelo NB2 hierárquico, limitações do registro e falhas de PPC |
-| Mercado de trabalho multidimensional | [PNAD Contínua — Estudo I](scripts/pnadc_estudo_i/README.md) | 13 indicadores, 5 eixos; auditoria de síntese E09 sem MCMC ou posterior conjunta identificada |
+A [taxonomia editorial T02.1](scripts/STUDY_TAXONOMY_T02_1.md) distingue **laboratórios de modelos** (12 pastas) e **estudos aplicados** (21 pastas). A pasta `scripts/_setup/` é infraestrutura, não estudo. Essas categorias organizam a navegação; não comprovam validade científica, licença de dados ou reprodução integral.
+
+### Laboratório de modelos
+
+- [Baseball — hierarquia em três níveis](scripts/hierarchical/README.md): rota para um exemplo de modelagem hierárquica.
+
+### Estudos aplicados
+
+- [Mortalidade de 0–74 anos em São Paulo](scripts/mortalidade_sp_0_74/README.md): rota para o estudo territorial de mortalidade.
+- [Raça declarada e escore F5 em cães](scripts/caes_raca_f5/README.md): rota para documentação sobre avaliação preditiva.
+- [IOM Missing Migrants Project](scripts/missing_migrants/README.md): rota para o estudo de registros de mortos e desaparecidos.
+- [PNAD Contínua — Estudo I](scripts/pnadc_estudo_i/README.md): rota para o estudo de indicadores do mercado de trabalho.
+
+**Condições de leitura e direitos:** estas são ligações a READMEs que já estavam publicamente indicados nesta entrada, e não uma nova divulgação de dados, tabelas ou resultados. A permissão de redistribuição de materiais de terceiros **não está homologada para todos os estudos**: confira o [inventário de proveniência](data/DATA_PROVENANCE.md), a [issue #14 (P0)](https://github.com/riscotta/bayes-stan-r/issues/14) e as ressalvas no README de cada estudo. A [matriz T06.2](reports/t06_2/README.md) distingue estados de evidência; a [T07.6](reports/t07_6/README.md) continua sem comparação histórica homologada. A presença de uma rota não autoriza reuso de datasets, nem demonstra reexecução de R/Stan/MCMC, N3/N4 ou validação inferencial.
 
 **[Catálogo completo de scripts, dados e comandos](scripts/README.md)**. Inclui modelos ordinais, sobrevivência, Poisson/NB2, séries temporais, regressão logística, simulações e estudos de saúde, risco, economia e educação.
 
