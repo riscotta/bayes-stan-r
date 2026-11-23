@@ -15,7 +15,9 @@ A manifestação é uma decisão de encaminhamento **interno do plano**, não in
 
 ## 2. Texto normativo proposto — ainda NÃO vigente
 
-> Enquanto a T07.6 e a Etapa 07 permanecerem abertas, admite-se a abertura sequencial de ciclos **exclusivamente editoriais/documentais** da Etapa 08 que não dependam materialmente de homologação da equivalência histórica das saídas adaptadas, custódia institucional, liberação R/Stan, reamostragem ou nova inferência, **desde que** (i) esta revisão de sequenciamento tenha QA independente favorável sobre SHA exato e esteja formalmente integrada e refletida no Word mestre; (ii) cada tarefa tenha escopo, arquivo, evidência, testes, PR e QA próprios; (iii) documentos exponham expressamente as pendências T07.6, a questão de direitos P0 #14 e as limitações dos estudos; e (iv) nenhuma tarefa altere fontes históricas, dados, códigos científicos, conclusões inferenciais, status N3/N4, decisões de custódia, publicação ou release. A abertura de uma tarefa não implica conclusão da Etapa 08 nem revogação dos gates ER6/ES para outras tarefas ou etapas. As Etapas 09 e 10 exigem deliberação ulterior específica, depois de reavaliadas suas dependências e os bloqueios aplicáveis.
+> Enquanto a T07.6 e a Etapa 07 permanecerem abertas, **somente T08.1 poderá ser aberta inicialmente**, em ciclo estritamente editorial/documental e **após** (i) QA independente favorável à redação final desta revisão sobre o SHA exato; (ii) ratificação específica desse texto pelo responsável pelo plano, integração controlada e registro de eficácia no Word mestre (SEQ-2–SEQ-5); (iii) delimitação de escopo, arquivo, evidência, testes, PR e QA próprios da tarefa; e (iv) indicação expressa das pendências T07.6, dos direitos P0 #14 e das limitações dos estudos. Não se autoriza alterar fontes históricas, dados, códigos científicos, conclusões inferenciais, status N3/N4 ou decisões de custódia, nem realizar **divulgação inédita de dados, tabelas ou resultados científicos, novas alegações científicas ou de validação, comunicação pública de validação ou release**. A atualização editorial do `README.md` principal **é uma mudança pública visível no GitHub**, exigindo verificação preventiva de proveniência e direitos sobre todo material reproduzido ou destacado, inclusive sob a issue #14; conteúdo acessível ou versionado não significa licença para republicação, destaque ou ampliação de exposição.
+>
+> A abertura de T08.1 **não libera em bloco a Etapa 08**: cada T08.2–T08.6 exige novo juízo documentado por tarefa sobre independência material, evidência, direitos e escopo, além de execução, PR e QA próprios. T08.7 é revisão editorial independente posterior às entregas pertinentes e não substitui os QAs individuais. Nenhuma abertura implica conclusão da Etapa 08 ou revogação de ER6/ES para outros objetos. As Etapas 09 e 10 continuam excluídas e exigem deliberação ulterior específica.
 
 Este texto é proposta de **exceção estreita de ordem**, e não revisão de critérios científicos de T07.6/T06.4.
 
@@ -23,15 +25,15 @@ Este texto é proposta de **exceção estreita de ordem**, e não revisão de cr
 
 | Tarefa literal (resumo fiel) | Juízo de independência da equivalência histórica T07.6 | Perímetro permitido se a alteração de ordem for homologada | Gatilho adicional de QA/limite |
 |---|---|---|---|
-| **T08.1** Evidenciar categorias e 3–5 estudos na entrada | **Sim, editorial condicional** | Reorganizar navegação para conteúdo já publicado; 3–5 estudos reais, com limitações e estado verificável | Links/conteúdo conferidos; não reutilizar PR #66 sem nova implementação e QA próprios |
-| **T08.2** Catálogo pergunta/método/dados/resultado/estado/modos | **Sim, somente metadata comprovada** | Compilar descrição a partir de README, T06.1–T06.3 e fontes existentes, sem expor datasets/novas saídas | Ausência de evidência = PENDENTE; direitos #14 não homologados |
+| **T08.1** Evidenciar categorias e 3–5 estudos na entrada | **Sim, editorial condicional** | Reorganizar navegação pública para 3–5 estudos existentes, após rastrear fonte, direitos sobre o material destacado/reproduzido, estado da evidência e limitações; sem dados ou resultados novos | Se direitos/proveniência não comprovados, apenas descrição neutra da rota com alerta de pendência, sem ampliar exposição; #14 P0, links conferidos; não reutilizar PR #66 sem implementação e QA próprios |
+| **T08.2** Catálogo pergunta/método/dados/resultado/estado/modos | **Sim, somente metadados comprovados** | Compilar descrições rastreáveis a README, T06.1–T06.3 e fontes existentes, sem reproduzir dados, resultados ou material com direitos pendentes | Por afirmação, conferir fonte, direitos, estado de evidência e limites; ausência = PENDENTE; acesso prévio não dispensa #14 |
 | **T08.3** Links/comandos/Markdown | **Sim, para testes não invasivos** | Verificar links e renderização; validar sintaxe/rotas sem executar scripts científicos proibidos | Comandos que toquem insumos ou R/Stan ficam apenas em revisão estática |
-| **T08.4** Sumário científico e leitura E00–E10 | **Condicional por estudo** | Resumos editoriais fiéis a resultados e estados já documentados, sem recomputação | QA técnico-científico de afirmações substantivas; registrar lacunas em vez de preencher |
-| **T08.5** Exemplos interpretados do fenômeno | **Condicional por estudo/exemplo** | Explicar somente evidências aceitas e limitações explícitas | Não deduzir novos estimandos, causalidade, validade preditiva ou equivalência histórica |
+| **T08.4** Sumário científico e leitura E00–E10 | **Condicional por estudo** | Resumos fiéis apenas a afirmações rastreadas e com direitos de reprodução/exposição verificados, sem recomputação | QA técnico-científico substantivo; registrar lacunas e pendências de direitos, sem republicar resultados não autorizados |
+| **T08.5** Exemplos interpretados do fenômeno | **Condicional por estudo/exemplo** | Interpretar somente evidências rastreáveis, aceitas e com reprodução/exposição autorizada, explicitando limites | Sem novo estimando, causalidade, validade preditiva, equivalência histórica ou reprodução de conteúdo protegido |
 | **T08.6** Distinguir versões/execuções/artefatos offline | **Sim, editorial condicional** | Explicitar estados e rastreabilidade, inclusive T07.6 ainda incompleta | Não promover N2 a N3/N4 nem confundir entrada histórica com output adaptado |
 | **T08.7** Revisão editorial independente | **Não é execução inicial** | Ocorre após as entregas editoriais relevantes, por revisor distinto | Não se confunde com autoinspeção do executor, revisão Codex ou CI |
 
-**Sequência de menor risco a examinar para liberação futura:** começar **somente por T08.1** após eficácia formal da exceção; T08.2–T08.6 requerem ciclos e checagens por escopo; T08.7 ao fim das alterações relevantes. Não executar nenhuma dessas tarefas neste PR de governança.
+**Gatilho de abertura, sem liberação em bloco:** cumpridos SEQ-2–SEQ-5, somente **T08.1** se torna elegível para ciclo executor separado; T08.2–T08.6 requerem **nova decisão fundamentada por tarefa**, checagem prévia de direitos/evidência/escopo e PR/QA independentes. T08.7 ocorre depois das entregas editoriais pertinentes, sem substituir os QAs por tarefa. Não executar nenhuma T08 neste PR de governança.
 
 ## 4. Etapas 09 e 10 — fora da liberação proposta
 
@@ -50,7 +52,7 @@ A Etapa 09 requer auditoria transversal e, em T09.2, jobs científicos pertinent
 | Gate | Evidência necessária | Responsável/papel | Estado no preparo |
 |---|---|---|---|
 | **SEQ-1 — proposta** | Esta manifestação, texto específico e matriz de dependências confrontados com Word | Executor deste PR | PREPARADO, NÃO APROVADO |
-| **SEQ-2 — QA independente** | Conferir diff integral, base/HEAD, cláusula estrita, matriz, risco #14, T06.4, ER6/ES e CI; parecer explícito sobre mérito da exceção | **Outro chat/revisor**, não executor | PENDENTE |
+| **SEQ-2 — QA independente** | Conferir diff integral, base/HEAD, cláusula estrita, matriz, risco #14, T06.4, ER6/ES e CI; parecer sobre redação final no novo SHA | **Outro chat/revisor**, não executor | QA de mérito com ressalvas no SHA anterior; **revalidação final PENDENTE** |
 | **SEQ-3 — decisão formal do plano** | Aprovação do texto final da exceção por autoridade competente do plano; a autorização atual é para **iniciar revisão**, não a sanção de um texto ainda não examinado | Responsável pelo plano | PENDENTE |
 | **SEQ-4 — integração** | PR pronto, SHA exato aprovado, CI e ruleset verificados, integração por responsável distinto do executor | Integrador autorizado | PENDENTE |
 | **SEQ-5 — Word mestre** | Registrar o texto eficaz e os identificadores reais da decisão/QA/merge, sem apagar ER6/ES e sem alterar T07.6 ou Etapa 07 | Integrador/controle | PENDENTE |
@@ -60,8 +62,8 @@ A Etapa 09 requer auditoria transversal e, em T09.2, jobs científicos pertinent
 
 ## 7. Evidências e verificação proposta
 
-- Word mestre vigente: `04_WORD_MESTRE_VIGENTE_ES_PR66_FECHADO.docx`, Apêndices ER6 e ES1–ES4, tabelas de T07.6 e Etapa 08.
+- **Fonte normativa antecedente ER6/ES:** `04_WORD_MESTRE_VIGENTE_ES_PR66_FECHADO.docx` (pacote histórico ES). **Mestre atualizado e preservado:** `WORD_MESTRE_ET_PROPOSTA.docx`, com Apêndice ET **apenas preparatório, sem eficácia da revisão de ordem**, e controles T07.6/Etapa 08 inalterados.
 - `main` inicial: `097650ac9a4a3c99d4c1d0453b63175938ba15fe`. CI pós-merge anterior [#44594052395](https://github.com/riscotta/bayes-stan-r/actions/runs/44594052395) não é QA desta proposta.
 - Verificar apenas documentos de governança no diff; scripts, datasets, modelos, artefatos históricos e workflows devem permanecer intocados.
 - CI do SHA específico deste PR: registrar se acionada; checks de sintaxe não validam a autoridade do responsável nem a independência científica.
-- **Próximo ato autorizado nesta sessão:** preparar a proposta e encaminhá-la ao QA independente. Nenhuma aprovação ou integração é inferida.
+- **Próximo ato após as correções R1–R4:** submeter o novo HEAD e a CI a QA independente da redação integral; somente depois solicitar ratificação específica SEQ-3. Nenhuma aprovação final, integração ou liberação T08 é inferida.
