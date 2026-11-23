@@ -126,7 +126,7 @@ def validate(raw: str, taxonomy: str, manifest: dict, scientific: dict,
         require("[DATA_PROVENANCE](../data/DATA_PROVENANCE.md)" in section,
                 "ponteiro de direitos: " + study_id)
         if study_id == "caes_raca_f5":
-            require(re.search(r"(?m)^- \\*\\*evidencia_posterior_t06_6:\\*\\*", section) is not None
+            require(re.search(r"(?m)^- \*\*evidencia_posterior_t06_6:\*\*", section) is not None
                     and "2026-11-16" in section, "piloto F5 não separado")
             require("\x60sintese=NAO_AFERIDO_NESTA_TAREFA\x60" in section,
                     "retroatividade indevida F5")
