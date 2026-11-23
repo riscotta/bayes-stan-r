@@ -126,8 +126,8 @@ def validate(raw: str, taxonomy: str, manifest: dict, scientific: dict,
         require("[DATA_PROVENANCE](../data/DATA_PROVENANCE.md)" in section,
                 "ponteiro de direitos: " + study_id)
         if study_id == "caes_raca_f5":
-            require("**evidencia_posterior_t06_6:**" in section and "2026-11-16" in section,
-                    "piloto F5 não separado")
+            require(re.search(r"(?m)^- \\*\\*evidencia_posterior_t06_6:\\*\\*", section) is not None
+                    and "2026-11-16" in section, "piloto F5 não separado")
             require("\x60sintese=NAO_AFERIDO_NESTA_TAREFA\x60" in section,
                     "retroatividade indevida F5")
         else:
@@ -164,62 +164,116 @@ class TestCatalogoT082(unittest.TestCase):
                                  self.scientific, self.modes))
         self.assertTrue(PROVENANCE.is_file())
 
-    def reject_mutation(self, needle: str, replacement: str) -> None:
+    def reject_mutation(self, needle: str, replacement: str,
+                        expected_error: str) -> None:
+        # Precondicao: a fonte intacta deve ser valida antes de testar defeitos.
+        self.assertTrue(validate(self.content, self.taxonomy, self.manifest,
+                                 self.scientific, self.modes))
         self.assertIn(needle, self.content)
-        with self.assertRaises(ValueError):
-            validate(self.content.replace(needle, replacement, 1), self.taxonomy,
-                     self.manifest, self.scientific, self.modes,
-                     inspect_paths=False)
+        mutant = self.content.replace(needle, replacement, 1)
+        self.assertNotEqual(mutant, self.content)
+        # A excecao deve provir do defeito introduzido, nao de outro erro.
+        with self.assertRaisesRegex(ValueError, re.escape(expected_error)):
+            validate(mutant, self.taxonomy, self.manifest,
+                     self.scientific, self.modes, inspect_paths=True)
+
+    def test_linhas_markdown_independentes(self) -> None:
+        _, entries = split_records(self.content)
+        self.assertEqual(len(entries), 33)
+        for study_id, section in entries.items():
+            with self.subTest(estudo=study_id):
+                lines = section.splitlines()
+                for field in FIELDS:
+                    self.assertEqual(
+                        sum(line.startswith("- **" + field + ":**") for line in lines), 1,
+                        "campo em linha propria: " + study_id + "/" + field)
+                for mode in OPERATIONS:
+                    self.assertEqual(
+                        sum(line.startswith("  - \x60" + mode + "\x60") for line in lines), 1,
+                        "modo em linha propria: " + study_id + "/" + mode)
+                for line in lines:
+                    self.assertLessEqual(
+                        sum("  - \x60" + mode + "\x60" in line for mode in OPERATIONS), 1,
+                        "modos concatenados em " + study_id)
+                expected_f5 = int(study_id == "caes_raca_f5")
+                self.assertEqual(
+                    sum(line.startswith("- **evidencia_posterior_t06_6:**")
+                        for line in lines), expected_f5,
+                    "T06.6 F5 deve permanecer separada")
 
     def test_rejeita_id_ausente(self) -> None:
-        self.reject_mutation("### \x60caes_raca_f5\x60", "### \x60pseudoestudo_f5\x60")
+        self.reject_mutation("### \x60caes_raca_f5\x60", "### \x60pseudoestudo_f5\x60",
+                             "IDs distintos da taxonomia")
 
     def test_rejeita_classe_invertida(self) -> None:
-        self.reject_mutation("**classe:** Estudo aplicado", "**classe:** Laboratório de modelos")
+        self.reject_mutation("**classe:** Estudo aplicado",
+                             "**classe:** Laboratório de modelos",
+                             "classe incorreta")
 
     def test_rejeita_campo_ausente(self) -> None:
-        self.reject_mutation("**responsavel:**", "**autor_nao_verificado:**")
+        self.reject_mutation("**responsavel:**", "**autor_nao_verificado:**",
+                             "campo responsavel deve ocorrer uma vez")
 
     def test_rejeita_eixo_n2_promovido(self) -> None:
         self.reject_mutation(
             "\x60sintese\x60: \x60NAO_AFERIDO_NESTA_TAREFA\x60",
             "\x60sintese\x60: \x60AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA\x60",
-        )
+            "status T06.2 adulterado")
 
     def test_rejeita_inferencia_inventada(self) -> None:
         self.reject_mutation(
             "\x60inferencia\x60: \x60NAO_AFERIDO_NESTA_TAREFA\x60",
             "\x60inferencia\x60: \x60INFERENCIA_REEXECUTADA\x60",
-        )
+            "status T06.2 adulterado")
 
     def test_rejeita_modo_omitido(self) -> None:
         self.reject_mutation(
             "\x60reproducao_desde_dados\x60 (reprodução desde dados)",
             "\x60modo_unico\x60 (reprodução desde dados)",
-        )
+            "modo omitido")
 
     def test_rejeita_licenca_transformada_em_autorizacao(self) -> None:
         self.reject_mutation("license_status=source_terms_verified",
-                             "license_status=redistribuicao_livre_homologada")
+                             "license_status=redistribuicao_livre_homologada",
+                             "direitos separados")
 
     def test_rejeita_link_dados_protegidos(self) -> None:
-        self.reject_mutation("[README do estudo](caes_raca_f5/README.md)",
-                             "[README do estudo](../data/raw/caes_raca_f5/tabelas.csv)")
+        self.reject_mutation(
+            "[descrição do manifesto T06.1](../reports/t06_1/README.md)",
+            "[descrição do manifesto T06.1](../data/raw/caes_raca_f5/tabelas.csv)",
+            "link novo para material de dados/resultados")
 
     def test_rejeita_retroatividade_f5(self) -> None:
         self.reject_mutation(
             "\x60sintese=NAO_AFERIDO_NESTA_TAREFA\x60",
             "\x60sintese=AUDITORIA_DESCRITIVA_LIMITADA_DOCUMENTADA\x60",
-        )
+            "retroatividade indevida F5")
 
     def test_rejeita_fonte_quebrada(self) -> None:
-        self.reject_mutation("[README do estudo](caes_raca_f5/README.md)",
-                             "[README do estudo](caes_raca_f5/NAO_EXISTE.md)")
+        self.reject_mutation(
+            "[descrição do manifesto T06.1](../reports/t06_1/README.md)",
+            "[descrição do manifesto T06.1](../reports/t06_1/NAO_EXISTE.md)",
+            "link relativo quebrado")
 
     def test_rejeita_corte_historico_falso(self) -> None:
         self.reject_mutation("manifesto T06.1 \x602026-11-12\x60",
-                             "manifesto T06.1 \x602027-11-12\x60")
+                             "manifesto T06.1 \x602027-11-12\x60",
+                             "fonte/corte não declarado")
 
+    def test_rejeita_modo_sem_linha_propria(self) -> None:
+        self.reject_mutation("\n  - \x60reexecucao_modelo\x60",
+                             "  - \x60reexecucao_modelo\x60",
+                             "modo omitido")
+
+    def test_rejeita_direitos_sem_linha_propria(self) -> None:
+        self.reject_mutation("\n- **proveniencia_direitos:**",
+                             "- **proveniencia_direitos:**",
+                             "campo proveniencia_direitos deve ocorrer uma vez")
+
+    def test_rejeita_t06_6_sem_linha_propria(self) -> None:
+        self.reject_mutation("\n- **evidencia_posterior_t06_6:**",
+                             "- **evidencia_posterior_t06_6:**",
+                             "piloto F5 não separado")
 
 if __name__ == "__main__":
     unittest.main()
