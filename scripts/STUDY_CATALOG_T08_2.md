@@ -14,39 +14,39 @@ Cada ficha preserva os **oito campos T02.2** (`pergunta`, `objeto`, `dados`, `me
 
 ## Índice de unidades
 
-- [`caes_raca_f5`](#caes-raca-f5) — Estudo aplicado
-- [`censo_escolar_tempo_integral`](#censo-escolar-tempo-integral) — Estudo aplicado
-- [`consumer_shopping_trends_beta`](#consumer-shopping-trends-beta) — Laboratório de modelos
-- [`coortes_aposentadoria`](#coortes-aposentadoria) — Estudo aplicado
-- [`deck_15wins`](#deck-15wins) — Laboratório de modelos
-- [`deter_mensal_bioma_uf`](#deter-mensal-bioma-uf) — Estudo aplicado
-- [`exercises_dataset`](#exercises-dataset) — Estudo aplicado
-- [`fruitflies_aft`](#fruitflies-aft) — Laboratório de modelos
-- [`hidrometro_degradacao`](#hidrometro-degradacao) — Laboratório de modelos
+- [`caes_raca_f5`](#caes_raca_f5) — Estudo aplicado
+- [`censo_escolar_tempo_integral`](#censo_escolar_tempo_integral) — Estudo aplicado
+- [`consumer_shopping_trends_beta`](#consumer_shopping_trends_beta) — Laboratório de modelos
+- [`coortes_aposentadoria`](#coortes_aposentadoria) — Estudo aplicado
+- [`deck_15wins`](#deck_15wins) — Laboratório de modelos
+- [`deter_mensal_bioma_uf`](#deter_mensal_bioma_uf) — Estudo aplicado
+- [`exercises_dataset`](#exercises_dataset) — Estudo aplicado
+- [`fruitflies_aft`](#fruitflies_aft) — Laboratório de modelos
+- [`hidrometro_degradacao`](#hidrometro_degradacao) — Laboratório de modelos
 - [`hierarchical`](#hierarchical) — Laboratório de modelos
-- [`importacoes_world_bank`](#importacoes-world-bank) — Estudo aplicado
-- [`inhaler_ordinal`](#inhaler-ordinal) — Laboratório de modelos
-- [`ipca_sidra_1419`](#ipca-sidra-1419) — Estudo aplicado
-- [`isus_sia`](#isus-sia) — Estudo aplicado
-- [`kidney_survival`](#kidney-survival) — Laboratório de modelos
-- [`media_ruido_mu`](#media-ruido-mu) — Laboratório de modelos
-- [`mega_sena_dezenas`](#mega-sena-dezenas) — Estudo aplicado
-- [`missing_migrants`](#missing-migrants) — Estudo aplicado
-- [`mortalidade_sp_0_74`](#mortalidade-sp-0-74) — Estudo aplicado
+- [`importacoes_world_bank`](#importacoes_world_bank) — Estudo aplicado
+- [`inhaler_ordinal`](#inhaler_ordinal) — Laboratório de modelos
+- [`ipca_sidra_1419`](#ipca_sidra_1419) — Estudo aplicado
+- [`isus_sia`](#isus_sia) — Estudo aplicado
+- [`kidney_survival`](#kidney_survival) — Laboratório de modelos
+- [`media_ruido_mu`](#media_ruido_mu) — Laboratório de modelos
+- [`mega_sena_dezenas`](#mega_sena_dezenas) — Estudo aplicado
+- [`missing_migrants`](#missing_migrants) — Estudo aplicado
+- [`mortalidade_sp_0_74`](#mortalidade_sp_0_74) — Estudo aplicado
 - [`mortality`](#mortality) — Laboratório de modelos
-- [`pms_servicos`](#pms-servicos) — Estudo aplicado
-- [`pnadc_desocupacao`](#pnadc-desocupacao) — Estudo aplicado
-- [`pnadc_estudo_i`](#pnadc-estudo-i) — Estudo aplicado
-- [`prisons_prisoners_unodc`](#prisons-prisoners-unodc) — Estudo aplicado
-- [`retractions_reason_composition`](#retractions-reason-composition) — Estudo aplicado
-- [`retractions_time_to_retraction`](#retractions-time-to-retraction) — Estudo aplicado
-- [`retractions_trend`](#retractions-trend) — Estudo aplicado
-- [`rs_seguro`](#rs-seguro) — Estudo aplicado
+- [`pms_servicos`](#pms_servicos) — Estudo aplicado
+- [`pnadc_desocupacao`](#pnadc_desocupacao) — Estudo aplicado
+- [`pnadc_estudo_i`](#pnadc_estudo_i) — Estudo aplicado
+- [`prisons_prisoners_unodc`](#prisons_prisoners_unodc) — Estudo aplicado
+- [`retractions_reason_composition`](#retractions_reason_composition) — Estudo aplicado
+- [`retractions_time_to_retraction`](#retractions_time_to_retraction) — Estudo aplicado
+- [`retractions_trend`](#retractions_trend) — Estudo aplicado
+- [`rs_seguro`](#rs_seguro) — Estudo aplicado
 - [`saheart`](#saheart) — Laboratório de modelos
-- [`sat_model_selection`](#sat-model-selection) — Laboratório de modelos
-- [`sherlock_holmes_terms`](#sherlock-holmes-terms) — Estudo aplicado
-- [`sobrevivencia_cadastral_poa`](#sobrevivencia-cadastral-poa) — Estudo aplicado
-- [`therapeutic_touch`](#therapeutic-touch) — Laboratório de modelos
+- [`sat_model_selection`](#sat_model_selection) — Laboratório de modelos
+- [`sherlock_holmes_terms`](#sherlock_holmes_terms) — Estudo aplicado
+- [`sobrevivencia_cadastral_poa`](#sobrevivencia_cadastral_poa) — Estudo aplicado
+- [`therapeutic_touch`](#therapeutic_touch) — Laboratório de modelos
 
 ## Fichas
 
