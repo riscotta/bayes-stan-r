@@ -111,6 +111,9 @@ jobs:
           python -m unittest discover -s tests/python -p 'test_inventario_t07_6.py' -v
           python tools/verificar_pares_t07_6.py
 
+      - name: Verify T08.2 documentary catalog and adversarial cases
+        run: python -m unittest discover -s tests/python -p 'test_catalogo_t08_2.py' -v
+
       - name: Execute permitted T07.3 public PNAD adapter (N2 only)
         shell: bash
         run: |
