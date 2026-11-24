@@ -116,10 +116,20 @@ def validate(raw: str, taxonomy: str, manifest: dict, scientific: dict,
             if not route or not route.get("comando"):
                 require("PENDENTE_DE_VERIFICACAO" in line,
                         "comando inventado: " + study_id + "/" + mode)
+        # Regressões FL: detectar o defeito conhecido, não certificar semântica.
+        results = re.search(r"(?m)^- \*\*resultados:\*\* (.+)$", section).group(1)
+        require("tipo de saída (console, tabela, gráfico ou arquivo opcional)" not in results
+                and "quantidade de arquivos:" not in results,
+                "resultado generico FL: " + study_id)
+        require(not re.search(r"licen[çc]a[^.;\n]{0,80}\b(?:é|=)\s*\x60?(?:review_required|not_versioned|aggregates_only)\b",
+                              section, flags=re.IGNORECASE),
+                "confusao textual de direitos FL: " + study_id)
+        rights = re.search(r"(?m)^- \*\*proveniencia_direitos:\*\* (.+)$", section).group(1)
         for source in by_m[study_id]["entradas"]:
             license_label = ("license_status=" + source["license_status_fonte"])
             redist_label = ("redistribution_status=" + source["redistribution_status_fonte"])
-            require(license_label in section and redist_label in section,
+            require("`" + source["dataset_id"] + "`: `" + license_label + "`, `" +
+                    redist_label + "`" in rights,
                     "direitos separados: " + study_id + "/" + source["dataset_id"])
             require("\x60" + source["dataset_id"] + "\x60" in section,
                     "dataset sem identificador: " + study_id)
@@ -139,10 +149,20 @@ def validate(raw: str, taxonomy: str, manifest: dict, scientific: dict,
 
     # Verifica TODOS os destinos Markdown do catálogo, não só nomes.
     for target in LINK.findall(raw):
-        if target.startswith(("https://", "http://", "#")):
-            continue
-        require("data/raw/" not in target and "/outputs/" not in target,
+        from urllib.parse import unquote
+        decoded = unquote(target).lower()
+        require("data/raw/" not in decoded and "outputs/" not in decoded,
                 "link novo para material de dados/resultados: " + target)
+        if target.startswith("#"):
+            require(target[1:] in entries, "ancora desconhecida: " + target)
+            continue
+        if target.startswith(("https://", "http://")):
+            require(target in {
+                "https://github.com/riscotta/bayes-stan-r/issues/14",
+                "https://github.com/riscotta/bayes-stan-r/pull/56",
+                "https://github.com/riscotta/bayes-stan-r/actions/runs/43881903884",
+            }, "link externo nao autorizado: " + target)
+            continue
         path = (ROOT / "scripts" / target.split("#")[0]).resolve()
         require(path.is_relative_to(ROOT), "link escapa do repositório")
         if inspect_paths:
@@ -274,6 +294,30 @@ class TestCatalogoT082(unittest.TestCase):
         self.reject_mutation("\n- **evidencia_posterior_t06_6:**",
                              "- **evidencia_posterior_t06_6:**",
                              "piloto F5 não separado")
+
+    def test_rejeita_resultado_generico_fl(self) -> None:
+        self.reject_mutation(
+            "Tipo/local declarado: Síntese histórica de comparação M1/M2",
+            "Tipo: tipo de saída (console, tabela, gráfico ou arquivo opcional)",
+            "resultado generico FL")
+
+    def test_rejeita_confusao_direitos_fl(self) -> None:
+        self.reject_mutation(
+            "licença do snapshot não identificada",
+            "licença do snapshot é review_required",
+            "confusao textual de direitos FL")
+
+    def test_rejeita_link_externo_dados(self) -> None:
+        self.reject_mutation(
+            "[descrição do manifesto T06.1](../reports/t06_1/README.md)",
+            "[descrição do manifesto T06.1](https://github.com/riscotta/bayes-stan-r/blob/main/data/raw/x.csv)",
+            "link novo para material de dados/resultados")
+
+    def test_rejeita_ancora_desconhecida(self) -> None:
+        self.reject_mutation(
+            "[`caes_raca_f5`](#caes_raca_f5)",
+            "[`caes_raca_f5`](#fantasma) [`caes_raca_f5`](#caes_raca_f5)",
+            "ancora desconhecida")
 
 if __name__ == "__main__":
     unittest.main()
