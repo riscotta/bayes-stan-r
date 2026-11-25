@@ -5,7 +5,7 @@
 
 Ajustar um modelo é apenas parte de uma análise estatística. Este repositório reúne estudos em **R e Stan** com atenção à especificação, às verificações computacionais, à capacidade preditiva e aos limites do que pode ser concluído.
 
-A unidade de organização é o **estudo**, não um pacote R. Cada pasta em §scripts/§ tem entrada e documentação próprias. Alguns estudos refazem o ajuste a partir dos dados disponíveis; outros reconstroem tabelas a partir de artefatos auditados, e alguns dependem de insumos que não podem ser redistribuídos. **Esses níveis de reprodução não são equivalentes.**
+A unidade de organização é o **estudo**, não um pacote R. Cada pasta em `scripts/` tem entrada e documentação próprias. Alguns estudos refazem o ajuste a partir dos dados disponíveis; outros reconstroem tabelas a partir de artefatos auditados, e alguns dependem de insumos que não podem ser redistribuídos. **Esses níveis de reprodução não são equivalentes.**
 
 ## Por onde começar — categorias e cinco estudos
 
@@ -28,9 +28,9 @@ A [taxonomia editorial T02.1](scripts/STUDY_TAXONOMY_T02_1.md) distingue **labor
 
 ## Execução
 
-Use a raiz do repositório como diretório de trabalho; não é necessário chamar §setwd()§.
+Use a raiz do repositório como diretório de trabalho; não é necessário chamar `setwd()`.
 
-§§§bash
+```bash
 git clone https://github.com/riscotta/bayes-stan-r.git
 cd bayes-stan-r
 
@@ -39,17 +39,17 @@ Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('ren
 
 # Exemplo: uma análise concreta
 Rscript scripts/therapeutic_touch/therapeutic_touch.R
-§§§
+```
 
-Ambiente de referência: **R 4.5.1**, §cmdstanr§ **0.9.0**, §rstan§ **2.32.7** e **CmdStan 2.40.0**. O §renv.lock§ controla pacotes R, não o compilador CmdStan. Para executar estudos com §cmdstanr§:
+Ambiente de referência: **R 4.5.1**, `cmdstanr` **0.9.0**, `rstan` **2.32.7** e **CmdStan 2.40.0**. O `renv.lock` controla pacotes R, não o compilador CmdStan. Para executar estudos com `cmdstanr`:
 
-§§§bash
+```bash
 Rscript scripts/_setup/install_cmdstan.R
-§§§
+```
 
-Alternativa para instalar dependências fora do §renv§: §Rscript scripts/_setup/install_deps.R§. Os detalhes estão em [config/environment.yml](config/environment.yml) e [scripts/_setup/README.md](scripts/_setup/README.md).
+Alternativa para instalar dependências fora do `renv`: `Rscript scripts/_setup/install_deps.R`. Os detalhes estão em [config/environment.yml](config/environment.yml) e [scripts/_setup/README.md](scripts/_setup/README.md).
 
-O comando padrão **não necessariamente reamostra Stan**. Em estudos que disponibilizam §--run_stan=1§, esse parâmetro aciona uma nova amostragem e pode exigir dados externos, compilador e tempo computacional. Consulte o README local antes de interpretá-lo como reprodução integral.
+O comando padrão **não necessariamente reamostra Stan**. Em estudos que disponibilizam `--run_stan=1`, esse parâmetro aciona uma nova amostragem e pode exigir dados externos, compilador e tempo computacional. Consulte o README local antes de interpretá-lo como reprodução integral.
 
 ## Organização
 
@@ -58,11 +58,11 @@ O comando padrão **não necessariamente reamostra Stan**. Em estudos que dispon
 | [scripts/](scripts/README.md) | Código R/Stan e instruções por estudo |
 | [data/raw/](data/raw/README.md) | Fontes recebidas e insumos históricos selecionados |
 | [data/DATA_PROVENANCE.md](data/DATA_PROVENANCE.md) | Origens, licenças e permissões ainda pendentes |
-| [outputs/](outputs/README.md) | Arquivos regeneráveis, agrupados em §outputs/<estudo>/<tipo>/§ |
+| [outputs/](outputs/README.md) | Arquivos regeneráveis, agrupados em `outputs/<estudo>/<tipo>/` |
 | [reports/](reports/README.md) | Relatórios e cadernos de interpretação |
 | [tests/](tests/README.md) | Contratos estruturais e verificações numéricas |
 
-Resultados históricos auditados publicados dentro de §data/raw/<estudo>/resultados_auditados/§ são **exceções de preservação**, não dados brutos nem arquivos produzidos pela execução padrão. Não reorganize esses caminhos sem ajustar código, manifestos, documentação e testes.
+Resultados históricos auditados publicados dentro de `data/raw/<estudo>/resultados_auditados/` são **exceções de preservação**, não dados brutos nem arquivos produzidos pela execução padrão. Não reorganize esses caminhos sem ajustar código, manifestos, documentação e testes.
 
 ## Resultados representativos e ressalvas
 
@@ -70,7 +70,7 @@ Resultados históricos auditados publicados dentro de §data/raw/<estudo>/result
 
 **Mortalidade em São Paulo, 2006–2023.** A taxa bruta e a taxa padronizada por idade/sexo levam a conclusões diferentes em alguns intervalos. Os dados distritais usam correspondência territorial provisória; a execução pública **reconstitui indicadores agregados**, não a integração completa dos dados primários. [Relatório científico](reports/mortalidade_sp_0_74/relatorio_cientifico.md) e [caderno E01–E10](reports/mortalidade_sp_0_74/caderno_E01_E10.md).
 
-**IOM Missing Migrants Project.** A modelagem trata a carga **registrada** de mortos e desaparecidos, não a mortalidade real total. Há ressalvas de §R-hat§ e checagens preditivas dos zeros e da dispersão. [Escopo do estudo](scripts/missing_migrants/README.md).
+**IOM Missing Migrants Project.** A modelagem trata a carga **registrada** de mortos e desaparecidos, não a mortalidade real total. Há ressalvas de `R-hat` e checagens preditivas dos zeros e da dispersão. [Escopo do estudo](scripts/missing_migrants/README.md).
 
 ## Evidências da Etapa 06 — corte de 16/11/2026 (T06.7)
 
@@ -90,13 +90,13 @@ O [PR #56](https://github.com/riscotta/bayes-stan-r/pull/56) foi integrado após
 
 ## O que é validado automaticamente?
 
-O [workflow R CI](.github/workflows/ci.yml) verifica a sintaxe dos scripts R, executa a suíte §testthat§ e uma reconstituição pública dos resultados agregados de mortalidade de São Paulo. Há também uma verificação local de caminhos Markdown e uma rotina separada para URLs externos.
+O [workflow R CI](.github/workflows/ci.yml) verifica a sintaxe dos scripts R, executa a suíte `testthat` e uma reconstituição pública dos resultados agregados de mortalidade de São Paulo. Há também uma verificação local de caminhos Markdown e uma rotina separada para URLs externos.
 
-**Passar na CI não comprova a validade estatística de todos os ajustes**, não instala todos os pacotes do §renv.lock§ e não reexecuta todas as cadeias MCMC. Veja [tests/README.md](tests/README.md) para saber o que efetivamente é coberto.
+**Passar na CI não comprova a validade estatística de todos os ajustes**, não instala todos os pacotes do `renv.lock` e não reexecuta todas as cadeias MCMC. Veja [tests/README.md](tests/README.md) para saber o que efetivamente é coberto.
 
-§§§bash
+```bash
 Rscript tests/run_tests.R
-§§§
+```
 
 ## Dados, licença e contribuição
 
