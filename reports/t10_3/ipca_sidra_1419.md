@@ -22,9 +22,9 @@ Consultas online SIDRA/IBGE tabelas 1737 e 7060, pesos e acumulado de 12 meses; 
 
 Trajetória latente da inflação mensal por grupo e total, questões probabilísticas de desaceleração e consistência do acumulado de 12 meses; distinguir agregado ponderado de efeito causal.
 
-y[t,g] ~ Normal(θ[t,g],σ_obs,g), y_total[t] ~ Normal(total_θ[t],σ_obs,total). Modelo temporal com μ0 ~ Normal(0,4,0,5), inovação não centrada, efeitos de grupo e parâmetros de persistência; escalas observacionais Exponential(3) e Exponential(4). O modelo calcula log-likelihood total.
+y[t,g] ~ Normal(θ[t,g]; σ_obs,g), y_total[t] ~ Normal(total_θ[t]; σ_obs_total). Modelo temporal com μ0 ~ Normal(0,4; 0,5), inovação não centrada, efeitos de grupo e parâmetros de persistência; escalas observacionais Exponential(3) e Exponential(4). O modelo calcula log-likelihood total.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

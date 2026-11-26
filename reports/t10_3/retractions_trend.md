@@ -22,9 +22,9 @@ CSV externo Kaggle Global Scientific Retractions 1927–2026; agrega grupos raro
 
 Trajetória e contraste de contagens anuais de retratações por grupos. Sem denominador de publicações, não é taxa de retratação ou medida causal de integridade.
 
-y ~ NB2(μ,φ) com efeitos hierárquicos e random walk de ordem 1, α ~ Normal(log_y_mean,1,5); efeitos não centrados, escalas positivas Normal(0,0,8), Normal(0,0,3), Normal(0,0,35); φ ~ Exponential(1).
+y ~ NB2(μ; φ) com efeitos hierárquicos e random walk de ordem 1, α ~ Normal(log_y_mean; 1,5); efeitos não centrados, escalas positivas Normal(0; 0,8), Normal(0; 0,3), Normal(0; 0,35); φ ~ Exponential(1).
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

@@ -22,9 +22,9 @@ CSV externo Kaggle Consumer Shopping Trends Analysis, alvo reescalado a (0,1); a
 
 Parâmetros de forma α e β da distribuição da variável reescalada; média da Beta α/(α+β) na escala transformada, e média de y na escala original se aplicada a transformação registrada.
 
-z_i ~ Beta(α,β), α,β ~ Lognormal(0,1), suporte aberto (0,1). O script contém o modelo Stan em memória; não é regressão causal.
+z_i ~ Beta(α; β), α,β ~ Lognormal(0; 1), suporte aberto (0,1). O script contém o modelo Stan em memória; não é regressão causal.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

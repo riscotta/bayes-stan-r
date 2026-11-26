@@ -22,9 +22,9 @@ Sintéticos, gerados no script; r, sessões por deck e p_true configuráveis; ne
 
 Probabilidade de vitória p_d por deck simulado; número de partidas N=r+perdas por sessão. Comparação posterior analítica versus Stan.
 
-p_d ~ Beta(a0,b0), L_s | p_d ~ NegBin(r,p_d), perdas antes de r vitórias. Em Stan, beta_nb=p/(1−p) na parametrização shape/inverse scale; posterior conjugada Beta(a0+rS_d,b0+ΣL_s).
+p_d ~ Beta(a0; b0), L_s | p_d ~ NegBin(r; p_d), perdas antes de r vitórias. Em Stan, beta_nb=p/(1−p) na parametrização shape/inverse scale; posterior conjugada Beta(a0+rS_d; b0+ΣL_s).
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

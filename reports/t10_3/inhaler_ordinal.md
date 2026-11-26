@@ -22,9 +22,9 @@ Dataset inhaler do brms ou CSV de mesmas colunas; holdout documentado; vintage n
 
 Probabilidades de resposta ordinal e contrastes condicionais aos tratamentos/períodos e sujeito no crossover; desempenho preditivo no holdout documentado.
 
-y_tr ~ OrderedLogistic(η_tr,c), β ~ Normal(0,1,5), intercepto aleatório z_u ~ Normal(0,1), σ_u ~ Student-t(3,0,0,7) positiva; cutpoints construídos por c1 e gaps softplus. O código computa log-likelihood de teste.
+y_tr ~ OrderedLogistic(η_tr; c), β ~ Normal(0; 1,5), intercepto aleatório z_u ~ Normal(0; 1), σ_u ~ Student-t(3; 0; 0,7) positiva; cutpoints construídos por c1 e gaps softplus. O código computa log-likelihood de teste.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

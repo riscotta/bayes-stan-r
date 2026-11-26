@@ -22,9 +22,9 @@ CSV World Bank Import USD enriquecido; natureza observacional, colunas enriqueci
 
 Nível/contrastes de importações na escala analítica do modelo, com interceptos e inclinações por país. Não identificar efeito causal de covariáveis observacionais.
 
-y ~ Student-t(ν,μ,σ), μ=Xβ com intercepto/inclinação por país não centrados. β₁ ~ Normal(y_mean,2,5), demais Normal(0,1); escalas de efeitos de país 1 e 0,2 em normais positivas; ν−2 ~ Exponential(0,1), σ positiva Normal(0,1). A transformação e unidade do desfecho devem ser verificadas no pipeline E04 antes de back-transformar.
+y ~ Student-t(ν; μ; σ), μ=Xβ com intercepto/inclinação por país não centrados. β₁ ~ Normal(y_mean; 2,5), demais Normal(0; 1); escalas de efeitos de país 1 e 0,2 em normais positivas; ν−2 ~ Exponential(0,1), σ positiva Normal(0; 1). A transformação e unidade do desfecho devem ser verificadas no pipeline E04 antes de back-transformar.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

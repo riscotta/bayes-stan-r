@@ -22,9 +22,9 @@ Base analítica E04 individual externa, questionário F5 e agregados congelados 
 
 Diferença de erro de previsão interno entre M1 (covariáveis) e M2 (covariáveis + intercepto por raça declarada), por família; RMSE, logscore, interval score, cobertura e ΔRMSE pareado. Não é efeito causal de raça.
 
-M2: μ_i = α + x_iᵀβ + τ z_raça[i], z ~ Normal(0,1). O fonte E07 escolhe Normal(μ,σ) ou Student-t com 5 graus de liberdade; α ~ Normal(0,1,5), β ~ Normal(0,0,5), σ e τ positivas com priors normais truncadas; escala τ fornecida como dado. Na candidata skew-normal E08_MP, a localização é deslocada por ωδ√(2/π), δ = λ/√(1+λ²), para preservar a média condicional; τ tem escala 0,5. Isto identifica as especificações versionadas, não certifica que cada variante foi executada.
+M2: μ_i = α + x_iᵀβ + τ z_raça[i], z ~ Normal(0; 1). O fonte E07 escolhe Normal(μ; σ) ou Student-t com 5 graus de liberdade; α ~ Normal(0; 1,5), β ~ Normal(0; 0,5), σ e τ positivas com priors normais truncadas; escala τ fornecida como dado. Na candidata skew-normal E08_MP, a localização é deslocada por ωδ√(2/π), δ = λ/√(1+λ²), para preservar a média condicional; τ tem escala 0,5. Isto identifica as especificações versionadas, não certifica que cada variante foi executada.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 
@@ -32,8 +32,8 @@ M0 média de treino; M1 covariáveis; M2 interceptos hierárquicos de raça; fam
 
 Fontes específicas no SHA base (linhas indicam trechos de implementação, não logs de execução):
 
-- [`scripts/caes_raca_f5/original/E08_MP_Entregaveis/03_referencias_congeladas/modelo_M2_E07.stan`](../../scripts/caes_raca_f5/original/E08_MP_Entregaveis/03_referencias_congeladas/modelo_M2_E07.stan) — linhas modelo completo; blob `4b470134f8d027a95d042c7bd990c9ea51f21134`.
-- [`scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/stan/M2_skew_normal_E08_MP.stan`](../../scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/stan/M2_skew_normal_E08_MP.stan) — linhas modelo completo; blob `de87079eb2cc170438e378abb5098a22764125e0`.
+- [`scripts/caes_raca_f5/original/E08_MP_Entregaveis/03_referencias_congeladas/modelo_M2_E07.stan`](../../scripts/caes_raca_f5/original/E08_MP_Entregaveis/03_referencias_congeladas/modelo_M2_E07.stan) — modelo completo; blob `4b470134f8d027a95d042c7bd990c9ea51f21134`.
+- [`scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/stan/M2_skew_normal_E08_MP.stan`](../../scripts/caes_raca_f5/original/E08_MP_Entregaveis/02_codigo/stan/M2_skew_normal_E08_MP.stan) — modelo completo; blob `de87079eb2cc170438e378abb5098a22764125e0`.
 - [`scripts/caes_raca_f5/README.md`](../../scripts/caes_raca_f5/README.md) — linhas 25–39; blob `7656e617336ff5928af83c556edf48bcd5c69462`.
 
 - [`reports/caes_raca_f5/relatorio_cientifico.md`](../../reports/caes_raca_f5/relatorio_cientifico.md) — blob `acfcd5afece447769b1c17ca75a13aa4ba1ace2b`.

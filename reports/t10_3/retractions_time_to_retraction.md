@@ -22,9 +22,9 @@ CSV externo Kaggle Global Scientific Retractions, validação de datas/lag e agr
 
 Distribuição e contrastes do atraso entre publicação e retratação entre artigos retratados observados, condicionados a editora e covariáveis; não tempo de todos os artigos até eventual retratação.
 
-y=(log_lag_days−média)/DP, y~Normal(μ,σ), μ=α+Xβ e efeitos de editora e indicadores multi-rótulo. α ~ Normal(0,0,35), β~Normal(0,0,20), coeficientes multi-rótulo Normal(0,0,15); σ~Lognormal(log(0,6),0,25), σ_pub~Lognormal(log(0,10),0,35).
+y=(log_lag_days−média)/DP, y~Normal(μ; σ), μ=α+Xβ e efeitos de editora e indicadores multi-rótulo. α ~ Normal(0; 0,35), β~Normal(0; 0,20), coeficientes multi-rótulo Normal(0; 0,15); σ~Lognormal(log(0,6); 0,25), σ_pub~Lognormal(log(0,10); 0,35).
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

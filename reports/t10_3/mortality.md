@@ -22,9 +22,9 @@ Excel com Contagem, POPULACAO e CODMUNRES; agrega municípios repetidos; origem 
 
 Taxa municipal de eventos com shrinkage e probabilidade de excesso frente ao benchmark do modelo; predição de contagens.
 
-y_i ~ Poisson_log(logλ_i+log(pop_i)), efeito municipal não centrado η=ση_raw; α ~ Normal(alpha_loc,alpha_scale), σ positiva Normal(0,sigma_scale), η_raw ~ Normal(0,1). O README informa centragem do intercepto na taxa bruta observada.
+y_i ~ Poisson_log(logλ_i+log(pop_i)), efeito municipal não centrado η=ση_raw; α ~ Normal(alpha_loc; alpha_scale), σ positiva Normal(0; sigma_scale), η_raw ~ Normal(0; 1). O README informa centragem do intercepto na taxa bruta observada.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

@@ -22,9 +22,9 @@ CSVs mensais de macrocrime, perfil de uma vítima e camada crime opcional não v
 
 M1: tendência de contagens mensais por crime/macrocrime. M2: tendência de contagens de ocorrências com uma vítima por sexo, faixa e crime condicionada a alvos; não risco individual.
 
-M1 y~NB2_log(η,φ_crime), α_global~Normal(log_y_mean,0,5), β_global~Normal(0,0,05); efeitos hierárquicos por crime e mês. M2 y~NB2_log(η,φ_group), α_global~Normal(log_y_mean,0,6), β_global~Normal(0,0,08), efeitos por grupo e mês; dispersões hierárquicas. A seleção de alvos M2 é explícita ou via saída M1, não uma amostragem independente.
+M1 y~NB2_log(η; φ_crime), α_global~Normal(log_y_mean; 0,5), β_global~Normal(0; 0,05); efeitos hierárquicos por crime e mês. M2 y~NB2_log(η; φ_group), α_global~Normal(log_y_mean; 0,6), β_global~Normal(0; 0,08), efeitos por grupo e mês; dispersões hierárquicas. A seleção de alvos M2 é explícita ou via saída M1, não uma amostragem independente.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

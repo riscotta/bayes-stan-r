@@ -22,9 +22,9 @@ Dataset demonstrativo Stat2Data::FruitFlies; variável sleep lida, excluída por
 
 Contrastes de tempo até evento na escala log e razão de tempos por tratamento e covariáveis; médias ajustadas são saídas descritas.
 
-log(y_i) ~ Normal(x_iᵀβ,σ), β ~ Normal(0,1,5), σ ~ Lognormal(log(0,3),0,5). O fator exp(Δxᵀβ) representa razão de tempos na escala AFT sob modelo comum. Sleep excluída por potencial pós-tratamento.
+log(y_i) ~ Normal(x_iᵀβ; σ), β ~ Normal(0; 1,5), σ ~ Lognormal(log(0,3); 0,5). O fator exp(Δxᵀβ) representa razão de tempos na escala AFT sob modelo comum. Sleep excluída por potencial pós-tratamento.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

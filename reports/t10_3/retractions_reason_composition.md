@@ -22,9 +22,9 @@ CSV externo Kaggle Global Scientific Retractions 1927–2026, motivos multi-rót
 
 Composição condicional dos macrogrupos de motivos de retratação e contrastes temporais; unidade é motivo codificado, com multi-rótulos, não prevalência causal de fraude.
 
-y_n ~ DirichletMultinomial(conc_n); efeitos hierárquicos de editora, área, país e período, α ~ Normal(0,1), escalas positivas com priors Normal(0,0,35) (período 0,25), φ ~ Lognormal(log(20),0,5). Implementação explícita da log-pmf no Stan.
+y_n | Σ_k y_nk ~ DirichletMultinomial(conc_n); efeitos hierárquicos de editora, área, país e período, α ~ Normal(0; 1), escalas positivas com priors Normal(0; 0,35) (período 0,25), φ ~ Lognormal(log(20); 0,5). Implementação explícita da log-pmf no Stan.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

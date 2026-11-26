@@ -22,9 +22,9 @@ Base analítica consolidada PMS, CSV pms_base_analitica_stan, derivado versionad
 
 Nível latente e tendência da série de serviços; consistência aritmética da manchete e contraste temporal, não causalidade.
 
-y ~ Normal(level_std,σ_obs), nível ancorado e tendência AR(1), φ ~ Beta(3,2); priors de nível inicial/tendência usam estatísticas observadas (y[1],dy0,dy_mean), escalas positivas configuráveis.
+y ~ Normal(level_std; σ_obs), nível ancorado e tendência AR(1), φ ~ Beta(3; 2); priors de nível inicial/tendência usam estatísticas observadas (y[1],dy0,dy_mean), escalas positivas configuráveis.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

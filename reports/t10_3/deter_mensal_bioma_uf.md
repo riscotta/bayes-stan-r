@@ -22,9 +22,9 @@ CSV mensal de alertas DETER, área em km², bioma, UF, ano, mês e ciclo reconst
 
 Contraste de ciclo global β_cycle e contraste específico por bioma::UF, na escala log1p da área de alertas; efeitos mensais e predição de área sob transformação explicitada.
 
-y=log(1+área km²); y_i ~ Normal(μ_i,σ), μ_i=α+a_estrato+m_mês+(β_cycle+b_estrato)I_ciclo. Efeitos não centrados, efeito mensal centrado; β_cycle ~ Normal(0,1), escalas ~ Exponential(1); intercepto prior centrado em estatísticas dos dados. Recorte agosto–janeiro, exatamente dois ciclos.
+y=log(1+área km²); y_i ~ Normal(μ_i; σ), μ_i=α+a_estrato+m_mês+(β_cycle+b_estrato)I_ciclo. Efeitos não centrados, efeito mensal centrado; β_cycle ~ Normal(0; 1), escalas ~ Exponential(1); intercepto prior centrado em estatísticas dos dados. Recorte agosto–janeiro, exatamente dois ciclos.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

@@ -22,9 +22,9 @@ CSV IOM Missing Migrants Project, entradas de modelagem congeladas e síntese au
 
 Intensidade/carga de mortos e desaparecidos registrados por rota e mês, tendência temporal e sazonalidade, com exposição em dias. Não é risco por pessoa migrante.
 
-y ~ NB2_log(η,φ), η incorpora offset de dias, intercepto/inclinação hierárquicos de rota e mês. α ~ Normal(log(0,5),2), β_time ~ Normal(0,0,3), φ ~ Lognormal(log(5),1), efeitos não centrados e escalas positivas. Var(y|μ,φ)=μ+μ²/φ.
+y ~ NB2_log(η; φ), η incorpora offset de dias, intercepto/inclinação hierárquicos de rota e mês. α ~ Normal(log(0,5); 2), β_time ~ Normal(0; 0,3), φ ~ Lognormal(log(5); 1), efeitos não centrados e escalas positivas. Var(y|μ,φ)=μ+μ²/φ.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

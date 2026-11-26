@@ -24,7 +24,7 @@ Patrimônio final real por estratégia e coorte histórica de 360 meses com apor
 
 r_p,m = w_m r_eq,m + (1−w_m)r_rf,m; W₀=0 e W_m=(W_{m−1}+aporte_real)(1+r_p,m). Compara quantis empíricos e estratégias em janelas móveis; não há likelihood nem priors nesta recorrência.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

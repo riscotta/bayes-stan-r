@@ -22,9 +22,9 @@ Amostras sintéticas, mu_true, sigma_true, Ns e número de replicações configu
 
 Média subjacente μ e largura do intervalo posterior em função de N; SD da média amostral para dados simulados iid.
 
-y_i ~ Normal(μ,σ), μ ~ Normal(0,10), σ ~ Exponential(1). No gerador iid, SD(ȳ)=σ_true/√N; regressão log-log da largura posterior confronta inclinação teórica aproximada −1/2.
+y_i ~ Normal(μ; σ), μ ~ Normal(0; 10), σ ~ Exponential(1). No gerador iid, SD(ȳ)=σ_true/√N; regressão log-log da largura posterior confronta inclinação teórica aproximada −1/2.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

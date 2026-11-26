@@ -22,9 +22,9 @@ CSV demonstrativo BattingAverage; índices posição/jogador; origem primária e
 
 Probabilidade de acerto individual por jogador e distribuição por posição, com pooling parcial em três níveis.
 
-y_i ~ Binomial(ab_i,logit⁻¹θ_i); hierarquia de localização e dispersão por posição, z_player ~ Normal(0,1). μ_α ~ Normal(logit(0,25),1), μ_logσ ~ Normal(log(0,5),0,75), escalas de nível superiores Exponential(1).
+y_i ~ Binomial(ab_i; logit⁻¹θ_i); hierarquia de localização e dispersão por posição, z_player ~ Normal(0; 1). μ_α ~ Normal(logit(0,25); 1), μ_logσ ~ Normal(log(0,5); 0,75), escalas de nível superiores Exponential(1).
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

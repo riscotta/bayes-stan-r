@@ -22,9 +22,9 @@ Dataset sintético gerado no script, dimensões de aferições, tipos, regiões 
 
 Erro percentual de medição esperado em função de idade, log(volume), tipo e região em dados simulados.
 
-y_i ~ Normal(μ_i,σ_y), μ inclui intercepto de modelo, efeito de região, idade e log-volume. α0 ~ Normal(0,5), coeficientes Normal(0,1); efeitos não centrados e escalas Exponential(1).
+y_i ~ Normal(μ_i; σ_y), μ inclui intercepto de modelo, efeito de região, idade e log-volume. α0 ~ Normal(0; 5), coeficientes Normal(0; 1); efeitos não centrados e escalas Exponential(1).
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

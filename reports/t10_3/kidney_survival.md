@@ -22,9 +22,9 @@ Dataset demonstrativo kidney do pacote survival (McGilchrist & Aisbett, 1991); s
 
 Distribuição de tempo até evento, probabilidades de sobrevivência e efeitos condicionais de idade, sexo, doença e heterogeneidade por paciente; censura à direita explícita.
 
-Para evento observado, contribuição lognormal_lpdf(t|μ,σ); para censura, lognormal_lccdf(t|μ,σ). μ inclui Xβ e efeitos correlacionados de intercepto/inclinação por paciente. β ~ Normal(0,2,5); σ e τ ~ Exponential(1), L_Ω ~ LKJ_corr_cholesky(2).
+Para evento observado, contribuição lognormal_lpdf(t|μ,σ); para censura, lognormal_lccdf(t|μ,σ). μ inclui Xβ e efeitos correlacionados de intercepto/inclinação por paciente. β ~ Normal(0; 2,5); σ e τ ~ Exponential(1), L_Ω ~ LKJ_corr_cholesky(2).
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

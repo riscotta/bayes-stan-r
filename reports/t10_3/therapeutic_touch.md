@@ -22,9 +22,9 @@ CSV demonstrativo TherapeuticTouchData; origem da compilação e licença não i
 
 Probabilidade de acerto no experimento, população/indivíduo e heterogeneidade; comparação pooled e hierárquica, restrita ao desenho experimental.
 
-Pooled y~Bernoulli_logit(α), α~Normal(0,1,5); hierárquico y_i~Bernoulli_logit(α+a_sujeito), efeitos não centrados z~Normal(0,1), σ~Exponential(1). A presença de outras variantes no README não comprova execução.
+Pooled y~Bernoulli_logit(α), α~Normal(0; 1,5); hierárquico y_i~Bernoulli_logit(α+a_sujeito), efeitos não centrados z~Normal(0; 1), σ~Exponential(1). A presença de outras variantes no README não comprova execução.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

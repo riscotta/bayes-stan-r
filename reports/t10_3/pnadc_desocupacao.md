@@ -22,9 +22,9 @@ CSVs exportados PNAD Contínua tabelas 6381 e 4093 e extrato opcional de jan/202
 
 Trajetória latente da taxa total e gaps por sexo na escala logito; contrastes na escala de taxa precisam transformação explícita.
 
-y_total_logit ~ Normal(η_total,σ_total); masculino/feminino trimestral ~ Normal(η_total[tq]+gap_sexo,σ_sexo). level0 ~ Normal(logit(0,08),0,60); inovações e sazonalidade normais, escalas Exponential; erros observacionais Exponential(30). Gaps por sexo não são diferenças causais.
+y_total_logit ~ Normal(η_total; σ_total); masculino/feminino trimestral ~ Normal(η_total[tq]+gap_sexo; σ_sexo). level0 ~ Normal(logit(0,08); 0,60); inovações e sazonalidade normais, escalas Exponential; erros observacionais Exponential(30). Gaps por sexo não são diferenças causais.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

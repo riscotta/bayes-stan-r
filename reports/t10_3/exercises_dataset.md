@@ -22,9 +22,9 @@ CSV final_exercise_dataset do catálogo Kaggle; base analítica derivada e JSON 
 
 Probabilidades condicionais de dificuldade beginner/intermediate/advanced por características do catálogo, sem efeito causal do equipamento.
 
-Modelo principal sem equipamento: y_i ~ OrderedLogistic(η_i,c), η combina passos padronizados, músculos secundários e efeitos hierárquicos de grupo corporal/categoria. Cutpoints ~ Normal(0,2) com ordenação; coeficientes Normal(0,1), escalas de grupo Normal(0,0,7) truncadas. Modelo de equipamento é diagnóstico; softmax é alternativa de sensibilidade, não fusão dos modelos.
+Modelo principal sem equipamento: y_i ~ OrderedLogistic(η_i; c), η combina passos padronizados, músculos secundários e efeitos hierárquicos de grupo corporal/categoria. Cutpoints ~ Normal(0; 2) com ordenação; coeficientes Normal(0; 1), escalas de grupo Normal(0; 0,7) truncadas. Modelo de equipamento é diagnóstico; softmax é alternativa de sensibilidade, não fusão dos modelos.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

@@ -22,9 +22,9 @@ Agregados PNAD Contínua/IBGE com CV, população 14+ como apoio/denominador; s�
 
 13 θ marginais de setembro de 2026; 26 contrastes descritivos em duas janelas. Cenários probabilísticos condicionais a ρ, não posterior conjunta dos cinco eixos.
 
-y|θ,s ~ Normal(θ,s), s=|y|CV/100. Taxas θ=100p, p~Beta(1,1); totais θ=P14q, q~Beta(1,1) com P14 fixa; rendimento θ=μ>0, μ~Normal(0,10000) truncada. E08/E09 utiliza cenários gaussianos para ρ∈{−0,5;0;0,5;0,9}; ρ=0 não é independência demonstrada.
+y|θ,s ~ Normal(θ; s), s=|y|CV/100. Taxas θ=100p, p~Beta(1; 1); totais θ=P14q, q~Beta(1; 1) com P14 fixa; rendimento θ=μ>0, μ~Normal(0; 10000) truncada. E08/E09 utiliza cenários gaussianos para ρ∈{−0,5;0;0,5;0,9}; ρ=0 não é independência demonstrada.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

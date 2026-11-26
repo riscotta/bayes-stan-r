@@ -22,9 +22,9 @@ Dataset demonstrativo mosaicData/SAT via Rdatasets; vintage e termos específico
 
 Probabilidades posteriores de modelos e inclusão, coeficientes BMA e desempenho preditivo relativo; distinguir evidência marginal e LOO.
 
-Modelos Gaussianos y~Normal(α+X_Mβ,σ); modelo nulo y~Normal(α,σ). α~Normal(0,1,5), β~Normal(0,1), σ~Exponential(1). Espaço de 2⁴ modelos e probabilidade de inclusão a priori configurável; bridge sampling e LOO têm alvos distintos.
+Modelos Gaussianos y~Normal(α+X_Mβ; σ); modelo nulo y~Normal(α; σ). α~Normal(0; 1,5), β~Normal(0; 1), σ~Exponential(1). Espaço de 2⁴ modelos e probabilidade de inclusão a priori configurável; bridge sampling e LOO têm alvos distintos.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

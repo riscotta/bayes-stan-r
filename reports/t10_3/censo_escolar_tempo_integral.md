@@ -22,9 +22,9 @@ Microdados oficiais INEP, ZIPs por ano, contagens por escola/etapa e dicionário
 
 Proporção de matrículas em tempo integral por ano e estrato (UF, dependência administrativa e etapa), com síntese nacional observada e posterior. O denominador é o total de matrículas elegíveis, não número de escolas.
 
-y_i | n_i,η_i ~ Binomial(n_i,logit⁻¹η_i). O preditor inclui intercepto e efeitos de UF, dependência, etapa e ano. α ~ Normal(alpha_prior_mean,0,75); efeitos ~ Normal(0,σ correspondente), escalas positivas com prior Normal(0,0,25) truncada. Valida 0 ≤ y ≤ n e n > 0.
+y_i | n_i,η_i ~ Binomial(n_i; logit⁻¹η_i). O preditor inclui intercepto e efeitos de UF, dependência, etapa e ano. α ~ Normal(alpha_prior_mean; 0,75); efeitos ~ Normal(0; σ correspondente), escalas positivas com prior Normal(0; 0,25) truncada. Valida 0 ≤ y ≤ n e n > 0.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

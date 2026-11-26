@@ -22,9 +22,9 @@ Insumos agregados de sobrevivência e resultados congelados; base individual CNP
 
 Sobrevivência cadastral até 60 meses e hazard de baixa discreto por coorte, subclasse, natureza jurídica e matriz/filial; desfecho administrativo.
 
-M1: η_gm=α_m+lin_const_g+tv_coef_g·time_basis_m. Hazard h=1−exp(−exp(η)) (cloglog); s sobreviventes contribuem −s·exp(η), d eventos d·log(h). α tem RW2; α₁~Normal(−4,7,1), diferença inicial Normal(0,0,35), σ_RW2 positiva Normal(0,0,15); β_cohort Normal(0,0,35), β Normal(0,0,50), γ_tv Normal(0,0,25). M0 mantém efeitos constantes.
+M1: η_gm=α_m+lin_const_g+tv_coef_g·time_basis_m. Hazard h=1−exp(−exp(η)) (cloglog); s sobreviventes contribuem −s·exp(η), d eventos d·log(h). α tem RW2; α₁~Normal(−4,7; 1), diferença inicial Normal(0; 0,35), σ_RW2 positiva Normal(0; 0,15); β_cohort Normal(0; 0,35), β Normal(0; 0,50), γ_tv Normal(0; 0,25). M0 mantém efeitos constantes.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

@@ -24,7 +24,7 @@ Preços unitários de referência e dispersão bootstrap por grupo, além de err
 
 Bootstrap de clusters CNES: reamostrar n clusters com reposição; multiplicidades m aplicadas a quantidades q e valores v; média ponderada p=Σm_i v_i/Σm_i q_i. Compara mediana ponderada, média aparada, winsorizada, geométrica e Huber; avalia OOB. Não há likelihood/prior nesse método.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

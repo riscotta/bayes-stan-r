@@ -22,9 +22,9 @@ Base nacional UNODC Prisons and Prisoners, entradas Stan congeladas e síntese a
 
 Três objetos separados: heterogeneidade de held_rate; nível de unsentenced_pct; contraste observado Female−Male em painel pareado e avaliação via M3/PPC.
 
-M1 REV5 hurdle: massa em zero via Bernoulli e Student-t em log(held_rate)>−∞ para valores positivos, com efeitos de país/região e random walks; ν−2 ~ Exponential(0,10). M2/M3 misturas Beta com massas em 0 e 1 (probabilidade de fronteira e probabilidade condicional de 1); interior Beta(μφ,(1−μ)φ). M3 inclui pareamento e efeitos de sexo específicos; α ~ Normal(logit(0,30),1,2), logφ ~ Normal(log(20),1) em M2/M3.
+M1 REV5 hurdle: massa em zero via Bernoulli e Student-t para log(held_rate) quando held_rate > 0, com efeitos de país/região e random walks; ν−2 ~ Exponential(0,10). M2/M3 misturas Beta com massas em 0 e 1 (probabilidade de fronteira e probabilidade condicional de 1); interior Beta(μφ; (1−μ)φ). M3 inclui pareamento e efeitos de sexo específicos; α ~ Normal(logit(0,30); 1,2), logφ ~ Normal(log(20); 1) em M2/M3.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

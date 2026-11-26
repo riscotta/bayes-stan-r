@@ -22,9 +22,9 @@ Dataset demonstrativo SAheart do Elemental Statistics Learning, local ou downloa
 
 Probabilidade condicional de chd e contrastes log-odds por preditores; avaliação interna preditiva, não diagnóstico clínico validado.
 
-y~Bernoulli_logit(α+Xβ); α~Normal(0,alpha_scale), β~Normal(0,beta_scale), escalas configuráveis. Stan inline.
+y~Bernoulli_logit(α+Xβ); α~Normal(0; alpha_scale), β~Normal(0; beta_scale), escalas configuráveis. Stan inline.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

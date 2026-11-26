@@ -22,9 +22,9 @@ CSV compilado de textos Sherlock Holmes, entradas Stan e tabelas históricas aud
 
 Taxas posteriores de menções por 10 mil tokens e contrastes condicionais no corpus obra–termo selecionado.
 
-y~Poisson_log(η), offset textual; interceptos de termo hierárquicos α~Normal(μ_α,σ_α), μ_α~Normal(log(3),2), σ_α positiva Normal(0,1,5); β_novel~Normal(0,0,75), β_year~Normal(0,0,35), efeitos não centrados obra e obra×termo.
+y~Poisson_log(η), offset textual; interceptos de termo hierárquicos α~Normal(μ_α; σ_α), μ_α~Normal(log(3); 2), σ_α positiva Normal(0; 1,5); β_novel~Normal(0; 0,75), β_year~Normal(0; 0,35), efeitos não centrados obra e obra×termo.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

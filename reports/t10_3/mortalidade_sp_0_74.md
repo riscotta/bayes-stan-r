@@ -24,7 +24,7 @@ Taxa bruta e padronizada por 100 mil, decomposição simétrica da mudança em t
 
 Taxa padronizada = Σ_s w_s,2019 r_s,t com 30 estratos. Ajustes históricos em R, glm Poisson com link log e MASS::glm.nb; NB2 usa parâmetro theta para variância μ+μ²/theta. Não há modelo Stan. Decomposição é identidade descritiva, não identificação causal.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 

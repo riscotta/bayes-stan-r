@@ -22,9 +22,9 @@ Dados históricos e artefatos auditáveis versionados do estudo Mega-Sena; ident
 
 Composição de probabilidades das dezenas por fator e contraste de estabilidade prática; ranking publicado é estatística de ordem, não previsão de concurso.
 
-Vetor de contagens y_g ~ Multinomial(p_g); modelo log-linear por fator com α ~ Normal(0,0,35), efeitos z_delta ~ Normal(0,1), τ_delta positiva Normal(0,0,20). A especificação global é distinta. O registro alternativo E07 usou Dirichlet-multinomial em ambiente sem Stan; não é o ajuste histórico Stan nem a configuração planejada.
+Vetor de contagens y_g ~ Multinomial(p_g); modelo log-linear por fator com α ~ Normal(0; 0,35), efeitos z_delta ~ Normal(0; 1), τ_delta positiva Normal(0; 0,20). A especificação global é distinta. O registro alternativo E07 usou Dirichlet-multinomial em ambiente sem Stan; não é o ajuste histórico Stan nem a configuração planejada.
 
-Notação condensada editorial da especificação inspecionada; Normal usa média e desvio-padrão, Lognormal usa localização e escala no log, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
+Notação condensada editorial da especificação inspecionada; ponto e vírgula separa parâmetros, vírgula representa decimal. Normal usa média e desvio-padrão; Lognormal usa localização e escala no log; Exponential usa taxa, salvo parametrização explícita da fonte. Hiperparâmetros configuráveis e variantes não listadas permanecem nos fontes. Não equivale a verificação exaustiva E06→E07.
 
 ## 4. Implementação e rastreabilidade
 
