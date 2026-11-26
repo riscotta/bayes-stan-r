@@ -18,7 +18,7 @@ Esta pasta **não é apenas um placeholder**. Contém relatórios científicos p
 
 **Etapa 09 — auditoria final:** [T09.1–T09.6](t09/README.md) registram inventário, execução delimitada, amostra, riscos, governança e parecer. T09.7 publicou o [Deck em branch própria](https://github.com/riscotta/bayes-stan-r/commit/24f6a6f4c827de6437799b2eb841afb4ae102261); nova release integral sem decisão.
 
-**Etapa 10 — documentação científica:** [T10.1 — inventário](t10_1/README.md), [T10.2 — reconciliação E00–E10 e reprodutibilidade](t10_2/README.md), [T10.3 — 33 adendos científicos](t10_3/README.md) e [T10.4 — templates e matrizes](t10_4/README.md). Cada registro conserva seu próprio corte, e os adendos não substituem os READMEs históricos.
+**Etapa 10 — documentação científica:** [T10.1 — inventário](t10_1/README.md), [T10.2 — reconciliação E00–E10 e reprodutibilidade](t10_2/README.md), [T10.3 — 33 adendos científicos](t10_3/README.md) e [T10.4 — templates e matrizes](t10_4/README.md), [T10.5 — navegação e consistência](t10_5/README.md), [T10.6 — revisão técnico-científica](t10_6/README.md) e [T10.7 — auditoria final e condições de encerramento](t10_7/README.md). Cada registro conserva seu próprio corte, e os adendos não substituem os READMEs históricos.
 
 Os relatórios [Cães F5](caes_raca_f5/relatorio_cientifico.md), [mortalidade SP](mortalidade_sp_0_74/relatorio_cientifico.md) e [PNAD Estudo I](pnadc_estudo_i/nota_cientifica.md) devem ser interpretados com suas ressalvas locais; nenhuma evidência pode ser transferida de um estudo a outro.
 
