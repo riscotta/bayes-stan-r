@@ -1,5 +1,11 @@
 # T02.2 — Contrato mínimo de metadados de estudos
 
+> **MODELO PARA PREENCHIMENTO — NÃO É RESULTADO DE ESTUDO**
+>
+> O bloco copiável é estruturalmente vazio: `PENDENTE_DE_VERIFICACAO` nele é marca inicial de preenchimento, não constatação sobre uma unidade existente. O dicionário e as regras são normativos; os dois exemplos documentais têm escopo histórico próprio e não são modelos vazios nem homologação.
+>
+> Ao instanciar o modelo, identificar a unidade, versão e natureza do registro; preencher somente com evidências localizáveis. Uma lacuna factual exige motivo específico, fonte consultada, impacto e próxima diligência, com responsável se comprovado. Campo estrutural vazio não é ausência demonstrada. Os códigos de estado, exigências de evidência e critérios de revisão aplicáveis permanecem os dos contratos originais; não preencher nem promover estados por inferência.
+
 **Tarefa:** definir oito metadados obrigatórios: pergunta, objeto, dados, método, estado, resultados, limites e responsável.  
 **Versão de referência:** `main` em `2c826ca11b9661f10cf0b76ab542ced65e8c8051` (03/11/2026).  
 **Natureza:** contrato editorial preenchível, não reconstituição de registros históricos, validação científica, autorização de dados ou política de publicação já homologada. A formalização em `CONTRIBUTING.md` e o piloto de adoção pertencem à T02.7.
@@ -32,6 +38,8 @@ O contrato complementa a [taxonomia de 33 pastas](STUDY_TAXONOMY_T02_1.md). Cada
 
 ## Modelo copiável (preenchimento obrigatório)
 
+**Bloco copiável — campos estruturalmente vazios.** Os marcadores iniciais abaixo não são pendências factuais de uma unidade; ao preencher, documentar a evidência ou a lacuna conforme as regras do contrato.
+
 Identificador histórico da pasta: `scripts/<identificador>/`.  
 Classe editorial (T02.1): `Laboratório de modelos` **ou** `Estudo aplicado`.  
 Registro: `DOCUMENTACAO_ATUAL` ou `RECONSTRUCAO_EDITORIAL` (com data e fonte). Estes três itens de contexto não substituem os oito campos.
@@ -53,6 +61,8 @@ Registro: `DOCUMENTACAO_ATUAL` ou `RECONSTRUCAO_EDITORIAL` (com data e fonte). E
 **Responsável:** PENDENTE_DE_VERIFICACAO — papel e evidência de atribuição: ...
 
 ## Exemplos documentais (não são homologação)
+
+**Exemplos históricos — não confundir com o bloco copiável.** As descrições e marcas de pendência desta seção devem ser lidas no recorte histórico indicado, não como placeholders estruturais nem como estado atual homologado.
 
 Os exemplos são **preenchimentos editoriais a partir dos READMEs no SHA-base**, não fichas oficiais completas, nem relatos de execução neste ciclo. Informação não demonstrada permanece pendente.
 

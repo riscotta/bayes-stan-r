@@ -9,6 +9,12 @@ execute:
   message: false
 ---
 
+> **MODELO PARA PREENCHIMENTO — NÃO É RESULTADO DE ESTUDO**
+>
+> O arquivo é um esqueleto de relatório. O exemplo `sessionInfo()` apenas identifica o ambiente em que se renderiza o documento; não demonstra coleta, análise, inferência, reprodução histórica ou QA de um estudo. Não interpretar a renderização bem-sucedida como resultado científico.
+>
+> Depois de copiar, identificar estudo, versão, fontes, estimandos e limites; registrar lacunas com evidência e diligência, sem inventar valores. Substituir a identificação de modelo somente quando o documento estiver efetivamente instanciado.
+
 ## Como usar
 
 1) Copie esta pasta para `reports/<nome-do-exemplo>/`.
@@ -20,6 +26,8 @@ quarto render reports/<nome-do-exemplo>/template.qmd
 ```
 
 ## Exemplo mínimo
+
+**Exemplo técnico, não resultado de estudo.** A saída do bloco abaixo não valida uma análise.
 
 ```{r}
 sessionInfo()

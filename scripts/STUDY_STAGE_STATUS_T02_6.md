@@ -1,5 +1,11 @@
 # T02.6 — Contrato de estados por etapa E00–E10
 
+> **MODELO PARA PREENCHIMENTO — NÃO É RESULTADO DE ESTUDO**
+>
+> O dicionário e os critérios E00–E10 são normativos. As onze linhas do modelo copiável e a linha ilustrativa do log são estrutura, não avaliação de um estudo: `PENDENTE` nelas é o estado inicial exigido pelo contrato e não conta como onze pendências factuais. Os cenários hipotéticos da seção 6 não são decisões aplicadas.
+>
+> Ao instanciar o modelo, identificar a unidade, versão e natureza do registro; preencher somente com evidências localizáveis. Uma lacuna factual exige motivo específico, fonte consultada, impacto e próxima diligência, com responsável se comprovado. Campo estrutural vazio não é ausência demonstrada. Os códigos de estado, exigências de evidência e critérios de revisão aplicáveis permanecem os dos contratos originais; não preencher nem promover estados por inferência.
+
 **Objetivo:** especificar um estado verificável para cada etapa de cada unidade de estudo, sem atribuir estados a estudos históricos sem inspeção. **Natureza:** formulário editorial vazio, não auditoria, homologação científica, aprovação de dados ou reconstrução de registros originais. A aplicação em estudo piloto e a norma no `CONTRIBUTING.md` pertencem à **T02.7**.
 
 **Vínculos:** [taxonomia T02.1](STUDY_TAXONOMY_T02_1.md) · [oito metadados T02.2](STUDY_METADATA_CONTRACT_T02_2.md) · [E00 T02.3](STUDY_E00_TEMPLATE_T02_3.md) · [E06→E07 T02.4](STUDY_E06_E07_MATRIX_T02_4.md) · [E08→E09 T02.5](STUDY_E08_E09_MATRIX_T02_5.md) · [catálogo](README.md) · [Issue #14 — direitos e privacidade](https://github.com/riscotta/bayes-stan-r/issues/14).
@@ -52,6 +58,8 @@ Cada alteração de estado exige: identificador do estudo e variante; etapa; est
 **Regras de agregação:** não inferir aprovação do estudo pela soma de etapas; apresentar sempre vetor E00–E10 e bloqueios de dados/ciência/reprodução à parte. Uma única etapa `APROVADO` não sana outra `PENDENTE`; `RESSALVA` preserva sua condição de uso. Para cada nova versão, reavaliar o impacto em estados anteriores.
 
 ## 5. Modelo copiável — todos os estados iniciais são pendentes
+
+**Linhas estruturais, não pendências factuais.** Ao instanciar este formulário, `PENDENTE` passa a representar o estado inicial ou insuficiência de evidência da etapa identificada, com justificativa conforme o dicionário. Consultar a matriz de estudos T10.2 para os registros reconciliados no corte nela declarado, não este modelo vazio.
 
 Identificador histórico: `PENDENTE_DE_VERIFICACAO`; classe editorial: `PENDENTE_DE_VERIFICACAO`; variante/escopo, commit e data-base: `PENDENTE_DE_VERIFICACAO`. Tipo de registro: `DOCUMENTACAO_ATUAL` ou `RECONSTRUCAO_EDITORIAL` (escolher e justificar ao preencher). **Linhas abaixo são vazias, sem avaliação de qualquer estudo existente.**
 

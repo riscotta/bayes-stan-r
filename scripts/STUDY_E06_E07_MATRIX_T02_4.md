@@ -1,5 +1,11 @@
 # T02.4 — Matriz obrigatória de rastreabilidade E06 → E07
 
+> **MODELO PARA PREENCHIMENTO — NÃO É RESULTADO DE ESTUDO**
+>
+> Os IDs F06/F07/FE, M06 e os demais registros de exemplo são estrutura copiável. `PENDENTE_DE_VERIFICACAO`, `ABERTA` e os marcadores de inspeção nas linhas vazias não documentam divergência, falta de execução ou inspeção de um modelo real.
+>
+> Ao instanciar o modelo, identificar a unidade, versão e natureza do registro; preencher somente com evidências localizáveis. Uma lacuna factual exige motivo específico, fonte consultada, impacto e próxima diligência, com responsável se comprovado. Campo estrutural vazio não é ausência demonstrada. Os códigos de estado, exigências de evidência e critérios de revisão aplicáveis permanecem os dos contratos originais; não preencher nem promover estados por inferência.
+
 **Finalidade:** documentar, por unidade de estudo e por variante de modelo, a correspondência auditável entre formulação matemática em E06 e implementação efetiva em E07 (Stan, R ou outra interface explicitada). O formulário abaixo é **um contrato vazio**, não uma inspeção de modelos existentes, nem uma validação inferencial. A aplicação a um estudo piloto e sua incorporação normativa ao CONTRIBUTING pertencem à T02.7.
 
 **Vínculos:** [contrato mínimo T02.2](STUDY_METADATA_CONTRACT_T02_2.md) · [modelo de decisões E00 T02.3](STUDY_E00_TEMPLATE_T02_3.md) · [taxonomia T02.1](STUDY_TAXONOMY_T02_1.md) · [Issue #14 — dados](https://github.com/riscotta/bayes-stan-r/issues/14). Não confundir esta matriz com a ligação de evidências E08 → E09 (T02.5) nem com estados por etapa E00–E10 (T02.6).
@@ -29,6 +35,8 @@ A cobertura mínima inclui **equações**, **dados e índices**, **parâmetros**
 Arquivos e linhas devem apontar para o **mesmo SHA** de código auditado. Se o arquivo for produzido dinamicamente, identificar função geradora, versão, argumento e materialização verificável. Um link para a pasta ou README não prova correspondência matemática.
 
 ## 3. Matriz principal — uma linha por correspondência verificável
+
+**Linhas estruturais, sem auditoria de correspondências.** Os IDs e classes demonstram o formato exigido; nenhum estado local abaixo constitui conclusão sobre um modelo identificado.
 
 **Regra:** duplicar linhas para *cada* equação, parâmetro, prior, termo de likelihood, transformação, bloco de dados ou quantity. Uma relação um-para-muitos usa IDs relacionados; jamais condensar termos matematicamente diferentes em “modelo conforme”. Os IDs M06 abaixo são exemplos de linhas vazias, não a cardinalidade exigida.
 

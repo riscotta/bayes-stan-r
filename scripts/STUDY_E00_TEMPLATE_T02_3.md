@@ -1,5 +1,11 @@
 # T02.3 — Modelo editável de E00: decisões e hipóteses concorrentes
 
+> **MODELO PARA PREENCHIMENTO — NÃO É RESULTADO DE ESTUDO**
+>
+> Os campos e IDs de hipóteses, decisões, riscos, dependências e pendências abaixo são exemplos estruturais. `PENDENTE_DE_VERIFICACAO` e `ABERTA` são valores iniciais neste formulário, não achados de um estudo específico nem decisões efetivamente tomadas.
+>
+> Ao instanciar o modelo, identificar a unidade, versão e natureza do registro; preencher somente com evidências localizáveis. Uma lacuna factual exige motivo específico, fonte consultada, impacto e próxima diligência, com responsável se comprovado. Campo estrutural vazio não é ausência demonstrada. Os códigos de estado, exigências de evidência e critérios de revisão aplicáveis permanecem os dos contratos originais; não preencher nem promover estados por inferência.
+
 **Escopo:** preparar um E00 por unidade de estudo, com pergunta, hipóteses alternativas, decisões fecháveis, critérios, riscos e pendências justificadas. **Não** é E00 executado de nenhum estudo e não reconstitui documentação histórica. A validação editorial e adoção em um piloto pertencem à T02.7.
 
 **Contrato relacionado:** [oito metadados T02.2](STUDY_METADATA_CONTRACT_T02_2.md). **Categoria:** [taxonomia T02.1](STUDY_TAXONOMY_T02_1.md). **Governança de dados:** [Issue #14](https://github.com/riscotta/bayes-stan-r/issues/14). O preenchimento não altera estado de licença, privacidade, QA, inferência ou publicação.
@@ -105,6 +111,8 @@ Cada decisão exige **critério**, **evidência**, **responsável autorizado** e
 **Observação:** um README prova apenas o que ele documenta. Links existentes não equivalem a execução de Stan/MCMC, inspeção de dados, licença ou revisão científica. Não colar dados sensíveis, laudos ou credenciais nas evidências públicas.
 
 ## 9. Registro de pendências justificadas
+
+**Linhas ilustrativas, não cadastro de pendências reais.** Ao instanciar, registrar somente as lacunas pertinentes à unidade, com as fontes e a condição objetiva de fechamento; não presumir a existência dos problemas sugeridos pelos IDs P00.
 
 | ID | Lacuna e sua relevância para E00 | Motivo e fontes já consultadas | Estado da informação | Ação possível, responsável comprovado e critério de encerramento |
 | --- | --- | --- | --- | --- |
