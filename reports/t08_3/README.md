@@ -2,6 +2,8 @@
 
 Base auditada: `17181eca17b4bd4090a14e283dccbabd39b03c57`, árvore `5fe8661c483e0543a4c56af628c0d6a48de335d8`. Registro E1. Preview nativo, CI candidata e QA independente devem ser aferidos no PR.
 
+**Atualização após integração.** O [PR #70](https://github.com/riscotta/bayes-stan-r/pull/70) foi integrado após parecer E2 favorável e a [CI pós-merge](https://github.com/riscotta/bayes-stan-r/actions/runs/45683468504) passou. O texto abaixo preserva o registro E1.
+
 ## Inventário e limites
 
 A árvore contém 622 entradas, 463 blobs e 115 arquivos Markdown. A triagem reteve 21 origens por risco e 14 por possível evidência histórica. As 80 origens elegíveis produziram 1.155 ocorrências no parser local GFM.

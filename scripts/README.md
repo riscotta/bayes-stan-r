@@ -38,7 +38,7 @@ O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define 
 
 ## Catálogo documental dos estudos (T08.2)
 
-O [catálogo de 33 unidades](STUDY_CATALOG_T08_2.md) reúne metadados de navegação, fontes, cortes temporais, estados de evidência independentes e condições de acesso. Trata-se de reconstrução editorial sujeita a QA independente; **não** atesta reexecução, validade científica ou direitos de redistribuição de terceiros (issue #14 P0).
+O [catálogo de 33 unidades](STUDY_CATALOG_T08_2.md) reúne metadados de navegação, fontes, cortes temporais, estados de evidência independentes e condições de acesso. A reconstrução editorial foi revisada e integrada no [PR #69](https://github.com/riscotta/bayes-stan-r/pull/69); **não** atesta reexecução, validade científica ou direitos de redistribuição de terceiros (issue #14 P0).
 
 ## Sumários e roteiros de leitura (T08.4)
 
@@ -51,6 +51,10 @@ Os [exemplos interpretados](STUDY_EXAMPLES_T08_5.md) mostram como ler resultados
 ## Versões e evidências (T08.6)
 
 O [guia de versões e evidências](STUDY_EVIDENCE_T08_6.md) identifica a origem dos resultados, as execuções verificadas e as rotas de síntese offline dos oito estudos.
+
+## Revisão editorial da Etapa 08 (T08.7)
+
+O [registro da revisão editorial](../reports/t08_7/README.md) documenta a cobertura, os ajustes e os limites do aceite da Etapa 08.
 
 ## Modelo de planejamento E00 (T02.3)
 
@@ -410,5 +414,5 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 
 Os **33 READMEs de estudo** são pontos de entrada para comandos e resultados históricos, não atestados de execução de cada script na presente revisão. Consulte os [cinco estados independentes T06.2](../reports/t06_2/README.md), os [modos T06.3](../reports/t06_3/README.md) e as [dependências externas T06.5](../reports/t06_5/README.md). Existência de código, arquivo, sintaxe ou comando `--run_stan=1` não é execução de Stan/MCMC.
 
-A CI pública verifica contratos, sintaxe e auditorias delimitadas; **não executa os modelos de todos os 33 estudos**. A exceção adicional observada após a matriz T06.2 é o piloto [T06.6 Cães F5](../reports/t06_6/README.md): 30/30 comparações de quatro agregados por R sem Stan, em CI; apenas N2. PNAD E09 e mortalidade SP já tinham auditorias N2 específicas. Nenhuma das três evidências demonstra N3/N4, validação científica geral ou direitos dos dados. As issues [#14](https://github.com/riscotta/bayes-stan-r/issues/14), [#15](https://github.com/riscotta/bayes-stan-r/issues/15) e [#16](https://github.com/riscotta/bayes-stan-r/issues/16) seguem abertas.
+A CI pública verifica contratos, sintaxe e auditorias delimitadas; **não executa os modelos de todos os 33 estudos**. A exceção adicional observada após a matriz T06.2 é o piloto [T06.6 Cães F5](../reports/t06_6/README.md): 30/30 comparações de quatro agregados por R sem Stan, em CI; apenas N2. PNAD E09 e mortalidade SP já tinham auditorias N2 específicas. Nenhuma das três evidências demonstra N3/N4, validação científica geral ou direitos dos dados. No corte de 16/11/2026, as issues #14, #15 e #16 estavam abertas. Em 26/11/2026, a [#14 foi fechada no escopo documental](../data/DATA_PROVENANCE_DECISIONS.md), e as issues [#15](https://github.com/riscotta/bayes-stan-r/issues/15) e [#16](https://github.com/riscotta/bayes-stan-r/issues/16) seguiam abertas.
 
