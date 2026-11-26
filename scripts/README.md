@@ -44,6 +44,10 @@ O [catálogo de 33 unidades](STUDY_CATALOG_T08_2.md) reúne metadados de navega�
 
 Os [sumários e roteiros E00–E10](STUDY_SUMMARIES_T08_4.md) orientam a leitura de oito estudos aplicados com síntese histórica e evidência versionada.
 
+## Exemplos interpretados (T08.5)
+
+Os [exemplos interpretados](STUDY_EXAMPLES_T08_5.md) mostram como ler resultados históricos no contexto de cada estudo.
+
 ## Modelo de planejamento E00 (T02.3)
 
 O [modelo editável de E00](STUDY_E00_TEMPLATE_T02_3.md) registra hipóteses concorrentes, critérios de escolha e revisão, decisões fecháveis, riscos, dependências, evidências e pendências justificadas. É **um formulário não preenchido**, não uma reconstrução histórica nem QA de estudo. Consulte os [oito metadados mínimos](STUDY_METADATA_CONTRACT_T02_2.md); o piloto e a formalização em `CONTRIBUTING.md` seguem reservados à T02.7.
