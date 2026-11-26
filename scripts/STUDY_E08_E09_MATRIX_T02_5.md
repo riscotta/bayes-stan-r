@@ -1,5 +1,11 @@
 # T02.5 — Matriz obrigatória de evidência e conclusão E08 → E09
 
+> **MODELO PARA PREENCHIMENTO — NÃO É RESULTADO DE ESTUDO**
+>
+> Os IDs F08/F09/F07, A08, EV08/DG08/SN08 e os demais registros de exemplo são estrutura copiável. `PENDENTE_DE_VERIFICACAO`, `NAO_INSPECIONADO` e `ABERTA` nas linhas vazias não são achados de uma afirmação real nem diagnósticos negativos.
+>
+> Ao instanciar o modelo, identificar a unidade, versão e natureza do registro; preencher somente com evidências localizáveis. Uma lacuna factual exige motivo específico, fonte consultada, impacto e próxima diligência, com responsável se comprovado. Campo estrutural vazio não é ausência demonstrada. Os códigos de estado, exigências de evidência e critérios de revisão aplicáveis permanecem os dos contratos originais; não preencher nem promover estados por inferência.
+
 **Finalidade:** permitir que um terceiro rastreie, por estudo, **cada afirmação de E09** à evidência efetivamente disponível em E08, ao diagnóstico pertinente, às hipóteses de sensibilidade e ao limite de validade. Este é um **contrato documental vazio**, não uma auditoria científica, execução de E08/E09 ou homologação de resultados. Não preencher com probabilidades ou conclusões presumidas. O piloto e a formalização no `CONTRIBUTING.md` pertencem à T02.7.
 
 **Vínculos:** [taxonomia T02.1](STUDY_TAXONOMY_T02_1.md) · [oito metadados T02.2](STUDY_METADATA_CONTRACT_T02_2.md) · [planejamento E00 T02.3](STUDY_E00_TEMPLATE_T02_3.md) · [ponte matemática–código E06→E07 T02.4](STUDY_E06_E07_MATRIX_T02_4.md) · [índice dos scripts](README.md) · [Issue #14 — governança de dados](https://github.com/riscotta/bayes-stan-r/issues/14). Os estados abaixo são **locais à afirmação**, não a política de estados por etapa T02.6.
@@ -29,6 +35,8 @@
 Para um resultado ausente, usar `PENDENTE_DE_VERIFICACAO` (ainda não apurado); após diligência descrita e comprovável, `INDISPONIVEL_NO_HISTORICO`. `NAO_APLICAVEL` exige justificativa contextual e **não** significa desconhecido. Links devem resolver para a versão auditada e apontar seção, linha, tabela, variável ou célula; URLs de diretório não bastam.
 
 ## 3. Matriz principal E08 → E09 — uma linha por afirmação e recorte
+
+**Linhas estruturais, sem afirmações de estudo.** As classes e IDs não são resultados; nenhum diagnóstico, sensibilidade ou estado local foi aferido para uma afirmação real.
 
 **Instrução:** duplicar linhas para cada frase material, número, contraste, eixo, população, janela, variável, figura ou generalização de E09. Não condensar conclusões distintas em “resultados confirmados”. Quando uma afirmação depender de várias fontes/diagnósticos, atribuir IDs de evidência relacionados e detalhar o vínculo na seção 4. IDs abaixo identificam **cinco exemplos vazios**, não uma lista exaustiva de resultados.
 
