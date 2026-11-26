@@ -26,6 +26,8 @@ A [taxonomia editorial T02.1](scripts/STUDY_TAXONOMY_T02_1.md) distingue **labor
 
 **[Catálogo completo de scripts, dados e comandos](scripts/README.md)**. Inclui modelos ordinais, sobrevivência, Poisson/NB2, séries temporais, regressão logística, simulações e estudos de saúde, risco, economia e educação.
 
+Para a documentação específica das 33 unidades, consulte o [índice de adendos científicos T10.3](reports/t10_3/README.md). A [reconciliação E00–E10 e dos cinco eixos de reprodutibilidade T10.2](reports/t10_2/README.md) distingue estados de homologação e evidência disponível. Os [modelos e matrizes T10.4](reports/t10_4/README.md) são formulários para preenchimento, não resultados de estudo. Nenhuma dessas rotas implica nova execução ou validação científica.
+
 ## Execução
 
 Use a raiz do repositório como diretório de trabalho; não é necessário chamar `setwd()`.
@@ -90,7 +92,7 @@ O [PR #56](https://github.com/riscotta/bayes-stan-r/pull/56) foi integrado após
 
 ## O que é validado automaticamente?
 
-O [workflow R CI](.github/workflows/ci.yml) verifica a sintaxe dos scripts R, executa a suíte `testthat` e uma reconstituição pública dos resultados agregados de mortalidade de São Paulo. Há também uma verificação local de caminhos Markdown e uma rotina separada para URLs externos.
+O [workflow R CI](.github/workflows/ci.yml) tem três jobs: Python 3.12.8 (contratos, auditoria pública PNAD N2 e comparação operacional contemporânea do adaptador); Stan 2.40.0 (sintaxe representativa, geração de C++, sem amostragem nativa nesse job); R 4.5.1 (sintaxe, suíte `testthat`, agregados de Mortalidade SP, piloto N2 Cães F5 e limites científicos publicados). Há verificação de caminhos Markdown e uma rotina separada para URLs externos. Os workflows científicos Stan T05.4/T05.5 têm escopo e acionamento próprios; não são execução de todos os modelos na CI padrão.
 
 **Passar na CI não comprova a validade estatística de todos os ajustes**, não instala todos os pacotes do `renv.lock` e não reexecuta todas as cadeias MCMC. Veja [tests/README.md](tests/README.md) para saber o que efetivamente é coberto.
 
