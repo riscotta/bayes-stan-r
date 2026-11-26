@@ -1,0 +1,6 @@
+id,estudo,artefato,classificacao_proposta,estado_decisorio,justificativa,condicao_para_eficacia
+PNAD_STDOUT,pnadc_estudo_i,stdout.txt,PENDENTE_CUSTODIA,NAO_DELIBERADO,"Log textual anterior sem par bruto autenticado e pin externo","Arquivo homologo legitimamente custodiado e protocolo T06.4 ou ato fundamentado especifico"
+PNAD_STDERR,pnadc_estudo_i,stderr.txt,PENDENTE_CUSTODIA,NAO_DELIBERADO,"Sem stderr bruto historico; vazio nao inferivel do log","Evidencia de captura anterior ou ato especifico de nao aplicabilidade"
+PNAD_REPORT,pnadc_estudo_i,report.json,NAO_APLICAVEL_HISTORICO_PROPOSTO,NAO_DELIBERADO,"Metadado novo do wrapper sem homologo anterior identificado","Ato competente assinado e QA; validar contrato separadamente"
+MORT_SP,mortalidade_sp_0_74,saidas do adaptador R,SUSPENSO_POR_CONTRATO,NAO_DELIBERADO,"Execucao adaptada vedada; agregados nao sao pares de output","Autorizar direitos custodia e comparacao por estudo; QA"
+CAES_F5,caes_raca_f5,saidas do adaptador Stan,SUSPENSO_POR_CONTRATO,NAO_DELIBERADO,"Execucao Stan/MCMC vedada; agregados nao sao pares","Autorizar direitos custodia protocolo estocastico e QA"
