@@ -34,11 +34,11 @@ O [inventário por pasta](STUDY_TAXONOMY_T02_1.md) classifica os 33 tópicos com
 
 ## Contrato mínimo de metadados (T02.2)
 
-O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define pergunta, objeto, dados, método, estado, resultados, limites e responsável, com marcadores para informações ainda não verificadas. O contrato documental teve QA técnico no ciclo T02.2; **não** significa preenchimento ou validação retrospectiva das 33 pastas. A incorporação normativa ao `CONTRIBUTING.md` e o piloto pertencem à T02.7.
+O [modelo preenchível de oito campos](STUDY_METADATA_CONTRACT_T02_2.md) define pergunta, objeto, dados, método, estado, resultados, limites e responsável, com marcadores para informações ainda não verificadas. O contrato documental teve QA técnico no ciclo T02.2; **não** significa preenchimento ou validação retrospectiva das 33 pastas. A incorporação normativa e o piloto estão documentados na seção T02.7 deste índice.
 
 ## Catálogo documental dos estudos (T08.2)
 
-O [catálogo de 33 unidades](STUDY_CATALOG_T08_2.md) reúne metadados de navegação, fontes, cortes temporais, estados de evidência independentes e condições de acesso. A reconstrução editorial foi revisada e integrada no [PR #69](https://github.com/riscotta/bayes-stan-r/pull/69); **não** atesta reexecução, validade científica ou direitos de redistribuição de terceiros (issue #14 P0).
+O [catálogo de 33 unidades](STUDY_CATALOG_T08_2.md) reúne metadados de navegação, fontes, cortes temporais, estados de evidência independentes e condições de acesso. A reconstrução editorial foi revisada e integrada no [PR #69](https://github.com/riscotta/bayes-stan-r/pull/69); **não** atesta reexecução, validade científica ou direitos de redistribuição de terceiros. A [decisão da issue #14](../data/DATA_PROVENANCE_DECISIONS.md) encerrou a frente documental em 26/11/2026, sem homologação geral de licença nem autorização de release integral.
 
 ## Sumários e roteiros de leitura (T08.4)
 
@@ -58,29 +58,34 @@ O [registro da revisão editorial](../reports/t08_7/README.md) documenta a cober
 
 ## Modelo de planejamento E00 (T02.3)
 
-O [modelo editável de E00](STUDY_E00_TEMPLATE_T02_3.md) registra hipóteses concorrentes, critérios de escolha e revisão, decisões fecháveis, riscos, dependências, evidências e pendências justificadas. É **um formulário não preenchido**, não uma reconstrução histórica nem QA de estudo. Consulte os [oito metadados mínimos](STUDY_METADATA_CONTRACT_T02_2.md); o piloto e a formalização em `CONTRIBUTING.md` seguem reservados à T02.7.
+O [modelo editável de E00](STUDY_E00_TEMPLATE_T02_3.md) registra hipóteses concorrentes, critérios de escolha e revisão, decisões fecháveis, riscos, dependências, evidências e pendências justificadas. É **um formulário não preenchido**, não uma reconstrução histórica nem QA de estudo. Consulte os [oito metadados mínimos](STUDY_METADATA_CONTRACT_T02_2.md); o piloto e a formalização em `CONTRIBUTING.md` constam da seção T02.7.
 
 ## Matriz E06 → E07 (T02.4)
 
-A [matriz editável de rastreabilidade matemática–código](STUDY_E06_E07_MATRIX_T02_4.md) define os campos e critérios para confrontar equações, dados, parâmetros, priors, likelihood, transformações e generated quantities entre E06 e Stan/R em E07. O formulário **não está preenchido para nenhum estudo** e não comprova equivalência ou execução; a revisão independente e o piloto continuam exigidos nos respectivos ciclos.
+A [matriz editável de rastreabilidade matemática–código](STUDY_E06_E07_MATRIX_T02_4.md) define os campos e critérios para confrontar equações, dados, parâmetros, priors, likelihood, transformações e generated quantities entre E06 e Stan/R em E07. O formulário **não está preenchido para nenhum estudo** e não comprova equivalência ou execução; a aplicação e a revisão independente por estudo continuam exigidas; o piloto editorial T02.7 tem escopo próprio.
 
 ## Matriz E08 → E09 (T02.5)
 
-A [matriz editável de rastreabilidade entre evidências E08 e afirmações E09](STUDY_E08_E09_MATRIX_T02_5.md) exige fonte, diagnóstico, sensibilidade, limite de validade, hipótese e localizador por afirmação. É **um contrato vazio**, não auditoria de resultados científicos nem autorização de dados; a aplicação ao piloto e a formalização normativa permanecem T02.7.
+A [matriz editável de rastreabilidade entre evidências E08 e afirmações E09](STUDY_E08_E09_MATRIX_T02_5.md) exige fonte, diagnóstico, sensibilidade, limite de validade, hipótese e localizador por afirmação. É **um contrato vazio**, não auditoria de resultados científicos nem autorização de dados; a aplicação ao piloto e a formalização normativa estão documentadas na seção T02.7.
 
 ## Estados por etapa E00–E10 (T02.6)
 
-O [contrato documental de cinco estados por etapa](STUDY_STAGE_STATUS_T02_6.md) define `APROVADO`, `RESSALVA`, `PENDENTE`, `NAO_APLICAVEL` e `INDISPONIVEL_NO_HISTORICO`, com evidência mínima, transições e modelo vazio E00–E10. **Nenhum estudo foi avaliado ou aprovado por esse formulário**; adoção normativa e piloto ficam em T02.7. Estados locais de matrizes e caixas Exec./QA do Plano não são convertidos automaticamente.
+O [contrato documental de cinco estados por etapa](STUDY_STAGE_STATUS_T02_6.md) define `APROVADO`, `RESSALVA`, `PENDENTE`, `NAO_APLICAVEL` e `INDISPONIVEL_NO_HISTORICO`, com evidência mínima, transições e modelo vazio E00–E10. **Nenhum estudo foi avaliado ou aprovado por esse formulário**; adoção normativa e piloto estão documentados na seção T02.7. Estados locais de matrizes e caixas Exec./QA do Plano não são convertidos automaticamente.
 
 ## Aplicação normativa e piloto (T02.7)
 
 O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos contratos T02.1–T02.6 às novas contribuições, com rastreabilidade, QA por etapa e tratamento honesto do histórico. O [piloto editorial de mortalidade SP 0–74](STUDY_PILOT_T02_7_MORTALIDADE_SP.md) aplica os oito campos e demonstra E00, E06→E07, E08→E09 e onze estados **sem reestimar, homologar dados ou concluir QA científico**. O estado do QA documental T02.7 deve ser conferido no parecer registrado no [PR #29](https://github.com/riscotta/bayes-stan-r/pull/29); isso não substitui o QA científico das etapas E00–E10.
+
+## Documentação científica e estados atuais (Etapa 10)
+
+O [inventário T10.1](../reports/t10_1/README.md) distingue templates, registros históricos e documentos específicos. Consulte a [reconciliação T10.2](../reports/t10_2/README.md), o [índice dos 33 adendos T10.3](../reports/t10_3/README.md) e a [identificação dos modelos T10.4](../reports/t10_4/README.md). As 33 entradas abaixo apontam tanto ao README local preservado quanto ao adendo correspondente. Um adendo não prova reexecução ou QA científico por etapa.
 
 ## Exemplos disponíveis
 
 ### 1) Therapeutic Touch
 
 - Pasta: `scripts/therapeutic_touch/`
+- Documentação: [README do estudo](therapeutic_touch/README.md) · [Adendo científico T10.3](../reports/t10_3/therapeutic_touch.md)
 - Entrada: `scripts/therapeutic_touch/therapeutic_touch.R`
 - Dados: `data/raw/TherapeuticTouchData.csv`
 - Saídas (quando rodado via `Rscript`):
@@ -90,6 +95,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 2) Hierárquico (Baseball: 3 níveis)
 
 - Pasta: `scripts/hierarchical/`
+- Documentação: [README do estudo](hierarchical/README.md) · [Adendo científico T10.3](../reports/t10_3/hierarchical.md)
 - Entrada: `scripts/hierarchical/baseball_batting_by_position_3level_cmdstanr.R`
 - Dados: `data/raw/BattingAverage.csv`
 - Observação: *console-only* (não grava arquivos por padrão)
@@ -97,6 +103,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 3) Mortalidade (Poisson hierárquico com offset)
 
 - Pasta: `scripts/mortality/`
+- Documentação: [README do estudo](mortality/README.md) · [Adendo científico T10.3](../reports/t10_3/mortality.md)
 - Entrada: `scripts/mortality/mortality_poisson_offset_cmdstanr_v2.R`
 - Dados: `data/raw/mortality/Dados_Mortalidade.xlsx` *(ou ajuste via `--excel_path=...`)*
 - Observação: *console-only* (não grava arquivos por padrão)
@@ -104,6 +111,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 4) ISUS / SIA — Monte Carlo robusto (cluster bootstrap por CNES)
 
 - Pasta: `scripts/isus_sia/`
+- Documentação: [README do estudo](isus_sia/README.md) · [Adendo científico T10.3](../reports/t10_3/isus_sia.md)
 - Entrada: `scripts/isus_sia/mc_isus_sia.R`
 - Dados: `data/raw/isus_sia/ISUS_SIA_PARS.zip` *(contém `ISUS_SIA_PARS.csv`)*
 - Observação: *console-only* (não grava arquivos por design)
@@ -111,6 +119,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 5) SAheart (regressão logística Bayesiana)
 
 - Pasta: `scripts/saheart/`
+- Documentação: [README do estudo](saheart/README.md) · [Adendo científico T10.3](../reports/t10_3/saheart.md)
 - Entrada: `scripts/saheart/saheart_logistic_cmdstanr.R`
 - Dados (opcional): `data/raw/SAheart.data` *(se não existir, o script tenta baixar automaticamente)*
 - Observação: *console-only* (não grava arquivos por padrão)
@@ -118,6 +127,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 6) Deck — Quantas partidas para chegar em r vitórias?
 
 - Pasta: `scripts/deck_15wins/`
+- Documentação: [README do estudo](deck_15wins/README.md) · [Adendo científico T10.3](../reports/t10_3/deck_15wins.md)
 - Entrada: `scripts/deck_15wins/deck_15wins_negbin_beta_cmdstanr.R`
 - Dados: (simulados no próprio script)
 - Observação: *console-only* (não grava arquivos por padrão)
@@ -125,6 +135,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 7) Hidrômetro — degradação/erro de medição (hierárquico)
 
 - Pasta: `scripts/hidrometro_degradacao/`
+- Documentação: [README do estudo](hidrometro_degradacao/README.md) · [Adendo científico T10.3](../reports/t10_3/hidrometro_degradacao.md)
 - Entrada: `scripts/hidrometro_degradacao/hidrometro_degradacao_cmdstanr.R`
 - Dados: (simulados no próprio script)
 - Observação: *console-only* por padrão; opcionalmente salva PDF/TXT em `outputs/` via `--save_plots=1` e `--save_report=1`
@@ -132,6 +143,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 8) Média vs Ruído (μ) — “o ruído se cancela” com N
 
 - Pasta: `scripts/media_ruido_mu/`
+- Documentação: [README do estudo](media_ruido_mu/README.md) · [Adendo científico T10.3](../reports/t10_3/media_ruido_mu.md)
 - Entrada: `scripts/media_ruido_mu/media_ruido_mu_cmdstanr.R`
 - Dados: (simulados no próprio script)
 - Saídas (quando rodado via `Rscript`):
@@ -142,6 +154,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 9) Coortes de Aposentadoria (Brasil) — 30 anos (retornos reais)
 
 - Pasta: `scripts/coortes_aposentadoria/`
+- Documentação: [README do estudo](coortes_aposentadoria/README.md) · [Adendo científico T10.3](../reports/t10_3/coortes_aposentadoria.md)
 - Entrada: `scripts/coortes_aposentadoria/coortes_aposentadoria_console_only_v2.R`
 - Dados: (baixados automaticamente via Yahoo Finance + BCB/SGS)
 - Observação: *console-only* (não grava arquivos por design)
@@ -149,6 +162,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 10) Kidney — survival (lognormal com censura à direita)
 
 - Pasta: `scripts/kidney_survival/`
+- Documentação: [README do estudo](kidney_survival/README.md) · [Adendo científico T10.3](../reports/t10_3/kidney_survival.md)
 - Entrada: `scripts/kidney_survival/kidney_lognormal_survival_cmdstanr.R`
 - Dados: `survival::kidney` (embutido no pacote)
 - Observação: *console-only* (não grava arquivos por padrão; usa `tempdir()`)
@@ -156,6 +170,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 11) INHALER — ordinal crossover (cutpoints via softplus)
 
 - Pasta: `scripts/inhaler_ordinal/`
+- Documentação: [README do estudo](inhaler_ordinal/README.md) · [Adendo científico T10.3](../reports/t10_3/inhaler_ordinal.md)
 - Entrada: `scripts/inhaler_ordinal/inhaler_ordinal_softplus_cmdstanr.R`
 - Dados:
   - `brms::inhaler` (embutido no pacote **brms**) **ou**
@@ -167,6 +182,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 12) RS Seguro — séries mensais e perfil da vítima
 
 - Pasta: `scripts/rs_seguro/`
+- Documentação: [README do estudo](rs_seguro/README.md) · [Adendo científico T10.3](../reports/t10_3/rs_seguro.md)
 - Entradas principais:
   - `scripts/rs_seguro/rs_seguro_m1_dual_layer_cmdstanr.R`
   - `scripts/rs_seguro/rs_seguro_m2_macrocrime_conditional_cmdstanr.R`
@@ -181,6 +197,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 13) DETER mensal por bioma-UF
 
 - Pasta: `scripts/deter_mensal_bioma_uf/`
+- Documentação: [README do estudo](deter_mensal_bioma_uf/README.md) · [Adendo científico T10.3](../reports/t10_3/deter_mensal_bioma_uf.md)
 - Entrada: `scripts/deter_mensal_bioma_uf/deter_mensal_bioma_uf_cmdstanr.R`
 - Dados: `data/raw/deter_mensal_bioma_uf.csv` *(opcional / não versionado no repo atual)*
 - Observação: imprime relatório no console; opcionalmente salva PDF/TXT em `outputs/` via `--save_plots=1` e `--save_report=1`
@@ -188,6 +205,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 14) IPCA / SIDRA 1419 -> Stan
 
 - Pasta: `scripts/ipca_sidra_1419/`
+- Documentação: [README do estudo](ipca_sidra_1419/README.md) · [Adendo científico T10.3](../reports/t10_3/ipca_sidra_1419.md)
 - Entrada: `scripts/ipca_sidra_1419/ipca_sidra_1419_cmdstanr.R`
 - Dados: consulta online ao SIDRA/IBGE *(tabelas 1737 e 7060)*
 - Saídas opcionais:
@@ -197,6 +215,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 15) Censo Escolar 2021-2025 -> tempo integral na rede pública
 
 - Pasta: `scripts/censo_escolar_tempo_integral/`
+- Documentação: [README do estudo](censo_escolar_tempo_integral/README.md) · [Adendo científico T10.3](../reports/t10_3/censo_escolar_tempo_integral.md)
 - Entrada: `scripts/censo_escolar_tempo_integral/censo_escolar_tempo_integral_cmdstanr.R`
 - Dados: downloads oficiais do INEP com cache local em `data/raw/censo_escolar/` *(ignorado no git)*
 - Saídas opcionais:
@@ -206,6 +225,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 16) SAT — seleção Bayesiana de variáveis
 
 - Pasta: `scripts/sat_model_selection/`
+- Documentação: [README do estudo](sat_model_selection/README.md) · [Adendo científico T10.3](../reports/t10_3/sat_model_selection.md)
 - Entrada: `scripts/sat_model_selection/sat_stan_model_selection_rstan.R`
 - Dados: consulta online ao Rdatasets (`mosaicData::SAT`)
 - Observação: *console-only* (não grava arquivos por padrão); usa **rstan** + **bridgesampling**
@@ -213,6 +233,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 17) FruitFlies — replicação AFT log-normal
 
 - Pasta: `scripts/fruitflies_aft/`
+- Documentação: [README do estudo](fruitflies_aft/README.md) · [Adendo científico T10.3](../reports/t10_3/fruitflies_aft.md)
 - Entrada: `scripts/fruitflies_aft/fruitflies_aft_lognormal_cmdstanr.R`
 - Dados: `Stat2Data::FruitFlies`
 - Saídas opcionais:
@@ -222,6 +243,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 18) PNAD Contínua — desocupação
 
 - Pasta: `scripts/pnadc_desocupacao/`
+- Documentação: [README do estudo](pnadc_desocupacao/README.md) · [Adendo científico T10.3](../reports/t10_3/pnadc_desocupacao.md)
 - Entrada: `scripts/pnadc_desocupacao/pnadc_desocupacao_rstan.R`
 - Dados:
   - `data/raw/pnadc_desocupacao/pnadc_mensal_taxa_desocupacao_6381.csv`
@@ -232,6 +254,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 19) PMS / Serviços em janeiro de 2026
 
 - Pasta: `scripts/pms_servicos/`
+- Documentação: [README do estudo](pms_servicos/README.md) · [Adendo científico T10.3](../reports/t10_3/pms_servicos.md)
 - Entrada: `scripts/pms_servicos/pms_servicos_rstan.R`
 - Dados:
   - `data/raw/pms_servicos/pms_base_analitica_stan.csv`
@@ -240,6 +263,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 20) Retratações científicas globais — tempo até retratação
 
 - Pasta: `scripts/retractions_time_to_retraction/`
+- Documentação: [README do estudo](retractions_time_to_retraction/README.md) · [Adendo científico T10.3](../reports/t10_3/retractions_time_to_retraction.md)
 - Entrada: `scripts/retractions_time_to_retraction/retractions_time_to_retraction_cmdstanr.R`
 - Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
 - Saídas padrão:
@@ -250,6 +274,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 21) Retratações científicas globais — tendência temporal
 
 - Pasta: `scripts/retractions_trend/`
+- Documentação: [README do estudo](retractions_trend/README.md) · [Adendo científico T10.3](../reports/t10_3/retractions_trend.md)
 - Entrada: `scripts/retractions_trend/retractions_trend_rstan.R`
 - Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
 - Observação: *console-only* (não grava arquivos do estudo por padrão); usa **rstan**
@@ -257,6 +282,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 22) Retratações científicas globais — composição dos motivos
 
 - Pasta: `scripts/retractions_reason_composition/`
+- Documentação: [README do estudo](retractions_reason_composition/README.md) · [Adendo científico T10.3](../reports/t10_3/retractions_reason_composition.md)
 - Entrada: `scripts/retractions_reason_composition/retractions_reason_composition_rstan.R`
 - Dados: `data/raw/retractions_time_to_retraction/global_scientific_retractions_1927_2026.csv` *(externo / não versionado; ver documentação local)*
 - Observação: *console-only* (não grava artefatos do estudo por padrão); usa **rstan**
@@ -264,6 +290,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 23) Consumer Shopping Trends — modelo Beta Bayesiano
 
 - Pasta: `scripts/consumer_shopping_trends_beta/`
+- Documentação: [README do estudo](consumer_shopping_trends_beta/README.md) · [Adendo científico T10.3](../reports/t10_3/consumer_shopping_trends_beta.md)
 - Entrada: `scripts/consumer_shopping_trends_beta/consumer_shopping_trends_beta_rstan.R`
 - Dados: `data/raw/consumer_shopping_trends/Consumer_Shopping_Trends_2026 (6).csv` *(externo / não versionado; ver documentação local)*
 - Saídas padrão:
@@ -276,6 +303,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 24) Importações anuais por país — World Bank + Stan
 
 - Pasta: `scripts/importacoes_world_bank/`
+- Documentação: [README do estudo](importacoes_world_bank/README.md) · [Adendo científico T10.3](../reports/t10_3/importacoes_world_bank.md)
 - Entrada: `scripts/importacoes_world_bank/Script.R`
 - Modelo Stan: `scripts/importacoes_world_bank/modelo_principal_hierarquico_student_t.stan`
 - Dados: `data/raw/importacoes_world_bank/world_bank_Import_Usd_enriched.csv`
@@ -288,6 +316,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 25) Mega-Sena — distribuição das dezenas por fatores nominais e temporais
 
 - Pasta: `scripts/mega_sena_dezenas/`
+- Documentação: [README do estudo](mega_sena_dezenas/README.md) · [Adendo científico T10.3](../reports/t10_3/mega_sena_dezenas.md)
 - Entrada: `scripts/mega_sena_dezenas/mega_sena_dezenas_cmdstanr.R`
 - Modelos Stan:
   - `scripts/mega_sena_dezenas/modelo_loglinear_multinomial_fator.stan`
@@ -302,6 +331,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 26) Exercises Dataset — dificuldade, cobertura e modelagem ordinal
 
 - Pasta: `scripts/exercises_dataset/`
+- Documentação: [README do estudo](exercises_dataset/README.md) · [Adendo científico T10.3](../reports/t10_3/exercises_dataset.md)
 - Entrada: `scripts/exercises_dataset/exercises_dataset_cmdstanr.R`
 - Modelos Stan:
   - `scripts/exercises_dataset/modelo_ordinal_dificuldade_sem_equipamento.stan`
@@ -318,6 +348,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 27) Sherlock Holmes — frequências de termos/personagens
 
 - Pasta: `scripts/sherlock_holmes_terms/`
+- Documentação: [README do estudo](sherlock_holmes_terms/README.md) · [Adendo científico T10.3](../reports/t10_3/sherlock_holmes_terms.md)
 - Entrada: `scripts/sherlock_holmes_terms/sherlock_holmes_terms_cmdstanr.R`
 - Modelo Stan: `scripts/sherlock_holmes_terms/modelo_operacional_poisson_lognormal_e07.stan`
 - Dados e artefatos auditáveis: `data/raw/sherlock_holmes_terms/`
@@ -332,6 +363,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 28) IOM Missing Migrants Project — mortos e desaparecidos por rota-mês
 
 - Pasta: `scripts/missing_migrants/`
+- Documentação: [README do estudo](missing_migrants/README.md) · [Adendo científico T10.3](../reports/t10_3/missing_migrants.md)
 - Entrada: `scripts/missing_migrants/missing_migrants_cmdstanr.R`
 - Modelo Stan: `scripts/missing_migrants/modelo_nb_hierarquico_rota_mes_estavel.stan`
 - Dados e artefatos auditáveis: `data/raw/missing_migrants/`
@@ -346,6 +378,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 29) Sobrevivência cadastral de estabelecimentos em Porto Alegre
 
 - Pasta: `scripts/sobrevivencia_cadastral_poa/`
+- Documentação: [README do estudo](sobrevivencia_cadastral_poa/README.md) · [Adendo científico T10.3](../reports/t10_3/sobrevivencia_cadastral_poa.md)
 - Entrada: `scripts/sobrevivencia_cadastral_poa/sobrevivencia_cadastral_poa_cmdstanr.R`
 - Modelos Stan:
   - `scripts/sobrevivencia_cadastral_poa/modelo_M0_rw2_centrado_qr.stan`
@@ -361,6 +394,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 30) UNODC Prisons and Prisoners — held_rate e prisão sem sentença
 
 - Pasta: `scripts/prisons_prisoners_unodc/`
+- Documentação: [README do estudo](prisons_prisoners_unodc/README.md) · [Adendo científico T10.3](../reports/t10_3/prisons_prisoners_unodc.md)
 - Entrada: `scripts/prisons_prisoners_unodc/prisons_prisoners_unodc_cmdstanr.R`
 - Modelos Stan:
   - `scripts/prisons_prisoners_unodc/modelo_M1_held_rate_hurdle_REV5.stan`
@@ -377,6 +411,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 31) Estudo dos Cães — raça declarada e previsão do F5
 
 - Pasta: `scripts/caes_raca_f5/`
+- Documentação: [README do estudo](caes_raca_f5/README.md) · [Adendo científico T10.3](../reports/t10_3/caes_raca_f5.md)
 - Entrada: `scripts/caes_raca_f5/caes_raca_f5_cmdstanr.R`
 - Modelos Stan: `scripts/caes_raca_f5/original/E08_MP_Entregaveis/` (M1/M2 históricos; skew-normal E08_MP)
 - Resultados auditados: `data/raw/caes_raca_f5/resultados_auditados/`
@@ -387,6 +422,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 32) Mortalidade de 0–74 anos — São Paulo (2006–2023)
 
 - Pasta: `scripts/mortalidade_sp_0_74/`
+- Documentação: [README do estudo](mortalidade_sp_0_74/README.md) · [Adendo científico T10.3](../reports/t10_3/mortalidade_sp_0_74.md)
 - Entrada padrão: `scripts/mortalidade_sp_0_74/mortalidade_sp_0_74.R`
 - Recálculo condicionado: `scripts/mortalidade_sp_0_74/E09_analise_completa.R`
 - Resultados agregados auditados: `data/raw/mortalidade_sp_0_74/resultados_auditados/`
@@ -398,6 +434,7 @@ O [CONTRIBUTING](../CONTRIBUTING.md) formaliza a aplicação proporcional dos co
 ### 33) PNAD Contínua — Estudo I multidimensional (2026-09)
 
 - Pasta: `scripts/pnadc_estudo_i/`
+- Documentação: [README do estudo](pnadc_estudo_i/README.md) · [Adendo científico T10.3](../reports/t10_3/pnadc_estudo_i.md)
 - Entrada: `python scripts/pnadc_estudo_i/auditar_e10.py` (somente auditoria de síntese congelada)
 - Fontes originais E04–E09: `scripts/pnadc_estudo_i/estudo_I/` (15 arquivos, SHA Git 15/15 iguais aos do pacote local); modelos Stan em `estudo_I/e07/stan/`
 - Tabela auditável: `data/raw/pnadc_estudo_i/resultados_auditados/`
