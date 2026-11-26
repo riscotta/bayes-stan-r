@@ -28,3 +28,7 @@ Fontes de limiares e interpretação:
 - https://mc-stan.org/docs/cmdstan-guide/diagnose_utility.html
 - https://mc-stan.org/docs/2_39/cmdstan-guide/stansummary.html
 - https://mc-stan.org/docs/reference-manual/transforms.html
+
+## Verificação T09.2
+
+A [auditoria final](../t09/README.md#t092--execução-e-ambientes) usa este protocolo para repetir o job científico pertinente no candidato. O escopo continua limitado às duas fixtures sintéticas, aos modelos fixados e aos critérios predefinidos.
